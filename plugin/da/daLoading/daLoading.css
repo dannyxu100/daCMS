@@ -1,0 +1,43 @@
+﻿/*
+	author:	danny.xu
+	date:	2010-10-27
+	description:	daLoading类样式表
+*/
+
+.dl_body{
+	position:absolute; z-index:99999; top:-2px; left:0px;
+	padding:6px;
+	border:1px solid #e73c3c;
+	background:#fff281;
+	font-size:12px;
+	cursor:pointer;
+	text-align:center;
+	
+	-moz-box-shadow: 0px 2px 10px #999;	
+	-webkit-box-shadow: 0px 2px 10px #999;
+	box-shadow: 0px 2px 10px #999;
+	filter:
+	progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=0, Color='#cccccc') 
+	progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=90, Color='#cccccc') 
+	progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=180, Color='#cccccc') 
+	progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=270, Color='#cccccc');
+}
+.dl_body .dl_text{ text-align:center; color:#8b0000;}
+.dl_body .dl_text .loadingGif{width:32px;height:32px;background: url("images/loading.gif") center no-repeat; }
+
+.dl_body .dl_barbox{
+	position:relative;
+	width:104px; height:9px;
+	padding-top:3px;
+	overflow:hidden;
+}
+.dl_barbox .dl_barbg{
+	position:absolute; z-index:29998; left:0px;
+	width:100px; height:6px; 
+	background:url("images/loading.png") 0px 0px;
+}
+.dl_barbox .dl_barflow{
+	position:absolute; z-index:29999; left:1px; 
+	width:100px; height:6px; 
+	background:url("images/loading.png") 0px -6px
+}
