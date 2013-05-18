@@ -5,16 +5,8 @@
 
 class DB{
 	private $m_CONNSTR = Array(
-		0 => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"pm"),
-		"pm" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"pm"),
-		
-		"da_setting" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"da_setting"),
-		"da_powersys" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"da_powersys"),
-		"da_workflow" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"da_workflow"),
-		"da_bizform" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"da_bizform"),
-		"da_userform" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"da_userform"),
-		"da_common" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"da_common"),
-		"da_crm" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"da_crm")
+		0 => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"dacms"),
+		"dacms" => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"dacms")
 	);
 	
 	private $m_host;
