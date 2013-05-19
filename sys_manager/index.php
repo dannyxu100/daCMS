@@ -30,13 +30,10 @@
 		<div class="userinfo_list shandowbox" title="点击关闭">
 			<ul><a href="javascript:void(0)" onclick="uploadico()">更新头像</a></ul>
 			<ul>姓&nbsp;&nbsp;&nbsp;&nbsp;名:&nbsp;&nbsp;<span id="puname"></span> </ul>
-			<ul>部&nbsp;&nbsp;&nbsp;&nbsp;门:&nbsp;&nbsp;<span id="poname"></span> </ul>
 			<ul>角&nbsp;&nbsp;&nbsp;&nbsp;色:&nbsp;&nbsp;<span id="rolename"></span> </ul>
-			<ul>工作组:&nbsp;&nbsp;<span id="groupname"></span> </ul>
 		</div> 
 	</div>
-	<a href="javascript:void(0)" onclick="updatepwd()">修改密码</a> | 
-	<a href="/action/loginout.php">退出</a>
+	<span id="info_bt"></span>
 </div>
 
 <iframe id="mainframe" src="" frameborder="0" style="width:100%; height:500px;" defaultHeight="600"></iframe>

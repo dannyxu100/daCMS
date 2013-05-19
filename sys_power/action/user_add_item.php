@@ -16,7 +16,7 @@
 	$sql .= "'".$_POST["pu_qq"]."',";
 	$sql .= "'".$_POST["pu_remark"]."')";
 	
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	$res = $db->insert($sql);
 	
 	$db->close();

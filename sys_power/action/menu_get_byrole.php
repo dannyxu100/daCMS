@@ -1,14 +1,23 @@
 ﻿<?php 
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/fn.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
-	//error_reporting(-1);
+	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/fn.php";
 	
-	$db = new DB("da_powersys");
-	$sql = "select * from p_menu,p_menu2role 
-	where pm_id=m2r_pmid 
-	and m2r_prid in (".fn_getcookie("roleid").")";
+	$db = new DB("dacms");
+	$roleid = fn_getcookie("roleid");
+	
+	$sql = "";
+	if(-1 == $roleid){		//超级管理员
+		$sql = "select * from p_menu 
+		where 0=0 ";
+	}
+	else{		//普通管理员
+		$sql = "select * from p_menu,p_menu2role 
+		where pm_id=m2r_pmid 
+		and m2r_prid in (".$roleid.")";
+		
+	}
 	
 	if(isset($_POST["pmid"])){
 		$sql .= " and pm_id=:pmid ";
@@ -27,7 +36,6 @@
 	$set = $db->getlist($sql);
 	// Log::out($sql);
 	// Log::out($db->geterror());
-	
 	$db->close();
 
 	if(is_array($set) && 0<count($set)){

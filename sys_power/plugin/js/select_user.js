@@ -1,68 +1,6 @@
-﻿var g_curoid = "",
-	g_ismulti = false;
-
-var setting = {
-	view: {
-		selectedMulti: false
-	},
-	data: {
-		key: {
-			title:"t"
-		},
-		simpleData: {
-			enable: true
-		}
-	},
-	callback: {
-		// beforeMouseDown: beforeMouseDown,
-		// beforeMouseUp: beforeMouseUp,
-		// beforeRightClick: beforeRightClick,
-		// onMouseDown: onMouseDown,
-		onMouseUp: onMouseUp
-		// onRightClick: onRightClick
-	}
-};
-
-// function beforeMouseDown(treeId, treeNode) {
-	// return (!treeNode || treeNode.down != false);
-// }
-// function onMouseDown(event, treeId, treeNode) {
-
-// }
-// function beforeMouseUp(treeId, treeNode) {
-	// return (!treeNode || treeNode.up != false);
-// }
-function onMouseUp(event, treeId, treeNode) {
-	g_curoid = treeNode.id;
-	loaduserlist();
-}
-// function beforeRightClick(treeId, treeNode) {
-	// return (!treeNode || treeNode.right != false);
-// }
-// function onRightClick(event, treeId, treeNode) {
-
-// }
+﻿var g_ismulti = false;
 
 
-/*加载左边部门数据*/
-function loadtree(){
-	 $.ajax({
-	   url: "/sys_power/action/org_get_list.php",
-	   dataType: "json",
-	   success: function(data){
-			var zNodes = [];
-			for(var i=0; i<data.length; i++){
-				zNodes.push({
-					id: data[i].po_id,
-					pId: data[i].po_pid,
-					name: data[i].po_name,
-					open: true
-				});
-			}
-			$.fn.zTree.init($("#orgtree"), setting, zNodes);
-	   }
-	 });
-}
 var g_ds = {};		//缓存数据
 
 function loaduserlist(){
@@ -71,10 +9,6 @@ function loaduserlist(){
 			opt: "qry"
 		};
 		
-	if( g_curoid ){
-		data1.pu_oid = g_curoid;
-	}
-	
 	//考虑到多页选择，就不清楚缓存了。
 	// g_ds = {};	//清除缓存数据
 	daTable({
@@ -185,8 +119,8 @@ daLoader("daTable,daWin,daIframe", function(){
 	da(function(){
 		arrParams = da.urlParams();
 		g_ismulti = !!arrParams["ismulti"];
-		//alert(1);
-		loadtree();
+		
+		loaduserlist();
 	});
 });
 //-->

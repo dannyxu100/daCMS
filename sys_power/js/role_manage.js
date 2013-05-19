@@ -1,6 +1,5 @@
 ﻿var g_prid = "";
 
-<!--
 var setting = {
 	view: {
 		addHoverDom: addHoverDom,
@@ -21,11 +20,7 @@ var setting = {
 	callback: {
 		// beforeDrag: beforeDrag,
 		beforeMouseUp: clicknode,
-		beforeEditName: beforeEditName,
-		beforeRemove: beforeRemove,
-		beforeRename: beforeRename,
-		onRemove: onRemove,
-		onRename: onRename
+		beforeRemove: beforeRemove
 	}
 };
 
@@ -41,12 +36,6 @@ var log, className = "dark";
 	// return true;
 // }
 
-function beforeEditName(treeId, treeNode) {
-	className = (className === "dark" ? "":"dark");
-	var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-	zTree.selectNode(treeNode);
-	return true; //confirm("进入【" + treeNode.name + "】的编辑状态吗？");
-}
 function beforeRemove(treeId, treeNode) {
 	className = (className === "dark" ? "":"dark");
 	var zTree = $.fn.zTree.getZTreeObj("treeDemo");
@@ -80,49 +69,6 @@ function beforeRemove(treeId, treeNode) {
 	function(){
 		return false;
 	});
-}
-function onRemove(e, treeId, treeNode) {
-
-}
-function beforeRename(treeId, treeNode, newName) {
-	className = (className === "dark" ? "":"dark");
-	if (newName.length == 0) {
-		alert("节点名称不能为空.");
-		var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-		zTree.editName(treeNode)
-		// setTimeout(function(){zTree.editName(treeNode)}, 10);
-		return false;
-	}
-	else{
-		$.ajax({
-			url: "action/org_update_item.php",
-			type: "POST",
-			data: {
-			 poid: treeNode.id,
-			 poname: newName
-			},
-			success: function(res){
-				if(res=="FALSE"){
-					alert("操作失败");
-					loadroletree();
-				}
-				
-			}
-		});
-	}
-	return true;
-}
-function onRename(e, treeId, treeNode) {
-
-}
-
-function getTime() {
-	var now= new Date(),
-	h=now.getHours(),
-	m=now.getMinutes(),
-	s=now.getSeconds(),
-	ms=now.getMilliseconds();
-	return (h+":"+m+":"+s+ " " +ms);
 }
 
 /*点击添加节点*/
@@ -173,9 +119,7 @@ function clicknode(treeId, treeNode){
 	});
 	
 	loaduserlist();
-	loadgrouplist();
-	loadpowertype();
-
+	loadmenutree();
 }
 
 
@@ -270,11 +214,9 @@ var setting3 = {
 
 function addDiyDom3(treeId, treeNode) {
 	var aObj = $("#" + treeNode.tId + "_a");
-	
 	aObj.after('<label class="chk_powertype"><input type="checkbox" id="chkmenu_'+ treeNode.id +'" onclick="selectmenu(this)"/>允许</label>');
 		
 }
-
 /*加载左边部门数据*/
 function loadmenutree(){
 	da.runDB("action/menu_get_list.php",{
@@ -299,42 +241,6 @@ function loadmenutree(){
 	});
 	   
 }
-/**选中或取消权限
-*/
-function selectpowertype(obj){
-	var arr = obj.id.split("_");
-		pp_id = arr[1],
-		pt_id = arr[2];
-		
-	if(obj.checked){
-		da.runDB("/sys_power/action/power2role_add_item.php",{
-			prid: g_prid,
-			ppid: pp_id,
-			ptid: pt_id
-			
-		},function(res){
-			if("FALSE" == res){
-				alert("设置失败");
-			}else{
-				alert("设置成功");
-			}
-		});
-	}
-	else{
-		da.runDB("/sys_power/action/power2role_delete_item.php",{
-			prid: g_prid,
-			ppid: pp_id
-			
-		},function(res){
-			if("FALSE" == res){
-				alert("设置失败");
-			}else{
-				alert("设置成功");
-			}
-		});
-	}
-}
-
 
 /**加载角色权限
 */
@@ -373,58 +279,6 @@ function addDiyDom(treeId, treeNode) {
 		
 }
 
-/**加载权限树
-*/
-function loadpowertree(){
-	 $.ajax({
-	   url: "action/power_get_list.php",
-	   type: "POST",
-	   dataType: "json",
-	   error: function(msg){
-		//da.out(msg.responseText);
-	   },
-	   success: function(data){
-			var zNodes = [];
-			for(var i=0; i<data.length; i++){
-				zNodes.push({
-					id: data[i].pp_id,
-					pId: data[i].pp_pid,
-					name: data[i].pp_name,
-					open: true
-				});
-			}
-			
-			$.fn.zTree.init($("#treePower"), setting2, zNodes);
-			loadpower2role();
-	   }
-	 });
-}
-
-var g_html;
-/**预加载并缓存 权限类型
-*/
-function loadpowertype(){
-	da.runDB("/sys_power/action/powertype_get_list.php",{
-		dataType: "json",
-		
-	},function(data){
-		if(data && data.ds11){
-			var ds = data.ds11;
-			
-			g_html = [];
-			for(var i=0; i<ds.length; i++){
-				g_html.push('<label class="chk_powertype"><input type="checkbox" id="power_{nodeid}_'+ds[i].pt_id+'" onclick="selectpowertype(this)"/>'+ ds[i].pt_name +'</label>');
-			}
-			g_html = g_html.join("");
-			
-			loadpowertree();
-			loadmenutree();
-		}
-	});
-	
-}
-
-
 /**加载工作组下属人员信息列表
 */
 function loaduserlist(){
@@ -432,35 +286,6 @@ function loaduserlist(){
 	daTable({
 		id: "tb_list",
 		url: "action/user2role_get_list.php",
-		data: {
-			dataType: "json",
-			prid: g_prid,
-			opt: "qry"
-		},
-		//loading: false,
-		//page: false,
-		pageSize: 20,
-		
-		field: function( fld, val, row, ds ){
-			if("pu_name"==fld){
-				return '<a href="javascript:void(0)" onclick="updateuser('+row.pu_id+')">'+val+'</a>';
-			}
-			return val;
-		},
-		loaded: function( idx, xml, json, ds ){
-			//link_click("#tb_list tbody[name=details_auto] tr");
-			// toExcel();
-		}
-	}).load();
-}
-
-/**加载工作组下属人员信息列表
-*/
-function loadgrouplist(){
-	//加载工作组人员列表
-	daTable({
-		id: "tb_grouplist",
-		url: "action/group2role_get_page.php",
 		data: {
 			dataType: "json",
 			prid: g_prid,
@@ -542,39 +367,6 @@ function addu2r(){
 	});
 }
 
-/**添加角色包含工作组
-*/
-function addg2r(){
-	if(!g_prid){
-		alert("请先选择中，任意角色。");
-		return;
-	}
-
-	daWin({
-		width: 650,
-		height: 500,
-		url: "/sys_power/plugin/select_group.htm?ismulti=true",
-		back: function( res ){
-			var sgids = [];
-			for(var k in res){
-				sgids.push(res[k].pg_id);
-			}
-			
-			da.runDB("/sys_power/action/group2role_add_list.php",{
-				prid: g_prid,
-				gids: sgids.join(",")
-			},function(res){
-				if("FALSE" == res){
-					alert("对不起，操作失败。");
-				}
-				else{
-					alert("添加成功");
-					loadgrouplist();
-				}
-			});
-		}
-	});
-}
 /**批量删除角色包含人员
 */
 function deleteu2r(){
@@ -606,37 +398,6 @@ function deleteu2r(){
 	}
 }
 
-/**批量删除角色包含工作组
-*/
-function deleteg2r(){
-	if(!g_prid){
-		alert("请先选择中，任意角色。");
-		return;
-	}
-	
-	var sgids = [];
-	da("[name=chkitem]:checked").each(function(){
-		sgids.push(this.value);
-	});
-	
-	if( 0<sgids.length ){
-		confirm("确认删除选中的人员吗？",function(){
-			da.runDB("/sys_power/action/group2role_delete_list.php",{
-				prid: g_prid,
-				gids: sgids.join(",")
-			},function(res){
-				if("FALSE" == res){
-					alert("对不起，操作失败。");
-				}
-				else{
-					alert("删除成功");
-					loadgrouplist();
-				}
-			});
-		});
-	}
-}
-
 /**加载分页按钮
 */
 function loadtab(){
@@ -661,25 +422,7 @@ function loadtab(){
 		}
 	});
 	
-	daTab0.appendItem("item03","包含工作组","/images/menu_icon/group.png",{
-		click:function(){
-			da("#pad_info").hide();
-			da("#pad_list").hide();
-			da("#pad_powertree").hide();
-			da("#pad_menutree").hide();
-			da("#pad_grouplist").show();
-		}
-	});
-	daTab0.appendItem("item04","角色权限","/images/menu_icon/power.png",{
-		click:function(){
-			da("#pad_info").hide();
-			da("#pad_list").hide();
-			da("#pad_grouplist").hide();
-			da("#pad_menutree").hide();
-			da("#pad_powertree").show();
-		}
-	});
-	daTab0.appendItem("item05","角色导航菜单","/images/menu_icon/menu.png",{
+	daTab0.appendItem("item03","角色导航菜单","/images/menu_icon/menu.png",{
 		click:function(){
 			da("#pad_info").hide();
 			da("#pad_list").hide();
@@ -688,7 +431,7 @@ function loadtab(){
 			da("#pad_menutree").show();
 		}
 	});
-	daTab0.click("item04");
+	daTab0.click("item03");
 }
 
 daLoader("daDate,daMsg,daTab,daTable,daWin", function(){
@@ -704,5 +447,3 @@ daLoader("daDate,daMsg,daTab,daTable,daWin", function(){
 	  changeMonth: true
 	});
 });
-
-//-->

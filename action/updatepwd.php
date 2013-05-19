@@ -9,7 +9,7 @@
 	$oldpwd=md5($_POST['old_pwd']);
 	$newpwd=md5($_POST['new_pwd']);
 	
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	$param1 = array();
 	array_push( $param1, array(":puid", $puid) );
 	$db->paramlist($param1);

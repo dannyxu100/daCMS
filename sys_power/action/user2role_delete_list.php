@@ -6,7 +6,7 @@
 	$arr = preg_split("/,/", $_POST["uids"]);
 	
 	// $log = new Log();
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	if(0<count($arr) && isset($_POST["prid"])){
 		$db->tran();
 		

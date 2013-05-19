@@ -19,7 +19,7 @@
 	//$log = new Log();
 	// $log->write($sql.time());
 	
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	$res = $db->update($sql);
 	
 	$db->close();

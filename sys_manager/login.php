@@ -57,14 +57,14 @@
 			return;
 		}
 		loading(true);
-		da.runDB("/action/login.php",{
+		da.runDB("/sys_manager/action/login.php",{
 			u_code: da("#u_code").val(),
 			u_pwd: da("#u_pwd").val()
 			
 		},function(res){
 			loading(false);
 			if("1"==res){
-				location.href = "/manager/index.php";
+				location.href = "/sys_manager/index.php";
 			}
 			else{
 				alert("登陆失败。");

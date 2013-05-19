@@ -4,7 +4,7 @@
 /**获取cookie值
 */
 function fn_getcookie(name){
-	var arrcookie = decodeURIComponent(da.cookie("COOKIE_FROM_DASYS")).split('|');
+	var arrcookie = decodeURIComponent(da.cookie("COOKIE_FROM_DACMS")).split('|');
 
 	for(var i=0; i<arrcookie.length; i++){
 		var arr = arrcookie[i].split(':');

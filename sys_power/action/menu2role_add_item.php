@@ -5,7 +5,7 @@
 	// error_reporting(-1);
 	
 	// $log = new Log();
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	$db->param(":prid", $_POST["prid"]);
 	$db->param(":pmid", $_POST["pmid"]);
 	$res = $db->insert("insert into p_menu2role(m2r_prid, m2r_pmid) values(:prid, :pmid)");

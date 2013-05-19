@@ -3,7 +3,7 @@
 //在引用本文件之前不能有任何形式的输出，建议在文档最开始出引用
 // session_start();
 
-if (!isset($_COOKIE['COOKIE_FROM_DASYS'])){
-	echo "<script language='javascript'>top.location.href='/login.php';</script>";
+if (!isset($_COOKIE['COOKIE_FROM_DACMS'])){
+	echo "<script language='javascript'>top.location.href='/sys_manager/login.php';</script>";
 }
 ?>

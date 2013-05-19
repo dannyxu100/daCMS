@@ -5,17 +5,8 @@
 	
   <TITLE>人员管理</TITLE>
 	<link rel="stylesheet" href="/css/base.css">
-	<link rel="stylesheet" href="/plugin/ztree/zTreeStyle.css" type="text/css">
  
 	<style type="text/css">
-		.ztree li span.button.add {
-			margin-left:2px;
-			margin-right: -1px;
-			background-position:-144px 0;
-			vertical-align:top;
-			*vertical-align:middle
-		}
-		
 		.header {height:30px; line-height:30px; padding:0px 15px; font-weight:bold; border-bottom:1px solid #ccc; background:#f0f0f0;}
 		
 		.tableform>tbody>tr>td{padding:3px; vertical-align:top;}
@@ -30,7 +21,6 @@
 
 	<table class="tablesolid" style="width:100%">
 		<tr>
-			<td style="width:200px;vertical-align:top;"><ul id="orgtree" class="ztree"></ul></td>
 			<td style="vertical-align:top;">
 				<div class="list_top_bar">
 					<div class="list_top_title">成员信息列表</div>
@@ -86,9 +76,6 @@
 </BODY>
 </HTML>
 
-
-<script type="text/javascript" src="/js/jquery-1.8.3.js"></script>
-<script type="text/javascript" src="/plugin/ztree/jquery.ztree.core-3.5.min.js"></script>
 <script type="text/javascript" src="/plugin/da/daLoader_source_1.1.js"></script>
 
 <script type="text/javascript" src="js/user_manage.js"></script>

@@ -4,7 +4,7 @@
 	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
 	//error_reporting(-1);
 	
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	
 	$sql = "select * from p_menu2role ";
 	

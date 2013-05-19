@@ -2,7 +2,7 @@
 	/**获取cookie值
 	*/
 	function fn_getcookie( $name ){
-		$arrcookie = explode('|', urldecode($_COOKIE["COOKIE_FROM_DASYS"]));
+		$arrcookie = explode('|', urldecode($_COOKIE["COOKIE_FROM_DACMS"]));
 		
 		for($i=0; $i<count($arrcookie); $i++){
 			$arr = explode(':', $arrcookie[$i]);

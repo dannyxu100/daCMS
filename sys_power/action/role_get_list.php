@@ -3,7 +3,7 @@
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
 	//include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
 	
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	
 	$sql = "select * from p_role ";
 	if(isset($_POST["prid"])){

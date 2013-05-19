@@ -114,56 +114,6 @@
 				</div>
 				
 
-				<div id="pad_grouplist">
-					<div class="list_top_bar">
-						<div class="list_top_title">角色包含的工作组</div>
-						<div class="list_top_tools">
-							<a class="item" href="javascript:void(0)" onclick="addg2r();" ><img src="/images/sys_icon/add.png" /> 添加</a>
-							<a class="item" href="javascript:void(0)" onclick="deleteg2r();" ><img src="/images/sys_icon/delete.png" /> 删除</a>
-						</div>
-					</div>
-					
-					<table id="tb_grouplist" style="width:100%;">
-						<tbody name="head">
-							<tr>
-								<td style="text-align:center; width:20px;"><input type="checkbox" /></td>
-								<td style="width:20px;">序</td>
-								<td style="width:150px;">名称</td>
-								<td>备注</td>
-								<td style="width:80px;">创建日期</td>
-							</tr>
-						</tbody>
-						<tbody name="body" style="display:none">
-							<tr value="{pg_id}">
-								<td style="text-align:center;"><input type="checkbox" name="chkitem" value="{pg_id}" /></td>
-								<td name="order">{order}</td>
-								<td name="pr_name" >{pg_name}</td>
-								<td name="pg_remark">{pg_remark}</td>
-								<td fmt="yyyy-mm-dd/p">{pg_date}</td>
-							</tr>
-							<!--
-							<tr>
-								<td colspan="7" name="order">{order}</td>
-							</tr>
-							-->
-						</tbody>
-						<tbody name="foot">
-							<tr>
-								<td  colspan="5" name="sum_order">
-									共<span id="tb_grouplist_recordcount2" style="color:#c26220;">0</span>&nbsp;条，
-									共<span id="tb_grouplist_pagecount2" style="color:#c26220">0</span>&nbsp;页，
-									当前在第<span id="tb_grouplist_pageindex2" style="color:#c26220">0</span>&nbsp;页　
-									<span id="tb_grouplist_pageinfo">&nbsp;</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				
-				<div id="pad_powertree">
-					<ul id="treePower" class="ztree"></ul>
-				</div>
-				
 				<div id="pad_menutree">
 					<ul id="treeMenu" class="ztree"></ul>
 				</div>

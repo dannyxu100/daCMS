@@ -7,6 +7,10 @@ body,button,input,select,textarea{
 	font:12px/1.5 tahoma,arial,\5b8b\4f53;
 }
 
+a,a:hover {
+	color:#009900;
+}
+
 .tablesolid, .grid{ border-right:1px solid #f0f0f0; border-top:1px solid #f0f0f0; }
 .tablesolid>tbody>tr>td, 
 .grid>tbody>tr>td { border-left:1px solid #f0f0f0; border-bottom:1px solid #f0f0f0; }

@@ -29,20 +29,21 @@ function hideuserinfo(){
 /**上传头像
 */
 function uploadico(){
-	var newfilename = fn_getcookie("puname")+"_"+fn_getcookie("puid");
+	var newfolder = -1 == fn_getcookie("roleid")? "/uploads/adminico/":"/uploads/userico/",
+		newfilename = fn_getcookie("puname")+"_"+fn_getcookie("puid");
 
 	fn_uploadfile("上传文件尺寸为50x50像素。", {
         "fileTypeDesc": "图片文件",
 		// "multi": true,
 		"fileTypeExts": "*.gif; *.jpg; *.png",
 		"formData": {
-			"folder": "/uploads/userico",
+			"folder": newfolder,
 			"name": newfilename
 		}
 	},function(files){
 		var imgurl = "";
 		for( var k in files ){
-			imgurl = "/uploads/userico/"+ newfilename + files[k].type;
+			imgurl = newfolder + newfilename + files[k].type;
 		}
 		
 		da.runDB("/sys_power/action/user_update_puicon.php",{
@@ -50,6 +51,16 @@ function uploadico(){
 			puid: fn_getcookie("puid"),
 			puicon: imgurl
 		});
+	});
+}
+
+/**管理菜单
+*/
+function managemenu(){
+	daWin({
+		width: 800,
+		height: 600,
+		url:"/sys_power/menu_manage.php"
 	});
 }
 
@@ -106,7 +117,7 @@ var g_toolbar;
 /**加载菜单
 */
 function loadmenu(){
-	da.runDB("/manager/sys_power/action/menu_get_byrole.php",{
+	da.runDB("/sys_power/action/menu_get_byrole.php",{
 		dataType: "json",
 		pmlevel: 1
 	},function(data){
@@ -151,7 +162,7 @@ function loadmenu(){
 			g_toolbar.select("bt_menu"+data[0].pm_id);
 		}
 	},function(res, msg, ex){
-		// debugger;
+		debugger;
 	});
 }
 
@@ -179,9 +190,17 @@ function listenKey(){
 function loaduserinfo(){
 	da("#puicon").attr("src", fn_getcookie("puicon"));
 	da("#puname").text(fn_getcookie("puname"));
-	da("#poname").text(fn_getcookie("poname"));
 	da("#rolename").text(fn_getcookie("rolename"));
-	da("#groupname").text(fn_getcookie("groupname"));
+	
+	var bthtml = [];
+	if( -1 == fn_getcookie("roleid") ){
+		bthtml.push('<a href="javascript:void(0)" onclick="managemenu()">后台菜单</a> | ');
+	}
+	bthtml.push('<a href="javascript:void(0)" onclick="updatepwd()">修改密码</a> | ');
+	bthtml.push('<a href="/action/loginout.php">退出</a>');
+	
+	da("#info_bt").append(bthtml.join(""));
+	
 }
 
 daLoader("daMsg,daIframe,daWin,daToolbar,daKey",function(){

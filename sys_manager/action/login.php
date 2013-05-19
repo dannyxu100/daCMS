@@ -15,92 +15,74 @@
 	$code=$_POST['u_code'];
 	$pwd=md5($_POST['u_pwd']);
 	
+	$arrcookie = array();
+	
 	//查询用户基本信息
 	$db = new DB("dacms");
-	$row = $db->getone("select * from p_user where pu_code='".$code."' and pu_pwd='".$pwd."'");
-	
-	// $log = new Log();
-	// $log->write($row['pu_code'].":".$code."----".$row['pu_pwd'].":".$pwd);
-	if ($row['pu_code']!=$code || $row['pu_pwd']!=$pwd){
+	//先判断是不是超级管理员
+	$row = $db->getone("select * from p_admin where pa_code='".$code."' and pa_pwd='".$pwd."'");
+	if ($row['pa_code']==$code && $row['pa_pwd']==$pwd){
 		$db->close();
-		echo "用户名或密码错误。";
-		return;
+		array_push($arrcookie, "puid:".$row['pa_id']);
+		array_push($arrcookie, "pucode:".$row['pa_code']);
+		array_push($arrcookie, "puname:".$row['pa_name']);
+		array_push($arrcookie, "puicon:".$row['pa_icon']);
+		array_push($arrcookie, "roleid:-1");
+		array_push($arrcookie, "rolename:超级管理员");
 	}
-	
-	//更新用户最近登录记录
-	$db->param(":puid", $row['pu_id']);
-	$db->param(":time", date("Y-m-d H:i:s"));
-	$db->update("update p_user set pu_lastlogin=:time where pu_id=:puid");
-	$db->close();
-	//--------------------------------- 以下为获取权限数据代码 --------------------------------------------------
-	
-	//查询所属部门信息
-	$db = new DB("dacms");
-	$db->param(":puid", $row['pu_id']);
-	$sql_org = "select p_org.* from p_user, p_org where po_id=pu_oid and pu_id=:puid ";
-	$set_org = $db->getone($sql_org);
-	
-	//查询上下级信息
-	// $sql_ = "";
-	// $set_ = $db->getlist($sql_);
-	
-	//查询所属工作组信息
-	$sql_group = "select p_group.* from p_user, p_group, p_user2group where u2g_puid=pu_id and u2g_pgid=pg_id and pu_id=:puid order by pg_sort asc";
-	$set_group = $db->getlist($sql_group);
-	
-	//查询所属角色信息
-	$sql_role = "select p_role.* from p_user, p_role, p_user2role where u2r_puid=pu_id and u2r_prid=pr_id and pu_id=:puid order by pr_sort asc";
-	$set_role = $db->getlist($sql_role);
-	
-	// $log = new Log();
-	// $log->write($db->geterror());
-	$db->close();
-	
-	//缓存用户基本信息
-	//格式//puid:999|pucode:dannyxu100|puname:徐飞
-	$arrcookie = array();
-	array_push($arrcookie, "puid:".$row['pu_id']);
-	array_push($arrcookie, "pucode:".$row['pu_code']);
-	array_push($arrcookie, "puname:".$row['pu_name']);
-	array_push($arrcookie, "puicon:".$row['pu_icon']);
-	
-	//缓存所属部门信息
-	array_push($arrcookie, "poid:".$set_org['po_id']);
-	array_push($arrcookie, "poname:".$set_org['po_name']);
-	
-	//缓存上下级信息
-	array_push($arrcookie, 'uplevel:1');
-	array_push($arrcookie, 'downlevel:15');
-	
-	//缓存所属工作组信息
-	if(is_array($set_group)){
-		//格式//groupid:0,999,3|groupname:销售一组,机动小组,飞虎组
-		$arrpgid = array();
-		$arrpgname = array();
-		for($i=0; $i<count($set_group); $i++){
-			array_push($arrpgid, $set_group[$i]['pg_id']);
-			array_push($arrpgname, $set_group[$i]['pg_name']);
+	else{
+		$row = $db->getone("select * from p_user where pu_code='".$code."' and pu_pwd='".$pwd."'");
+		
+		// $log = new Log();
+		// $log->write($row['pu_code'].":".$code."----".$row['pu_pwd'].":".$pwd);
+		if ($row['pu_code']!=$code || $row['pu_pwd']!=$pwd){
+			$db->close();
+			echo "用户名或密码错误。";
+			return;
 		}
 		
-		array_push($arrcookie, 'groupid:'.implode(',', $arrpgid));
-		array_push($arrcookie, 'groupname:'.implode(',', $arrpgname));
+		//更新用户最近登录记录
+		$db->param(":puid", $row['pu_id']);
+		$db->param(":time", date("Y-m-d H:i:s"));
+		$db->update("update p_user set pu_lastlogin=:time where pu_id=:puid");
+		$db->close();
+		//--------------------------------- 以下为获取权限数据代码 --------------------------------------------------
+		
+		$db = new DB("dacms");
+		//查询所属角色信息
+		$sql_role = "select p_role.* from p_user, p_role, p_user2role where u2r_puid=pu_id and u2r_prid=pr_id and pu_id=:puid order by pr_sort asc";
+		$db->param(":puid", $row['pu_id']);
+		$set_role = $db->getlist($sql_role);
+		
+		// $log = new Log();
+		// $log->write($db->geterror());
+		$db->close();
+		
+		//缓存用户基本信息
+		//格式//puid:999|pucode:dannyxu100|puname:徐飞
+		array_push($arrcookie, "puid:".$row['pu_id']);
+		array_push($arrcookie, "pucode:".$row['pu_code']);
+		array_push($arrcookie, "puname:".$row['pu_name']);
+		array_push($arrcookie, "puicon:".$row['pu_icon']);
+		
+		//缓存所属角色信息
+		if(is_array($set_role)){
+			//格式//roleid:0,999,3|rolename:超级管理员,总经理,普通员工
+			$arrprid = array();
+			$arrprname = array();
+			for($i=0; $i<count($set_role); $i++){
+				array_push($arrprid, $set_role[$i]['pr_id']);
+				array_push($arrprname, $set_role[$i]['pr_name']);
+			}
+			array_push($arrcookie, 'roleid:'.implode(',', $arrprid));
+			array_push($arrcookie, 'rolename:'.implode(',', $arrprname));
+		}
 	}
 	
-	//缓存所属角色信息
-	if(is_array($set_role)){
-		//格式//roleid:0,999,3|rolename:超级管理员,总经理,普通员工
-		$arrprid = array();
-		$arrprname = array();
-		for($i=0; $i<count($set_role); $i++){
-			array_push($arrprid, $set_role[$i]['pr_id']);
-			array_push($arrprname, $set_role[$i]['pr_name']);
-		}
-		array_push($arrcookie, 'roleid:'.implode(',', $arrprid));
-		array_push($arrcookie, 'rolename:'.implode(',', $arrprname));
-	}
+	
 	
 	//格式//puid:999|pucode:dannyxu100|puname:徐飞|groupid:0,999,3|groupname:销售一组,机动小组,飞虎组|roleid:0,999,3|rolename:超级管理员,总经理,普通员工|role:0,999,3-超级管理员,总经理,普通员工|
-	setcookie('COOKIE_FROM_DASYS', urlencode(implode('|', $arrcookie)), time()+86400, "/");		//有效期24小时, 整个领域有效
+	setcookie('COOKIE_FROM_DACMS', urlencode(implode('|', $arrcookie)), time()+86400, "/");		//有效期24小时, 整个领域有效
 	
 	//登录成功
 	echo 1;

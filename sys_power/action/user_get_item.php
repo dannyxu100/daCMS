@@ -3,11 +3,11 @@
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
 	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
 
-	$sql = "select * from p_user,p_org where pu_oid=po_id and pu_id=".$_POST["pu_id"];
+	$sql = "select * from p_user where pu_id=".$_POST["pu_id"];
 	// $log = new Log();
 	// $log->write($sql);
 	
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	$set = $db->getone($sql);
 	
 	$db->close();

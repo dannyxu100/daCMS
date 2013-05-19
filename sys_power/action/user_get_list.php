@@ -6,20 +6,13 @@
 	// $qry = $_POST["qry"];
 	
 	
-	$db = new DB("da_powersys");
-	$sql1 = "select * from p_user,p_org where pu_oid=po_id ";
+	$db = new DB("dacms");
+	$sql1 = "select * from p_user ";
 	$param1 = array();
 	
 	$sql2 = "select count(pu_id) as Column1 from p_user ";
 	$param2 = array();
 	
-	if( isset($_POST["pu_oid"]) ){					//部门筛选
-		$sql1 .= " and po_id=:pu_oid";
-		$sql2 .= " where pu_oid=:pu_oid";
-		
-		array_push($param1, array(":pu_oid", $_POST["pu_oid"]));
-		array_push($param2, array(":pu_oid", $_POST["pu_oid"]));
-	}
 	if( isset($_POST["pageindex"]) ){				//分页
 		$start = ($_POST["pageindex"]-1)*$_POST["pagesize"];
 		$end = $start + $_POST["pagesize"];

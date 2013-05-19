@@ -21,7 +21,7 @@
 	}
 	$sql .= " where pr_id=".$_POST["prid"];
 	
-	$db = new DB("da_powersys");
+	$db = new DB("dacms");
 	$res = $db->update($sql);
 	
 	$db->close();
