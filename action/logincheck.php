@@ -4,6 +4,6 @@
 // session_start();
 
 if (!isset($_COOKIE['COOKIE_FROM_DACMS'])){
-	echo "<script language='javascript'>top.location.href='/sys_manager/login.php';</script>";
+	echo "<script language='javascript'>top.location.href='/sys_admin/login.php';</script>";
 }
 ?>

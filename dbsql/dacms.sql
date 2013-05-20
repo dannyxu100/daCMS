@@ -1,20 +1,13 @@
--- phpMyAdmin SQL Dump
--- version 3.5.1
+﻿-- phpMyAdmin SQL Dump
+-- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 05 月 19 日 13:44
--- 服务器版本: 5.5.24-log
--- PHP 版本: 5.4.3
+-- 生成日期: 2013 年 05 月 20 日 09:25
+-- 服务器版本: 5.5.8
+-- PHP 版本: 5.3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- 数据库: `dacms`
@@ -72,7 +65,7 @@ INSERT INTO `p_menu` (`pm_id`, `pm_pid`, `pm_name`, `pm_level`, `pm_sort`, `pm_u
 (5, 1, '内容管理', 1, 1, '/sys_power/index.php?menu=5', '/images/menu_icon/desk.png', ''),
 (6, 4, '用户管理', 2, 0, '/sys_power/user_manage.php', '/images/menu_icon/user.png', ''),
 (7, 4, '角色管理', 2, 10, '/sys_power/role_manage.php', '/images/menu_icon/role.png', ''),
-(11, 1, '导航管理', 1, 0, '', '/images/menu_icon/business.png', ''),
+(11, 1, '导航管理', 1, 0, '/sys_nav/nav_manage.php', '/images/menu_icon/business.png', ''),
 (12, 5, '文章管理', 2, 1, '', '', ''),
 (13, 5, '产品管理', 2, 10, '', '/images/menu_icon/box.png', ''),
 (14, 5, '案例管理', 2, 30, '', '/images/menu_icon/gift.png', ''),
@@ -164,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `p_user` (
 --
 
 INSERT INTO `p_user` (`pu_id`, `pu_oid`, `pu_code`, `pu_pwd`, `pu_name`, `pu_icon`, `pu_gender`, `pu_phone`, `pu_telephone`, `pu_address`, `pu_email`, `pu_qq`, `pu_lastlogin`, `pu_logincount`, `pu_remark`) VALUES
-(2, 0, 'xufei', 'c4ca4238a0b923820dcc509a6f75849b', '徐飞', '/uploads/userico/徐飞_2.jpg', '', '', '', '', '', '', '2013-05-19 18:07:48', 0, '');
+(2, 0, 'xufei', 'c4ca4238a0b923820dcc509a6f75849b', '徐飞', '/uploads/userico/徐飞_2.jpg', '', '', '', '', '', '', '2013-05-20 16:12:05', 0, '');
 
 -- --------------------------------------------------------
 
@@ -187,6 +180,31 @@ CREATE TABLE IF NOT EXISTS `p_user2role` (
 INSERT INTO `p_user2role` (`u2r_id`, `u2r_puid`, `u2r_prid`) VALUES
 (1, 2, 2);
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `web_nav`
+--
+
+DROP TABLE IF EXISTS `web_nav`;
+CREATE TABLE IF NOT EXISTS `web_nav` (
+  `n_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '导航id',
+  `n_pid` int(10) NOT NULL COMMENT '导航父id',
+  `n_enname` varchar(100) NOT NULL COMMENT '导航菜单英文名称',
+  `n_name` varchar(100) NOT NULL COMMENT '导航名称',
+  `n_level` int(10) NOT NULL COMMENT '导航菜单级别',
+  `n_sort` int(10) NOT NULL COMMENT '导航菜单排序',
+  `n_url` text NOT NULL COMMENT '链接地址',
+  `n_img` text NOT NULL COMMENT '导航菜单图片',
+  `n_remark` text NOT NULL COMMENT '备注',
+  PRIMARY KEY (`n_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='网站前端导航菜单' AUTO_INCREMENT=7 ;
+
+--
+-- 转存表中的数据 `web_nav`
+--
+
+INSERT INTO `web_nav` (`n_id`, `n_pid`, `n_enname`, `n_name`, `n_level`, `n_sort`, `n_url`, `n_img`, `n_remark`) VALUES
+(1, 0, 'home', '首页', 1, 1, 'http://www.cdbly8.com/', '/images/menu_icon/desk.png', ''),
+(2, 0, 'products', '产品中心', 1, 10, 'http://www.cdbly8.com/', '', ''),
+(3, 0, 'news', '新闻动态', 1, 20, 'http://www.baidu.com', '', '');

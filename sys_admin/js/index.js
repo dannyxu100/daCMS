@@ -197,7 +197,7 @@ function loaduserinfo(){
 		bthtml.push('<a href="javascript:void(0)" onclick="managemenu()">后台菜单</a> | ');
 	}
 	bthtml.push('<a href="javascript:void(0)" onclick="updatepwd()">修改密码</a> | ');
-	bthtml.push('<a href="/action/loginout.php">退出</a>');
+	bthtml.push('<a href="action/loginout.php">退出</a>');
 	
 	da("#info_bt").append(bthtml.join(""));
 	
