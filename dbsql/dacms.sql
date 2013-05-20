@@ -1,13 +1,20 @@
-﻿-- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- phpMyAdmin SQL Dump
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 05 月 20 日 09:25
--- 服务器版本: 5.5.8
--- PHP 版本: 5.3.3
+-- 生成日期: 2013 年 05 月 20 日 15:41
+-- 服务器版本: 5.5.24-log
+-- PHP 版本: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- 数据库: `dacms`
@@ -53,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `p_menu` (
   `pm_img` varchar(1000) CHARACTER SET utf8 NOT NULL COMMENT '图标文件地址',
   `pm_remark` text CHARACTER SET utf8 NOT NULL COMMENT '备注',
   PRIMARY KEY (`pm_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='系统菜单表' AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='系统菜单表' AUTO_INCREMENT=27 ;
 
 --
 -- 转存表中的数据 `p_menu`
@@ -66,7 +73,7 @@ INSERT INTO `p_menu` (`pm_id`, `pm_pid`, `pm_name`, `pm_level`, `pm_sort`, `pm_u
 (6, 4, '用户管理', 2, 0, '/sys_power/user_manage.php', '/images/menu_icon/user.png', ''),
 (7, 4, '角色管理', 2, 10, '/sys_power/role_manage.php', '/images/menu_icon/role.png', ''),
 (11, 1, '导航管理', 1, 0, '/sys_nav/nav_manage.php', '/images/menu_icon/business.png', ''),
-(12, 5, '文章管理', 2, 1, '', '', ''),
+(12, 5, '文章管理', 2, 1, '/sys_article/article_manage.php', '', ''),
 (13, 5, '产品管理', 2, 10, '', '/images/menu_icon/box.png', ''),
 (14, 5, '案例管理', 2, 30, '', '/images/menu_icon/gift.png', ''),
 (18, 4, '操作日志', 2, 999, '', '/images/menu_icon/keytype.png', ''),
@@ -75,7 +82,8 @@ INSERT INTO `p_menu` (`pm_id`, `pm_pid`, `pm_name`, `pm_level`, `pm_sort`, `pm_u
 (21, 19, '留言信息', 2, 10, '', '/images/menu_icon/comment_edit.png', ''),
 (22, 1, '在线订单', 1, 40, '', '/images/menu_icon/form.png', ''),
 (23, 4, '网站配置', 2, 998, '', '/images/menu_icon/module.png', ''),
-(25, 19, '评论信息', 2, 20, '', '/images/menu_icon/comment.png', '');
+(25, 19, '评论信息', 2, 20, '', '/images/menu_icon/comment.png', ''),
+(26, 5, '图片管理', 2, 40, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -183,6 +191,47 @@ INSERT INTO `p_user2role` (`u2r_id`, `u2r_puid`, `u2r_prid`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `web_article`
+--
+
+DROP TABLE IF EXISTS `web_article`;
+CREATE TABLE IF NOT EXISTS `web_article` (
+  `a_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '文章id',
+  `a_atid` int(10) NOT NULL COMMENT '文章分类id',
+  `a_title` varchar(500) NOT NULL COMMENT '文章标题',
+  `a_title2` varchar(500) NOT NULL COMMENT '文章副标题',
+  `a_sort` int(10) NOT NULL COMMENT '排序',
+  `a_img` text NOT NULL COMMENT '文章略缩图',
+  `a_content` text NOT NULL COMMENT '文章内容',
+  `a_keywords` varchar(2000) NOT NULL COMMENT 'seo关键字',
+  `a_description` varchar(4000) NOT NULL COMMENT 'seo描述',
+  `a_createdate` datetime NOT NULL COMMENT '创建日期',
+  `a_updatedate` datetime NOT NULL COMMENT '最近更新日期',
+  PRIMARY KEY (`a_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章信息表' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `web_articletype`
+--
+
+DROP TABLE IF EXISTS `web_articletype`;
+CREATE TABLE IF NOT EXISTS `web_articletype` (
+  `at_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '文章分类id',
+  `at_pid` int(10) NOT NULL COMMENT '文章分类父亲id',
+  `at_name` varchar(500) NOT NULL COMMENT '文章分类名称',
+  `at_sort` int(10) NOT NULL COMMENT '排序',
+  `at_img` text NOT NULL COMMENT '文章分类略缩图',
+  `at_keywords` varchar(2000) NOT NULL COMMENT '分类seo关键字',
+  `at_description` varchar(4000) NOT NULL COMMENT '分类seo描述',
+  `at_remark` text NOT NULL COMMENT '备注',
+  PRIMARY KEY (`at_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章分类信息表' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `web_nav`
 --
 
@@ -198,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `web_nav` (
   `n_img` text NOT NULL COMMENT '导航菜单图片',
   `n_remark` text NOT NULL COMMENT '备注',
   PRIMARY KEY (`n_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='网站前端导航菜单' AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='网站前端导航菜单' AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `web_nav`
@@ -208,3 +257,7 @@ INSERT INTO `web_nav` (`n_id`, `n_pid`, `n_enname`, `n_name`, `n_level`, `n_sort
 (1, 0, 'home', '首页', 1, 1, 'http://www.cdbly8.com/', '/images/menu_icon/desk.png', ''),
 (2, 0, 'products', '产品中心', 1, 10, 'http://www.cdbly8.com/', '', ''),
 (3, 0, 'news', '新闻动态', 1, 20, 'http://www.baidu.com', '', '');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
