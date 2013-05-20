@@ -1,5 +1,5 @@
 ﻿var g_prid = "";
-
+ 
 var setting = {
 	view: {
 		addHoverDom: addHoverDom,

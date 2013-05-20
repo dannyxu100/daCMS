@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
  <HEAD>
 	<?php include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";?>
-	
+	 
   <TITLE>部门管理</TITLE>
 	<link rel="stylesheet" href="/css/base.css"/>
 	<link rel="stylesheet" href="/plugin/ztree/zTreeStyle.css" type="text/css"/>

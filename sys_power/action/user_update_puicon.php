@@ -3,7 +3,7 @@
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/fn.php";
-	
+	 
 	$db = new DB("dacms");
 
 	if(-1 == fn_getcookie("roleid")){		//超级管理员

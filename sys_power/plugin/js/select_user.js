@@ -1,6 +1,6 @@
 ﻿var g_ismulti = false;
 
-
+ 
 var g_ds = {};		//缓存数据
 
 function loaduserlist(){

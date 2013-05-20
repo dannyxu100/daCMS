@@ -1,4 +1,4 @@
-﻿
+﻿ 
 function adduser(){
 	daWin({
 		width: 400,					//窗口宽
