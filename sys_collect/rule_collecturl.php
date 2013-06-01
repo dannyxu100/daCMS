@@ -17,7 +17,6 @@
 			<a class="item" href="javascript:void(0)" onclick="" ><img src="/images/sys_icon/save.png" /> 批量获取内容</a>
 		</div>
 	</div>
-	<div id="list" style="padding:5px;"></div>
 	
 	<table id="tb_list" style="width:100%;">
 		<tbody name="head">
