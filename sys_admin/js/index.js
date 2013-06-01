@@ -162,7 +162,7 @@ function loadmenu(){
 			g_toolbar.select("bt_menu"+data[0].pm_id);
 		}
 	},function(res, msg, ex){
-		debugger;
+		// debugger;
 	});
 }
 
@@ -194,7 +194,7 @@ function loaduserinfo(){
 	
 	var bthtml = [];
 	if( -1 == fn_getcookie("roleid") ){
-		bthtml.push('<a href="javascript:void(0)" onclick="managemenu()">后台菜单</a> | ');
+		bthtml.push('<a href="javascript:void(0)" onclick="managemenu()">功能模块</a> | ');
 	}
 	bthtml.push('<a href="javascript:void(0)" onclick="updatepwd()">修改密码</a> | ');
 	bthtml.push('<a href="action/loginout.php">退出</a>');

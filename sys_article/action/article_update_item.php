@@ -1,51 +1,58 @@
-<?php 
+﻿<?php 
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
-	//error_reporting(-1);
-
+	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	
+	date_default_timezone_set('ETC/GMT-8');
+	$now = date("Y-m-d H:i:s");
+	
+	$sql = "update web_article";
 	$db = new DB("dacms");
 	
-	$sql = "update web_nav set n_name=:nname ";
-	$db->param(":nname", $_POST["nname"]);
+	$sql .= " set a_title=:atitle";
+	$db->param(":atitle", $_POST["atitle"]);
 	
-	if( isset($_POST["nenname"]) )
-	{
-		$sql .= ", n_enname=:nenname ";
-		$db->param(":nenname", $_POST["nenname"]);
+	if( isset($_POST["atitle2"]) ){
+		$sql .= ", a_title2=:atitle2";
+		$db->param(":atitle2", $_POST["atitle2"]);
 	}
-	if( isset($_POST["nlevel"]) )
-	{
-		$sql .= ", n_level=:nlevel ";
-		$db->param(":nlevel", $_POST["nlevel"]);
+	if( isset($_POST["asort"]) ){
+		$sql .= ", a_sort=:asort";
+		$db->param(":asort", $_POST["asort"]);
 	}
-	if( isset($_POST["nimg"]) )
-	{
-		$sql .= ", n_img=:nimg ";
-		$db->param(":nimg", $_POST["nimg"]);
+	if( isset($_POST["acount"]) ){
+		$sql .= ", a_count=:acount";
+		$db->param(":acount", $_POST["acount"]);
 	}
-	if( isset($_POST["nurl"]) )
-	{
-		$sql .= ", n_url=:nurl ";
-		$db->param(":nurl", $_POST["nurl"]);
+	if( isset($_POST["akeywords"]) ){
+		$sql .= ", a_keywords=:akeywords";
+		$db->param(":akeywords", $_POST["akeywords"]);
 	}
-	if( isset($_POST["nsort"]) )
-	{
-		$sql .= ", n_sort=:nsort ";
-		$db->param(":nsort", $_POST["nsort"]);
+	if( isset($_POST["adescription"]) ){
+		$sql .= ", a_description=:adescription";
+		$db->param(":adescription", $_POST["adescription"]);
 	}
-	if( isset($_POST["nremark"]) )
-	{
-		$sql .= ", n_remark=:nremark ";
-		$db->param(":nremark", $_POST["nremark"]);
+	if( isset($_POST["aimg"]) ){
+		$sql .= ", a_img=:aimg";
+		$db->param(":aimg", $_POST["aimg"]);
+	}
+	if( isset($_POST["acontent"]) ){
+		$sql .= ", a_content=:acontent";
+		$db->param(":acontent", urldecode($_POST["acontent"]));
 	}
 	
-	$sql .= " where n_id=:nid";
-	$db->param(":nid", $_POST["nid"]);
-
+	$sql .= ", a_updatedate=:aupdatedate";
+	$db->param(":aupdatedate", $now);
+	
+	$sql .= " where a_id=:aid ";
+	$db->param(":aid", $_POST["aid"]);
+	
 	$res = $db->update($sql);
-	// echo $db->geterror();
-
+	// Log::out($sql);
+	// Log::out(urldecode($_POST["acontent"]));
+	// Log::out($db->geterror());
+	
 	$db->close();
-
+	
 	echo $res?$res:"FALSE";
 ?>

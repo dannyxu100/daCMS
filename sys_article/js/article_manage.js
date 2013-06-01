@@ -1,4 +1,4 @@
-﻿var g_nid = "";
+﻿var g_atid = "";
 
 var setting = {
 	view: {
@@ -28,23 +28,23 @@ var setting = {
 };
 
 function beforeEditName(treeId, treeNode) {
-	var zTree = $.fn.zTree.getZTreeObj("treenavtype");
+	var zTree = $.fn.zTree.getZTreeObj("treearticletype");
 	zTree.selectNode(treeNode);
 	return true; //confirm("进入【" + treeNode.name + "】的编辑状态吗？");
 }
 function beforeRemove(treeId, treeNode) {
-	var zTree = $.fn.zTree.getZTreeObj("treenavtype");
+	var zTree = $.fn.zTree.getZTreeObj("treearticletype");
 	zTree.selectNode(treeNode);
 	
-	confirm("确认删除导航【" + treeNode.name + "】吗？",
+	confirm("确认删除分类【" + treeNode.name + "】吗？",
 	function(){
-		da.runDB("/sys_nav/action/nav_get_list.php",{			//检查是否拥有下级节点
-			npid: treeNode.id
+		da.runDB("/sys_article/action/articletype_get_list.php",{			//检查是否拥有下级节点
+			atpid: treeNode.id
 		},
 		function(res){
 			if('FALSE'==res){
-				da.runDB("/sys_nav/action/nav_delete_item.php",{
-					nid: treeNode.id
+				da.runDB("/sys_article/action/articletype_delete_item.php",{
+					atid: treeNode.id
 				},
 				function(res){
 					if("FALSE"==res){
@@ -69,7 +69,7 @@ function beforeRemove(treeId, treeNode) {
 function beforeRename(treeId, treeNode, newName) {
 	if (newName.length == 0) {
 		alert("名称不能为空.");
-		var zTree = $.fn.zTree.getZTreeObj("treenavtype");
+		var zTree = $.fn.zTree.getZTreeObj("treearticletype");
 		zTree.editName(treeNode)
 		// setTimeout(function(){zTree.editName(treeNode)}, 10);
 		return false;
@@ -102,7 +102,7 @@ function addHoverDom(treeId, treeNode) {
 	
 	var btn = $("#addBtn_"+treeNode.id);				//"添加按钮" click事件
 	if (btn) btn.bind("click", function(){
-		var zTree = $.fn.zTree.getZTreeObj("treenavtype");
+		var zTree = $.fn.zTree.getZTreeObj("treearticletype");
 
 		da.runDB("/sys_nav/action/nav_add_item.php",{
 			pid: treeNode.id,
@@ -123,12 +123,42 @@ function removeHoverDom(treeId, treeNode) {
 	$("#addBtn_"+treeNode.id).unbind().remove();
 };
 
-/**加载导航基本信息
+/**加载列表
+*/
+function loadlist(){
+	var data1 = {
+			dataType: "json",
+			opt: "qry",
+			atid: g_atid
+		};
+
+	daTable({
+		id: "tb_list",
+		url: "/sys_article/action/article_get_page.php",
+		data: data1,
+		//loading: false,
+		//page: false,
+		pageSize: 20,
+		
+		field: function( fld, val, row, ds ){
+			if("a_title"==fld){
+				return '<a href="javascript:void(0)" onclick="updatearticle('+row.a_id+')">'+val+'</a>';
+			}
+			return val;
+		},
+		loaded: function( idx, xml, json, ds ){
+			//link_click("#tb_list tbody[name=details_auto] tr");
+		}
+	}).load();
+
+}
+
+/**加载分类基本信息
 */
 function loadinfo(){
-	da.runDB("/sys_nav/action/nav_get_list.php",{
+	da.runDB("/sys_article/action/articletype_get_list.php",{
 		dataType: "json",
-		nid: g_nid
+		atid: g_atid
 	},
 	function(res){
 		if("FALSE"!= res && res[0]){
@@ -136,7 +166,7 @@ function loadinfo(){
 				da("#"+fld).val(res[0][fld]);
 			}
 			
-			da("#n_img_view").attr("src",res[0].n_img);
+			da("#at_img_view").attr("src",res[0].at_img);
 		}
 	});
 }
@@ -144,23 +174,30 @@ function loadinfo(){
 /**点击树节点事件
 */
 function clicknode(treeId, treeNode){
-	g_nid = treeNode.id;
+	g_atid = treeNode.id;
 
 	loadinfo();
+	loadlist();
 }
 
-/** 修改导航信息
+
+/**修改文章
 */
-function updatenav(){
-	da.runDB("/sys_nav/action/nav_update_item.php",{
-		nid: da("#n_id").val(),
-		nname: da("#n_name").val(),
-		nenname: da("#n_enname").val(),
-		nlevel: da("#n_level").val(),
-		nsort: da("#n_sort").val(),
-		nurl: da("#n_url").val(),
-		nimg: da("#n_img").val(),
-		nremark: da("#n_remark").val()
+function updatearticle( aid ){
+	goto("/sys_article/article_update.php?aid="+ aid);
+}
+
+/** 修改分类信息
+*/
+function updatetype(){
+	da.runDB("/sys_article/action/articletype_update_item.php",{
+		atid: da("#at_id").val(),
+		atname: da("#at_name").val(),
+		atsort: da("#at_sort").val(),
+		atimg: da("#at_img").val(),
+		atkeywords: da("#at_keywords").val(),
+		atdescription: da("#at_description").val(),
+		atremark: da("#at_remark").val()
 	},
 	function(res){
 		if(res=="FALSE"){
@@ -173,41 +210,50 @@ function updatenav(){
 	});
 }
 
-/**添加一级导航
+/**添加文章
 */
-function addrootnav(){
-	var zTree = $.fn.zTree.getZTreeObj("treenavtype");
+function addarticle(){
+	if( "" == g_atid){
+		alert("请先选择一个分类");
+		return;
+	}
+
+	goto("/sys_article/article_add.php?atid="+ g_atid);
+}
+
+/**添加一级分类
+*/
+function addroottype(){
+	var zTree = $.fn.zTree.getZTreeObj("treearticletype");
 	
-	da.runDB("/sys_nav/action/nav_add_item.php",{
+	da.runDB("/sys_article/action/articletype_add_item.php",{
 		pid: 0,
-		level: 1,
-		name: "新建导航"
+		name: "新建分类"
 	},
 	function(res){
 		if("FALSE"!=res){
-			zTree.addNodes(null, {id:res, pId:0, name:"新建导航", navlevel:1});
+			zTree.addNodes(null, {id:res, pId:0, name:"新建分类"});
 		}
 	});
 }
 
-/*加载左边导航树*/
+/*加载左边分类树*/
 function loadtree(){
-	da.runDB("/sys_nav/action/nav_get_list.php",{
+	da.runDB("/sys_article/action/articletype_get_list.php",{
 		dataType: "json",
 	},
 	function(data){
 		var zNodes = [];
 		for(var i=0; i<data.length; i++){
 			zNodes.push({
-				id: data[i].n_id,
-				pId: data[i].n_pid,
-				name: data[i].n_name,
-				navlevel: data[i].n_level,
+				id: data[i].at_id,
+				pId: data[i].at_pid,
+				name: data[i].at_name,
 				open: true
 			});
 		}
 		
-		$.fn.zTree.init($("#treenavtype"), setting, zNodes);
+		$.fn.zTree.init($("#treearticletype"), setting, zNodes);
 		
 	});
 }
