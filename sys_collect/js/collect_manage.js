@@ -8,13 +8,8 @@ function updaterule( rid ){
 	goto("/sys_collect/rule_update.php?rid="+ rid);
 }
 
-function testrule( rid ){
-	daWin({
-		width: 600,
-		height: 400,
-		title: "采集规则测试",
-		url: "/sys_collect/rule_test.php?rid="+ rid
-	});
+function collecturl( rid ){
+	goto("/sys_collect/rule_collecturl.php?rid="+ rid);
 }
 
 
@@ -40,8 +35,7 @@ function loadlist(){
 					val = '<a href="javascript:void(0)" onclick="updaterule('+ row.r_id +')">'+ val +'</a>';
 					break;
 				case "tools":
-					val = '<a class="bt_link" href="javascript:void(0)" onclick="testrule('+ row.r_id +')">测试</a>';
-					val += '<a class="bt_link" href="javascript:void(0)" onclick="testrule('+ row.r_id +')">抓取地址</a>';
+					val = '<a class="bt_link" href="javascript:void(0)" onclick="collecturl('+ row.r_id +')">抓取地址</a>';
 					val += '<a class="bt_link" href="javascript:void(0)" onclick="testrule('+ row.r_id +')">抓取内容</a>';
 			}
 			

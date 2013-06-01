@@ -20,7 +20,9 @@
 			"url_except" => $set["r_urlunallowed"]
 		);
 		
-		$list = Collect::get_url_lists( $set["r_urlsource"], $config );
+		$list = array(
+			"ds1" => Collect::get_url_lists( $set["r_urlsource"], $config )
+		);
 		
 		echo json_encode($list);
 	}

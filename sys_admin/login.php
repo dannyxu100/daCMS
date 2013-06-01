@@ -3,7 +3,7 @@
 <head>
 	<title>项目进度管理-登陆页面</title>
 	<link rel="stylesheet" href="css/base.css">
-	<link rel="icon" href="/images/pm_ico.gif" type="image/x-icon" />
+	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 </head>
 <body>
 	<div style="width:900px; margin:50px auto; position:relative;">
