@@ -24,16 +24,17 @@
 	
 	$db->close();
 	
+	$rootdir = rtrim($_SERVER['DOCUMENT_ROOT'],"/");
 	$smarty = new Smarty();
-	$smarty->template_dir = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/web/_templates/default/";
-	$smarty->compile_dir = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/web/_templates_c/default/";
-	$smarty->config_dir = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/web/_config/default/";
-	$smarty->cache_dir = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/web/_cache/default/"; 
+	$smarty->template_dir = $rootdir."/web/_templates/";
+	$smarty->compile_dir = $rootdir."/web/_templates_c/";
+	$smarty->config_dir = $rootdir."/web/_config/";
+	$smarty->cache_dir = $rootdir."/web/_cache/"; 
 	$smarty->caching = false;
 	
 	$smarty->assign('webconfig', $webconfig);
 	$smarty->assign('navset', $navset);
-	$smarty->display('index.htm');
+	$smarty->display($rootdir.'/web/_templates/index.htm');
 
 
 ?>

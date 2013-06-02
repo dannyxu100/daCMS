@@ -12,6 +12,9 @@ function collecturl( rid ){
 	goto("/sys_collect/rule_collecturl.php?rid="+ rid);
 }
 
+function viewcollect( rid ){
+	goto("/sys_collect/collect_list.php?rid="+ rid);
+}
 
 /**加载文件列表
 */
@@ -36,7 +39,7 @@ function loadlist(){
 					break;
 				case "tools":
 					val = '<a class="bt_link" href="javascript:void(0)" onclick="collecturl('+ row.r_id +')">抓取地址</a>';
-					val += '<a class="bt_link" href="javascript:void(0)" onclick="testrule('+ row.r_id +')">抓取内容</a>';
+					val += '<a class="bt_link" href="javascript:void(0)" onclick="viewcollect('+ row.r_id +')">已采集<span style="color:#900">'+ row.count +'</span>条</a>';
 			}
 			
 			return val;

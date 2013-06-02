@@ -1,6 +1,29 @@
 ﻿
 var g_rid = "";
 
+/**显示来源网址配置面板
+*/
+function showurlpad( obj ){
+	da("#LIST_pad").hide();
+	da("#NUMBER_pad").hide();
+	da("#SINGLE_pad").hide();
+	da("#RSS_pad").hide();
+	
+	da("#"+ obj.value +"_pad").show();
+}
+
+/**显示内容分页标志面板
+*/
+function showsplitpad( obj ){
+	if( "PREVNEXT" == obj.value ){
+		da("#PREVNEXT_pad").show();
+	}
+	else{
+		da("#PREVNEXT_pad").hide();
+	}
+	
+}
+
 /**保存采集规则
 */
 function updaterule(){
@@ -11,12 +34,16 @@ function updaterule(){
 	da("input:text,textarea").each(function(idx, obj){
 		data[obj.id] = da(obj).val();
 	});
+	data["r_id"] = g_rid;
 	data["r_pagecode"] = da("input[name=r_pagecode]:checked").val();
 	data["r_urltype"] = da("input[name=r_urltype]:checked").val();
+	data["r_split"] = da("input[name=r_split]:checked").val();
+	data["r_splittype"] = da("input[name=r_splittype]:checked").val();
 	data["r_downloadimg"] = da("input[name=r_downloadimg]:checked").val();
 	
 	
 	if( !daValid.all() ){
+		alert("对不起，请仔细查看，是否有未填写的必填项。");
 		return;
 	}
 	
@@ -29,7 +56,7 @@ function updaterule(){
 			alert("操作失败！");
 		}
 	},function(code,msg,ex){
-		// debugger;
+		debugger;
 	});
 }
 
@@ -54,13 +81,18 @@ function loadinfo(){
 			
 			da("input[name=r_pagecode][value="+ data.r_pagecode +"]").attr("checked", "checked");
 			da("input[name=r_urltype][value="+ data.r_urltype +"]").attr("checked", "checked");
+			da("input[name=r_split][value="+ data.r_split +"]").attr("checked", "checked");
+			da("input[name=r_splittype][value="+ data.r_splittype +"]").attr("checked", "checked");
 			da("input[name=r_downloadimg][value="+ data.r_downloadimg +"]").attr("checked", "checked");
+			
+			showurlpad(da("input[name=r_urltype]:checked").dom[0]);
+			showsplitpad(da("input[name=r_splittype]:checked").dom[0]);
 			
 			autoframeheight();
 			loading(false);
 		}
 	},function(code,msg,ex){
-		debugger;
+		// debugger;
 	});
 }
 
@@ -74,6 +106,8 @@ function loadtab(){
 			da("#pad_2").hide();
 			da("#pad_3").hide();
 			da("#pad_4").hide();
+			da("#pad_5").hide();
+			autoframeheight();
 		}
 	});
 
@@ -83,23 +117,41 @@ function loadtab(){
 			da("#pad_2").show();
 			da("#pad_3").hide();
 			da("#pad_4").hide();
+			da("#pad_5").hide();
+			autoframeheight();
 		}
 	});
 	
-	daTab0.appendItem("item03","扩展规则","/images/menu_icon/menu.png",{
+	daTab0.appendItem("item03","内容分页规则","/images/menu_icon/user.png",{
 		click:function(){
 			da("#pad_1").hide();
 			da("#pad_2").hide();
 			da("#pad_3").show();
 			da("#pad_4").hide();
+			da("#pad_5").hide();
+			autoframeheight();
 		}
 	});
-	daTab0.appendItem("item04","其他配置","/images/menu_icon/menu.png",{
+	
+	
+	daTab0.appendItem("item04","扩展规则","/images/menu_icon/menu.png",{
 		click:function(){
 			da("#pad_1").hide();
 			da("#pad_2").hide();
 			da("#pad_3").hide();
 			da("#pad_4").show();
+			da("#pad_5").hide();
+			autoframeheight();
+		}
+	});
+	daTab0.appendItem("item05","其他配置","/images/menu_icon/menu.png",{
+		click:function(){
+			da("#pad_1").hide();
+			da("#pad_2").hide();
+			da("#pad_3").hide();
+			da("#pad_4").hide();
+			da("#pad_5").show();
+			autoframeheight();
 		}
 	});
 	daTab0.click("item01");

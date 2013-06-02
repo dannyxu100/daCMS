@@ -126,7 +126,8 @@ class collection {
 					$data['comeform'] = $attachment->download('comeform', $data['comeform'],$config['watermark']);
 				}
 			}
-              if ($page == 0) {
+			
+            if ($page == 0) {
 				self::$url = $url;
 				self::$config = $config;
 			

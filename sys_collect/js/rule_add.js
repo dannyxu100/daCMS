@@ -1,4 +1,16 @@
 ﻿
+/**显示来源网址配置面板
+*/
+function showurlpad( obj ){
+	da("#LIST_pad").hide();
+	da("#NUMBER_pad").hide();
+	da("#SINGLE_pad").hide();
+	da("#RSS_pad").hide();
+	
+	da("#"+ obj.value +"_pad").show();
+}
+
+
 /**保存采集规则
 */
 function saverule(){
@@ -11,10 +23,12 @@ function saverule(){
 	});
 	data["r_pagecode"] = da("input[name=r_pagecode]:checked").val();
 	data["r_urltype"] = da("input[name=r_urltype]:checked").val();
+	data["r_split"] = da("input[name=r_split]:checked").val();
+	data["r_splittype"] = da("input[name=r_splittype]:checked").val();
 	data["r_downloadimg"] = da("input[name=r_downloadimg]:checked").val();
 	
-	
 	if( !daValid.all() ){
+		alert("对不起，请仔细查看，是否有未填写的必填项。");
 		return;
 	}
 	

@@ -142,6 +142,12 @@ class DB{
 		}
 	}
 	
+	/**清除sql参数列表
+	*/
+	function paramclear(){
+		$this->m_paramlist = array();
+	}
+	
 	/**根据添加的数据，返回对应的数据库类型
 	*/
 	function getdbtype($value) {

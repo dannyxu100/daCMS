@@ -21,9 +21,9 @@
 				<td style="text-align:center; width:20px;"><input type="checkbox" /></td>
 				<td style="width:20px;">序</td>
 				<td>规则名称</td>
-				<td>来源地址</td>
+				<td style="width:120px;">网址类型</td>
 				<td style="width:120px;">最后采集时间</td>
-				<td style="width:200px;">&nbsp;</td>
+				<td style="width:400px;">&nbsp;</td>
 			</tr>
 		</tbody>
 		<tbody name="body" style="display:none">
@@ -31,7 +31,7 @@
 				<td style="text-align:center;"><input type="checkbox" name="chkitem" value="" /></td>
 				<td name="order">{order}</td>
 				<td name="r_name" >{r_name}</td>
-				<td name="r_urlsource" >{r_urlsource}</td>
+				<td name="r_urltype" >{r_urltype}</td>
 				<td name="r_date" fmt="yyyy-mm-dd/p">{r_date}</td>
 				<td name="tools">{tools}</td>
 			</tr>

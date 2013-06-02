@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-05-25 23:56:07
-         compiled from "D:\work\daCMS\web\_templates\default\index.htm" */ ?>
-<?php /*%%SmartyHeaderCode:2536951a0d781726cf3-85995539%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-03 00:44:15
+         compiled from "D:\work\daCMS\web\_templates\index.htm" */ ?>
+<?php /*%%SmartyHeaderCode:1239151ab75fb73ff79-84729252%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'b6afd788ab39723174ee10ac27c89275a440a3cf' => 
+    'f6445d71a2d884911f320100835bbada528d46e1' => 
     array (
-      0 => 'D:\\work\\daCMS\\web\\_templates\\default\\index.htm',
-      1 => 1369497366,
+      0 => 'D:\\work\\daCMS\\web\\_templates\\index.htm',
+      1 => 1370191453,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2536951a0d781726cf3-85995539',
+  'nocache_hash' => '1239151ab75fb73ff79-84729252',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51a0d781844af7_98371734',
+  'unifunc' => 'content_51ab75fbb4f9b2_40374461',
   'variables' => 
   array (
     'webconfig' => 0,
@@ -25,7 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51a0d781844af7_98371734')) {function content_51a0d781844af7_98371734($_smarty_tpl) {?>﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if ($_valid && !is_callable('content_51ab75fbb4f9b2_40374461')) {function content_51ab75fbb4f9b2_40374461($_smarty_tpl) {?>﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><?php echo $_smarty_tpl->tpl_vars['webconfig']->value[0]['c_name'];?>
@@ -59,13 +59,13 @@ $_smarty_tpl->tpl_vars['nav']->_loop = true;
 	<hr/>
 	<div class="foot">
 	公司名称：<?php echo $_smarty_tpl->tpl_vars['webconfig']->value[0]['c_company'];?>
-
+<br/>
 	地址：<?php echo $_smarty_tpl->tpl_vars['webconfig']->value[0]['c_address'];?>
-
+<br/>
 	联系人：<?php echo $_smarty_tpl->tpl_vars['webconfig']->value[0]['c_user'];?>
-
+<br/>
 	电话：<?php echo $_smarty_tpl->tpl_vars['webconfig']->value[0]['c_phone'];?>
-
+<br/>
 	</div>
 </body>
 </html>

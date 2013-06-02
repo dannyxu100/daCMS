@@ -11,7 +11,7 @@
 	</head>
 <body>
 <div id="title_bar">
-	<img src="/images/logo.jpg"/>
+	<a href="/" target="_blank" title="点击浏览首页"><img src="/images/logo.jpg"/></a>
 	<!--<span style="font-size:20px; font-weight:bold;margin-left:10px;">项目进度管理</span> <span style="font-size:10px;">版本1.0</span>-->
 	<div id="menubar">
 		<div id="menus"></div>
