@@ -23,7 +23,7 @@ function fn_helper( code ){
 	daWin({
 		width: 850,
 		height: 600,
-		url: "/sys_setting/helper/helper_view.php?hcode="+ code,
+		url: "/sys_admin/module/setting/helper/helper_view.php?hcode="+ code,
 		title: "帮助文档"
 	});
 	

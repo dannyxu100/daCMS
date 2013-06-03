@@ -1,8 +1,9 @@
 <?php
-//error_reporting(-1);
-
-// include_once "log.php";
-
+	// include_once "log.php";
+	// error_reporting(-1);
+	
+	date_default_timezone_set('ETC/GMT-8');
+	
 class DB{
 	private $m_CONNSTR = Array(
 		0 => Array("host"=>"localhost", "user"=>"root", "pwd"=>"", "db"=>"dacms"),
@@ -18,6 +19,7 @@ class DB{
 	private $m_paramlist;
 	
 	public $m_error_msg;
+	public $m_log = true;
 	
 	/**构造函数
 	*/
@@ -98,7 +100,6 @@ class DB{
 		return $this->m_pdo->getAttribute(constant($attr));
 	}
 	
-	
 	/**执行sql代码段(无参)
 	*/
 	function runsql($sql){
@@ -106,7 +107,12 @@ class DB{
 		
 		try {
 			$this->bindparamlist( $statement );
-			return $statement->execute();		//返回true 或 false
+			$res = $statement->execute();		//返回true 或 false
+			
+			if($this->m_log){					//是否记录数据库操作日志
+				DB::dblog("RUNSQL", $sql, $res);
+			}
+			return $res;
 		}
 		catch (pdoException $e) {
 			$this->seterror($e->getMessage());
@@ -220,7 +226,13 @@ class DB{
 		try {
 			$this->bindparamlist( $statement );
 			$statement->execute();
-			return $statement->rowCount();		//返回影响行数
+			$res = $statement->rowCount();		//返回影响行数
+			
+			if($this->m_log){					//是否记录数据库操作日志
+				DB::dblog("UPDATE", $sql, $res);
+			}
+			
+			return $res ;
 		}
 		catch (pdoException $e) {
 			$this->seterror($e->getMessage());
@@ -231,7 +243,23 @@ class DB{
 	/**删除数据
 	*/
 	function delete($sql){
-		return $this->update($sql);
+		$statement = $this->m_pdo->prepare($sql);
+			
+		try {
+			$this->bindparamlist( $statement );
+			$statement->execute();
+			$res = $statement->rowCount();		//返回影响行数
+			
+			if($this->m_log){					//是否记录数据库操作日志
+				DB::dblog("DELETE", $sql, $res);
+			}
+			
+			return $res ;
+		}
+		catch (pdoException $e) {
+			$this->seterror($e->getMessage());
+			return null;
+		}
 	}
 	
 	/**插入数据
@@ -242,7 +270,13 @@ class DB{
 		try {
 			$this->bindparamlist( $statement );
 			$statement->execute();
-			return $this->m_pdo->lastInsertId(); //返回刚插入的一条记录的主键
+			$res = $this->m_pdo->lastInsertId(); //返回刚插入的一条记录的主键
+			
+			if($this->m_log){					//是否记录数据库操作日志
+				DB::dblog("INSERT", $sql, $res);
+			}
+			
+			return $res; //返回刚插入的一条记录的主键
 		}
 		catch (pdoException $e) {
 			$this->seterror($e->getMessage());
@@ -291,6 +325,53 @@ class DB{
 			return false;
 		}
 	}
+	
+	/**记录数据库操作日志
+	*/
+	public static function dblog( $type, $sql, $res ){
+		$file = $_SERVER['PHP_SELF'];
+		$now = date("Y-m-d H:i:s");
+		$puid = "";
+		$puname = "";
+		
+		$arrcookie = explode('|', urldecode($_COOKIE["COOKIE_FROM_DACMS"]));
+		for($i=0; $i<count($arrcookie); $i++){
+			$arrtmp = explode(':', $arrcookie[$i]);
+			
+			if( "puid" == $arrtmp[0] ){
+				$puid = $arrtmp[1];
+			}
+			if( "puname" == $arrtmp[0] ){
+				$puname = $arrtmp[1];
+			}
+			continue;
+		}
+
+		$db = new DB("dacms");
+		$statement = $db->m_pdo->prepare("insert into sys_dblog(
+		l_puid, l_puname, l_date, l_type, l_file, l_sql, l_res) values(
+		:l_puid, :l_puname, :l_date, :l_type, :l_file, :l_sql, :l_res)");
+
+		$db->param(":l_puid", $puid);
+		$db->param(":l_puname", $puname);
+		$db->param(":l_date", $now);
+		$db->param(":l_type", $type);
+		$db->param(":l_file", $file);
+		$db->param(":l_sql", $sql);
+		$db->param(":l_res", $res);
+
+		try {
+			$db->bindparamlist( $statement );
+			$statement->execute();
+		}
+		catch (pdoException $e) {
+			$db->seterror($e->getMessage());
+		}
+		
+		$db->close();
+		
+	}
+	
 }
 
 

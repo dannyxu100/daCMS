@@ -46,7 +46,7 @@ function uploadico(){
 			imgurl = newfolder + newfilename + files[k].type;
 		}
 		
-		da.runDB("/sys_power/action/user_update_puicon.php",{
+		da.runDB("/sys_admin/module/power/action/user_update_puicon.php",{
 			dataType: "json",
 			puid: fn_getcookie("puid"),
 			puicon: imgurl
@@ -60,7 +60,7 @@ function managemenu(){
 	daWin({
 		width: 800,
 		height: 600,
-		url:"/sys_power/menu_manage.php"
+		url:"/sys_admin/module/power/menu_manage.php"
 	});
 }
 
@@ -70,7 +70,7 @@ function updatepwd(){
 	daWin({
 		width:">350",
 		height:400,
-		url:"/sys_setting/pwd.php"
+		url:"/sys_admin/module/setting/pwd.php"
 	});
 }
 
@@ -117,7 +117,7 @@ var g_toolbar;
 /**加载菜单
 */
 function loadmenu(){
-	da.runDB("/sys_power/action/menu_get_byrole.php",{
+	da.runDB("/sys_admin/module/power/action/menu_get_byrole.php",{
 		dataType: "json",
 		pmlevel: 1
 	},function(data){

@@ -3,10 +3,10 @@
 <head>
 	<?php include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";?>
 	
+	<title>内容管理系统</title>
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 	<link rel="stylesheet" href="/css/base.css"/>
 
-	<title>项目进度管理</title>
 
 	</head>
 <body>
