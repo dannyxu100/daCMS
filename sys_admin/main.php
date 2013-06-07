@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";?>
@@ -10,7 +10,7 @@
 
 	</head>
 <body>
-	<table id="tb_form" class="grid" style="width:900px; margin:20px;font-size:14px;">
+	<table id="tb_form" class="grid" style="width:900px; margin:20px auto;font-size:14px;">
 		<tr>
 			<td colspan="4" style="font-size:22px; line-height:50px; font-weight:bold; text-align:center;">网站服务器信息</td>
 		</tr>

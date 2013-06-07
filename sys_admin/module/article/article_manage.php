@@ -94,22 +94,28 @@
 					<div id="pad_list">
 						<div class="list_top_bar">
 							<div class="list_top_title">文章列表</div>
-							<div class="list_top_tools">
+							<div class="list_top_tools" style="float:left;">
 								<a class="item" href="javascript:void(0)" onclick="addarticle();" ><img src="/images/sys_icon/add.png" /> 添加</a>
 								<a class="item" href="javascript:void(0)" onclick="deleteu2r();" ><img src="/images/sys_icon/delete.png" /> 删除</a>
+								<a class="item" href="javascript:void(0)" onclick="tag();" ><img src="/images/sys_icon/tag_plus.png" /> 设置标签</a>
+							</div>
+							<div class="list_top_tools">
+								<input type="text" id="txt_keyword" style="float:left;height:20px;"/>
+								<a class="item" href="javascript:void(0)" onclick="search();" ><img src="/images/sys_icon/search.png" /> 查询</a>
+								<a class="item" href="javascript:void(0)" onclick="tag();" ><img src="/images/sys_icon/tag.png" /> 标签</a>
 							</div>
 						</div>
 						
 						<table id="tb_list" style="width:100%;">
 							<tbody name="head">
 								<tr>
-									<td style="text-align:center; width:20px;"><input type="checkbox" /></td>
+									<td style="text-align:center; width:20px;"><input type="checkbox" onclick="checkall(this)" /></td>
 									<td style="width:20px;">序</td>
 									<td>标题</td>
 									<td style="width:80px;">排序</td>
-									<td style="width:80px;">日期</td>
+									<td style="width:100px;">日期</td>
 									<td style="width:80px;">浏览次数</td>
-									<td style="width:300px;">标签</td>
+									<td style="width:100px;">标签</td>
 									<td style="width:30px;">&nbsp;</td>
 								</tr>
 							</tbody>

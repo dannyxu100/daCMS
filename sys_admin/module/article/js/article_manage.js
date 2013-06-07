@@ -1,5 +1,16 @@
 ﻿var g_atid = "";
 
+/**选中全部
+*/
+function checkall( obj ){
+	if( da(obj).is(":checked") ){
+		da("[name=chkitem]").attr("checked", "checked");
+	}
+	else{
+		da("[name=chkitem]").removeAttr("checked");
+	}
+}
+
 var setting = {
 	view: {
 		addHoverDom: addHoverDom,
@@ -142,12 +153,42 @@ function loadlist(){
 		
 		field: function( fld, val, row, ds ){
 			if("a_title"==fld){
-				return '<a href="javascript:void(0)" onclick="updatearticle('+row.a_id+')">'+val+'</a>';
+				val = (row.a_img?'<img class="crtimg" src="/images/sys_icon/img.png" src2="'+ row.a_img +'" style="vertical-align:middle;"/> ' 
+				: '<img class="crtimg" src="/images/sys_icon/img2.png" src2="" style="vertical-align:middle;"/> ')
+				+ '<a href="javascript:void(0)" onclick="updatearticle('+row.a_id+')" title="'+ row.a_description +'" >'+val+'</a>';
 			}
 			return val;
 		},
 		loaded: function( idx, xml, json, ds ){
 			//link_click("#tb_list tbody[name=details_auto] tr");
+			da(".crtimg").live("mouseover",function( event ){
+				var src2 = da(this).attr("src2");
+				if( ""==src2 ) return;
+			
+				var imgtip = '<div id="imgtip" style="display:none; position:absolute; border:1px solid #009900; background:#fff; padding:2px; "><img src="'
+				+ da(this).attr("src2") 
+				+'" alt="预览图"/></div>'; //创建 容器元素
+				
+				da("body").append(imgtip);	//把它追加到文档中
+
+				da("#imgtip").css({
+					"top": (event.pageY + 10) + "px",
+					"left":  (event.pageX + 10) + "px"
+				}).show("50");	  				//设置x坐标和y坐标，并且显示
+			
+			}).live("mousemove",function( event ){
+				$("#imgtip").css({
+					"top": (event.pageY+10) + "px",
+					"left":  (event.pageX+10) + "px"
+				});
+				
+			});
+			da(".crtimg").live("mouseout",function( event ){
+				da("#imgtip").remove();	 //移除 
+				
+			});
+			
+			autoframeheight();
 		}
 	}).load();
 
