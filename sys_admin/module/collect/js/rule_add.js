@@ -14,6 +14,11 @@ function showurlpad( obj ){
 /**保存采集规则
 */
 function saverule(){
+	if( !daValid.all() ){
+		alert("对不起，请仔细查看，是否有未填写的必填项。");
+		return;
+	}
+	
 	var data = {
 		dataType: "json"
 	};
@@ -27,11 +32,6 @@ function saverule(){
 	data["r_splittype"] = da("input[name=r_splittype]:checked").val();
 	data["r_downloadimg"] = da("input[name=r_downloadimg]:checked").val();
 	
-	if( !daValid.all() ){
-		alert("对不起，请仔细查看，是否有未填写的必填项。");
-		return;
-	}
-	
 	da.runDB("/sys_admin/module/collect/action/rule_add_item.php", data,
 	function(res){
 		if("FALSE" != res){
@@ -41,7 +41,7 @@ function saverule(){
 			alert("操作失败！");
 		}
 	},function(code,msg,ex){
-		// debugger;
+		debugger;
 	});
 }
 

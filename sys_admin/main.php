@@ -10,13 +10,13 @@
 
 	</head>
 <body>
-	<table id="tb_form" class="grid" style="width:900px; margin:20px auto;font-size:14px;">
+	<table id="tb_form" class="grid shandowbox" cellspacing="0" style="width:800px; margin:50px auto 20px auto;font-size:14px; background:#fff;">
 		<tr>
-			<td colspan="4" style="font-size:22px; line-height:50px; font-weight:bold; text-align:center;">网站服务器信息</td>
+			<td colspan="4" style="font-size:18px; line-height:50px; font-weight:bold; text-align:center; color:#009900">网站服务器信息</td>
 		</tr>
 		<tr>
 			<td class="header" style="width:120px;">服务器域名</td>
-			<td style="width:300px;"><?php echo $_SERVER["HTTP_HOST"] ?></td>
+			<td style="width:300px;"><a href="http://<?php echo $_SERVER["HTTP_HOST"] ?>" target="_blank"><?php echo $_SERVER["HTTP_HOST"] ?></a></td>
 			<td class="header" style="width:120px;">服务器语言</td>
 			<td><?php echo $_SERVER["HTTP_ACCEPT_LANGUAGE"] ?></td>
 		</tr>
@@ -53,7 +53,7 @@
 			<td><?php echo ini_get("file_uploads") ? ini_get("upload_max_filesize") : "不允许上传" ?></td>
 		</tr>
 		<tr>
-			<td class="header" style="width:120px;">脚本最大执行时间</td>
+			<td class="header" style="width:120px;">脚本执行时间</td>
 			<td><?php echo ini_get("max_execution_time")."秒" ?></td>
 			<td colspan="2">&nbsp;</td>
 		</tr>
@@ -72,11 +72,14 @@
 			<td class="header">服务器时间</td>
 			<td><?php date_default_timezone_set("Etc/GMT-8"); echo date("Y-m-d H:i:s",time()) ?></td>
 		</tr>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</tr>
 	</table>
-	
+	<div style="width:800px; margin:0px auto;font-size:14px; text-align:center;">
+		<span style="margin-right:100px;">技术支持: <a href="javascript:void(0)" onclick="alert('i’m sorry, 警察叔叔很忙的。');">danny.xu</a></span>
+		<span>联系方式: <a href="javascript:void(0)" onclick="alert('您所拨打的用户，正在和 110 斗地主。');" >(紧急情况 请拨119)</a></span>
+	</div>
 </body>
 </html>
 
-<script type="text/javascript" src="/plugin/da/daLoader_source_1.1.js"></script>
-<script type="text/javascript" src="/js/fn.js"></script>
-<script type="text/javascript" src="js/index.js"></script>

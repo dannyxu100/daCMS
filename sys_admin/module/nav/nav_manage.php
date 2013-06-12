@@ -3,7 +3,7 @@
  <HEAD>
 	<?php include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";?>
 	
-	<TITLE>系统常量可选项管理</TITLE>
+	<TITLE>网站导航管理</TITLE>
 	<link rel="stylesheet" href="/css/base.css"/>
 	<link rel="stylesheet" href="/plugin/ztree/zTreeStyle.css" type="text/css"/>
 	<link rel="stylesheet" href="/css/jquery-ui-1.9.2.custom.min.css"/>
@@ -23,11 +23,13 @@
  </HEAD>
 <BODY>
 <div>
-	<div class="header">可选项管理</div>
+	<div class="header">
+		<span style="margin-right:20px;">网站导航管理</span>
+		<a class="bt_link" href="javascript:void(0)" onclick="addrootnav();" ><img src="/images/sys_icon/add.png" /> 添加一级导航</a>
+	</div>
 	<table class="tablesolid" style="width:100%">
 		<tr>
 			<td rowspan="4" style="width:250px;vertical-align:top;">
-				<a class="bt_menu" href="javascript:void(0)" onclick="addrootnav();" ><img src="/images/sys_icon/add.png" /> 添加一级导航</a>
 				<ul id="treenavtype" class="ztree"></ul>
 			</td>
 		</tr>
@@ -64,7 +66,9 @@
 							</tr>
 							<tr>
 								<td class="header">URL地址</td>
-								<td colspan="3"><input id="n_url" type="text" style="width:400px;" value=""/></td>
+								<td colspan="3">
+									<input id="n_url" type="text" style="width:400px;" value=""/>
+								</td>
 							</tr>
 							<tr>
 								<td class="header">图标</td>
@@ -84,6 +88,17 @@
 								<td colspan="3"><textarea id="n_remark" style="width:400px;height:100px;"></textarea></td>
 							</tr>
 						</table>
+						<div class="notebox">
+							1. 导航菜单,网站各个栏目的导向链接入口。<br/>
+							2. URL地址,菜单项的链接地址。<br/>
+							3. 拥有子级菜单,URL地址填写"#"。<br/>
+							4. 跳转到首页,URL地址填写"/"。<br/>
+							5. 默认栏目地址速查。<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;[文章列表页] :/web/article/articlelist.php?atid=(文章分类编码)<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;[文章详细页] :/web/article/articledetail.php?aid=(文章编码)<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;[产品列表页] :/web/product/prolist.php?ptid=(产品分类编码)<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;[产品详细页] :/web/product/prodetail.php?pid=(产品编码)<br/>
+						</div>
 					</div>
 					
 				</div>

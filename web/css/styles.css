@@ -214,7 +214,7 @@ a {
 	outline:none}
 
 .col a {
-	color:#2e88c7}
+	color:#ff6600}
 
 .col p {
 	margin-bottom:15px}
@@ -934,7 +934,7 @@ button:hover,button:focus{
 
 .topmenu li.parent:hover ul li.parent:hover ul li a,
 .topmenu li.parent:hover ul li.parent ul li a{
-	color:#2e88c7;}
+	color:#ff6600;}
 
 .topmenu li.parent:hover ul li.parent:hover ul li,
 .topmenu li.parent:hover ul li.parent ul li{
@@ -1346,7 +1346,7 @@ a.nivo-nextNav:hover {
 	display:block}
 
 .bar-title h1 span, .bar-title .title span {
-	color:#2e88c7}
+	color:#ff6600}
 
 .sub-text {
 	color:#6a7184;
@@ -1360,7 +1360,7 @@ a.nivo-nextNav:hover {
 .gl_col_2 .gallery-more a, 
 .gl_col_3 .gallery-more a,
 .gl_col_4 .gallery-more a{
-	color:#2e88c7;
+	color:#ff6600;
 	background:url(../images/ico_plus.png) left center no-repeat;
 	padding-left:25px;
 	line-height:25px;
@@ -1387,7 +1387,7 @@ a.nivo-nextNav:hover {
 	position:relative;}
 
 .breadcrumbs a {
-	color:#2e88c7;
+	color:#ff6600;
 	background:url(../images/ico_arrow_dark.gif) right 5px no-repeat;
 	padding-right:14px;
 	margin-right:3px}
@@ -1490,7 +1490,7 @@ a.nivo-nextNav:hover {
 	margin-left:16px}
 
 .sidebar a {
-	color:#2e88c7}
+	color:#ff6600}
 
 .sidebar_space {
 	padding:10px }
@@ -1578,14 +1578,14 @@ a.nivo-nextNav:hover {
 /* 3.1 Typographic Elements  */
 /*----------------------------------------------*/
 .homepage .col_1_3 h2 {
-	color:#2e88c7;
+	color:#ff6600;
 	font-size:19px}
 
 .text {
 	font-size:13px;}
 
 .text a {
-	color:#2e88c7}
+	color:#ff6600}
 
 .text ul, .text ol {
 	margin:5px 0 25px 35px}
@@ -1630,7 +1630,7 @@ a.nivo-nextNav:hover {
 	font-size:12px}
 
 .col .title_blue {
-	color:#2e88c7}
+	color:#ff6600}
 
 .col .title_violet {
 	color:#753573}
@@ -1654,7 +1654,7 @@ a.nivo-nextNav:hover {
 	line-height:24px;
 	font-weight:normal;
 	font-style:italic;
-	color:#2e88c7;
+	color:#ff6600;
 	background:url(../images/divider_line.gif) bottom repeat-x;
 	margin:10px 0 18px}
 
@@ -1831,7 +1831,7 @@ a.nivo-nextNav:hover {
 	margin-bottom:10px !important}
 
 .tabcontent h3 {
-	color:#2e88c7;
+	color:#ff6600;
 	font-size:19px;
 	margin:10px 0 10px 0}
 
@@ -2045,7 +2045,7 @@ a.nivo-nextNav:hover {
 	margin-top:15px;}
 
 .quote-text {
-	color:#2e88c7;
+	color:#ff6600;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-style:italic;
 	font-size:19px;
@@ -2188,7 +2188,7 @@ table.table-pricing .last .table_head_title {
 	padding-bottom:10px}
 	
 .table_head_price strong {
-	color:#2e88c7;	
+	color:#ff6600;	
 	text-shadow:#fff 0 2px 3px;
 	font-size:29px;
 	vertical-align:5px;
@@ -2375,7 +2375,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	margin:20px 0 0 0}
 	
 .gallery-item a {
-	color:#2e88c7}
+	color:#ff6600}
 	
 .gallery-item-name h2 a:hover{
 	color:#5E2F7F;}
@@ -2846,7 +2846,7 @@ table.table-pricing .table-td-top.tablecolhover {
 
 .pagination a {
 	margin:0 5px;
-	color:#2e88c7;
+	color:#ff6600;
 	font-weight:normal;
 	line-height:45px;
 }

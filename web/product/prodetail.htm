@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{if $article.a_title}{$article.a_title}{elseif $articletype.at_name}{$articletype.at_name}{else}{$webconfig.c_name}{/if}</title>
+	<meta name="title" content="{if $article.a_title}{$article.a_title}{elseif $articletype.at_name}{$articletype.at_name}{else}{$webconfig.c_name}{/if}"> 
+	<meta name="keywords" content="{if $article.a_keywords}{$article.a_keywords}{elseif $articletype.at_keywords}{$articletype.at_keywords}{else}{$webconfig.c_keywords}{/if}"> 
+	<meta name="description" content="{if $article.a_description}{$article.a_description}{elseif $articletype.at_description}{$articletype.at_description}{else}{$webconfig.c_description}{/if}" />
+	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
+	<link href="../css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	{include file="header2.htm"}
+	<div style="width:960px; margin:0px auto; padding:10px; background:#fff;">
+		<div style="margin:10px 0px;">首页>>文章列表>>文章内容</div>
+		<div>
+			<div style="float:left; width:720px; padding-right:10px; border-right:1px solid #ddd; overflow:hidden; ">
+				<h2 style="text-align:center;">{$article.a_title}</h2>
+				<h3 style="text-align:center; color:#999;">{$article.a_title2}</h3>
+				<div style="padding:10px 0px; margin:10px 0px; text-align:center; border:1px dotted #eee; font-size:12px;">
+					更新日期: {$article.a_updatedate} / 浏览次数: {$article.a_count}
+				</div>
+				<div style="line-height:26px">{$article.a_content}</div>
+			</div>
+			<div style="float:left; width:218px; padding:5px;">
+				
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	
+	{include file="footer.htm"}
+</body>
+</html>

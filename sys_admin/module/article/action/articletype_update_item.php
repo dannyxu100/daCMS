@@ -13,10 +13,28 @@
 		$sql .= ", at_img=:atimg ";
 		$db->param(":atimg", $_POST["atimg"]);
 	}
+	if( isset($_POST["atstyle"]) )
+	{
+		$sql .= ", at_style=:atstyle ";
+		$db->param(":atstyle", $_POST["atstyle"]);
+	}
 	if( isset($_POST["atsort"]) )
 	{
 		$sql .= ", at_sort=:atsort ";
 		$db->param(":atsort", $_POST["atsort"]);
+	}
+	if( isset($_POST["atlistnum"]) )
+	{
+		$sql .= ", at_listnum=:atlistnum ";
+		$db->param(":atlistnum", $_POST["atlistnum"]);
+	}
+	if( isset($_POST["aturl"]) ){
+		$sql .= ", at_url=:aturl";
+		$db->param(":aturl", $_POST["aturl"]);
+	}
+	if( isset($_POST["atcontent"]) ){
+		$sql .= ", at_content=:atcontent";
+		$db->param(":atcontent", urldecode($_POST["atcontent"]));
 	}
 	if( isset($_POST["atkeywords"]) )
 	{

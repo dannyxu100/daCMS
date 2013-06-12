@@ -1,4 +1,4 @@
-var level2menu = "";
+var g_pmpid = "";
 
 /**显示隐藏左栏
 */
@@ -28,9 +28,9 @@ function clickmenu( url, obj ){
 /**加载菜单
 */
 function loadlevel2menu(){
-	da.runDB("/sys_admin/module/power/action/menu_get_list.php",{
+	da.runDB("/sys_admin/module/power/action/menu_get_byrole.php",{
 		dataType: "json",
-		pmpid: level2menu
+		pmpid: g_pmpid
 	},function(data){
 		if("FALSE" != data ){
 			var listObj = da("#menu_list");
@@ -44,16 +44,21 @@ function loadlevel2menu(){
 }
 
 
+
 var g_isctrl = false;
 /**监听按键
 */
 function listenKey(){
 	daKey({
 		keydown: function(keyName, ctrlKey, altKey, shiftKey){
-			g_isctrl = ctrlKey;
+			if( !g_isctrl ){
+				g_isctrl = ctrlKey;
+			}
 		},
 		keyup: function(keyName, ctrlKey, altKey, shiftKey){
-			g_isctrl = ctrlKey;
+			if( g_isctrl ){
+				g_isctrl = ctrlKey;
+			}
 		}
 	});
 }
@@ -63,7 +68,7 @@ daLoader("daIframe,daWin,daToolbar,daKey",function(){
 		daFrame.shandowborder(".frame_slide", "left");
 		
 		var arrParam = da.urlParams();
-		level2menu = arrParam["menu"];
+		g_pmpid = arrParam["menu"];
 		
 		loadlevel2menu();
 		listenKey();

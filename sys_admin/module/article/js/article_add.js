@@ -1,5 +1,39 @@
 ﻿var g_atid = "";
 
+/**设置标签
+*/
+function updatetag(){
+	daWin({
+		width: 400,
+		height: 500,
+		title: "设置标签",
+		url: "/sys_admin/module/tag/tag_manage.php?ismulti=true&type=ARTICLE",
+		back: function( data ){
+			var tids = [];
+			
+			for( var k in data){
+				tids.push(k);
+			}
+			
+/* 			da.runDB("/sys_admin/module/tag/action/tagmap_add_list.php",{
+				type: "ARTICLE",
+				ids: g_aid,
+				tids: tids.join(",")
+			},
+			function(res){
+				if(res=="FALSE"){
+					alert("对不起，标注失败。");
+				}
+				else{
+					alert("标注成功。");
+					loadtag();
+				}
+			}); */
+			
+		}
+	});
+}
+
 function savearticle(){
 	// 将编辑器的HTML数据同步到textarea
 	g_editor.sync();

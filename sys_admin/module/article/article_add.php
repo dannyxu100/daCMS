@@ -60,12 +60,19 @@
 		<tr>
 			<td class="header">&nbsp;</td>
 			<td colspan="3">
-				<img id="a_img_view" src="/images/no_img.jpg" style="margin:5px;"/>
+				<img id="a_img_view" src="/images/no_img.gif" style="height:80px; border:1px solid #f0f0f0"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="header">标签</td>
+			<td colspan="3">
+				<div id="tagpad"></div>
+				<a class="bt_link" href="javascript:void(0)" onclick="updatetag();" ><img src="/images/sys_icon/tag_plus.png" /> 设置标签</a>
 			</td>
 		</tr>
 		<tr>
 			<td class="header">内容</td>
-			<td colspan="3"><textarea id="a_content" style="width:800px;height:600px;"></textarea></td>
+			<td colspan="3"><textarea id="a_content" style="width:700px;height:600px;"></textarea></td>
 		</tr>
 		<tr>
 			<td class="header">发布日期</td>

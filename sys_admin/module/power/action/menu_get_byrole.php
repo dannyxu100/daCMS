@@ -10,11 +10,11 @@
 	$sql = "";
 	if(-1 == $roleid){		//超级管理员
 		$sql = "select * from p_menu 
-		where 0=0 ";
+		where pm_status=1 and 0=0 ";
 	}
-	else{		//普通管理员
+	else{					//普通管理员
 		$sql = "select * from p_menu,p_menu2role 
-		where pm_id=m2r_pmid 
+		where pm_status=1 and pm_id=m2r_pmid 
 		and m2r_prid in (".$roleid.")";
 		
 	}

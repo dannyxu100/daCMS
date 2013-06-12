@@ -22,11 +22,11 @@
 	
 	if( isset($_POST["pageindex"]) ){				//分页
 		$start = ($_POST["pageindex"]-1)*$_POST["pagesize"];
-		$end = $start + $_POST["pagesize"];
-		$sql1 .= " limit :start, :end";
+		$len = $_POST["pagesize"];
+		$sql1 .= " limit :start, :len";
 		
 		array_push($param1, array(":start", $start));
-		array_push($param1, array(":end", $end));
+		array_push($param1, array(":len", $len));
 	}
 	// $log = new Log();
 	// $log->write($sql1);

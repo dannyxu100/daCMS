@@ -17,13 +17,15 @@
 	array_push($param1, array(":atid", $atid));
 	array_push($param2, array(":atid", $atid));
 	
+	$sql1 .="order by a_sort asc, a_id desc";
+	
 	if( isset($_POST["pageindex"]) ){				//分页
 		$start = ($_POST["pageindex"]-1)*$_POST["pagesize"];
-		$end = $start + $_POST["pagesize"];
-		$sql1 .= " limit :start, :end";
+		$len = $_POST["pagesize"];
+		$sql1 .= " limit :start, :len";
 		
 		array_push($param1, array(":start", $start));
-		array_push($param1, array(":end", $end));
+		array_push($param1, array(":len", $len));
 	}
 	
 	$db->paramlist($param1);

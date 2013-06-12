@@ -219,7 +219,7 @@ function addDiyDom3(treeId, treeNode) {
 }
 /*加载左边部门数据*/
 function loadmenutree(){
-	da.runDB("action/menu_get_list.php",{
+	da.runDB("action/menu_get_listnostatus.php",{
 		dataType: "json"
 	},
 	function(data){

@@ -12,7 +12,7 @@ function loadlist(){
 		data: data1,
 		// loading: false,
 		// page: false,
-		pageSize: 20,
+		pageSize: 10,
 		
 		field: function( fld, val, row, ds ){
 			switch( fld ){

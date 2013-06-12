@@ -26,7 +26,7 @@
 </div>
 <div class="info_bar">
 	<div id="userico">
-		<img id="puicon" src="/uploads/userico/default.png" />
+		<img id="puicon" src="/images/hi.gif" />
 		<div class="userinfo_list shandowbox" title="点击关闭">
 			<ul><a href="javascript:void(0)" onclick="uploadico()">更新头像</a></ul>
 			<ul>姓&nbsp;&nbsp;&nbsp;&nbsp;名:&nbsp;&nbsp;<span id="puname"></span> </ul>

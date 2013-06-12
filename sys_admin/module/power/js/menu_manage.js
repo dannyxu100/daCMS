@@ -53,7 +53,7 @@ function beforeRemove(treeId, treeNode) {
 	
 	confirm("确认删除部门【" + treeNode.name + "】吗？", 
 	function(){
-		da.runDB("action/menu_get_list.php",{			//检查是否拥有下级部门
+		da.runDB("action/menu_get_listnostatus.php",{			//检查是否拥有下级部门
 			pmpid: treeNode.id
 		},
 		function(res){
@@ -161,7 +161,7 @@ function removeHoverDom(treeId, treeNode) {
 /**点击树节点事件
 */
 function clicknode(treeId, treeNode){
-	da.runDB("action/menu_get_list.php",{
+	da.runDB("action/menu_get_listnostatus.php",{
 		dataType: "json",
 		pmid: treeNode.id
 	},
@@ -172,6 +172,10 @@ function clicknode(treeId, treeNode){
 			}
 			
 			da("#pm_img_view").attr("src",res[0].pm_img);
+			
+			var radioobj = da("[name=pm_status][value="+ res[0].pm_status +"]");
+			radioobj.attr("checked", "checked");
+			radioobj.dom[0].checked = true;
 		}
 	});
 
@@ -187,7 +191,8 @@ function updatemenu(){
 		pmsort: da("#pm_sort").val(),
 		pmurl: da("#pm_url").val(),
 		pmimg: da("#pm_img").val(),
-		pmremark: da("#pm_remark").val()
+		pmremark: da("#pm_remark").val(),
+		pmstatus: da("[name=pm_status]:checked").val()
 	},
 	function(res){
 		if(res=="FALSE"){
@@ -202,7 +207,7 @@ function updatemenu(){
 
 /*加载左边部门数据*/
 function loadtree(){
-	da.runDB("action/menu_get_list.php",{
+	da.runDB("action/menu_get_listnostatus.php",{
 		dataType: "json",
 	},
 	function(data){
@@ -218,13 +223,14 @@ function loadtree(){
 		
 		$.fn.zTree.init($("#treeDemo"), setting, zNodes);
 		
+		autoframeheight();
 	});
 }
 
 
 
 
-daLoader("daMsg,daDate,daWin", function(){
+daLoader("daMsg,daDate,daWin,daIframe", function(){
 	//daUI();
 	$( "#pp_date" ).datepicker({
 	  defaultDate: "+1w",

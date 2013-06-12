@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{$articletype.at_name}_{$webconfig.c_name}</title>
+	<meta name="title" content="{$articletype.at_name}_{$webconfig.c_name}"> 
+	<meta name="keywords" content="{if $articletype.at_keywords}{$articletype.at_keywords}{else}{$webconfig.c_keywords}{/if}"> 
+	<meta name="description" content="{if $articletype.at_description}{$articletype.at_description}{else}{$webconfig.c_description}{/if}" />
+	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
+	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	{include file="header2.htm"}
+	<div style="width:960px; margin:0px auto; padding:10px; background:#fff;">
+		<div style="margin:10px 0px;">首页>>文章列表</div>
+		<div>
+			<div style="float:left; width:720px;min-height:300px;height:auto !important;height:300px; padding-right:10px; border-right:1px solid #ddd; overflow:hidden; ">
+				{include file="_sys_list.htm"}
+				
+			</div>
+			<div style="float:left; width:218px; padding:5px;">
+				{foreach from=$articletype2 key=k item=articletype}
+				<div style="margin-bottom:10px;">
+					<span>{$k+1}</span>. <a href="/web/article/articlelist.php?atid={$articletype.at_id}">{$articletype.at_name}</a>
+				</div>
+				{/foreach}
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	
+	{include file="footer.htm"}
+</body>
+</html>

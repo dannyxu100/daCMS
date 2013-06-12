@@ -6,10 +6,9 @@
 	date_default_timezone_set('ETC/GMT-8');
 	$now = date("Y-m-d H:i:s");
 	
-	$sql = "update sys_collectrule";
 	$db = new DB("dacms");
 	
-	$sql .= " set r_name=:r_name";
+	$sql = "update sys_collectrule set r_name=:r_name";
 	$db->param(":r_name", $_POST["r_name"]);
 	
 	foreach($_POST as $key=>$value){

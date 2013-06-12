@@ -8,12 +8,13 @@ var setting = {
 		}
 	},
 	callback: {
-		onMouseUp: onMouseUp,
+		clicknode: clicknode,
 	}
 };
 
-function onMouseUp(event, treeId, treeNode) {
-	//loaduserlist( treeNode.id );
+function clicknode( treeId, treeNode) {
+	if( !treeNode || !treeNode.id ) return;
+	
 	selectitem(treeNode.id);
 	
 	if( !g_ismulti ){  		//单选直接返回结果
@@ -87,6 +88,9 @@ function backitem(){
 /**清除
 */
 function clearitem(){
+	for( var k in g_chkItems ){
+		cancelitem(k);
+	}
 	delete g_chkItems;
 	g_chkItems = {};
 	showitem();

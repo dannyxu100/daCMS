@@ -79,11 +79,25 @@ function loadinfo(){
 				da("#"+fld).val(data[fld]);
 			}
 			
-			da("input[name=r_pagecode][value="+ data.r_pagecode +"]").attr("checked", "checked");
-			da("input[name=r_urltype][value="+ data.r_urltype +"]").attr("checked", "checked");
-			da("input[name=r_split][value="+ data.r_split +"]").attr("checked", "checked");
-			da("input[name=r_splittype][value="+ data.r_splittype +"]").attr("checked", "checked");
-			da("input[name=r_downloadimg][value="+ data.r_downloadimg +"]").attr("checked", "checked");
+			var radioobj = da("input[name=r_pagecode][value="+ data.r_pagecode +"]");
+			radioobj.attr("checked", "checked");
+			radioobj.dom[0].checked = true;
+			
+			radioobj = da("input[name=r_urltype][value="+ data.r_urltype +"]");
+			radioobj.attr("checked", "checked");
+			radioobj.dom[0].checked = true;
+			
+			radioobj = da("input[name=r_split][value="+ data.r_split +"]");
+			radioobj.attr("checked", "checked");
+			radioobj.dom[0].checked = true;
+			
+			radioobj = da("input[name=r_splittype][value="+ data.r_splittype +"]");
+			radioobj.attr("checked", "checked");
+			radioobj.dom[0].checked = true;
+			
+			radioobj = da("input[name=r_downloadimg][value="+ data.r_downloadimg +"]");
+			radioobj.attr("checked", "checked");
+			radioobj.dom[0].checked = true;
 			
 			showurlpad(da("input[name=r_urltype]:checked").dom[0]);
 			showsplitpad(da("input[name=r_splittype]:checked").dom[0]);

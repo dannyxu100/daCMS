@@ -37,6 +37,89 @@ function savearticle(){
 	});
 }
 
+/**取消标签
+*/
+function canceltag( tid ){
+	da.runDB("/sys_admin/module/tag/action/tagmap_delete_item.php",{
+		type: "ARTICLE", 
+		tid: tid,
+		id: g_aid
+		
+	},function(res){
+		if(res=="FALSE"){
+			alert("对不起，操作失败。");
+		}
+		else{
+			alert("取消标签成功。");
+			loadtag();
+		}
+		
+	},function(code,msg,ex){
+		// debugger;
+	});
+}
+
+/**设置标签
+*/
+function updatetag(){
+	daWin({
+		width: 400,
+		height: 500,
+		title: "设置标签",
+		url: "/sys_admin/module/tag/tag_manage.php?ismulti=true&type=ARTICLE",
+		back: function( data ){
+			var tids = [];
+			
+			for( var k in data){
+				tids.push(k);
+			}
+			
+			da.runDB("/sys_admin/module/tag/action/tagmap_add_list.php",{
+				type: "ARTICLE",
+				ids: g_aid,
+				tids: tids.join(",")
+			},
+			function(res){
+				if(res=="FALSE"){
+					alert("对不起，标注失败。");
+				}
+				else{
+					alert("标注成功。");
+					loadtag();
+				}
+			});
+			
+		}
+	});
+}
+
+/**加载标签
+*/
+function loadtag(){
+	da.runDB("/sys_admin/module/tag/action/tagmap_get_list.php",{
+		dataType: "json",
+		type: "ARTICLE", 
+		id: g_aid
+		
+	},function(data){
+		if("FALSE"!= data){
+			var strHTML = "";
+				tagpad = da("#tagpad");
+			
+			tagpad.empty();
+			for(var i=0; i<data.length; i++){
+				strHTML += '<div class="tagitem" ondblclick="canceltag('+ data[i].t_id +')">'+ data[i].t_name +'</div>';
+			}
+			tagpad.html(strHTML);
+			
+			autoframeheight();
+		}
+		
+	},function(code,msg,ex){
+		// debugger;
+	});
+}
+
 /**加载信息
 */
 function loadinfo(){
@@ -100,6 +183,7 @@ daLoader("daMsg,daWin,daIframe,daValid", function(){
 	
 		loadeditor();
 		loadinfo();
+		loadtag();
 		
 		autoframeheight();
 	});

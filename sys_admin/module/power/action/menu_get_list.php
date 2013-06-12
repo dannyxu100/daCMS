@@ -20,7 +20,7 @@
 		$sql .= " where pm_level=:pmlevel ";
 		$db->param(":pmlevel", $_POST["pmlevel"]);
 	}
-	$sql .= " group by pm_id order by pm_sort asc, pm_pid asc";
+	$sql .= " and pm_status=1 group by pm_id order by pm_sort asc, pm_pid asc";
 	
 	$set = $db->getlist($sql);
 	// Log::out($sql);

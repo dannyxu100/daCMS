@@ -69,7 +69,7 @@
 		<tr>
 			<td class="header">&nbsp;</td>
 			<td colspan="3">
-				<img id="c_img_view" src="/images/no_img.jpg" style="margin:5px;"/>
+				<img id="c_img_view" src="/images/no_img.gif" style="margin:5px;"/>
 			</td>
 		</tr>
 		<tr>

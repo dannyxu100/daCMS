@@ -7,7 +7,7 @@
 	$db = new DB("dacms");
 	$db->param(":pid", $_POST["pid"]);
 	$db->param(":name", $_POST["name"]);
-	$res = $db->insert("insert into web_articletype(at_pid, at_name) values(:pid, :name)");
+	$res = $db->insert("insert into web_articletype(at_pid, at_name, at_listnum, at_style) values(:pid, :name, 10, 'LIST')");
 	
 	$db->close();
 	// $log = new Log();

@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
 	//error_reporting(-1);
@@ -37,6 +37,12 @@
 		$sql .= ", pm_remark=:pmremark ";
 		$db->param(":pmremark", $_POST["pmremark"]);
 	}
+	if( isset($_POST["pmstatus"]) )
+	{
+		$sql .= ", pm_status=:pmstatus ";
+		$db->param(":pmstatus", $_POST["pmstatus"]);
+	}
+	
 	
 	$sql .= " where pm_id=:pmid";
 	$db->param(":pmid", $_POST["pmid"]);

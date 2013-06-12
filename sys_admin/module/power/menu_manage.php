@@ -3,7 +3,7 @@
  <HEAD>
 	<?php include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";?>
 	
-  <TITLE>菜单管理</TITLE>
+  <TITLE>功能模块管理</TITLE>
 	<link rel="stylesheet" href="/css/base.css"/>
 	<link rel="stylesheet" href="/plugin/ztree/zTreeStyle.css" type="text/css"/>
 	<link rel="stylesheet" href="/css/jquery-ui-1.9.2.custom.min.css"/>
@@ -27,7 +27,7 @@
  </HEAD>
 <BODY>
 <div>
-	<div class="header">菜单管理</div>
+	<div class="header">功能模块管理</div>
 
 	<table class="tablesolid" style="width:100%">
 		<tr>
@@ -44,7 +44,7 @@
 					<tr>
 						<td class="header" style="width:80px;">名称</td>
 						<td style="width:160px;"><input id="pm_name" type="text" value="" /></td>
-						<td class="header" style="width:80px;">菜单级别</td>
+						<td class="header" style="width:80px;">模块级别</td>
 						<td><input id="pm_level" type="text" value="" /></td>
 					</tr>
 					<tr>
@@ -73,6 +73,13 @@
 					<tr>
 						<td class="header">备注</td>
 						<td colspan="3"><textarea id="pm_remark" ></textarea></td>
+					</tr>
+					<tr>
+						<td class="header">状态</td>
+						<td colspan="3">
+							<label style="margin-right:20px;"><input type="radio" name="pm_status" value="1" />启用</label>
+							<label><input type="radio" name="pm_status" value="0" checked="checked" />屏蔽</label>
+						</td>
 					</tr>
 				</table>
 			</td>

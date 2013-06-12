@@ -108,7 +108,7 @@
 	
 	</div>
 	<div id="pad_2" style="display:none;">
-		<div style="margin:5px; padding:10px; border:1px solid #900;background:#fff5f5">
+		<div class="notebox">
 			1. 匹配规则,请设置开始和结束符，具体内容使用“[content]”做为通配符 。<br/>
 			2. 过滤选项,格式为“要过滤的内容[|]替换值”，要过滤的内容支持正则表达式，每行一条。
 		</div>
@@ -162,7 +162,7 @@
 		
 	</div>
 	<div id="pad_3" style="display:none;">
-		<div style="margin:5px; padding:10px; border:1px solid #900;background:#fff5f5">
+		<div class="notebox">
 			1. 如果详细页面也有分页，请配置下面的内容分页规则<br/>
 			2. 序列模式分页，是指以数字超链接直接罗列的方式，如[1] [2] [3] [4]...<br/>
 			3. 上下页模式分页，是指以“上一页”，“下一页”超链接的方式。

@@ -1,6 +1,7 @@
 <?php
 	// include_once "log.php";
 	// error_reporting(-1);
+	// error_reporting(0);		//屏蔽错误信息
 	
 	date_default_timezone_set('ETC/GMT-8');
 	
@@ -334,6 +335,10 @@ class DB{
 		$puid = "";
 		$puname = "";
 		
+		if( !isset($_COOKIE["COOKIE_FROM_DACMS"]) ){
+			return;
+		}
+		
 		$arrcookie = explode('|', urldecode($_COOKIE["COOKIE_FROM_DACMS"]));
 		for($i=0; $i<count($arrcookie); $i++){
 			$arrtmp = explode(':', $arrcookie[$i]);
@@ -375,11 +380,11 @@ class DB{
 }
 
 
-
-//兼容魔术引号， 适用各个 PHP 版本的用法
-if (get_magic_quotes_gpc()) {
-	foreach($_POST as $key=>$value){
-		$_POST[$key] = stripslashes($_POST[$key]);
+	//兼容魔术引号， 适用各个 PHP 版本的用法
+	if (get_magic_quotes_gpc()) {
+		foreach($_POST as $key=>$value){
+			$_POST[$key] = stripslashes($_POST[$key]);
+		}
 	}
-}
+
 ?>

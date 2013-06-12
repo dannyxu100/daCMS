@@ -110,7 +110,12 @@ function backitem(){
 /**清除
 */
 function clear(){
-	
+	for( var k in g_chkItems ){
+		cancelitem(k);
+	}
+	delete g_chkItems;
+	g_chkItems = {};
+	showitem();
 }
 
 

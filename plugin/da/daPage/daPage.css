@@ -4,7 +4,7 @@
 	description:	分页条daPage样式
 
 */
-.daPage {display:inline-block; *zoom:1; *display:inline; vertical-align:middle; font-size: 12px; margin:2px 0px;}
+.daPage {display:inline-block; *zoom:1; *display:inline; text-align:left; vertical-align:middle; font-size: 12px; margin:2px 0px;}
         
 .daPage a {
 	text-decoration: none;
@@ -15,8 +15,7 @@
 
 .daPage a, 
 .daPage span {
-	display: block;
-	float: left;
+	display:inline-block; *zoom:1; *display:inline;
 	padding: 2px 3px;
 	margin-right: 5px;
 	margin-bottom: 5px;
@@ -30,7 +29,7 @@
 }
 
 .daPage .current {
-	background: #26B;
+	background: #26B url(images/daPage_current.png);
 	color: #fff;
 	border: solid 1px #444;
 }
