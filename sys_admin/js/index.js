@@ -1,4 +1,4 @@
-function scrolltop(obj){
+﻿function scrolltop(obj){
 	var daObj = da(obj);
 	if (0 != da(window).scrollTop()) {
 		daObj.fadeIn()
