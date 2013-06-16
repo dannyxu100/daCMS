@@ -1,6 +1,25 @@
 ﻿
 var g_rid = "";
 
+/**选中全部
+*/
+function checkall( obj ){
+	var checkobj = da("[name=chkitem]");
+	
+	if( da(obj).is(":checked") ){
+		checkobj.attr("checked", "checked");
+		checkobj.each(function(){
+			this.checked = true;
+		});
+	}
+	else{
+		checkobj.removeAttr("checked");
+		checkobj.each(function(){
+			this.checked = false;
+		});
+	}
+}
+
 function showcontent( cid ){
 	daWin({
 		width: 800,
@@ -10,6 +29,21 @@ function showcontent( cid ){
 	});
 }
 
+/**批量引用
+*/
+function exportlist(){
+	var items = da("[name=chkitem]:checked");
+	var cids = [];
+	
+	items.each(function(idx, obj){
+		cids.push(obj.value);
+	});
+	
+	exportcontent( cids.join(",") );
+}
+
+/**批量文章
+*/
 function exportcontent( cids ){
 	daWin({
 		width: 400,
@@ -24,18 +58,30 @@ function exportcontent( cids ){
 			}
 			
 			atids = atids.join(",");
-			
+
 			da.runDB("/sys_admin/module/collect/action/collect2article_update_list.php",{
 				atids: atids,
 				cids: cids
 			
-			},function(res){debugger;
+			},function(res){
 				if("FALSE" != res){
-					loadlist();
+					var arr = (cids+"").split(","), chkobj, btobj, objtmp;
+					
+					for( var i=0; i<arr.length; i++ ){
+						chkobj = da("#chkitem_"+ arr[i] );
+						btobj = da("#bt_export_"+ arr[i] );
+						
+						objtmp = document.createElement("span");
+						objtmp.innerHTML = "已经引用";
+						btobj.dom[0].parentNode.insertBefore(objtmp, btobj.dom[0] );
+						btobj.remove();
+						chkobj.remove();
+					}
+					// loadlist();
 				}
 			
 			},function(code, msg, ex){
-				debugger;
+				// debugger;
 			});
 		}
 	});
@@ -61,7 +107,7 @@ function loadlist(){
 		field: function( fld, val, row, ds ){
 			switch( fld ){
 				case "checkbox":
-					val = "TRUE" == row.c_isused ? ' ':'<input type="checkbox" name="chkitem" value="'+ row.c_id +'" />';
+					val = "TRUE" == row.c_isused ? ' ':'<input id="chkitem_'+ row.c_id +'" type="checkbox" name="chkitem" value="'+ row.c_id +'" />';
 					break;
 				case "c_title":
 					val = '<a href="javascript:void(0)" onclick="showcontent('+ row.c_id +')">'+ val +'</a>';
@@ -70,7 +116,7 @@ function loadlist(){
 					val = '<a href="'+ val +'" target="_blank" title="'+ row.c_description +'">'+ da.limitStr(val, 50) +'</a>';
 					break;
 				case "tools":
-					val = "TRUE" == row.c_isused ? '已经引用':'<a class="bt_link" href="javascript:void(0)" onclick="exportcontent('+ row.c_id +')">引用文章</a>';
+					val = "TRUE" == row.c_isused ? '已经引用':'<a id="bt_export_'+ row.c_id +'" class="bt_link" href="javascript:void(0)" onclick="exportcontent('+ row.c_id +')">引用文章</a>';
 					break;
 			}
 			

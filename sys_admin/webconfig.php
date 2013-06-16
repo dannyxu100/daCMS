@@ -103,6 +103,13 @@
 			<td><input type="text" id="c_pushpwd" style="width:220px;"/></td>
 		</tr>
 		<tr>
+			<td class="header">伪静态</td>
+			<td colspan="3">
+				<label style="margin-right:10px;"><input name="c_isstatic" type="radio" value="1" checked="checked"/>启用</label>
+				<label><input name="c_isstatic" type="radio" value="0"/>不启用</label>
+			</td>
+		</tr>
+		<tr>
 			<td class="header">备注</td>
 			<td colspan="3">
 				<textarea type="text" id="c_remark" style="width:590px; height:100px;"></textarea>

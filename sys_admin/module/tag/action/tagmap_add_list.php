@@ -9,7 +9,7 @@
 	$arrtids = preg_split("/,/", $_POST["tids"]);
 	
 	$db = new DB("dacms");
-	$sql = "insert into web_tagmap(t2c_ttype, t2c_tid, t2c_cid) values(:type, :tid, :cid)";
+	$sql = "insert into web_tagmap(tm_ttype, tm_tid, tm_cid) values(:type, :tid, :cid)";
 
 	$row = 0;
 	if( 0<count($arrtids) && 0<count($arrids) ){
@@ -21,7 +21,7 @@
 			for($j=0; $j<count($arrtids); $j++){
 				
 				$db->paramclear();
-				if( 0 >= $db->getcount("select t2c_id from web_tagmap where t2c_ttype='".$type."' and t2c_tid=".$arrtids[$j]." and t2c_cid=".$arrids[$i])){
+				if( 0 >= $db->getcount("select tm_id from web_tagmap where tm_ttype='".$type."' and tm_tid=".$arrtids[$j]." and tm_cid=".$arrids[$i])){
 					$db->param(":type", $type);
 					$db->param(":tid", $arrtids[$j]);
 					$db->param(":cid", $arrids[$i]);

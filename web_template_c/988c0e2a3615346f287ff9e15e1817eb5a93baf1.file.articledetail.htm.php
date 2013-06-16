@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-12 13:35:11
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-15 23:44:22
          compiled from "articledetail.htm" */ ?>
-<?php /*%%SmartyHeaderCode:1607851b8088f469251-52728613%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:637051bc8bd6d3ef79-61329172%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '988c0e2a3615346f287ff9e15e1817eb5a93baf1' => 
     array (
       0 => 'articledetail.htm',
-      1 => 1371012009,
+      1 => 1371302195,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1607851b8088f469251-52728613',
+  'nocache_hash' => '637051bc8bd6d3ef79-61329172',
   'function' => 
   array (
   ),
@@ -19,32 +19,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'article' => 0,
     'articletype' => 0,
-    'webconfig' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51b8088f6e6e64_92778550',
+  'unifunc' => 'content_51bc8bd6f07613_35779194',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51b8088f6e6e64_92778550')) {function content_51b8088f6e6e64_92778550($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\plugin\\smarty\\plugins\\modifier.date_format.php';
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if ($_valid && !is_callable('content_51bc8bd6f07613_35779194')) {function content_51bc8bd6f07613_35779194($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\plugin\\smarty\\plugins\\modifier.date_format.php';
+?>﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title><?php if ($_smarty_tpl->tpl_vars['article']->value['a_title']){?><?php echo $_smarty_tpl->tpl_vars['article']->value['a_title'];?>
-<?php }elseif($_smarty_tpl->tpl_vars['articletype']->value['at_name']){?><?php echo $_smarty_tpl->tpl_vars['articletype']->value['at_name'];?>
-<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_name'];?>
-<?php }?></title>
-	<meta name="title" content="<?php if ($_smarty_tpl->tpl_vars['article']->value['a_title']){?><?php echo $_smarty_tpl->tpl_vars['article']->value['a_title'];?>
-<?php }elseif($_smarty_tpl->tpl_vars['articletype']->value['at_name']){?><?php echo $_smarty_tpl->tpl_vars['articletype']->value['at_name'];?>
-<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_name'];?>
-<?php }?>"> 
-	<meta name="keywords" content="<?php if ($_smarty_tpl->tpl_vars['article']->value['a_keywords']){?><?php echo $_smarty_tpl->tpl_vars['article']->value['a_keywords'];?>
-<?php }elseif($_smarty_tpl->tpl_vars['articletype']->value['at_keywords']){?><?php echo $_smarty_tpl->tpl_vars['articletype']->value['at_keywords'];?>
-<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_keywords'];?>
-<?php }?>"> 
-	<meta name="description" content="<?php if ($_smarty_tpl->tpl_vars['article']->value['a_description']){?><?php echo $_smarty_tpl->tpl_vars['article']->value['a_description'];?>
-<?php }elseif($_smarty_tpl->tpl_vars['articletype']->value['at_description']){?><?php echo $_smarty_tpl->tpl_vars['articletype']->value['at_description'];?>
-<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_description'];?>
-<?php }?>" />
+	<title><?php echo fn_title(array('t1'=>$_smarty_tpl->tpl_vars['article']->value['a_title'],'t2'=>$_smarty_tpl->tpl_vars['articletype']->value['at_name']),$_smarty_tpl);?>
+</title>
+	<meta name="title" content="<?php echo fn_title(array('t1'=>$_smarty_tpl->tpl_vars['article']->value['a_title'],'t2'=>$_smarty_tpl->tpl_vars['articletype']->value['at_name']),$_smarty_tpl);?>
+"> 
+	<meta name="keywords" content="<?php echo fn_keywords(array('k1'=>$_smarty_tpl->tpl_vars['article']->value['a_keywords'],'k2'=>$_smarty_tpl->tpl_vars['articletype']->value['at_keywords']),$_smarty_tpl);?>
+"> 
+	<meta name="description" content="<?php echo fn_description(array('d1'=>$_smarty_tpl->tpl_vars['article']->value['a_description'],'d2'=>$_smarty_tpl->tpl_vars['articletype']->value['at_description']),$_smarty_tpl);?>
+" />
+	
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 

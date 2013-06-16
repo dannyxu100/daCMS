@@ -19,11 +19,13 @@
 	</div>
 	
 	<div id="tabbar"></div>
-	<div id="pad_1">
+	<div id="pad_1" style="display:none;">
 		<table class="grid" style="width:100%">
 			<tr>
 				<td class="header" style="width:100px;">规则名称</td>
-				<td colspan="2"><input id="r_name" type="text" style="width:300px;" valid="anything,false" validinfo="不能为空"/></td>
+				<td colspan="2">
+					<input id="r_name" type="text" style="width:300px;" valid="anything,false" validinfo="不能为空"/>
+				</td>
 			</tr>
 			<tr>
 				<td class="header">页面编码</td>
@@ -105,7 +107,7 @@
 		</table>
 	
 	</div>
-	<div id="pad_2">
+	<div id="pad_2" style="display:none;">
 		<div class="notebox">
 			1. 匹配规则,请设置开始和结束符，具体内容使用“[content]”做为通配符 。<br/>
 			2. 过滤选项,格式为“要过滤的内容[|]替换值”，要过滤的内容支持正则表达式，每行一条。
@@ -157,10 +159,54 @@
 				</td>
 			</tr>
 		</table>
+		
 	</div>
-	<div id="pad_3">
+	<div id="pad_3" style="display:none;">
+		<div class="notebox">
+			1. 如果详细页面也有分页，请配置下面的内容分页规则<br/>
+			2. 序列模式分页，是指以数字超链接直接罗列的方式，如[1] [2] [3] [4]...<br/>
+			3. 上下页模式分页，是指以“上一页”，“下一页”超链接的方式。
+		</div>
+		<table class="grid" style="width:100%">
+			<tr>
+				<td class="header" style="width:100px;">是否分页</td>
+				<td colspan="2">
+					<label><input name="r_split" type="radio" value="0" checked="true"/>不分页</label>
+					<label><input name="r_split" type="radio" value="1"/>分页</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="header" style="width:100px;">分页模式</td>
+				<td colspan="2">
+					<label><input name="r_splittype" type="radio" onclick="showsplitpad(this)" value="NUMBER" checked="true"/>序列模式</label>
+					<label><input name="r_splittype" type="radio" onclick="showsplitpad(this)" value="PREVNEXT"/>上下页模式</label>
+				</td>
+			</tr>
+			<tr id="PREVNEXT_pad" style="display:none;">
+				<td class="header">下一页标志</td>
+				<td colspan="2">
+					<input type="text" id="r_splitnexttag" value="下一页">
+					<br><span style="color:#900">填写下一页超链接中间的代码。如：下一页，他的“下一页标志”为“下一页”。</span>			
+					<br/>
+					<br/>
+				</td>
+			</tr>
+			<tr>
+				<td class="header">分页代码范围</td>
+				<td>
+					<textarea id="r_splitrange1" style="width:90%; height:100px;"></textarea>
+					<br/><span style="color:#900">(开始位置代码)</span>
+				</td>
+				<td>
+					<textarea id="r_splitrange2" style="width:90%; height:100px;"></textarea>
+					<br/><span style="color:#900">(结束位置代码)</span>
+				</td>
+			</tr>
+		</table>
 	</div>
-	<div id="pad_4">
+	<div id="pad_4" style="display:none;">
+	</div>
+	<div id="pad_5" style="display:none;">
 		<table class="grid" style="width:100%">
 			<tr>
 				<td class="header" style="width:100px;">图片下载</td>

@@ -5,9 +5,6 @@
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/web/header.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/web/footer.php";
 	
-	fn_gethtmlurl();
-	$smarty->registerPlugin("function", "fn_sethtmlurl", "fn_sethtmlurl"); //smarty注册函数
-	
 	
 	$atid = $_GET["atid"];
 	
@@ -51,14 +48,13 @@
 	$articleset = $db->getlist($sql);
 	$db->close();
 	
-	$pager = new Pager( $count["total"], $pageindex, $pagesize, "articlelist.php?atid=".$atid );
-	
+	/************* 分页代码 *************/
+	$pager = new Pager( $count["total"], $pageindex, $pagesize, "/web/article/articlelist.php?atid=".$atid );
 	$smarty->assign('pager_Total',$pager->m_total);
 	$smarty->assign('pager_Number',$pager->m_number);
 	$smarty->assign('pager_Prev',$pager->m_prevhtml);
 	$smarty->assign('pager_Links',$pager->m_linkshtml);
 	$smarty->assign('pager_Next',$pager->m_nexthtml);
-	/************* 分页代码 *************/
 
 	$smarty->assign('articletype', $articletype);
 	$smarty->assign('articletype2', $articletype2);

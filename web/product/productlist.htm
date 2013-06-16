@@ -1,12 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>{$articletype.at_name}_{$webconfig.c_name}</title>
-	<meta name="title" content="{$articletype.at_name}_{$webconfig.c_name}"> 
-	<meta name="keywords" content="{if $articletype.at_keywords}{$articletype.at_keywords}{else}{$webconfig.c_keywords}{/if}"> 
-	<meta name="description" content="{if $articletype.at_description}{$articletype.at_description}{else}{$webconfig.c_description}{/if}" />
+	<title>{fn_title t1=$producttype.pt_name}_{$smarty.const.WC_NAME}</title>
+	<meta name="title" content="{fn_title t1=$producttype.pt_name}_{$smarty.const.WC_NAME}"> 
+	<meta name="keywords" content="{fn_keywords t1=$producttype.pt_keywords}"> 
+	<meta name="description" content="{fn_description t1=$producttype.pt_description}" />
+	
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
-	<link href="../css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -16,12 +18,12 @@
 		<div style="margin:10px 0px;">首页>>文章列表</div>
 		<div>
 			<div style="float:left; width:720px;min-height:600px;height:auto !important;height:600px; overflow:visible;padding-right:10px; border-right:1px solid #ddd; overflow:hidden; ">
-				{include file="_sys_list.htm"}
+				{include file="_sys_productlist.htm"}
 			</div>
 			<div style="float:left; width:218px; padding:5px;">
-				{foreach from=$articletype2 key=k item=articletype}
+				{foreach from=$producttype2 key=k item=pt}
 				<div style="margin-bottom:10px;">
-					<span>{$k+1}</span>. <a href="/web/product/prolist.php?atid={$articletype.at_id}">{$articletype.at_name}</a>
+					<span>{$k+1}</span>. <a href="/web/product/prolist.php?ptid={$pt.pt_id}">{$pt.pt_name}</a>
 				</div>
 				{/foreach}
 			</div>

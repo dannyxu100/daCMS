@@ -1,7 +1,16 @@
 
 {if "SINGLEPAGE"==$articletype.at_style}
 	<!-- 单页面 -->
-
+	<div>
+		<div style="float:left; width:720px; padding-right:10px; border-right:1px solid #ddd; overflow:hidden; ">
+			<h2 style="text-align:center;">{$articletype.at_name}</h2>
+			<div style="line-height:26px">{$articletype.at_content}</div>
+		</div>
+		<div style="float:left; width:218px; padding:5px;">
+			
+		</div>
+		<div style="clear:both;"></div>
+	</div>
 	<!--/ 单页面 -->
 	
 {elseif "LIST"==$articletype.at_style}
@@ -10,7 +19,7 @@
 	{section name="list" loop=$articleset start=0 max=$pager_Total step=1}
 		<div style="margin:10px 0px;">
 			<span>{$smarty.section.list.index+1}</span>. 
-			<a href="/web/article/articledetail.php{fn_sethtmlurl aid=$articleset[list].a_id }">
+			<a href="{fn_urlstatic url='/web/article/articledetail.php?aid='|cat:$articleset[list].a_id }">
 				{$articleset[list].a_title}
 			</a>
 			- <span>{$articleset[list].a_updatedate}</span>
@@ -29,7 +38,7 @@
 	{section name="list" loop=$articleset start=0 max=$pager_Total step=1}
 		<div style=" height:80px; padding:30px 0px; border-bottom:1px dotted #ddd;">
 			<img src="{$articleset[list].a_img|default:'/images/no_img.gif'}" style="float:left; margin:0px 20px 10px 0px; width:120px; height:80px;vertical-align:top;"/>
-			<a href="/web/article/articledetail.php{fn_sethtmlurl aid=$articleset[list].a_id }">
+			<a href="{fn_urlstatic url='/web/article/articledetail.php?aid='|cat:$articleset[list].a_id }">
 				{$articleset[list].a_title}
 			</a>
 			- <span>{$articleset[list].a_updatedate}</span>
@@ -51,7 +60,7 @@
 		<div style="float:left;width:160px; height:180px; margin:10px; overflow:hidden;">
 			<img style="width:160px; height:100px; margin-bottom:10px;" src="{$articleset[list].a_img|default:'/images/no_img.gif'}" />
 			<div style="text-align:center;">
-				<a href="/web/article/articledetail.php{fn_sethtmlurl aid=$articleset[list].a_id }">
+				<a href="{fn_urlstatic url='/web/article/articledetail.php?aid='|cat:$articleset[list].a_id }">
 					{$articleset[list].a_title}
 				</a>
 			</div>

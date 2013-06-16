@@ -26,11 +26,13 @@
  </HEAD>
 <BODY>
 <div>
-	<div class="header">可选项管理</div>
+	<div class="header">
+		<span style="margin-right:20px;">可选项管理</span>
+		<a class="bt_link" href="javascript:void(0)" onclick="addroottype();" ><img src="/images/sys_icon/add.png" /> 添加大类</a>
+	</div>
 	<table class="tablesolid" style="width:100%">
 		<tr>
 			<td rowspan="4" style="width:250px;vertical-align:top;">
-				<a class="bt_menu" href="javascript:void(0)" onclick="addroottype();" ><img src="/images/sys_icon/add.png" /> 添加大类</a>
 				<ul id="treeitemtype" class="ztree"></ul>
 			</td>
 		</tr>

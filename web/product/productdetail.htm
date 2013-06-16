@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{fn_title t1=$product.p_name t2=$producttype.pt_name}</title>
+	<meta name="title" content="{fn_title t1=$product.p_name t2=$producttype.pt_name}"> 
+	<meta name="keywords" content="{fn_keywords k1=$product.p_keywords k2=$producttype.pt_keywords}"> 
+	<meta name="description" content="{fn_description d1=$product.p_description d2=$producttype.pt_description}" />
+	
+	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
+	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	{include file="header2.htm"}
+	<div style="width:960px; margin:0px auto; padding:10px; background:#fff;">
+		<div style="margin:10px 0px;">首页>>文章列表>>文章内容</div>
+		<div>
+			<div style="float:left; width:720px; padding-right:10px; border-right:1px solid #ddd; overflow:hidden; ">
+				<h2 style="text-align:center;">{$product.p_name}</h2>
+				<div style="padding:10px 0px; margin:10px 0px; text-align:center; border:1px dotted #eee; font-size:12px;">
+					更新日期: {$product.p_updatedate|date_format:'%Y-%m-%d'} / 浏览次数: {$product.p_viewcount}
+				</div>
+				<div style="line-height:26px">{$product.p_content}</div>
+			</div>
+			<div style="float:left; width:218px; padding:5px;">
+				
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	
+	{include file="footer.htm"}
+</body>
+</html>

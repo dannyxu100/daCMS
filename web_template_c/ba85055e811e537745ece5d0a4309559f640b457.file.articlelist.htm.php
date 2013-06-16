@@ -1,46 +1,45 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-12 12:39:48
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-16 04:27:02
          compiled from "articlelist.htm" */ ?>
-<?php /*%%SmartyHeaderCode:1227551b7fb61c2b109-80110903%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2546751bc89e001e583-40512599%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ba85055e811e537745ece5d0a4309559f640b457' => 
     array (
       0 => 'articlelist.htm',
-      1 => 1371011985,
+      1 => 1371328021,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1227551b7fb61c2b109-80110903',
+  'nocache_hash' => '2546751bc89e001e583-40512599',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51b7fb61e51723_64023243',
+  'unifunc' => 'content_51bc89e029e0f9_01349742',
   'variables' => 
   array (
     'articletype' => 0,
-    'webconfig' => 0,
     'articletype2' => 0,
     'k' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51b7fb61e51723_64023243')) {function content_51b7fb61e51723_64023243($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if ($_valid && !is_callable('content_51bc89e029e0f9_01349742')) {function content_51bc89e029e0f9_01349742($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title><?php echo $_smarty_tpl->tpl_vars['articletype']->value['at_name'];?>
-_<?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_name'];?>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><?php echo fn_title(array('t1'=>$_smarty_tpl->tpl_vars['articletype']->value['at_name']),$_smarty_tpl);?>
+_<?php echo @constant('WC_NAME');?>
 </title>
-	<meta name="title" content="<?php echo $_smarty_tpl->tpl_vars['articletype']->value['at_name'];?>
-_<?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_name'];?>
-"> 
-	<meta name="keywords" content="<?php if ($_smarty_tpl->tpl_vars['articletype']->value['at_keywords']){?><?php echo $_smarty_tpl->tpl_vars['articletype']->value['at_keywords'];?>
-<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_keywords'];?>
-<?php }?>"> 
-	<meta name="description" content="<?php if ($_smarty_tpl->tpl_vars['articletype']->value['at_description']){?><?php echo $_smarty_tpl->tpl_vars['articletype']->value['at_description'];?>
-<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_description'];?>
-<?php }?>" />
+	<meta name="title" content="<?php echo fn_title(array('t1'=>$_smarty_tpl->tpl_vars['articletype']->value['at_name']),$_smarty_tpl);?>
+_<?php echo @constant('WC_NAME');?>
+" /> 
+	<meta name="keywords" content="<?php echo fn_keywords(array('k1'=>$_smarty_tpl->tpl_vars['articletype']->value['at_keywords']),$_smarty_tpl);?>
+" /> 
+	<meta name="description" content="<?php echo fn_description(array('k1'=>$_smarty_tpl->tpl_vars['articletype']->value['at_description']),$_smarty_tpl);?>
+" />
+	
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />
@@ -54,7 +53,7 @@ _<?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_name'];?>
 		<div style="margin:10px 0px;">首页>>文章列表</div>
 		<div>
 			<div style="float:left; width:720px;min-height:300px;height:auto !important;height:300px; padding-right:10px; border-right:1px solid #ddd; overflow:hidden; ">
-				<?php echo $_smarty_tpl->getSubTemplate ("_sys_list.htm", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+				<?php echo $_smarty_tpl->getSubTemplate ("_sys_articlelist.htm", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 				
 			</div>
@@ -82,4 +81,8 @@ $_smarty_tpl->tpl_vars['articletype']->_loop = true;
 
 </body>
 </html>
+
+<script type="text/javascript" language="javascript" src="/web/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/web/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" language="javascript" src="/web/js/general.js"></script>
 <?php }} ?>

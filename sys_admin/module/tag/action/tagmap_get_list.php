@@ -6,7 +6,7 @@
 	//error_reporting(-1);
 	
 	$db = new DB("dacms");
-	$sql = "select * from web_tagmap,web_tag where t_id=t2c_tid and t2c_ttype=:type and t2c_cid=:id order by t2c_tid asc";
+	$sql = "select * from web_tagmap,web_tag where t_id=tm_tid and tm_ttype=:type and tm_cid=:id order by tm_tid asc";
 	$db->param(":type", $_POST["type"]);
 	$db->param(":id", $_POST["id"]);
 	

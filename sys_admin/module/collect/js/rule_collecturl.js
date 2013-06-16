@@ -3,7 +3,7 @@ var g_arrlink = {};
 
 /**获取详细内容
 */
-function collectcontent( ids ){
+function collectcontent( ids, obj){
 	var arrid = (ids+"").split("|"),
 		arrurl = [],
 		arrtitle = [];
@@ -19,17 +19,24 @@ function collectcontent( ids ){
 		urls: arrurl.join("□"),
 		titles: arrtitle.join("□"),
 	};
-
+	
+	var objtmp = document.createElement("span");
+	objtmp.innerHTML = "抓取中...";
+	obj.parentNode.insertBefore(objtmp, obj );
+	da(obj).remove();
+	
 	da.runDB("/sys_admin/module/collect/action/collect_add_item.php", data,
 	function(res){
 		if("FALSE" != res){
 			alert("成功获取："+ res +" 篇文章。");
+			objtmp.innerHTML = "已采集";
 		}
 		else{
 			alert("操作失败！");
+			objtmp.innerHTML = "采集失败";
 		}
 	},function(code,msg,ex){
-		debugger;
+		// debugger;
 	});
 }
 
@@ -56,11 +63,14 @@ function collecturl(){
 				case "order":
 					g_arrlink[row.id] = row;
 					break;
+				case "checkbox":
+					val = "TRUE" == row.isold ? ' ':'<input id="chkitem_'+ row.id +'" type="checkbox" name="chkitem" value="'+ row.id +'" />';
+					break;
 				case "url":
 					val = '<a href="'+ val +'" target="_blank">'+ val +'</a>';
 					break;
 				case "tools":
-					val = "true"==row.isold ? '已采集':'<a class="bt_link" href="javascript:void(0)" onclick="collectcontent('+ row.id +')">获取内容</a>';
+					val = "TRUE"==row.isold ? '已采集':'<a id="bt_collect_'+ row.id +'" class="bt_link" href="javascript:void(0)" onclick="collectcontent('+ row.id +', this)">获取内容</a>';
 			}
 			
 			return val;
@@ -70,7 +80,7 @@ function collecturl(){
 			autoframeheight();
 		},
 		error: function( msg, code, content ){
-			// debugger;
+			debugger;
 		}
 	}).load();
 }

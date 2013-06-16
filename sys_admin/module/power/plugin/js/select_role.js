@@ -8,7 +8,7 @@ var setting = {
 		}
 	},
 	callback: {
-		clicknode: clicknode,
+		beforeMouseUp: clicknode,
 	}
 };
 

@@ -14,14 +14,14 @@
 			<a class="item" href="javascript:void(0)" onclick="iframeBack();" ><img src="/images/sys_icon/arrow_back.png" /> 返回</a>
 		</div>
 		<div class="list_top_tools">
-			<a class="item" href="javascript:void(0)" onclick="" ><img src="/images/sys_icon/save.png" /> 批量引用文章</a>
+			<a class="item" href="javascript:void(0)" onclick="exportlist()" ><img src="/images/sys_icon/save.png" /> 批量引用文章</a>
 		</div>
 	</div>
 	
 	<table id="tb_list" style="width:100%;">
 		<tbody name="head">
 			<tr>
-				<td style="text-align:center; width:20px;"><input type="checkbox" /></td>
+				<td style="text-align:center; width:20px;"><input type="checkbox" onclick="checkall(this)" /></td>
 				<td style="width:20px;">序</td>
 				<td>标题</td>
 				<td>链接地址</td>

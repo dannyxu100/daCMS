@@ -3,12 +3,48 @@
 /**选中全部
 */
 function checkall( obj ){
+	var checkobj = da("[name=chkitem]");
+	
 	if( da(obj).is(":checked") ){
-		da("[name=chkitem]").attr("checked", "checked");
+		checkobj.attr("checked", "checked");
+		checkobj.each(function(){
+			this.checked = true;
+		});
 	}
 	else{
-		da("[name=chkitem]").removeAttr("checked");
+		checkobj.removeAttr("checked");
+		checkobj.each(function(){
+			this.checked = false;
+		});
 	}
+}
+
+/**显示隐藏标签条
+*/
+function slidetagbar(){
+	if( da("#tagpad").is(":hidden") ){
+		da("#tagpad").show();
+	}
+	else{
+		da("#tagpad").hide();
+	}
+	autoframeheight();
+}
+
+var g_tid = "", g_tagobj;
+function selecttag( tid, obj ){
+	if( !da(obj).hasClass("tagitem2") ){
+		da(g_tagobj).removeClass("tagitem2");
+		da(obj).addClass("tagitem2");
+		g_tid = tid;
+		g_tagobj = obj;
+	}
+	else{
+		g_tid = "";
+		da(obj).removeClass("tagitem2");
+	}
+	
+	loadlist();
 }
 
 var setting = {
@@ -110,15 +146,50 @@ function addarticle(){
 }
 
 
+/**加载标签
+*/
+function loadtag(){
+	da.runDB("/sys_admin/module/tag/action/tag_get_type.php",{
+		dataType: "json",
+		type: "ARTICLE"
+		
+	},function(data){
+		if("FALSE"!= data){
+			var strHTML = "";
+				tagpad = da("#tagpad");
+			
+			tagpad.empty();
+			for(var i=0; i<data.length; i++){
+				strHTML += '<div class="tagitem" style="border-color:#'+ data[i].t_color +'" onclick="selecttag('+ data[i].t_id +', this)">'+ data[i].t_name +'</div>';
+			}
+			tagpad.html(strHTML);
+			
+			autoframeheight();
+		}
+		
+	},function(code,msg,ex){
+		debugger;
+	});
+}
+
 /**加载列表
 */
 function loadlist(){
+	if( "" == g_atid){
+		alert("请先选择一个分类");
+		return;
+	}
+	
 	var data1 = {
 			dataType: "json",
 			opt: "qry",
 			atid: g_atid
 		};
-
+	
+	if( g_tid ){
+		data1["tid"] = g_tid;
+	}
+	
 	daTable({
 		id: "tb_list",
 		url: "/sys_admin/module/article/action/article_get_page.php",
@@ -165,6 +236,9 @@ function loadlist(){
 			});
 			
 			autoframeheight();
+		},
+		error: function(code,msg,ex){
+			// debugger;
 		}
 	}).load();
 
@@ -206,7 +280,7 @@ function loadtree(){
 			zNodes.push({
 				id: data[i].at_id,
 				pId: data[i].at_pid,
-				name: data[i].at_name+ ' -'+ data[i].total +'',
+				name: data[i].at_name+ ' ('+ data[i].total +')',
 				open: true
 			});
 		}
@@ -242,10 +316,11 @@ function loadtab(){
 	daTab0.click("item02");
 }
 
-daLoader("daMsg,daTab,daTable,daWin,daIframe", function(){
+daLoader("daMsg,daTab,daTable,daIframe,daWin", function(){
 	/*页面加载完毕*/
 	da(function(){
 		// loadtab();
 		loadtree();
+		loadtag();
 	});
 });

@@ -1,23 +1,24 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-12 12:46:02
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-16 00:36:04
          compiled from "D:\work\daCMS\web\header.htm" */ ?>
-<?php /*%%SmartyHeaderCode:2351651b7fd0a09dd03-75504450%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1678451bc95d49c6332-50082346%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '1c6d9f1114a323e2541d0cda3a8fc693bbab1e9e' => 
     array (
       0 => 'D:\\work\\daCMS\\web\\header.htm',
-      1 => 1370890325,
+      1 => 1371314112,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2351651b7fd0a09dd03-75504450',
+  'nocache_hash' => '1678451bc95d49c6332-50082346',
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_51bc95d4ca6de4_78812791',
   'variables' => 
   array (
-    'webconfig' => 0,
     'navset1' => 0,
     'k' => 0,
     'nav1' => 0,
@@ -29,19 +30,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'nav' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51b7fd0a3aeb88_44332827',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51b7fd0a3aeb88_44332827')) {function content_51b7fd0a3aeb88_44332827($_smarty_tpl) {?>
-<div class="header_img" id="aside2">
+<?php if ($_valid && !is_callable('content_51bc95d4ca6de4_78812791')) {function content_51bc95d4ca6de4_78812791($_smarty_tpl) {?><div class="header_img" id="aside2">
 <!-- header -->
     <div class="topnav">
     	<div class="container_12">
         
-			<div class="logo"><a href="/"><img src="<?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_img'];?>
+			<div class="logo"><a href="/"><img src="<?php echo @constant('WC_IMG');?>
 " alt="ENVISION" border="0" /></a></div>
 
-			<!-- topmenu -->            
+			<!-- topmenu -->
 			<div class="menu-header">
 				<ul class="topmenu">
 				<!-- 最多三级菜单 -->
@@ -55,6 +53,7 @@ $_smarty_tpl->tpl_vars['nav1']->_loop = true;
 						<li class="parent <?php if (0==$_smarty_tpl->tpl_vars['k']->value){?> first current-menu-item <?php }elseif(count($_smarty_tpl->tpl_vars['navset1']->value)-1==$_smarty_tpl->tpl_vars['k']->value){?> last <?php }?>">
 							<a href="<?php echo $_smarty_tpl->tpl_vars['nav1']->value['n_url'];?>
 " alt="<?php echo $_smarty_tpl->tpl_vars['nav1']->value['n_name'];?>
+" target="<?php echo $_smarty_tpl->tpl_vars['nav1']->value['n_urltarget'];?>
 "><span><?php echo $_smarty_tpl->tpl_vars['nav1']->value['n_name'];?>
 </span></a>
 							<ul class="sub-menu">
@@ -69,6 +68,7 @@ $_smarty_tpl->tpl_vars['nav2']->_loop = true;
 								<li class="parent <?php if (0==$_smarty_tpl->tpl_vars['k']->value){?> first current-menu-item <?php }elseif(count($_smarty_tpl->tpl_vars['navset1']->value)-1==$_smarty_tpl->tpl_vars['k']->value){?> last <?php }?>">
 									<a href="<?php echo $_smarty_tpl->tpl_vars['nav2']->value['n_url'];?>
 " alt="<?php echo $_smarty_tpl->tpl_vars['nav2']->value['n_name'];?>
+" target="<?php echo $_smarty_tpl->tpl_vars['nav1']->value['n_urltarget'];?>
 "><span><?php echo $_smarty_tpl->tpl_vars['nav2']->value['n_name'];?>
 </span></a>
 									<ul class="sub-menu">
@@ -83,6 +83,7 @@ $_smarty_tpl->tpl_vars['nav3']->_loop = true;
 										<li class="parent <?php if (0==$_smarty_tpl->tpl_vars['k']->value){?> first current-menu-item <?php }elseif(count($_smarty_tpl->tpl_vars['navset1']->value)-1==$_smarty_tpl->tpl_vars['k']->value){?> last <?php }?>">
 											<a href="<?php echo $_smarty_tpl->tpl_vars['nav3']->value['n_url'];?>
 " alt="<?php echo $_smarty_tpl->tpl_vars['nav3']->value['n_name'];?>
+" target="<?php echo $_smarty_tpl->tpl_vars['nav1']->value['n_urltarget'];?>
 "><span><?php echo $_smarty_tpl->tpl_vars['nav3']->value['n_name'];?>
 </span></a>
 										</li>

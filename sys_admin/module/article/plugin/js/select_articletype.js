@@ -7,7 +7,7 @@ var setting = {
 		}
 	},
 	callback: {
-		clicknode: clicknode,
+		beforeMouseUp: clicknode,
 	}
 };
 
@@ -69,7 +69,7 @@ function cancelitem( atid ){
 function showitem(){
 	var outObj = da("#out_pad"),
 		strHTML = '';
-		
+	
 	for( var k in g_chkItems ){
 		strHTML += '<div class="item" ondblclick="cancelitem('+ g_chkItems[k].at_id +')">'+ g_chkItems[k].at_name +'</div>';
 	}

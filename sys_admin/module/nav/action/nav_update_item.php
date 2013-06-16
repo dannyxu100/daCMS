@@ -1,6 +1,7 @@
-<?php 
+﻿<?php 
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
+	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
 	//error_reporting(-1);
 
 	$db = new DB("dacms");
@@ -28,6 +29,11 @@
 		$sql .= ", n_url=:nurl ";
 		$db->param(":nurl", $_POST["nurl"]);
 	}
+	if( isset($_POST["nurltarget"]) )
+	{
+		$sql .= ", n_urltarget=:nurltarget ";
+		$db->param(":nurltarget", $_POST["nurltarget"]);
+	}
 	if( isset($_POST["nsort"]) )
 	{
 		$sql .= ", n_sort=:nsort ";
@@ -43,7 +49,6 @@
 	$db->param(":nid", $_POST["nid"]);
 
 	$res = $db->update($sql);
-	// echo $db->geterror();
 
 	$db->close();
 

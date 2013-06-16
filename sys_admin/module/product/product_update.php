@@ -56,7 +56,7 @@
 				<tr>
 					<td class="header">标签</td>
 					<td colspan="3">
-						<div id="tagpad"></div>
+						<span id="tagpad"></span>
 						<a class="bt_link" href="javascript:void(0)" onclick="updatetag();" ><img src="/images/sys_icon/tag_plus.png" /> 设置标签</a>
 					</td>
 				</tr>
@@ -169,7 +169,7 @@
 					<td class="header">略缩图</td>
 					<td colspan="3">
 						<input id="p_img" type="text" style="width:320px;" value=""/>
-						<input type="button" style="width:80px; height:22px;" value="上传"/>
+						<a class="bt_link" href="javascript:void(0)" onclick="uploadoneimg();" ><img src="/images/sys_icon/upload.png" /> 上传</a>
 					</td>
 					<tr>
 						<td class="header">&nbsp;</td>
@@ -185,13 +185,13 @@
 				<tr>
 					<td class="header">商品相册</td>
 					<td colspan="3">
-						<input type="button" style="width:80px; height:22px;" value="上传"/>
+						<a class="bt_link" href="javascript:void(0)" onclick="uploadimgs();" ><img src="/images/sys_icon/upload.png" /> 上传</a>
 					</td>
 				</tr>
 				<tr>
 					<td class="header">&nbsp;</td>
 					<td colspan="3">
-						<div id="p_imglist_view"></div>
+						<div id="p_picture_view"></div>
 					</td>
 				</tr>
 			</table>
@@ -228,5 +228,6 @@
 <script charset="utf-8" src="/plugin/kindeditor/lang/zh_CN.js"></script>
 
 <script type="text/javascript" src="/plugin/da/daLoader_source_1.1.js"></script>
+<script type="text/javascript" src="/js/fn.js"></script>
 <script type="text/javascript" src="js/product_update.js"></script>
 

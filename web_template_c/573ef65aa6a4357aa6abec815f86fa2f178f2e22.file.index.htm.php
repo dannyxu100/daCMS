@@ -1,39 +1,37 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-12 12:46:01
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-16 00:37:37
          compiled from "D:\work\daCMS\web\index.htm" */ ?>
-<?php /*%%SmartyHeaderCode:2260751b7fd09ec3872-93752638%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1339551bc95d48c5c42-68672501%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '573ef65aa6a4357aa6abec815f86fa2f178f2e22' => 
     array (
       0 => 'D:\\work\\daCMS\\web\\index.htm',
-      1 => 1371012058,
+      1 => 1371314214,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2260751b7fd09ec3872-93752638',
+  'nocache_hash' => '1339551bc95d48c5c42-68672501',
   'function' => 
   array (
   ),
-  'variables' => 
-  array (
-    'webconfig' => 0,
-  ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51b7fd0a069cd1_22121990',
+  'unifunc' => 'content_51bc95d4995a23_03615064',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51b7fd0a069cd1_22121990')) {function content_51b7fd0a069cd1_22121990($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if ($_valid && !is_callable('content_51bc95d4995a23_03615064')) {function content_51bc95d4995a23_03615064($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title><?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_name'];?>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><?php echo fn_title(array(),$_smarty_tpl);?>
 </title>
-	<meta name="title" content="<?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_name'];?>
+	<meta name="title" content="<?php echo fn_title(array(),$_smarty_tpl);?>
 " /> 
-	<meta name="keywords" content="<?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_keywords'];?>
+	<meta name="keywords" content="<?php echo fn_keywords(array(),$_smarty_tpl);?>
 " /> 
-	<meta name="description" content="<?php echo $_smarty_tpl->tpl_vars['webconfig']->value['c_description'];?>
+	<meta name="description" content="<?php echo fn_description(array(),$_smarty_tpl);?>
 " />
+	
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />

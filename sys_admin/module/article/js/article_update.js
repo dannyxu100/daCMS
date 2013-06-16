@@ -108,7 +108,7 @@ function loadtag(){
 			
 			tagpad.empty();
 			for(var i=0; i<data.length; i++){
-				strHTML += '<div class="tagitem" ondblclick="canceltag('+ data[i].t_id +')">'+ data[i].t_name +'</div>';
+				strHTML += '<div class="tagitem" style="border-color:#'+ data[i].t_color +'" ondblclick="canceltag('+ data[i].t_id +')">'+ data[i].t_name +'</div>';
 			}
 			tagpad.html(strHTML);
 			

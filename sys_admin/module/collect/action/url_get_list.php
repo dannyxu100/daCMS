@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/Collect.class.php";
@@ -18,14 +18,32 @@
 			"url_except" => $set["r_urlunallowed"]
 		);
 		
-		$arr = Collect::get_url_lists( $set["r_urlsource"], $config );
+		switch( $set["r_urltype"] ){
+			case "LIST":
+				$arr = Collect::get_url_lists( $set["r_urlsource"], $config );
+				break;
+			case "NUMBER":
+				$arr = array();
+				for( $i=$set["r_num1"]; $i<=$set["r_num2"]; $i=$i+$set["r_step"] ){
+					$tmp = Collect::get_url_lists( str_replace("[*]", $i, $set["r_urlsource2"]), $config );
+					$arr = array_merge($arr, $tmp);
+				}
+				break;
+			case "SINGLE":
+				$arr = Collect::get_url_lists( $set["r_urlsource3"], $config );
+				break;
+			case "RSS":
+				$arr = Collect::get_url_lists( $set["r_urlsource4"], $config );
+				break;
+		}
+		
 		
 		foreach( $arr as $k=>$v ){
 			if( 0 >= $db->getcount("select * from sys_collect where c_rid=".$_POST["rid"]." and c_url='".$v["url"]."'") ){
-				$arr[$k]["isold"] = "false";
+				$arr[$k]["isold"] = "FALSE";
 			}
 			else{
-				$arr[$k]["isold"] = "true";
+				$arr[$k]["isold"] = "TRUE";
 			}
 		}
 		

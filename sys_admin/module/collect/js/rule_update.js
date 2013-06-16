@@ -56,7 +56,7 @@ function updaterule(){
 			alert("操作失败！");
 		}
 	},function(code,msg,ex){
-		debugger;
+		// debugger;
 	});
 }
 

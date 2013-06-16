@@ -1,7 +1,8 @@
 ﻿<?php
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";
-	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/Xml.class.php";
 
+	define('SITE_URL', (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''));
+	
 	/********************* 采集类 **********************/
 	class Collect {
 		protected static $url, $config;
@@ -22,20 +23,19 @@
 			) 
 			*/
 			if ($html = self::get_html($url, $config)) {
-				if ($config['sourcetype'] == 4) { //RSS
-					$xml = pc_base::load_sys_class('xml');
-					$html = $xml->xml_unserialize($html);
+				if ("RSS" == $config['sourcetype']) { 			//RSS
+					$xml = new Xml();
+					$html = $xml->xml_unserialize($html);	//xml转数组
+					// if ( '' == $config['codeset']) {
+						// $html = array_iconv($html, 'utf-8', 'gbk');
+					// }
 					
-					if (pc_base::load_config('system', 'charset') == 'gbk') {
-						$html = array_iconv($html, 'utf-8', 'gbk');
-						
-					}
 					$data = array();
 					if (is_array($html['rss']['channel']['item'])){
 						foreach ($html['rss']['channel']['item'] as $k=>$v) {
+							$data[$k]['id'] = count($data);
 							$data[$k]['url'] = $v['link'];
 							$data[$k]['title'] = $v['title'];
-							
 						}
 					}
 					
@@ -109,14 +109,14 @@
 		 * @param array $config    配置信息
 		 */
 		protected static function url_check($url, $baseurl, $config) {
-			$urlinfo = parse_url($baseurl);		//解析一个 URL 并返回一个关联数组，包含在 URL 中出现的各种组成部分
+			$urlinfo = parse_url($baseurl);			//解析一个 URL 并返回一个关联数组，包含在 URL 中出现的各种组成部分
 
 			$baseurl = $urlinfo['scheme'].'://'.$urlinfo['host'].(substr($urlinfo['path'], -1, 1) === '/' ? substr($urlinfo['path'], 0, -1) : str_replace('\\', '/', dirname($urlinfo['path']))).'/';
 			if (strpos($url, '://') === false) {
 				if ($url[0] == '/') {
 					$url = $urlinfo['scheme'].'://'.$urlinfo['host'].$url;
 				} else {
-					if ($config['page_base']) {		//??????????????
+					if ($config['page_base']) {		//判断网站是否有base配置
 						$url = $config['page_base'].$url;
 					} else {
 						$url = $baseurl.$url;
@@ -154,6 +154,7 @@
 				"content_page_end" => 内容分页代码结束位置,
 				"content_page_rule" => 内容分页类型,
 				"content_nextpage" => 内容分页下一页标志,
+				"down_attachment" => 是否下载图片附件
 			) 
 			*/
 			set_time_limit(300);
@@ -257,19 +258,17 @@
 					$data['content'] = implode('', $tmp);
 				}
 				
-				/* if ($page == 0) {
+				if ($page == 0) {
 					self::$url = $url;
 					self::$config = $config;
-					$data['content'] = preg_replace('/<img[^>]*src=[\'"]?([^>\'"\s]*)[\'"]?[^>]*>/ie', "self::download_img('$0', '$1')", $data['content']);
-
+					
+					// $data['content'] = preg_replace('/<img[^>]*src=[\'"]?([^>\'"\s]*)[\'"]?[^>]*>/ie', "self::download_img_1('$0', '$1')", $data['content']);
+					
 					//下载内容中的图片到本地
 					if (empty($page) && !empty($data['content']) && $config['down_attachment'] == 1) {
-
-						pc_base::load_sys_class('attachment','',0);
-						$attachment = new attachment('collection', '0', get_siteid());
-						$data['content'] = $attachment->download('content', $data['content'], $config['watermark']);
+						$data['content'] = self::download_img_2('content', $data['content']);
 					}
-				} */
+				} 
 				
 				return self::strtr_words($data);	//伪原创字符替换
 			}
@@ -340,11 +339,71 @@
 			return $list;
 		}
 		
+		
+		/**
+		 * 附件下载
+		 * Enter description here ...
+		 * @param $field 预留字段
+		 * @param $value 传入下载内容
+		 * @param $watermark 是否加入水印
+		 * @param $absurl 绝对路径
+		 * @param $basehref 
+		 */
+		protected static function download_img_2($field, $value, $watermark = '0', $absurl = '', $basehref = '') {
+			//date("YmdHis") . '_' . rand(10000, 99999)
+			$dir = '/uploads/attached/image/'. date("Ymd") .'/';
+			
+			$uploadpath = $dir;
+			$uploaddir = rtrim($_SERVER['DOCUMENT_ROOT'],"/").$dir;
+			$string = self::new_stripslashes($value);
+			
+			if(!preg_match_all("/(href|src)=([\"|']?)([^ \"'>]+\.(gif|jpg|jpeg|bmp|png))\\2/i", $string, $matches))
+				return $value;
+			
+			$remotefileurls = array();
+			foreach($matches[3] as $matche)
+			{
+				if(strpos($matche, '://') === false)
+					continue;
+				
+				self::dir_create($uploaddir);
+				$remotefileurls[$matche] = self::fillurl($matche, $absurl, $basehref);
+			}
+			
+			unset($matches, $string);		//释放变量
+			
+			$remotefileurls = array_unique($remotefileurls);		//去除重复
+			$oldpath = $newpath = array();
+			
+			foreach($remotefileurls as $k=>$file) {
+				if(strpos($file, '://') === false || strpos($file, SITE_URL) !== false)
+					continue;
+				
+				$fileext = self::fileext($file);
+				$file_name = basename($file);
+				$filename = date("YmdHis") . '_' . rand(10000, 99999).'.'.$fileext;
+				
+				$newfile = $uploaddir.$filename;
+				
+				if(copy($file, $newfile)) {
+					$oldpath[] = $k;
+					$newpath[] = $uploadpath.$filename;
+					@chmod($newfile, 0777);
+				}
+			}
+			return str_replace($oldpath, $newpath, $value);
+		}
+		
 		/**
 		 * 转换图片地址为绝对路径，为下载做准备。
 		 * @param array $out 图片地址
 		 */
-		protected static function download_img($old, $out) {
+		protected static function download_img_1($old, $out) {
+			if (!empty($old) && !empty($out) && strpos($out, '://') === false) {
+				return str_replace($out, self::url_check($out, self::$url, self::$config), $old);
+			} else {
+				return $old;
+			}
 			
 		}
 		
@@ -353,7 +412,8 @@
 		 * @param string $str 源内容
 		 */
 		protected static function strtr_words($str){
-			return $str;
+			return $str;		//暂时不使用伪原创
+			
 			$words=array();
 			$content = @file_get_contents(rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/sys_admin/module/collect/words.txt");		//打开词库
 
@@ -376,6 +436,141 @@
 			}
 			
 			return strtr($str, $words);						//返回结果
+		}
+		
+		/**
+		 * 返回经stripslashes处理过的字符串或数组
+		 * @param $string 需要处理的字符串或数组
+		 * @return mixed
+		 */
+		protected static function new_stripslashes($string) {
+			if(!is_array($string)) return stripslashes($string);
+			foreach($string as $key => $val) $string[$key] = new_stripslashes($val);
+			return $string;
+		}
+		
+		/**
+		* 转化 \ 为 /
+		* 
+		* @param	string	$path	路径
+		* @return	string	路径
+		*/
+		protected static function dir_path($path) {
+			$path = str_replace('\\', '/', $path);
+			if(substr($path, -1) != '/') $path = $path.'/';
+			return $path;
+		}
+		
+		/**
+		* 创建目录
+		* 
+		* @param	string	$path	路径
+		* @param	string	$mode	属性
+		* @return	string	如果已经存在则返回true，否则为flase
+		*/
+		protected static function dir_create($path, $mode = 0777) {
+			if(is_dir($path)) return TRUE;
+			$ftp_enable = 0;
+			$path = self::dir_path($path);
+			$temp = explode('/', $path);
+			$cur_dir = '';
+			$max = count($temp) - 1;
+			for($i=0; $i<$max; $i++) {
+				$cur_dir .= $temp[$i].'/';
+				if (@is_dir($cur_dir)) continue;
+				@mkdir($cur_dir, 0777,true);
+				@chmod($cur_dir, 0777);
+			}
+			return is_dir($path);
+		}
+		
+		/**
+		 * 取得文件扩展
+		 *
+		 * @param $filename 文件名
+		 * @return 扩展名
+		 */
+		protected static function fileext($filename) {
+			return strtolower(trim(substr(strrchr($filename, '.'), 1, 10)));
+		}
+		
+		/**
+		* 补全网址
+		*
+		* @param	string	$surl		源地址
+		* @param	string	$absurl		相对地址
+		* @param	string	$basehref	网址
+		* @return	string	网址
+		*/
+		protected static function fillurl($surl, $absurl, $basehref = '') {
+			if($basehref != '') {
+				$preurl = strtolower(substr($surl,0,6));
+				if($preurl=='http://' || $preurl=='ftp://' ||$preurl=='mms://' || $preurl=='rtsp://' || $preurl=='thunde' || $preurl=='emule://'|| $preurl=='ed2k://')
+				return  $surl;
+				else
+				return $basehref.'/'.$surl;
+			}
+			$i = 0;
+			$dstr = '';
+			$pstr = '';
+			$okurl = '';
+			$pathStep = 0;
+			$surl = trim($surl);
+			if($surl=='') return '';
+			
+			$urls = @parse_url(SITE_URL);
+			$HomeUrl = !empty($urls['host'])?$urls['host']:"";
+			$BaseUrlPath = $HomeUrl.$urls['path'];
+			$BaseUrlPath = preg_replace("/\/([^\/]*)\.(.*)$/",'/',$BaseUrlPath);
+			$BaseUrlPath = preg_replace("/\/$/",'',$BaseUrlPath);
+			
+			$pos = strpos($surl,'#');
+			if($pos>0) $surl = substr($surl,0,$pos);
+			if($surl[0]=='/') {
+				$okurl = 'http://'.$HomeUrl.'/'.$surl;
+			} elseif($surl[0] == '.') {
+				if(strlen($surl)<=2) return '';
+				elseif($surl[0]=='/') {
+					$okurl = 'http://'.$BaseUrlPath.'/'.substr($surl,2,strlen($surl)-2);
+				} else {
+					$urls = explode('/',$surl);
+					foreach($urls as $u) {
+						if($u=="..") $pathStep++;
+						else if($i<count($urls)-1) $dstr .= $urls[$i].'/';
+						else $dstr .= $urls[$i];
+						$i++;
+					}
+					$urls = explode('/', $BaseUrlPath);
+					if(count($urls) <= $pathStep)
+					return '';
+					else {
+						$pstr = 'http://';
+						for($i=0;$i<count($urls)-$pathStep;$i++) {
+							$pstr .= $urls[$i].'/';
+						}
+						$okurl = $pstr.$dstr;
+					}
+				}
+			} else {
+				$preurl = strtolower(substr($surl,0,6));
+				if(strlen($surl)<7)
+				$okurl = 'http://'.$BaseUrlPath.'/'.$surl;
+				elseif($preurl=="http:/"||$preurl=='ftp://' ||$preurl=='mms://' || $preurl=="rtsp://" || $preurl=='thunde' || $preurl=='emule:'|| $preurl=='ed2k:/')
+				$okurl = $surl;
+				else
+				$okurl = 'http://'.$BaseUrlPath.'/'.$surl;
+			}
+			$preurl = strtolower(substr($okurl,0,6));
+			if($preurl=='ftp://' || $preurl=='mms://' || $preurl=='rtsp://' || $preurl=='thunde' || $preurl=='emule:'|| $preurl=='ed2k:/') {
+				
+				return $okurl;
+				
+			} else {
+				$okurl = preg_replace('/^(http:\/\/)/i','',$okurl);
+				$okurl = preg_replace('/\/{1,}/i','/',$okurl);
+			
+				return 'http://'.$okurl;
+			}
 		}
 	}
 ?>

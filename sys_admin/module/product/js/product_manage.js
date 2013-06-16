@@ -3,12 +3,48 @@
 /**选中全部
 */
 function checkall( obj ){
+	var checkobj = da("[name=chkitem]");
+	
 	if( da(obj).is(":checked") ){
-		da("[name=chkitem]").attr("checked", "checked");
+		checkobj.attr("checked", "checked");
+		checkobj.each(function(){
+			this.checked = true;
+		});
 	}
 	else{
-		da("[name=chkitem]").removeAttr("checked");
+		checkobj.removeAttr("checked");
+		checkobj.each(function(){
+			this.checked = false;
+		});
 	}
+}
+
+/**显示隐藏标签条
+*/
+function slidetagbar(){
+	if( da("#tagpad").is(":hidden") ){
+		da("#tagpad").show();
+	}
+	else{
+		da("#tagpad").hide();
+	}
+	autoframeheight();
+}
+
+var g_tagid = "", g_tagobj;
+function selecttag( tid, obj ){
+	if( !da(obj).hasClass("tagitem2") ){
+		da(g_tagobj).removeClass("tagitem2");
+		da(obj).addClass("tagitem2");
+		g_tagid = tid;
+		g_tagobj = obj;
+	}
+	else{
+		g_tagid = "";
+		da(obj).removeClass("tagitem2");
+	}
+	
+	loadlist();
 }
 
 var setting = {
@@ -128,15 +164,50 @@ function addproduct(){
 	});
 }
 
+/**加载标签
+*/
+function loadtag(){
+	da.runDB("/sys_admin/module/tag/action/tag_get_type.php",{
+		dataType: "json",
+		type: "PRODUCT"
+		
+	},function(data){
+		if("FALSE"!= data){
+			var strHTML = "";
+				tagpad = da("#tagpad");
+			
+			tagpad.empty();
+			for(var i=0; i<data.length; i++){
+				strHTML += '<div class="tagitem" style="border-color:#'+ data[i].t_color +'" onclick="selecttag('+ data[i].t_id +', this)">'+ data[i].t_name +'</div>';
+			}
+			tagpad.html(strHTML);
+			
+			autoframeheight();
+		}
+		
+	},function(code,msg,ex){
+		debugger;
+	});
+}
 
 /**加载列表
 */
 function loadlist(){
+	if( "" == g_ptid){
+		alert("请先选择一个分类");
+		return;
+	}
+	
 	var data1 = {
 			dataType: "json",
 			opt: "qry",
 			ptid: g_ptid
 		};
+	
+	if( g_tagid ){
+		data1["tid"] = g_tagid;
+	}
+	
 
 	daTable({
 		id: "tb_list",
@@ -227,7 +298,7 @@ function loadtypeinfo( fn ){
 
 /*加载左边分类树*/
 function loadtree(){
-	da.runDB("/sys_admin/module/product/action/producttype_get_list.php",{
+	da.runDB("/sys_admin/module/product/action/producttype_get_productcount.php",{
 		dataType: "json"
 	},
 	function(data){
@@ -236,7 +307,7 @@ function loadtree(){
 			zNodes.push({
 				id: data[i].pt_id,
 				pId: data[i].pt_pid,
-				name: data[i].pt_name,
+				name: data[i].pt_name+ ' ('+ data[i].total +')',
 				open: true
 			});
 		}
@@ -277,5 +348,6 @@ daLoader("daMsg,daTab,daTable,daWin,daIframe", function(){
 	da(function(){
 		// loadtab();
 		loadtree();
+		loadtag();
 	});
 });

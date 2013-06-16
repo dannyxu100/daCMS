@@ -8,7 +8,7 @@
 	$db->param(":pid", $_POST["pid"]);
 	$db->param(":name", $_POST["name"]);
 	$db->param(":level", isset($_POST["level"])?$_POST["level"]:1);
-	$res = $db->insert("insert into web_nav(n_pid, n_name, n_level) values(:pid, :name, :level)");
+	$res = $db->insert("insert into web_nav(n_pid, n_name, n_level, n_urltarget) values(:pid, :name, :level, '_self')");
 	
 	$db->close();
 	// $log = new Log();

@@ -32,7 +32,8 @@
 			"content_page_rule" => $set["r_splittype"],
 			"content_page_start" => $set["r_splitrange1"],
 			"content_page_end" => $set["r_splitrange2"],
-			"content_nextpage" => $set["r_splitnexttag"]
+			"content_nextpage" => $set["r_splitnexttag"],
+			"down_attachment" => $set["r_downloadimg"]
 		);
 	}
 	

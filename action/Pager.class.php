@@ -59,9 +59,13 @@ class Pager{
 	
 	//修正Pager分页对象的设置参数
 	private function reviseSetting(){
-		$toStart;
-		$toEnd;
-
+		if( !strpos($this->m_url, "?" ) ){
+			$this->m_url .= "?pageindex="; 
+		}
+		else{
+			$this->m_url .= "&pageindex="; 
+		}
+	
 		$this->m_index = (( 1 > $this->m_index || $this->m_number < $this->m_index ) ? 1 : $this->m_index);
 		$toStart = $this->m_index;
 		$toEnd = $this->m_number - $this->m_index + 1;
@@ -160,7 +164,7 @@ class Pager{
 						$this->m_prevhtml = '<span class="current prev">上一页</span>';
 					}
 					else{
-						$this->m_prevhtml = '<a href="'.$this->m_url.'&pageindex='.$this->m_prev.'">« 上一页</a>';
+						$this->m_prevhtml = '<a href="'. fn_urlstatic( $this->m_url . $this->m_prev ) .'">« 上一页</a>';
 					}
 					break;
 					
@@ -169,7 +173,7 @@ class Pager{
 						$this->m_linkshtml .= '<span class="current">'. $num .'</span>';
 					}
 					else{
-						$this->m_linkshtml .= '<a href="'.$this->m_url.'&pageindex='.$num.'">'. $num .'</a>';
+						$this->m_linkshtml .= '<a href="'. fn_urlstatic( $this->m_url . $num ) .'">'. $num .'</a>';
 					}
 					break;
 					
@@ -178,7 +182,7 @@ class Pager{
 						$this->m_nexthtml = '<span class="current next">下一页</span>';
 					}
 					else{
-						$this->m_nexthtml = '<a href="'.$this->m_url.'&pageindex='.$this->m_next.'">下一页 »</a>';
+						$this->m_nexthtml = '<a href="'. fn_urlstatic( $this->m_url . $this->m_next).'">下一页 »</a>';
 					}
 					break;
 					

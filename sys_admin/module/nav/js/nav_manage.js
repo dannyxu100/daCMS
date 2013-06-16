@@ -136,7 +136,15 @@ function loadinfo(){
 				da("#"+fld).val(res[0][fld]);
 			}
 			
-			da("#n_img_view").attr("src",res[0].n_img);
+			var radioobj = da("input[name=n_urltarget][value="+ res[0]["n_urltarget"] +"]");
+			radioobj.attr("checked", "checked");
+			radioobj.dom[0].checked = true;
+			
+			var viewobj = da("#n_img_view");
+			viewobj.attr("src", res[0].n_img?res[0].n_img:"/images/no_img.gif");
+			viewobj.dom[0].src = res[0].n_img?res[0].n_img:"/images/no_img.gif";
+			
+			autoframeheight();
 		}
 	});
 }
@@ -159,6 +167,7 @@ function updatenav(){
 		nlevel: da("#n_level").val(),
 		nsort: da("#n_sort").val(),
 		nurl: da("#n_url").val(),
+		nurltarget: da("[name=n_urltarget]:checked").val(),
 		nimg: da("#n_img").val(),
 		nremark: da("#n_remark").val()
 	},

@@ -21,11 +21,11 @@ function loadinfo(){
 	},function( data ){
 		//debugger;
 		da("#formlist").show();
-		loading(false);
 		autoframeheight();
+		loading(false);
 		
 	},function( msg, code, content ){
-		debugger;
+		// debugger;
 	});
 	
 }

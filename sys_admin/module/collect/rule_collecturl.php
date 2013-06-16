@@ -30,7 +30,7 @@
 		</tbody>
 		<tbody name="body" style="display:none">
 			<tr>
-				<td style="text-align:center;"><input type="checkbox" name="chkitem" value="{id}" /></td>
+				<td style="text-align:center;">{checkbox}</td>
 				<td name="order">{order}</td>
 				<td name="title" >{title}</td>
 				<td name="url" >{url}</td>

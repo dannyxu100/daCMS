@@ -1,5 +1,6 @@
 ﻿var g_pid = "";
 
+
 function saveproduct(){
 	// 将编辑器的HTML数据同步到textarea
 	g_editor.sync();
@@ -93,6 +94,81 @@ function updatetag(){
 	});
 }
 
+
+/**上传相册
+*/
+function uploadimgs(){
+	if( "" == g_pid ){
+		alert("对不起，没有指定某一商品");
+		return;
+	}
+
+	var newfolder = "/uploads/picture/"+ new Date().format("yyyymmdd") + "/";
+
+	fn_uploadfile("允许上传文件类型：gif、jpg、png", {
+        "fileTypeDesc": "图片文件",
+		"multi": true,
+		"fileTypeExts": "*.gif; *.jpg; *.png",
+		"formData": {
+			"folder": newfolder
+		}
+	},function(files){
+		var urls = [], names=[];
+		
+		for( var k in files ){
+			urls.push( newfolder + files[k].name );
+			names.push( files[k].name );
+		}
+		
+		da.runDB("/sys_admin/module/picture/action/picture_add_list.php",{
+			type: "PRODUCT",
+			cid: g_pid,
+			urls: urls.join("□"),
+			names: names.join("□")
+		});
+	});
+}
+
+/**加载相册
+*/
+function loadpicture(){
+	da.runDB("/sys_admin/module/picture/action/picture_get_list.php",{
+		dataType: "json",
+		type: "PRODUCT", 
+		cid: g_pid
+		
+	},function(data){
+		if("FALSE"!= data){
+			var strHTML = [];
+				viewpad = da("#p_picture_view");
+			
+			viewpad.empty();
+			for(var i=0; i<data.length; i++){
+				strHTML.push('<div style="padding:5px 0px; margin:5px 0px; border-bottom:1px dashed #ccc;">'
+								+'<img style="float:left; width:100px; height:80px; margin:5px;" src="'+ data[i].p_url +'"/>'
+								+'<div style="float:left; height:120px; margin:5px;">'
+									+'名称: <input type="text" style="width:300px;margin:2px;" value="'+ data[i].p_name +'" /><br/>'
+									+'图片: <input type="text" style="width:300px;margin:2px;" value="'+ data[i].p_url +'" /><br/>'
+									+'链接: <input type="text" style="width:300px;margin:2px;" value="'+ data[i].p_href +'" /><br/>'
+									+'简介: <textarea style="vertical-align:top;width:300px;height:40px;margin:2px;" value="'+ data[i].p_text +'" ></textarea><br/>'
+								+'</div>'
+								+'<div style="float:left;height:80px; margin:5px;">'
+									+'<a class="bt_link" href="javascript:void(0)" onclick="" ><img src="/images/sys_icon/save.png" /> 保存</a>'
+									+'<a class="bt_link" href="javascript:void(0)" onclick="" ><img src="/images/sys_icon/delete.png" /> 删除</a>'
+								+'</div>'
+								+'<div style="clear:both; "></div>'
+							+'</div>');
+			}
+			viewpad.html(strHTML.join(""));
+			
+			autoframeheight();
+		}
+		
+	},function(code,msg,ex){
+		// debugger;
+	});
+}
+
 /**加载标签
 */
 function loadtag(){
@@ -108,7 +184,7 @@ function loadtag(){
 			
 			tagpad.empty();
 			for(var i=0; i<data.length; i++){
-				strHTML += '<div class="tagitem" ondblclick="canceltag('+ data[i].t_id +')">'+ data[i].t_name +'</div>';
+				strHTML += '<div class="tagitem" style="border-color:#'+ data[i].t_color +'" ondblclick="canceltag('+ data[i].t_id +')">'+ data[i].t_name +'</div>';
 			}
 			tagpad.html(strHTML);
 			
@@ -258,6 +334,7 @@ daLoader("daMsg,daTab,daWin,daIframe,daValid", function(){
 		loadtab();
 		loadinfo();
 		loadtag();
+		loadpicture();
 		
 		autoframeheight();
 	});

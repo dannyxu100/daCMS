@@ -7,7 +7,7 @@
 	$db = new DB("dacms");
 	$db->param(":type", $_POST["tagtype"]);
 	$db->param(":name", $_POST["tagname"]);
-	$res = $db->insert("insert into web_tag(t_type, t_name) values(:type, :name)");
+	$res = $db->insert("insert into web_tag(t_type, t_name, t_color) values(:type, :name, 'FFFFFF')");
 	
 	$db->close();
 	// $log = new Log();

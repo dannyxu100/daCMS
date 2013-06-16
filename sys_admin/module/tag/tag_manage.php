@@ -26,6 +26,7 @@
 				<td style="text-align:center; width:20px;"></td>
 				<td style="width:20px;">序</td>
 				<td>标签名称</td>
+				<td style="width:60px;">颜色</td>
 				<td style="width:80px;">&nbsp;</td>
 			</tr>
 		</tbody>
@@ -34,12 +35,13 @@
 				<td style="text-align:center;">{checkbox}</td>
 				<td name="order">{order}</td>
 				<td name="t_name" >{t_name}</td>
+				<td name="t_name">{t_color}</td>
 				<td name="tools">{tools}</td>
 			</tr>
 		</tbody>
 		<tbody name="foot">
 			<tr>
-				<td  colspan="4" name="sum_order">
+				<td  colspan="5" name="sum_order">
 					共<span id="tb_list_recordcount2" style="color:#c26220;">0</span>&nbsp;条，
 					共<span id="tb_list_pagecount2" style="color:#c26220">0</span>&nbsp;页，
 					当前在第<span id="tb_list_pageindex2" style="color:#c26220">0</span>&nbsp;页　
@@ -60,6 +62,6 @@
 </BODY>
 </HTML>
 
-
+<script type="text/javascript" src="/plugin/jscolor/jscolor.js"></script>
 <script type="text/javascript" src="/plugin/da/daLoader_source_1.1.js"></script>
 <script type="text/javascript" src="js/tag_manage.js"></script>

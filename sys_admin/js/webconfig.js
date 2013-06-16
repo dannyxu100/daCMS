@@ -23,6 +23,7 @@ function savewebconfig(){
 		c_description: da("#c_description").val(),
 		c_pushemail: da("#c_pushemail").val(),
 		c_pushpwd: da("#c_pushpwd").val(),
+		c_isstatic: da("[name=c_isstatic]:checked").val(),
 		c_remark: da("#c_remark").val()
 		
 	},function(data){
@@ -50,7 +51,13 @@ function loadinfo(){
 				da("#"+fld).val(data[fld]);
 			}
 			
-			da("#c_img_view").attr("src", data.c_img);
+			var radioobj = da("input[name=c_isstatic][value="+ data.c_isstatic +"]");
+			radioobj.attr("checked", "checked");
+			radioobj.dom[0].checked = true;
+			
+			var viewobj = da("#c_img_view");
+			viewobj.attr("src", data.c_img?data.c_img:"/images/no_img.gif");
+			viewobj.dom[0].src = data.c_img?data.c_img:"/images/no_img.gif";
 			
 			autoframeheight();
 			loading(false);

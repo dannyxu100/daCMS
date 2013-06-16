@@ -45,9 +45,11 @@
 						<div class="list_top_tools">
 							<input type="text" id="txt_keyword" style="float:left;height:20px;"/>
 							<a class="item" href="javascript:void(0)" onclick="search();" ><img src="/images/sys_icon/search.png" /> 查询</a>
-							<a class="item" href="javascript:void(0)" onclick="tag();" ><img src="/images/sys_icon/tag.png" /> 标签</a>
+							<a class="item" href="javascript:void(0)" onclick="slidetagbar();" ><img src="/images/sys_icon/down.gif" /> 标签</a>
 						</div>
 					</div>
+					
+					<div id="tagpad" style="display:none; padding:5px; text-align:right;"></div>
 					
 					<table id="tb_list" style="width:100%;">
 						<tbody name="head">
@@ -65,7 +67,7 @@
 						<tbody name="body" style="display:none">
 							<tr value="{a_id}">
 								<td style="text-align:center;"><input type="checkbox" name="chkitem" value="{a_id}" /></td>
-								<td name="order">{order}</td>
+								<td name="order" title="编号:{a_id}">{order}</td>
 								<td name="a_title" >{a_title}</td>
 								<td name="a_sort" >{a_sort}</td>
 								<td name="a_updatedate" fmt="yyyy-mm-dd/p">{a_updatedate}</td>
@@ -87,8 +89,9 @@
 					</table>
 				</div>
 				<div id="norecord" class="notebox" style="display:none;">
-					1. 分类“<span id="at_name" style="font-weight:bold;"></span>” 为 “单独页” 表现形式，所以不能添加、编辑记录。<br/>
-					2. 如果希望添加记录，请在 “分类管理” -> “列表风格” 中选择其他形式。
+					1. 分类“<span id="at_name" style="font-weight:bold;"></span>” 为 “单独页”/“超链接” 表现形式，所以不能添加、编辑记录。<br/>
+					2. 如果希望添加记录，请在 “分类管理” -> “列表风格” 中选择其他形式。<br/>
+					3. 如果希望对 “单页面” 内容进行编辑，请在 “分类管理” 里面进行编辑。<br/>
 				</div>
 				
 			</td>

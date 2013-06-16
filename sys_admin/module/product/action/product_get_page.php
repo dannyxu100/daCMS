@@ -6,18 +6,29 @@
 	$ptid = $_POST["ptid"];
 	
 	$db = new DB("dacms");
-	$sql1 = "select *, pt_id, pt_name from web_product, web_producttype ";
+	$sql1 = "select *, pt_id, pt_name from ";
 	$param1 = array();
 	
-	$sql2 = "select count(p_id) as Column1 from web_product ";
+	$sql2 = "select count(p_id) as Column1 from ";
 	$param2 = array();
 	
-	$sql1 .= "where p_ptid=pt_id and p_ptid=:ptid ";
-	$sql2 .= "where p_ptid=:ptid ";
+	if( isset($_POST["tid"]) ){
+		$sql1 .= "web_product, web_producttype, web_tagmap where tm_cid=p_id and tm_tid=:tid and ";
+		$sql2 .= "web_product, web_tagmap where tm_cid=p_id and tm_tid=:tid and ";
+		array_push($param1, array(":tid", $_POST["tid"]));
+		array_push($param2, array(":tid", $_POST["tid"]));
+	}
+	else{
+		$sql1 .= "web_product, web_producttype where  ";
+		$sql2 .= "web_product where  ";
+	}
+	
+	$sql1 .= "p_ptid=pt_id and p_ptid=:ptid ";
+	$sql2 .= "p_ptid=:ptid ";
 	array_push($param1, array(":ptid", $ptid));
 	array_push($param2, array(":ptid", $ptid));
 	
-	$sql1 .="order by p_sort asc, p_id desc";
+	$sql1 .="group by p_id order by p_sort asc, p_id desc";
 	
 	if( isset($_POST["pageindex"]) ){				//分页
 		$start = ($_POST["pageindex"]-1)*$_POST["pagesize"];

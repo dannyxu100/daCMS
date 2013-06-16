@@ -6,14 +6,25 @@
 	$atid = $_POST["atid"];
 	
 	$db = new DB("dacms");
-	$sql1 = "select * from web_article ";
+	$sql1 = "select * from ";
 	$param1 = array();
 	
-	$sql2 = "select count(a_id) as Column1 from web_article ";
+	$sql2 = "select count(a_id) as Column1 from ";
 	$param2 = array();
 	
-	$sql1 .= "where a_atid=:atid ";
-	$sql2 .= "where a_atid=:atid ";
+	if( isset($_POST["tid"]) ){
+		$sql1 .= "web_article, web_tagmap where tm_cid=a_id and tm_tid=:tid and ";
+		$sql2 .= "web_article, web_tagmap where tm_cid=a_id and tm_tid=:tid and ";
+		array_push($param1, array(":tid", $_POST["tid"]));
+		array_push($param2, array(":tid", $_POST["tid"]));
+	}
+	else{
+		$sql1 .= "web_article where  ";
+		$sql2 .= "web_article where  ";
+	}
+	
+	$sql1 .= "a_atid=:atid ";
+	$sql2 .= "a_atid=:atid ";
 	array_push($param1, array(":atid", $atid));
 	array_push($param2, array(":atid", $atid));
 	

@@ -1,10 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>{if $article.a_title}{$article.a_title}{elseif $articletype.at_name}{$articletype.at_name}{else}{$webconfig.c_name}{/if}</title>
-	<meta name="title" content="{if $article.a_title}{$article.a_title}{elseif $articletype.at_name}{$articletype.at_name}{else}{$webconfig.c_name}{/if}"> 
-	<meta name="keywords" content="{if $article.a_keywords}{$article.a_keywords}{elseif $articletype.at_keywords}{$articletype.at_keywords}{else}{$webconfig.c_keywords}{/if}"> 
-	<meta name="description" content="{if $article.a_description}{$article.a_description}{elseif $articletype.at_description}{$articletype.at_description}{else}{$webconfig.c_description}{/if}" />
+	<title>{fn_title t1=$article.a_title t2=$articletype.at_name}</title>
+	<meta name="title" content="{fn_title t1=$article.a_title t2=$articletype.at_name}"> 
+	<meta name="keywords" content="{fn_keywords k1=$article.a_keywords k2=$articletype.at_keywords}"> 
+	<meta name="description" content="{fn_description d1=$article.a_description d2=$articletype.at_description}" />
+	
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 

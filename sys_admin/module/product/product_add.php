@@ -169,7 +169,7 @@
 					<td class="header">略缩图</td>
 					<td colspan="3">
 						<input id="p_img" type="text" style="width:320px;" value=""/>
-						<input type="button" style="width:80px; height:22px;" value="上传"/>
+						<a class="bt_link" href="javascript:void(0)" onclick="uploadoneimg();" ><img src="/images/sys_icon/upload.png" /> 上传</a>
 					</td>
 					<tr>
 						<td class="header">&nbsp;</td>
@@ -185,7 +185,7 @@
 				<tr>
 					<td class="header">商品相册</td>
 					<td colspan="3">
-						<input type="button" style="width:80px; height:22px;" value="上传"/>
+						<a class="bt_link" href="javascript:void(0)" onclick="uploadimgs();" ><img src="/images/sys_icon/upload.png" /> 上传</a>
 					</td>
 				</tr>
 				<tr>

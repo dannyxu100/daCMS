@@ -1,6 +1,23 @@
 ﻿var g_tagtype = "",
 	g_ismulti = false;
 
+function updatecolor( tid, obj ){
+	da.runDB("/sys_admin/module/tag/action/tag_update_item.php",{
+		tid: tid,
+		color: da(obj).val()
+		
+	},function(res){
+		if( "FALSE" != res ){
+			alert("修改成功");
+		}
+		else{
+			alert("对不起, 操作失败");
+		}
+	},function(code,msg,ex){
+		//debugger;
+	});
+}
+
 function deletetag(tagid, tagname){
 	confirm("您确认要删除 ("+ tagname +") 标签吗？", function(){
 		da.runDB("/sys_admin/module/tag/action/tag_delete_item.php",{
@@ -58,20 +75,31 @@ function loadlist(){
 					return '<input id="chkbox_'+ row.t_id +'" type="checkbox" name="chklist" value="'+ row.t_id +'"/>';
 				}
 			}
-			if("t_id"==fld){
+			else if("t_id"==fld){
 				g_ds[val] = row;
 			}
-			if( "tools"==fld ){
+			else if("t_color" == fld){
+				val = '<input class="color" style="width:50px;" onchange="updatecolor('+ row.t_id +', this)" value="'+ (val?val:'FFFFFF') +'"/>';
+			}
+			else if( "tools"==fld ){
 				val = '<a class="" href="javascript:void(0)" onclick="deletetag('+ row.t_id +',\''+ row.t_name +'\')">删除</a>';
 			}
 			return val;
 		},
 		loaded: function( idx, xml, json, ds ){
 			//link_click("#tb_list tbody[name=details_auto] tr");
+			da("input.color", "#tb_list").bind("click.stop",function(){
+				return false;
+				
+			}).each(function(idx, obj){
+					var col = new jscolor.color( obj );
+					
+			});
+			
 			autoframeheight();
 		},
 		error: function(code,msg,ex){
-			debugger;
+			// debugger;
 		}
 	}).load();
 

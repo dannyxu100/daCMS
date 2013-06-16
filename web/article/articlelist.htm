@@ -1,10 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>{$articletype.at_name}_{$webconfig.c_name}</title>
-	<meta name="title" content="{$articletype.at_name}_{$webconfig.c_name}"> 
-	<meta name="keywords" content="{if $articletype.at_keywords}{$articletype.at_keywords}{else}{$webconfig.c_keywords}{/if}"> 
-	<meta name="description" content="{if $articletype.at_description}{$articletype.at_description}{else}{$webconfig.c_description}{/if}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{fn_title t1=$articletype.at_name}_{$smarty.const.WC_NAME}</title>
+	<meta name="title" content="{fn_title t1=$articletype.at_name}_{$smarty.const.WC_NAME}" /> 
+	<meta name="keywords" content="{fn_keywords k1=$articletype.at_keywords}" /> 
+	<meta name="description" content="{fn_description k1=$articletype.at_description}" />
+	
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />
@@ -17,7 +19,7 @@
 		<div style="margin:10px 0px;">首页>>文章列表</div>
 		<div>
 			<div style="float:left; width:720px;min-height:300px;height:auto !important;height:300px; padding-right:10px; border-right:1px solid #ddd; overflow:hidden; ">
-				{include file="_sys_list.htm"}
+				{include file="_sys_articlelist.htm"}
 				
 			</div>
 			<div style="float:left; width:218px; padding:5px;">
@@ -34,3 +36,7 @@
 	{include file="footer.htm"}
 </body>
 </html>
+
+<script type="text/javascript" language="javascript" src="/web/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/web/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" language="javascript" src="/web/js/general.js"></script>

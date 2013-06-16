@@ -41,7 +41,7 @@ function saverule(){
 			alert("操作失败！");
 		}
 	},function(code,msg,ex){
-		debugger;
+		// debugger;
 	});
 }
 
@@ -55,6 +55,8 @@ function loadtab(){
 			da("#pad_2").hide();
 			da("#pad_3").hide();
 			da("#pad_4").hide();
+			da("#pad_5").hide();
+			autoframeheight();
 		}
 	});
 
@@ -64,23 +66,41 @@ function loadtab(){
 			da("#pad_2").show();
 			da("#pad_3").hide();
 			da("#pad_4").hide();
+			da("#pad_5").hide();
+			autoframeheight();
 		}
 	});
 	
-	daTab0.appendItem("item03","扩展规则","/images/menu_icon/menu.png",{
+	daTab0.appendItem("item03","内容分页规则","/images/menu_icon/user.png",{
 		click:function(){
 			da("#pad_1").hide();
 			da("#pad_2").hide();
 			da("#pad_3").show();
 			da("#pad_4").hide();
+			da("#pad_5").hide();
+			autoframeheight();
 		}
 	});
-	daTab0.appendItem("item04","其他配置","/images/menu_icon/menu.png",{
+	
+	
+	daTab0.appendItem("item04","扩展规则","/images/menu_icon/menu.png",{
 		click:function(){
 			da("#pad_1").hide();
 			da("#pad_2").hide();
 			da("#pad_3").hide();
 			da("#pad_4").show();
+			da("#pad_5").hide();
+			autoframeheight();
+		}
+	});
+	daTab0.appendItem("item05","其他配置","/images/menu_icon/menu.png",{
+		click:function(){
+			da("#pad_1").hide();
+			da("#pad_2").hide();
+			da("#pad_3").hide();
+			da("#pad_4").hide();
+			da("#pad_5").show();
+			autoframeheight();
 		}
 	});
 	daTab0.click("item01");

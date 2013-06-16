@@ -69,6 +69,10 @@
 		$sql .= ", c_pushpwd=:c_pushpwd";
 		$db->param(":c_pushpwd", urldecode($_POST["c_pushpwd"]));
 	}
+	if( isset($_POST["c_isstatic"]) ){
+		$sql .= ", c_isstatic=:c_isstatic";
+		$db->param(":c_isstatic", urldecode($_POST["c_isstatic"]));
+	}
 	if( isset($_POST["c_remark"]) ){
 		$sql .= ", c_remark=:c_remark";
 		$db->param(":c_remark", urldecode($_POST["c_remark"]));
