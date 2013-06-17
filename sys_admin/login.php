@@ -1,7 +1,7 @@
-ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>é¡¹ç›®è¿›åº¦ç®¡ç†-ç™»é™†é¡µé¢</title>
+	<title>ÏîÄ¿½ø¶È¹ÜÀí-µÇÂ½Ò³Ãæ</title>
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 </head>
@@ -10,19 +10,19 @@
 		<div style="width:400px; position:absolute; top:180px; left:420px;">
 			<table cellspacing="0" cellpadding="0" style="margin:10px auto; width:60%; height:50px;">
 				<tr>
-					<td style="width:40px; height:50px;">è´¦å·</td>
+					<td style="width:40px; height:50px;">ÕËºÅ</td>
 					<td><input id="u_code" type="text" style="width:150px;"/></td>
 				</tr>
 				<tr>
-					<td>å¯†ç </td>
+					<td>ÃÜÂë</td>
 					<td><input id="u_pwd" type="password" style="width:150px;"/></td>
 				</tr>
 			</table>
 			<div style="margin:20px auto; text-align:center;">
-				<input type="button" style="width:100px; height:30px;" value="ç™»é™†" onclick="login()"/>
-				<input type="button" style="width:50px; height:30px;" value="æ¸…ç©º" onclick="clearinput()" />
+				<input type="button" style="width:100px; height:30px;" value="µÇÂ½" onclick="login()"/>
+				<input type="button" style="width:50px; height:30px;" value="Çå¿Õ" onclick="clearinput()" />
 			</div>
-			<div style="margin-top:80px;">ç‰ˆæƒæ‰€æœ‰ danny.xu &nbsp;&nbsp;(æ¨èä½¿ç”¨:<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh_cn&brand=CHMA&utm_campaign=zh_cn&utm_source=zh_cn-ha-apac-zh_cn-bk&utm_medium=ha" target="_blank" style="color:#0042d1">chromeæµè§ˆå™¨</a>)&nbsp;&nbsp;2013 beta 1.0</div>
+			<div style="margin-top:80px;">°æÈ¨ËùÓĞ danny.xu &nbsp;&nbsp;(ÍÆ¼öÊ¹ÓÃ:<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh_cn&brand=CHMA&utm_campaign=zh_cn&utm_source=zh_cn-ha-apac-zh_cn-bk&utm_medium=ha" target="_blank" style="color:#0042d1">chromeä¯ÀÀÆ÷</a>)&nbsp;&nbsp;2013 beta 1.0</div>
 		</div>
 		
 		<div style="height:65px; background:url(/images/loginbox/1.jpg);"></div>
@@ -42,11 +42,11 @@
 	
 	function chkdata(){
 		if(""==da("#u_code").val()){
-			alert("è´¦å·ä¸èƒ½ä¸ºç©ºï¼");
+			alert("ÕËºÅ²»ÄÜÎª¿Õ£¡");
 			return false;
 		}
 		if(""==da("#u_pwd").val()){
-			alert("å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
+			alert("ÃÜÂë²»ÄÜÎª¿Õ£¡");
 			return false;
 		}
 		return true;
@@ -67,7 +67,7 @@
 				location.href = "/sys_admin/index.php";
 			}
 			else{
-				alert("ç™»é™†å¤±è´¥ã€‚");
+				alert("µÇÂ½Ê§°Ü¡£");
 			}
 		});
 	}
