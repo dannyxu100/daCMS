@@ -23,6 +23,7 @@
 
 <script type="text/javascript">
 	<?php $timestamp = time();?>
+	var g_result = {};
 	
 	var g_param = {
 		'swf': 'uploadify.swf',
@@ -57,11 +58,22 @@
 		'onFallback': function () {					//检测FLASH失败调用
 			alert("您未安装FLASH控件，无法上传！请安装FLASH控件后再试。");
 		},
+        'onUploadStart' : function(file) {
+            if( !g_param.formData.name && !g_param.formData.oldname ){
+				file.name = (new Date).getTime() + file.type;
+			}
+        },
+        'onUploadSuccess' : function(file, data, response) {
+            // alert('The file ' + file.name + ' - ' + response + ':' + data);
+			var arr = data.split("|");
+			g_result[arr[0]] = arr[1];
+        },
 		"onUploadComplete": function(file){			//队列中的每个文件上传完成时触发一次
 			//
 		},
-		"onQueueComplete" : function(stats) {		//当队列中的所有文件全部完成上传时触发
-		　　back(stats.files);
+		"onQueueComplete" : function( stats ) {		//当队列中的所有文件全部完成上传时触发
+			back(stats.files, g_result);
+			g_result = {};
 		}
 	}
 	

@@ -8,6 +8,7 @@
 	
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -22,7 +23,7 @@
 				<div style="padding:10px 0px; margin:10px 0px; text-align:center; border:1px dotted #eee; font-size:12px;">
 					更新日期: {$article.a_updatedate|date_format:'%Y-%m-%d'} / 浏览次数: {$article.a_count}
 				</div>
-				<div style="line-height:26px">{$article.a_content}</div>
+				<div class="art_content" style="line-height:26px">{$article.a_content}</div>
 			</div>
 			<div style="float:left; width:218px; padding:5px;">
 				

@@ -50,8 +50,8 @@ function fn_uploadfile( info, param, fn ){
 			this.setinfo(info);
 			this.setparam(param);
 		},
-		back: function(files){
-			fn(files);
+		back: function(){
+			fn.apply(this, arguments);
 		}
 	});
 }

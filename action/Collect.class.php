@@ -412,7 +412,7 @@
 		 * @param string $str 源内容
 		 */
 		protected static function strtr_words($str){
-			return $str;		//暂时不使用伪原创
+			// return $str;		//暂时不使用伪原创
 			
 			$words=array();
 			$content = @file_get_contents(rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/sys_admin/module/collect/words.txt");		//打开词库

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-15 23:44:22
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-18 00:35:49
          compiled from "articledetail.htm" */ ?>
 <?php /*%%SmartyHeaderCode:637051bc8bd6d3ef79-61329172%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '988c0e2a3615346f287ff9e15e1817eb5a93baf1' => 
     array (
       0 => 'articledetail.htm',
-      1 => 1371302195,
+      1 => 1371486916,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_51bc8bd6f07613_35779194',
   'variables' => 
   array (
     'article' => 0,
     'articletype' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51bc8bd6f07613_35779194',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_51bc8bd6f07613_35779194')) {function content_51bc8bd6f07613_35779194($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\plugin\\smarty\\plugins\\modifier.date_format.php';
 ?>﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -39,6 +39,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	
 	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
 	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -58,7 +59,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
  / 浏览次数: <?php echo $_smarty_tpl->tpl_vars['article']->value['a_count'];?>
 
 				</div>
-				<div style="line-height:26px"><?php echo $_smarty_tpl->tpl_vars['article']->value['a_content'];?>
+				<div class="art_content" style="line-height:26px"><?php echo $_smarty_tpl->tpl_vars['article']->value['a_content'];?>
 </div>
 			</div>
 			<div style="float:left; width:218px; padding:5px;">

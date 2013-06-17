@@ -185,13 +185,14 @@
 				<tr>
 					<td class="header">商品相册</td>
 					<td colspan="3">
-						<a class="bt_link" href="javascript:void(0)" onclick="uploadimgs();" ><img src="/images/sys_icon/upload.png" /> 上传</a>
+						<a class="bt_link" href="javascript:void(0)" onclick="uploadimgs();" ><img src="/images/sys_icon/upload.png" /> 批量上传</a>
+
 					</td>
 				</tr>
 				<tr>
 					<td class="header">&nbsp;</td>
 					<td colspan="3">
-						<div id="p_picture_view"></div>
+						<div id="p_picture_view" class="piclist"></div>
 					</td>
 				</tr>
 			</table>

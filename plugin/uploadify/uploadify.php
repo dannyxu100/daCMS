@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 Uploadify
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia
@@ -6,7 +6,9 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 */
 
 
-// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+
+date_default_timezone_set('ETC/GMT-8');
 
 function makeDir($path) {
 	//根目录物理路径
@@ -38,12 +40,19 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
 
 	$tempFile = $_FILES['Filedata']['tmp_name'];
 	$fileType = preg_replace("/^.*\./", "", strtolower($_FILES['Filedata']['name']));
-	$filename = $_POST['name']?($_POST['name'].'.'.$fileType):$_FILES['Filedata']['name'];
-	
+
+	$filename = isset($_POST['name']) ? ($_POST['name'].'.'.$fileType) 
+		: isset($_POST['oldname']) ? $_FILES['Filedata']['name'] 
+		: (date("YmdHis") . '_' . rand(10000, 99999). '.' .$fileType);
+
 	$targetPath = trim($targetFolder, '/');
 	$targetFile = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/".$targetPath.'/'.$filename;
 	// Log::out($targetFile);
+	$targetFile = iconv("UTF-8","gb2312", $targetFile);		//swf编码问题，需要转一次编码
+	// Log::out($targetFile);
 	
-	move_uploaded_file($tempFile, iconv("UTF-8","gb2312", $targetFile));	//swf编码问题，需要转一次编码
+	move_uploaded_file($tempFile, $targetFile);
+	
+	echo $_FILES['Filedata']['name'] . '|' . $filename;			//返回新老文件名
 }
 ?>

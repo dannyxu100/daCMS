@@ -112,12 +112,13 @@ function uploadimgs(){
 		"formData": {
 			"folder": newfolder
 		}
-	},function(files){
-		var urls = [], names=[];
+	},function( files, res ){
+		var newfile="", urls = [], names=[];
 		
 		for( var k in files ){
-			urls.push( newfolder + files[k].name );
-			names.push( files[k].name );
+			newfile = res[files[k].name];
+			urls.push( newfolder + newfile );
+			names.push( newfile );
 		}
 		
 		da.runDB("/sys_admin/module/picture/action/picture_add_list.php",{
@@ -125,13 +126,73 @@ function uploadimgs(){
 			cid: g_pid,
 			urls: urls.join("□"),
 			names: names.join("□")
+		},function( res ){
+			if("FALSE"!= res){
+				loadpicture();
+			}
+			else{
+				alert("对不起，操作失败。");
+			}
 		});
+	});
+}
+
+/**删除相册
+*/
+function deletepic( pid ){
+	confirm("您确定要删除吗？", function(){
+		da.runDB("/sys_admin/module/picture/action/picture_delete_item.php", {
+			dataType: "json",
+			p_id: pid
+			
+		},function(res){
+			if("FALSE"!= res){
+				loadpicture();
+			}
+			else{
+				alert("对不起，操作失败。");
+			}
+			
+		},function(code,msg,ex){
+			// debugger;
+		});
+	});
+}
+
+/**修改相册信息
+*/
+function updatepic( pid ){
+	var data = {
+		dataType: "json",
+		p_type: "PRODUCT", 
+		p_id: pid
+	};
+
+	da("input,textarea", "#picitem_"+pid ).each(function( idx, obj ){
+		data[ obj.name ] = obj.value
+	});
+	
+	da.runDB("/sys_admin/module/picture/action/picture_update_item.php", data,
+	function(res){
+		if("FALSE"!= res){
+			alert("修改成功。");
+			loadpicture();
+		}
+		else{
+			alert("对不起，操作失败。");
+		}
+		
+	},function(code,msg,ex){
+		// debugger;
 	});
 }
 
 /**加载相册
 */
 function loadpicture(){
+	var viewpad = da("#p_picture_view");
+	viewpad.empty();
+	
 	da.runDB("/sys_admin/module/picture/action/picture_get_list.php",{
 		dataType: "json",
 		type: "PRODUCT", 
@@ -140,21 +201,19 @@ function loadpicture(){
 	},function(data){
 		if("FALSE"!= data){
 			var strHTML = [];
-				viewpad = da("#p_picture_view");
 			
-			viewpad.empty();
 			for(var i=0; i<data.length; i++){
-				strHTML.push('<div style="padding:5px 0px; margin:5px 0px; border-bottom:1px dashed #ccc;">'
-								+'<img style="float:left; width:100px; height:80px; margin:5px;" src="'+ data[i].p_url +'"/>'
-								+'<div style="float:left; height:120px; margin:5px;">'
-									+'名称: <input type="text" style="width:300px;margin:2px;" value="'+ data[i].p_name +'" /><br/>'
-									+'图片: <input type="text" style="width:300px;margin:2px;" value="'+ data[i].p_url +'" /><br/>'
-									+'链接: <input type="text" style="width:300px;margin:2px;" value="'+ data[i].p_href +'" /><br/>'
-									+'简介: <textarea style="vertical-align:top;width:300px;height:40px;margin:2px;" value="'+ data[i].p_text +'" ></textarea><br/>'
+				strHTML.push('<div class="picitem">'
+								+'<a href="'+ data[i].p_url +'" target="_blank"><img src="'+ data[i].p_url +'"/></a>'
+								+'<div id="picitem_'+ data[i].p_id +'" class="inputs">'
+									+'标题: <input type="text" name="p_name" value="'+ data[i].p_name +'"/><br/>'
+									+'图片: <input type="text" name="p_url" value="'+ data[i].p_url +'" disabled="disabled"/><br/>'
+									+'链接: <input type="text" name="p_href" value="'+ data[i].p_href +'" /><br/>'
+									+'简介: <textarea name="p_text" >'+ data[i].p_text +'</textarea><br/>'
 								+'</div>'
-								+'<div style="float:left;height:80px; margin:5px;">'
-									+'<a class="bt_link" href="javascript:void(0)" onclick="" ><img src="/images/sys_icon/save.png" /> 保存</a>'
-									+'<a class="bt_link" href="javascript:void(0)" onclick="" ><img src="/images/sys_icon/delete.png" /> 删除</a>'
+								+'<div class="tools">'
+									+'<a class="bt_link" href="javascript:void(0)" onclick="updatepic('+ data[i].p_id +')" ><img src="/images/sys_icon/save.png" /> 保存</a>'
+									+'<a class="bt_link" href="javascript:void(0)" onclick="deletepic('+ data[i].p_id +')" ><img src="/images/sys_icon/delete.png" /> 删除</a>'
 								+'</div>'
 								+'<div style="clear:both; "></div>'
 							+'</div>');
