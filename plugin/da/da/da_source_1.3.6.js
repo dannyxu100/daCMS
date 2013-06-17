@@ -1,14 +1,14 @@
-ï»¿/***************** JSåŸºç¡€ç±»æ‰©å±• **************************/
+/***************** JS»ù´¡ÀàÀ©Õ¹ **************************/
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: JavaScriptåŸºç¡€ç±»æ‰©å±•
+	description: JavaScript»ù´¡ÀàÀ©Õ¹
 	version: 1.0.0
 */
 (function( win, undefined ){
-	/***************** Numberç±»æ‰©å±• *************************************/
-	/**æ ¼å¼åŒ–
-	*@param {String} fmt æ˜¾ç¤ºæ¨¡æ¿
+	/***************** NumberÀàÀ©Õ¹ *************************************/
+	/**¸ñÊ½»¯
+	*@param {String} fmt ÏÔÊ¾Ä£°å
 	*@example alert((1234567.12345678).format("#.##")); 
 	*		  alert((1234567.12345678).format("#,##")); 
 	*/
@@ -26,18 +26,18 @@
 		idx = fmt.indexOf(".");
 		if (idx < 0 ) {
 			idx = fmt.indexOf(",");
-			if (idx >= 0) {								//ä¸å­˜åœ¨"." ç¬¦å·, ä¸”å­˜åœ¨"," ç¬¦å·
-				hasflag = true;							//æ˜¾ç¤ºä½æ•°åˆ†éš”ç¬¦
+			if (idx >= 0) {								//²»´æÔÚ"." ·ûºÅ, ÇÒ´æÔÚ"," ·ûºÅ
+				hasflag = true;							//ÏÔÊ¾Î»Êı·Ö¸ô·û
 			}
 		}
 		
-		if (idx >= 0) {									//æœ‰"."æˆ–","(éƒ½å¯ä»¥è¡¨ç¤ºä¿ç•™å°æ•°ä½æ•°)
+		if (idx >= 0) {									//ÓĞ"."»ò","(¶¼¿ÉÒÔ±íÊ¾±£ÁôĞ¡ÊıÎ»Êı)
 			idx = fmt.substr(idx + 1).length;
 		}
-		else {											//"." ç¬¦å·å’Œ"," ç¬¦å·éƒ½ä¸å­˜åœ¨
+		else {											//"." ·ûºÅºÍ"," ·ûºÅ¶¼²»´æÔÚ
 			idx = 0;
 		}
-		res = (Number(res)).toFixed(parseInt(idx,10));		//æŒ‰ä¿ç•™å°æ•°ä½æ•°ï¼Œå››èˆäº”å…¥
+		res = (Number(res)).toFixed(parseInt(idx,10));		//°´±£ÁôĞ¡ÊıÎ»Êı£¬ËÄÉáÎåÈë
 		
 		if (hasflag) 
 		{
@@ -76,60 +76,60 @@
 		return da.isNull( res, 0.00);
 	};
 
-	/***************** Stringç±»æ‰©å±• *************************************/
-	/**å»å‰åç©ºæ ¼
+	/***************** StringÀàÀ©Õ¹ *************************************/
+	/**È¥Ç°ºó¿Õ¸ñ
 	*/
 	String.prototype.trim = function(){
 		return this.replace(/(^\s+)|(\s+$)/g, "");
 	};
 	
-	/**å»å¼€å¤´ç©ºæ ¼
+	/**È¥¿ªÍ·¿Õ¸ñ
 	*/
 	String.prototype.trimLeft = function(){
 		return this.replace(/^\s+/g, "");
 	};
 	
-	/**å»ç»“å°¾ç©ºæ ¼
+	/**È¥½áÎ²¿Õ¸ñ
 	*/
 	String.prototype.trimRight = function(){
 		return this.replace(/\s+$/g, "");
 	};
 	
-	/**å»æ‰€æœ‰ç©ºæ ¼
+	/**È¥ËùÓĞ¿Õ¸ñ
 	*/
 	String.prototype.trimAll = function(){
 		return this.replace(/\s/g, "");
 	};
 
-	/**ç¼–ç 
+	/**±àÂë
 	*/
 	String.prototype.toHex = function(){
 		return da.toHex(this);
 	};
 	
-	/**è§£ç 
+	/**½âÂë
 	*/
 	String.prototype.toStr = function(){
 		return  da.toStr(this);
 	};
-	/***************** Dateç±»æ‰©å±• *************************************/
-	/**æ ¼å¼åŒ–
-	*@param {String} fmt æ˜¾ç¤ºæ¨¡æ¿
+	/***************** DateÀàÀ©Õ¹ *************************************/
+	/**¸ñÊ½»¯
+	*@param {String} fmt ÏÔÊ¾Ä£°å
 	*@example alert(new Date().format("yyyy-MM-dd")); 
 	*		  alert(new Date("january 12 2008 11:12:30").format("yyyy-MM-dd hh:mm:ss")); 
 	*/
 	Date.prototype.format= function( fmt ){
-		if(/(y+)/.test(fmt))											//å¹´
+		if(/(y+)/.test(fmt))											//Äê
 		fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
 
 		var o = { 
-			"m+" : this.getMonth()+1, 									//æœˆ 
-			"d+" : this.getDate(),    									//æ—¥
-			"h+" : this.getHours(),   									//æ—¶ 
-			"n+" : this.getMinutes(), 									//åˆ† 
-			"s+" : this.getSeconds(), 									//ç§’ 
-			"q+" : Math.floor((this.getMonth()+3)/3),					//å­£ 
-			"i" : this.getMilliseconds() 								//æ¯«ç§’ 
+			"m+" : this.getMonth()+1, 									//ÔÂ 
+			"d+" : this.getDate(),    									//ÈÕ
+			"h+" : this.getHours(),   									//Ê± 
+			"n+" : this.getMinutes(), 									//·Ö 
+			"s+" : this.getSeconds(), 									//Ãë 
+			"q+" : Math.floor((this.getMonth()+3)/3),					//¼¾ 
+			"i" : this.getMilliseconds() 								//ºÁÃë 
 		};
 
 		for(var k in o){
@@ -139,42 +139,42 @@
 		return fmt; 
 	};
 	
-	/***************** Arrayç±»æ‰©å±• *************************************/
-	/**ä»å‰å‘å æŸ¥æ‰¾é¦–æ¬¡åŒ¹é…æˆå‘˜çš„ç´¢å¼•å€¼
+	/***************** ArrayÀàÀ©Õ¹ *************************************/
+	/**´ÓÇ°Ïòºó ²éÕÒÊ×´ÎÆ¥Åä³ÉÔ±µÄË÷ÒıÖµ
 	*/
 	Array.prototype.indexOf = function( item, i, step ){
-		i = i || 0;												//åˆå§‹åŒ–èµ·å§‹ä¸‹æ ‡(éœ€è¦è€ƒè™‘0) å’Œæ­¥é•¿
+		i = i || 0;												//³õÊ¼»¯ÆğÊ¼ÏÂ±ê(ĞèÒª¿¼ÂÇ0) ºÍ²½³¤
 		step = step || 1;
 		
 		for (; i<this.length; i+=step)
-			if (this[i] === item) return i; 					//ä½¿ç”¨"==="(å…¨ç­‰äº)åˆ¤æ–­ç¬¦ã€‚Objectç±»å‹å­é¡¹æ— æ³•è¿›è¡ŒåŒ¹é…ï¼Œè¿”å›æ’ä¸ºfalse
+			if (this[i] === item) return i; 					//Ê¹ÓÃ"==="(È«µÈÓÚ)ÅĞ¶Ï·û¡£ObjectÀàĞÍ×ÓÏîÎŞ·¨½øĞĞÆ¥Åä£¬·µ»ØºãÎªfalse
 			
 		return -1;
 	};
 	
-	/**ä»åå‘å‰ æŸ¥æ‰¾é¦–æ¬¡åŒ¹é…æˆå‘˜çš„ç´¢å¼•å€¼
+	/**´ÓºóÏòÇ° ²éÕÒÊ×´ÎÆ¥Åä³ÉÔ±µÄË÷ÒıÖµ
 	*/
 	Array.prototype.lastIndexOf = function( item, i, step ){
-		i = i || this.length-1; 										//åˆå§‹åŒ–èµ·å§‹ä¸‹æ ‡ å’Œæ­¥é•¿
+		i = i || this.length-1; 										//³õÊ¼»¯ÆğÊ¼ÏÂ±ê ºÍ²½³¤
 		step = step || 1;
 		
 		for (; i>0; i-=step)
-			if (this[i] === item) return i; 							//ä½¿ç”¨"==="(å…¨ç­‰äº)åˆ¤æ–­ç¬¦ã€‚Objectç±»å‹å­é¡¹æ— æ³•è¿›è¡ŒåŒ¹é…ï¼Œè¿”å›æ’ä¸ºfalse
+			if (this[i] === item) return i; 							//Ê¹ÓÃ"==="(È«µÈÓÚ)ÅĞ¶Ï·û¡£ObjectÀàĞÍ×ÓÏîÎŞ·¨½øĞĞÆ¥Åä£¬·µ»ØºãÎªfalse
 			
 		return -1;
 	};
 
-	/**æå–æŒ‡å®šä½ç½®å’Œé•¿åº¦å­é¡¹
-	* å¦‚ï¼šarr.get(0,5); 		//ä»å¤´å‘åå–5ä¸ªå­é¡¹
-		  arr.get(-1,5); 		//ä»åå‘å‰å–5ä¸ªå­é¡¹
-		  arr.get("item3",3); 	//ä»å€¼ä¸º"item3"çš„å­é¡¹,å‘åå–2ä¸ªå­é¡¹(åŒ…æ‹¬å€¼ä¸º"item3"çš„å­é¡¹)
-		  arr.get(2)			//å–ç´¢å¼•2ä¹‹åçš„æ‰€æœ‰å­é¡¹(åŒ…æ‹¬2)
+	/**ÌáÈ¡Ö¸¶¨Î»ÖÃºÍ³¤¶È×ÓÏî
+	* Èç£ºarr.get(0,5); 		//´ÓÍ·ÏòºóÈ¡5¸ö×ÓÏî
+		  arr.get(-1,5); 		//´ÓºóÏòÇ°È¡5¸ö×ÓÏî
+		  arr.get("item3",3); 	//´ÓÖµÎª"item3"µÄ×ÓÏî,ÏòºóÈ¡2¸ö×ÓÏî(°üÀ¨ÖµÎª"item3"µÄ×ÓÏî)
+		  arr.get(2)			//È¡Ë÷Òı2Ö®ºóµÄËùÓĞ×ÓÏî(°üÀ¨2)
 	*/
 	Array.prototype.get = function( i, len ){
 		var start, end;
 		start = ( undefined === i ? 0 : i );
 		
-		if( "number" !== typeof start ){		//éœ€è¦é€šè¿‡å­é¡¹åŒ¹é…æ‰¾åˆ°å¯¹åº”ç´¢å¼•
+		if( "number" !== typeof start ){		//ĞèÒªÍ¨¹ı×ÓÏîÆ¥ÅäÕÒµ½¶ÔÓ¦Ë÷Òı
 			start = this.indexOf( start );
 		}
 		
@@ -185,29 +185,29 @@
 		return this.slice( start, end );
 	};
 	
-	/**ç§»é™¤æŒ‡å®šä½ç½®å’Œé•¿åº¦å­é¡¹
-	* å¦‚ï¼šarr.remove(2) == arr.remove(2,1); 
+	/**ÒÆ³ıÖ¸¶¨Î»ÖÃºÍ³¤¶È×ÓÏî
+	* Èç£ºarr.remove(2) == arr.remove(2,1); 
 	*/
 	Array.prototype.remove = function( i, len ){						
 		if( undefined === i ) return this;
 		len = len || 1;
 		
-		if( "number" !== typeof i ){			//éœ€è¦é€šè¿‡å­é¡¹åŒ¹é…æ‰¾åˆ°å¯¹åº”ç´¢å¼•
+		if( "number" !== typeof i ){			//ĞèÒªÍ¨¹ı×ÓÏîÆ¥ÅäÕÒµ½¶ÔÓ¦Ë÷Òı
 			i = this.indexOf( i );
 		}
 		
-		return this.splice( i, len );			//ç§»é™¤å¹¶è¿”å›å­é¡¹
+		return this.splice( i, len );			//ÒÆ³ı²¢·µ»Ø×ÓÏî
 	};
 	
-	/**æ’å…¥æ–°é¡¹åˆ°æ•°ç»„æŒ‡å®šä½ç½®(å‰)
-	* å¦‚ï¼š[1,2,3].insert(2,"1.5","1.6");	["a","b","c"].insert("c",["b1","b2","b3"]);
+	/**²åÈëĞÂÏîµ½Êı×éÖ¸¶¨Î»ÖÃ(Ç°)
+	* Èç£º[1,2,3].insert(2,"1.5","1.6");	["a","b","c"].insert("c",["b1","b2","b3"]);
 	*/
 	Array.prototype.insert = function( /*i, [item1], [item1], ..., [item1]*/ ){
 		if( 2 > arguments.length ) return this;
 		var i = arguments[0],
-			arrItem = this.slice.call( arguments, 1 );			//å‰”é™¤ç¬¬ä¸€ä¸ªå‚æ•°
+			arrItem = this.slice.call( arguments, 1 );			//ÌŞ³ıµÚÒ»¸ö²ÎÊı
 		
-		if( "number" !== typeof i ){							//éœ€è¦é€šè¿‡å­é¡¹åŒ¹é…æ‰¾åˆ°å¯¹åº”ç´¢å¼•
+		if( "number" !== typeof i ){							//ĞèÒªÍ¨¹ı×ÓÏîÆ¥ÅäÕÒµ½¶ÔÓ¦Ë÷Òı
 			i = this.indexOf( i );
 			if( 0 > i ){
 				i = this.length;
@@ -215,41 +215,41 @@
 		}
 		
 		arrItem = [ i, 0 ].concat( arrItem );
-		this.splice.apply( this, arrItem );						//æ’å…¥æ–°é¡¹
+		this.splice.apply( this, arrItem );						//²åÈëĞÂÏî
 		
 		return this;
 	};
 	
-	/**è¿½åŠ æ–°é¡¹åˆ°æ•°ç»„æŒ‡å®šä½ç½®(å)
-	* å¦‚ï¼š[1,2,3].append(1,"1.5","1.6");	["a","b","c"].append("b",["b1","b2","b3"]);
+	/**×·¼ÓĞÂÏîµ½Êı×éÖ¸¶¨Î»ÖÃ(ºó)
+	* Èç£º[1,2,3].append(1,"1.5","1.6");	["a","b","c"].append("b",["b1","b2","b3"]);
 	*/
 	Array.prototype.append = function( /*i, [item1], [item1], ..., [item1]*/ ){
 		if( 2 > arguments.length ) return this;
 		var i = arguments[0],
-			arrItem = this.slice.call( arguments, 1 );			//å‰”é™¤ç¬¬ä¸€ä¸ªå‚æ•°
+			arrItem = this.slice.call( arguments, 1 );			//ÌŞ³ıµÚÒ»¸ö²ÎÊı
 		
-		if( "number" !== typeof i ){							//éœ€è¦é€šè¿‡å­é¡¹åŒ¹é…æ‰¾åˆ°å¯¹åº”ç´¢å¼•
+		if( "number" !== typeof i ){							//ĞèÒªÍ¨¹ı×ÓÏîÆ¥ÅäÕÒµ½¶ÔÓ¦Ë÷Òı
 			i = this.indexOf( i );
 			if( 0 > i ){
 				i = this.length;
 			}
 		}
-		i++;													//è¿½åŠ ç´¢å¼•ç´¢å¼•+1
+		i++;													//×·¼ÓË÷ÒıË÷Òı+1
 		arrItem = [i,0].concat( arrItem );
-		this.splice.apply( this, arrItem );						//æ’å…¥æ–°é¡¹
+		this.splice.apply( this, arrItem );						//²åÈëĞÂÏî
 		
 		return this;
 	};
 	
-	/**æ›¿æ¢æ•°ç»„æŒ‡å®šé¡¹
-	* å¦‚ï¼š[1,2,3].replace(1,"1.5","1.6");	["a","b","c"].replace("b",["b1","b2","b3"]);
+	/**Ìæ»»Êı×éÖ¸¶¨Ïî
+	* Èç£º[1,2,3].replace(1,"1.5","1.6");	["a","b","c"].replace("b",["b1","b2","b3"]);
 	*/
 	Array.prototype.replace = function( /*i, [item1], [item1], ..., [item1]*/ ){
 		if( 2 > arguments.length ) return this;
 		var i = arguments[0],
-			arrItem = this.slice.call( arguments, 1 );			//å‰”é™¤ç¬¬ä¸€ä¸ªå‚æ•°
+			arrItem = this.slice.call( arguments, 1 );			//ÌŞ³ıµÚÒ»¸ö²ÎÊı
 		
-		if( "number" !== typeof i ){							//éœ€è¦é€šè¿‡å­é¡¹åŒ¹é…æ‰¾åˆ°å¯¹åº”ç´¢å¼•
+		if( "number" !== typeof i ){							//ĞèÒªÍ¨¹ı×ÓÏîÆ¥ÅäÕÒµ½¶ÔÓ¦Ë÷Òı
 			i = this.indexOf( i );
 		}
 		if( 0 > i || this.length <= i ){
@@ -257,63 +257,63 @@
 		}
 		
 		arrItem = [i,1].concat( arrItem );
-		this.splice.apply( this, arrItem );						//æ’å…¥æ–°é¡¹
+		this.splice.apply( this, arrItem );						//²åÈëĞÂÏî
 		
 		return this;
 	};
 	
-	/**å°†å¦ä¸€ä¸ªæ•°ç»„åˆå¹¶åˆ°æŒ‡å®šä½ç½®(å‰)
-	* å¦‚ï¼š[1,2,3].marge(1, ["a","b","c"]);	["a","b","c"].marge("a","b");
+	/**½«ÁíÒ»¸öÊı×éºÏ²¢µ½Ö¸¶¨Î»ÖÃ(Ç°)
+	* Èç£º[1,2,3].marge(1, ["a","b","c"]);	["a","b","c"].marge("a","b");
 	*/
 	Array.prototype.marge = function( i, arr ){
 		if( 2 > arguments.length ) return this;
 		
-		if( !da.isArray( arr ) ){											//éæ•°ç»„
+		if( !da.isArray( arr ) ){											//·ÇÊı×é
 			return this.append( i, arr );
 		}
-		i = ( undefined !== i ? 0 > i ? 0 : i : this.length ); 				//çŸ«æ­£ç´¢å¼•
+		i = ( undefined !== i ? 0 > i ? 0 : i : this.length ); 				//½ÃÕıË÷Òı
 		
 		return this.slice( 0, i ).concat(arr).concat( this.slice( i ) );	 
 	};
 
 })(window);
 
-/***************** daå‰å°javascriptè¾…åŠ©è„šæœ¬åº“ **************************/
+/***************** daÇ°Ì¨javascript¸¨Öú½Å±¾¿â **************************/
 /*
 	author:	danny.xu
 	date: 2012.5.14
-	description: daå‰å°javascriptè¾…åŠ©è„šæœ¬åº“
+	description: daÇ°Ì¨javascript¸¨Öú½Å±¾¿â
 	version: 1.3.5
 */
 (function( win ){
 	var doc = win.document;
 	
 	var da = (function() {
-		/**daç±»æ„é€ å‡½æ•°
+		/**daÀà¹¹Ôìº¯Êı
 		*/
-		var da = function( obj, context ){				//é€šè¿‡å±€éƒ¨å˜é‡ï¼Œå®ç°æ„é€ å‡½æ•°åå’Œç±»åç›¸åŒ
+		var da = function( obj, context ){				//Í¨¹ı¾Ö²¿±äÁ¿£¬ÊµÏÖ¹¹Ôìº¯ÊıÃûºÍÀàÃûÏàÍ¬
 			return new da.fnStruct.init( obj, context, daDoc );
 		},
 		
-		daDoc,											//ç›®æ ‡çª—ä½“Documentå¯¹è±¡æ‰€å¯¹åº”çš„daå¯¹è±¡
+		daDoc,											//Ä¿±ê´°ÌåDocument¶ÔÏóËù¶ÔÓ¦µÄda¶ÔÏó
 		
 		// The deferred used on DOM ready
-		readyList = [],									//å›è°ƒå‡½æ•°åˆ—è¡¨(æ”¯æŒå¤šä¸ªreadyå‡½æ•°çš„è°ƒç”¨)
-		readyBound = false,								//åˆ¤æ–­æ˜¯å¦å·²ç»ç»‘å®šreadyäº‹ä»¶å‡½æ•°
+		readyList = [],									//»Øµ÷º¯ÊıÁĞ±í(Ö§³Ö¶à¸öreadyº¯ÊıµÄµ÷ÓÃ)
+		readyBound = false,								//ÅĞ¶ÏÊÇ·ñÒÑ¾­°ó¶¨readyÊÂ¼şº¯Êı
 		// The ready event handler
 		DOMContentLoaded,
 		
-		daRe_quickExpr = /^(?:[^<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,		//éªŒè¯æ˜¯å¦æ˜¯å•çº¯çš„HTMLå­—ç¬¦ä¸²,è¿˜æ˜¯å…ƒç´ idé€‰æ‹©å™¨ï¼Œå¦‚ï¼š"#myid"
+		daRe_quickExpr = /^(?:[^<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,		//ÑéÖ¤ÊÇ·ñÊÇµ¥´¿µÄHTML×Ö·û´®,»¹ÊÇÔªËØidÑ¡ÔñÆ÷£¬Èç£º"#myid"
 		
-		daRe_notwhite = /\S/,											//éªŒè¯å­—ç¬¦ä¸²æ˜¯å¦æœ‰ç©ºæ ¼
+		daRe_notwhite = /\S/,											//ÑéÖ¤×Ö·û´®ÊÇ·ñÓĞ¿Õ¸ñ
 		daRe_white = /\s/,
 		
-		daRe_trimLeft = /^\s+/,											//éªŒè¯å­—ç¬¦ä¸²å·¦å³æ˜¯å¦æœ‰ç©ºæ ¼
+		daRe_trimLeft = /^\s+/,											//ÑéÖ¤×Ö·û´®×óÓÒÊÇ·ñÓĞ¿Õ¸ñ
 		daRe_trimRight = /\s+$/,
 
-		daRe_singleTag = /^<(\w+)\s*\/?>(?:<\/\1>)?$/,					//åŒ¹é…éªŒè¯ä¸€ä¸ªå…ƒç´ èŠ‚ç‚¹
+		daRe_singleTag = /^<(\w+)\s*\/?>(?:<\/\1>)?$/,					//Æ¥ÅäÑéÖ¤Ò»¸öÔªËØ½Úµã
 
-		daRe_validchars = /^[\],:{}\s]*$/,								// JSON å¯¹è±¡å¤„ç†
+		daRe_validchars = /^[\],:{}\s]*$/,								// JSON ¶ÔÏó´¦Àí
 		daRe_validescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
 		daRe_validtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
 		daRe_validbraces = /(?:^|:|,)(?:\s*\[)+/g,
@@ -321,43 +321,43 @@
 		daRe_dashAlpha = /-([a-z]|[0-9])/ig,
 		daRe_msPrefix = /^-ms-/,
 
-		_daToString = Object.prototype.toString,					//å¯¹è±¡ç±»å‹è½¬å­—ç¬¦ä¸²	//é€šè¿‡è¿™ç§æ–¹å¼åˆ¤æ–­ï¼š "[object Array]" == _daToString.call(objDOM)
-		_daHasOwnProperty = Object.prototype.hasOwnProperty,		//åˆ¤æ–­å¯¹è±¡æ˜¯å¦æ‹¥æœ‰XXå±æ€§ //é€šè¿‡è¿™ç§æ–¹å¼åˆ¤æ–­ï¼š _daHasOwnProperty.call(obj, "constructor")
-		_daTrim = String.prototype.trim,							//å»å­—ç¬¦ä¸²å‰åç©ºæ ¼
-		_daIndexOf = Array.prototype.indexOf,						//æ•°ç»„é¡¹åŒ¹é…ç´¢å¼•æŸ¥è¯¢å‡½æ•°
-		_daSlice = Array.prototype.slice,							//æå–æ•°ç»„å­é¡¹
-		_daPush = Array.prototype.push,								//å‹å­é¡¹åˆ°æ•°ç»„
+		_daToString = Object.prototype.toString,					//¶ÔÏóÀàĞÍ×ª×Ö·û´®	//Í¨¹ıÕâÖÖ·½Ê½ÅĞ¶Ï£º "[object Array]" == _daToString.call(objDOM)
+		_daHasOwnProperty = Object.prototype.hasOwnProperty,		//ÅĞ¶Ï¶ÔÏóÊÇ·ñÓµÓĞXXÊôĞÔ //Í¨¹ıÕâÖÖ·½Ê½ÅĞ¶Ï£º _daHasOwnProperty.call(obj, "constructor")
+		_daTrim = String.prototype.trim,							//È¥×Ö·û´®Ç°ºó¿Õ¸ñ
+		_daIndexOf = Array.prototype.indexOf,						//Êı×éÏîÆ¥ÅäË÷Òı²éÑ¯º¯Êı
+		_daSlice = Array.prototype.slice,							//ÌáÈ¡Êı×é×ÓÏî
+		_daPush = Array.prototype.push,								//Ñ¹×ÓÏîµ½Êı×é
 
-		fcamelCase = function( all, letter ) {						//å±æ€§åé©¼å³°æ ¼å¼åŒ–
+		fcamelCase = function( all, letter ) {						//ÊôĞÔÃûÍÕ·å¸ñÊ½»¯
 			return ( letter + "" ).toUpperCase();
 		},
 		
-		class2type = {};											//æ•°æ®ç±»å‹æ˜ å°„è¡¨
+		class2type = {};											//Êı¾İÀàĞÍÓ³Éä±í
 		
-		//daç±»å±æ€§é›†
+		//daÀàÊôĞÔ¼¯
 		da.fnStruct = da.prototype = {
 			version: "da libary 1.3.5; author: danny.xu; date: 2012.5.14",
 			
-			dom: [],					//æ“ä½œå¯¹è±¡æ•°ç»„
-			length:	0,					//æ“ä½œå¯¹è±¡ä¸ªæ•°
-			selecter: "",				//ä¸ºSizzle.jsä¿ç•™çš„é€‰æ‹©å™¨å­—ç¬¦ä¸²
+			dom: [],					//²Ù×÷¶ÔÏóÊı×é
+			length:	0,					//²Ù×÷¶ÔÏó¸öÊı
+			selecter: "",				//ÎªSizzle.js±£ÁôµÄÑ¡ÔñÆ÷×Ö·û´®
 			
 			constructor: da,
 
-			//åˆå§‹åŒ–å‡½æ•°
+			//³õÊ¼»¯º¯Êı
 			init: function( selector, context, daDoc ) {
 				var match, elem, ret, docTmp;
-				this.dom = [];							//æ³¨ï¼šdanny.xu å¿…é¡»è¦å…ˆåˆå§‹åŒ–ä¸€æ¬¡
+				this.dom = [];							//×¢£ºdanny.xu ±ØĞëÒªÏÈ³õÊ¼»¯Ò»´Î
 				
-				if ( !selector ) return this;			//åˆ¤ç©ºå¤„ç†ï¼Œç›´æ¥è¿”å›å½“å‰daç©ºå¯¹è±¡, å¦‚ da(""), da(null), or da(undefined)
+				if ( !selector ) return this;			//ÅĞ¿Õ´¦Àí£¬Ö±½Ó·µ»Øµ±Ç°da¿Õ¶ÔÏó, Èç da(""), da(null), or da(undefined)
 				
-				if ( selector.nodeType ) {						//å¦‚æœç›´æ¥ä¼ å…¥DOMå…ƒç´ å¯¹è±¡ï¼Œå¦‚ da(ElementObject)
-					this.context = this.dom[0] = selector;		//å°†daå¤„ç†å…ƒç´ å¯¹è±¡å’Œä¸Šä¸‹æ–‡è®¾ç½®ä¸ºDOMå…ƒç´ å¯¹è±¡
+				if ( selector.nodeType ) {						//Èç¹ûÖ±½Ó´«ÈëDOMÔªËØ¶ÔÏó£¬Èç da(ElementObject)
+					this.context = this.dom[0] = selector;		//½«da´¦ÀíÔªËØ¶ÔÏóºÍÉÏÏÂÎÄÉèÖÃÎªDOMÔªËØ¶ÔÏó
 					this.length = 1;
 					return this;
 				}
 		
-				if ( selector === "body" && !context && doc.body ) {	//å› ä¸ºbodyå…ƒç´ åªæœ‰ä¸€ä¸ªï¼Œæ‰€ä»¥ç‰¹æ®Šå¤„ç†ä¸€ä¸‹ï¼Œä¼˜åŒ–æ€§èƒ½
+				if ( selector === "body" && !context && doc.body ) {	//ÒòÎªbodyÔªËØÖ»ÓĞÒ»¸ö£¬ËùÒÔÌØÊâ´¦ÀíÒ»ÏÂ£¬ÓÅ»¯ĞÔÄÜ
 					this.context = doc;
 					this.dom[0] = doc.body;
 					this.selector = selector;
@@ -365,26 +365,26 @@
 					return this;
 				}
 
-				if ( typeof selector === "string" ) {					//å¦‚æœä¼ å…¥çš„selectoræ˜¯å­—ç¬¦ä¸²ï¼Œå°±è¦ç”¨åˆ°Sizzleé€‰æ‹©å™¨
+				if ( typeof selector === "string" ) {					//Èç¹û´«ÈëµÄselectorÊÇ×Ö·û´®£¬¾ÍÒªÓÃµ½SizzleÑ¡ÔñÆ÷
 					// Are we dealing with HTML string or an ID?
 					if ( selector.charAt(0) === "<" 
 					&& selector.charAt( selector.length - 1 ) === ">" 
 					&& selector.length >= 3 ) {
-						match = [ null, selector, null ];				//å¦‚æœobjæ˜¯"<>"å¼€å¤´ç»“å°¾ï¼Œè¯´æ˜æ˜¯HTMLä»£ç ï¼Œå¯ä»¥ç›´æ¥è·³è¿‡å…ƒç´ é€‰æ‹©å™¨çš„éªŒè¯
+						match = [ null, selector, null ];				//Èç¹ûobjÊÇ"<>"¿ªÍ·½áÎ²£¬ËµÃ÷ÊÇHTML´úÂë£¬¿ÉÒÔÖ±½ÓÌø¹ıÔªËØÑ¡ÔñÆ÷µÄÑéÖ¤
 					}
 					else {
-						match = daRe_quickExpr.exec( selector );		//åˆ¤æ–­æ˜¯å¦æ˜¯#idé€‰æ‹©å™¨
+						match = daRe_quickExpr.exec( selector );		//ÅĞ¶ÏÊÇ·ñÊÇ#idÑ¡ÔñÆ÷
 					}
 		
-					if ( match && (match[1] || !context) ) {			//contextå‚æ•°ä¸ºç©º
-						if ( match[1] ) {								//ä¼ å…¥çš„selectorä¸æ˜¯#idé€‰æ‹©å™¨ï¼Œæ˜¯HTMLä»£ç ç‰‡æ®µï¼Œå¦‚ da(html)
+					if ( match && (match[1] || !context) ) {			//context²ÎÊıÎª¿Õ
+						if ( match[1] ) {								//´«ÈëµÄselector²»ÊÇ#idÑ¡ÔñÆ÷£¬ÊÇHTML´úÂëÆ¬¶Î£¬Èç da(html)
 							context = context instanceof da ? context.dom[0] : context;
 							docTmp = (context ? context.ownerDocument || context : doc);
 		
-							ret = daRe_singleTag.exec( selector );				//å¦‚æœä¼ å…¥çš„æ˜¯ä¸€ä¸ªå…ƒç´ çš„HTML,è¯´æ˜åªæ˜¯å•çº¯çš„åˆ›å»ºä¸€ä¸ªå…ƒç´ 
+							ret = daRe_singleTag.exec( selector );				//Èç¹û´«ÈëµÄÊÇÒ»¸öÔªËØµÄHTML,ËµÃ÷Ö»ÊÇµ¥´¿µÄ´´½¨Ò»¸öÔªËØ
 		
-							if ( ret ) {										//åˆ›å»ºå•ä¸ªå…ƒç´ 
-								if ( da.isPlainObj( context ) ) {				//å¦‚æœæœ‰å±æ€§å€¼ï¼Œå°±é€šè¿‡attrè®¾ç½®å±æ€§
+							if ( ret ) {										//´´½¨µ¥¸öÔªËØ
+								if ( da.isPlainObj( context ) ) {				//Èç¹ûÓĞÊôĞÔÖµ£¬¾ÍÍ¨¹ıattrÉèÖÃÊôĞÔ
 									selector = [ doc.createElement( ret[1] ) ];
 									da.fn.attr.call( selector, context, true );
 		
@@ -394,15 +394,15 @@
 								}
 		
 							}
-							else {												//éœ€è¦ç”Ÿäº§çš„ä¸æ­¢ä¸€ä¸ªå…ƒç´ ï¼Œéœ€è¦ç”Ÿäº§æ–‡æ¡£ç‰‡æ®µ
+							else {												//ĞèÒªÉú²úµÄ²»Ö¹Ò»¸öÔªËØ£¬ĞèÒªÉú²úÎÄµµÆ¬¶Î
 								ret = da.buildFragment( [ match[1] ], [ docTmp ] );
-								selector = (ret.cacheAble ? da.clone(ret.fragment) : ret.fragment).childNodes;	//å¦‚æœå¯ä»¥ç¼“å­˜ç”Ÿäº§çš„æ–‡æ¡£ç‰‡æ®µï¼Œå°±å…‹éš†ä¸€ä¸‹è¿”å›ï¼Œé¿å…å½±å“ç¼“å­˜çš„æ–‡æ¡£ç‰‡æ®µ
+								selector = (ret.cacheAble ? da.clone(ret.fragment) : ret.fragment).childNodes;	//Èç¹û¿ÉÒÔ»º´æÉú²úµÄÎÄµµÆ¬¶Î£¬¾Í¿ËÂ¡Ò»ÏÂ·µ»Ø£¬±ÜÃâÓ°Ïì»º´æµÄÎÄµµÆ¬¶Î
 							}
 		
-							return da( da.merge( this.dom, selector ));			//åˆå¹¶å…ƒç´ é›†åˆæ•°ç»„
+							return da( da.merge( this.dom, selector ));			//ºÏ²¢ÔªËØ¼¯ºÏÊı×é
 		
 						} 
-						else {											//ä¼ å…¥çš„selectoræ˜¯å…ƒç´ #idé€‰æ‹©å™¨ï¼Œå¦‚ï¼š"#myid"
+						else {											//´«ÈëµÄselectorÊÇÔªËØ#idÑ¡ÔñÆ÷£¬Èç£º"#myid"
 							elem = doc.getElementById( match[2] );
 		
 							if ( elem && elem.parentNode ) {					// Check parentNode to catch when Blackberry 4.6 returns nodes that are no longer in the document #6963
@@ -421,16 +421,16 @@
 						}
 		
 					}
-					else if ( !context || context instanceof da ) {		//contextå‚æ•°æ˜¯daå¯¹è±¡ï¼Œå¦‚ da(expr, da(...))
+					else if ( !context || context instanceof da ) {		//context²ÎÊıÊÇda¶ÔÏó£¬Èç da(expr, da(...))
 						return (context || daDoc).find( selector );
 		
 					}
-					else {												//contextå‚æ•°æ˜¯é€‰æ‹©å™¨ æˆ–DOMå¯¹è±¡ï¼Œå¦‚ da(expr, "#m_parent"), da(expr, m_parent)
+					else {												//context²ÎÊıÊÇÑ¡ÔñÆ÷ »òDOM¶ÔÏó£¬Èç da(expr, "#m_parent"), da(expr, m_parent)
 						return this.constructor( context ).find( selector );
 					}
 		
 				}
-				else if ( da.isFunction( selector ) ) {					//å¦‚æœä¼ å…¥çš„selectoræ˜¯Functionï¼Œè¯´æ˜æ˜¯è¦åšDocumentåŠ è½½å®Œæ¯•å›è°ƒå¤„ç†
+				else if ( da.isFunction( selector ) ) {					//Èç¹û´«ÈëµÄselectorÊÇFunction£¬ËµÃ÷ÊÇÒª×öDocument¼ÓÔØÍê±Ï»Øµ÷´¦Àí
 					return daDoc.ready( selector );
 				}
 		
@@ -444,14 +444,14 @@
 				return this;
 			},
 			
-			/**é€šè¿‡sliceå‡½æ•°å°†daå¯¹è±¡è½¬ä¸ºDOMå¯¹è±¡æ•°ç»„
+			/**Í¨¹ısliceº¯Êı½«da¶ÔÏó×ªÎªDOM¶ÔÏóÊı×é
 			*/
 			toArray: function() {
 				return _daSlice.call( this.dom, 0 );
 			},
 			
-			/**æ ¹æ®ç´¢å¼•å€¼è·å¾—daå¯¹è±¡ä¸­çš„DOM
-			* @param {Int} num ç›®æ ‡domå¤„äºæ•°ç»„ä¸­çš„ç´¢å¼•å€¼ï¼Œä¸ºç©ºè¿”å›æ•´ä¸ªDOMæ•°ç»„
+			/**¸ù¾İË÷ÒıÖµ»ñµÃda¶ÔÏóÖĞµÄDOM
+			* @param {Int} num Ä¿±êdom´¦ÓÚÊı×éÖĞµÄË÷ÒıÖµ£¬Îª¿Õ·µ»ØÕû¸öDOMÊı×é
 			*/
 			get: function( num ) {
 				return num == null ?
@@ -459,14 +459,14 @@
 					( num < 0 ? this.dom[ this.dom.length + num ] : this.dom[ num ] );	// Return just the object
 			},	
 
-			//å°†å…ƒç´ é›†åˆå‹ä¸ºä¸€ä¸ªå…¨æ–°çš„daå¯¹è±¡ã€‚
+			//½«ÔªËØ¼¯ºÏÑ¹ÎªÒ»¸öÈ«ĞÂµÄda¶ÔÏó¡£
 			/*
-				elems: å…ƒç´ é›†åˆ
-				name: åˆ†ç±»å
-				selector: å…¨æ–°çš„é€‰æ‹©å™¨å­—ç¬¦ä¸²
+				elems: ÔªËØ¼¯ºÏ
+				name: ·ÖÀàÃû
+				selector: È«ĞÂµÄÑ¡ÔñÆ÷×Ö·û´®
 			*/
 			pushStack: function( elems, name, selector ) {
-				var ret = this.constructor();				//é¦–å…ˆnewä¸€ä¸ªå…¨æ–°çš„ç©ºdaå¯¹è±¡
+				var ret = this.constructor();				//Ê×ÏÈnewÒ»¸öÈ«ĞÂµÄ¿Õda¶ÔÏó
 		
 				if ( da.isArray( elems ) ) {
 					_daPush.apply( ret.dom, elems );
@@ -475,32 +475,32 @@
 					da.merge( ret.dom, elems );
 				}
 		
-				ret.prevObject = this;						//è®¾ç½®å‰ä¸€ä¸ªdaå¯¹è±¡çš„åœ°å€ï¼Œå®ç°å †æ ˆ/é“¾è¡¨çš„åŠŸèƒ½
+				ret.prevObject = this;						//ÉèÖÃÇ°Ò»¸öda¶ÔÏóµÄµØÖ·£¬ÊµÏÖ¶ÑÕ»/Á´±íµÄ¹¦ÄÜ
 				ret.context = this.context;
 		
-				if ( name === "find" ) {					//é€‰æ‹©å™¨å­—ç¬¦ä¸²æ›´æ–°
+				if ( name === "find" ) {					//Ñ¡ÔñÆ÷×Ö·û´®¸üĞÂ
 					ret.selector = [ this.selector, (this.selector ? " " : ""), selector ].join("");
 				} 
 				else if ( name ) {
 					ret.selector = [ this.selector, ".", name, "(", selector, ")" ].join("");
 				}
 		
-				return ret;									//è¿”å›å…¨æ–°çš„daå¯¹è±¡
+				return ret;									//·µ»ØÈ«ĞÂµÄda¶ÔÏó
 			},
 			
-			//ç±»æ•°ç»„æ‰¹å¤„ç†å‡½æ•°
+			//ÀàÊı×éÅú´¦Àíº¯Êı
 			/*
-				fn:	é€ä¸ªå›è°ƒå‡½æ•°( å¦‚æœæ­¤å‡½æ•°è¿”å›ä¸º false, å¯ä»¥ç»ˆæ­¢æ‰¹å¤„ç†å‡½æ•°çš„ç»§ç»­æ‰§è¡Œ )
-				arg: æ­¤å‚æ•°åªä¾›è„šæœ¬åº“å†…éƒ¨ä½¿ç”¨( å¯ä»¥ç›´æ¥ä¼ å…¥è°ƒç”¨å‡½æ•° å½“å‰çš„arguments )
+				fn:	Öğ¸ö»Øµ÷º¯Êı( Èç¹û´Ëº¯Êı·µ»ØÎª false, ¿ÉÒÔÖÕÖ¹Åú´¦Àíº¯ÊıµÄ¼ÌĞøÖ´ĞĞ )
+				arg: ´Ë²ÎÊıÖ»¹©½Å±¾¿âÄÚ²¿Ê¹ÓÃ( ¿ÉÒÔÖ±½Ó´«Èëµ÷ÓÃº¯Êı µ±Ç°µÄarguments )
 			*/
 			each: function( fn, args ) {
 				da.each( this.dom, fn, args );
-				return this;								//è¿”å›daå¯¹è±¡ï¼Œå®ç°ä¸²æ“ä½œ
+				return this;								//·µ»Øda¶ÔÏó£¬ÊµÏÖ´®²Ù×÷
 			},
 			
-			//æ•°ç»„å¯¹è±¡æ˜ å°„è¿‡æ»¤å™¨
+			//Êı×é¶ÔÏóÓ³Éä¹ıÂËÆ÷
 			/*
-				fn:	å›è°ƒè¿‡æ»¤å‡½æ•°
+				fn:	»Øµ÷¹ıÂËº¯Êı
 			*/
 			map: function( fn ) {
 				return this.pushStack( da.map(this.dom, function( obj, i ) {
@@ -510,22 +510,22 @@
 			
 			ready: function( fn ) {
 				da.bindReady();
-				if ( da.isReady ) {				//å¦‚æœdocumentå·²ç»åŠ è½½å®Œæ¯•
-					fn.call( doc, da );			//ç«‹å³å›è°ƒå‡½æ•°
+				if ( da.isReady ) {				//Èç¹ûdocumentÒÑ¾­¼ÓÔØÍê±Ï
+					fn.call( doc, da );			//Á¢¼´»Øµ÷º¯Êı
 				}
-				else if ( readyList ) {			//å¦‚æœæ²¡æœ‰åŠ è½½å®Œæ¯•ï¼Œå°†å›è°ƒå‡½æ•°å‹å…¥å…¨å±€åˆ—è¡¨
+				else if ( readyList ) {			//Èç¹ûÃ»ÓĞ¼ÓÔØÍê±Ï£¬½«»Øµ÷º¯ÊıÑ¹ÈëÈ«¾ÖÁĞ±í
 					readyList.push( fn );
 				}
 				return this;
 			}
 		};
-		//å¯¹è±¡ç»§æ‰¿daç±»å±æ€§
+		//¶ÔÏó¼Ì³ĞdaÀàÊôĞÔ
 		da.fnStruct.init.prototype = da.fnStruct;
 		
-		//å±æ€§æ‰©å±•å‡½æ•°ï¼ˆå¯¹è±¡é‡è½½ã€åˆå¹¶å‡½æ•°ï¼‰
+		//ÊôĞÔÀ©Õ¹º¯Êı£¨¶ÔÏóÖØÔØ¡¢ºÏ²¢º¯Êı£©
 		/*
-			dest : æ’ä»¶æ‰©å±•ç›®æ ‡
-			src1,src2,src3...srcN	:	æ‰©å±•å†…å®¹é”®å€¼å¯¹ï¼ˆé‡è½½ï¼šåŒé”®å€¼ä¼šè¦†ç›–ï¼‰
+			dest : ²å¼şÀ©Õ¹Ä¿±ê
+			src1,src2,src3...srcN	:	À©Õ¹ÄÚÈİ¼üÖµ¶Ô£¨ÖØÔØ£ºÍ¬¼üÖµ»á¸²¸Ç£©
 		*/
 		da.extend = da.fnStruct.extend = function(/* dest,src1,src2,src3...srcN */) {
 				var target = arguments[0] || {},
@@ -537,39 +537,39 @@
 						src = null, 
 						copy = null;
 				
-				if ( typeof target === "boolean" ) {				//åˆ¤æ–­æ˜¯å¦éœ€è¦æ·±åº¦æ‰©å±•åˆå¹¶ï¼ˆæ·±åº¦æ‰©å±•åˆå¹¶åªèƒ½æœ‰ä¸€ä¸ªæºï¼‰
+				if ( typeof target === "boolean" ) {				//ÅĞ¶ÏÊÇ·ñĞèÒªÉî¶ÈÀ©Õ¹ºÏ²¢£¨Éî¶ÈÀ©Õ¹ºÏ²¢Ö»ÄÜÓĞÒ»¸öÔ´£©
 					deep = target;
 					target = arguments[1] || {};
 					i = 2;
 				}
 			
-				if ( typeof target !== "object") {					//æ·±åº¦æ‰©å±•åˆå¹¶éœ€è¦ ç¬¦åˆçš„æ•°æ®ç±»å‹
+				if ( typeof target !== "object") {					//Éî¶ÈÀ©Õ¹ºÏ²¢ĞèÒª ·ûºÏµÄÊı¾İÀàĞÍ
 					target = {};
 				}
 			
-				if ( length === i ) {												//æ·±åº¦æ‰©å±•ï¼ˆç¬¬ä¸€ä¸ªç›®æ ‡å‚æ•°ä¸ºbooleanï¼‰ æˆ– è°ƒç”¨å¯¹è±¡è‡ªèº«æ‰©å±•ï¼ˆåªæœ‰ä¸€ä¸ªå‚æ•°ä¸”ä¸ºæºå‚æ•°ï¼‰
+				if ( length === i ) {												//Éî¶ÈÀ©Õ¹£¨µÚÒ»¸öÄ¿±ê²ÎÊıÎªboolean£© »ò µ÷ÓÃ¶ÔÏó×ÔÉíÀ©Õ¹£¨Ö»ÓĞÒ»¸ö²ÎÊıÇÒÎªÔ´²ÎÊı£©
 					target = this;
 					--i;
 				}
 			
 				for ( ; i < length; i++ ) {
-					if ( (options = arguments[ i ]) != null ) {			//è·å– æºå¯¹è±¡å‚æ•°
-						for ( name in options ) {											//æŠ½å– æºå¯¹è±¡ä¸­çš„å±æ€§
-							src = target[ name ];						//æ‰©å±•ç›®æ ‡å¯¹è±¡ å·²æœ‰å±æ€§
-							copy = options[ name ];					//æºå¯¹è±¡ é‡è½½å±æ€§
+					if ( (options = arguments[ i ]) != null ) {			//»ñÈ¡ Ô´¶ÔÏó²ÎÊı
+						for ( name in options ) {											//³éÈ¡ Ô´¶ÔÏóÖĞµÄÊôĞÔ
+							src = target[ name ];						//À©Õ¹Ä¿±ê¶ÔÏó ÒÑÓĞÊôĞÔ
+							copy = options[ name ];					//Ô´¶ÔÏó ÖØÔØÊôĞÔ
 			
-							if ( target === copy ) {				//æºå¯¹è±¡ === æ‰©å±•ç›®æ ‡å¯¹è±¡ï¼ˆå°±æ˜¯ä¸€æ¨¡ä¸€æ ·çš„å¯¹è±¡ï¼Œä¸å­˜åœ¨æ‰©å±•ä¸æ‰©å±•ï¼‰ï¼Œç›´æ¥è·³è¿‡
+							if ( target === copy ) {				//Ô´¶ÔÏó === À©Õ¹Ä¿±ê¶ÔÏó£¨¾ÍÊÇÒ»Ä£Ò»ÑùµÄ¶ÔÏó£¬²»´æÔÚÀ©Õ¹²»À©Õ¹£©£¬Ö±½ÓÌø¹ı
 								continue;
 							}
 							
-							//å¦‚æœæœ‰åµŒå¥—é”®å€¼å¯¹å¯¹è±¡æˆ–å¤šç»´æ•°ç»„ï¼Œå¹¶å…è®¸æ·±åº¦æ‰©å±•
+							//Èç¹ûÓĞÇ¶Ì×¼üÖµ¶Ô¶ÔÏó»ò¶àÎ¬Êı×é£¬²¢ÔÊĞíÉî¶ÈÀ©Õ¹
 							if ( deep && copy && ( da.isPlainObj(copy) || da.isArray(copy) ) ) {
 								var clone = src && ( da.isPlainObj(src) || da.isArray(src) ) ? src : da.isArray(copy) ? [] : {};
 			
-								//ç»§ç»­æ‰©å±•
+								//¼ÌĞøÀ©Õ¹
 								target[ name ] = da.extend( deep, clone, copy );
 			
-							//æ²¡æœ‰æœ‰åµŒå¥—é”®å€¼å¯¹å¯¹è±¡æˆ–å¤šç»´æ•°ç»„ï¼Œæˆ–è€…ä¸å…è®¸æ·±åº¦æ‰©å±•
+							//Ã»ÓĞÓĞÇ¶Ì×¼üÖµ¶Ô¶ÔÏó»ò¶àÎ¬Êı×é£¬»òÕß²»ÔÊĞíÉî¶ÈÀ©Õ¹
 							}
 							else if ( copy !== undefined ) {
 								target[ name ] = copy;
@@ -578,39 +578,39 @@
 					}
 				}
 			
-				//è¿”å›æ‰©å±•åçš„å¯¹è±¡
+				//·µ»ØÀ©Õ¹ºóµÄ¶ÔÏó
 				return target;
 		};
 
 
-		//daç±»é™æ€æˆå‘˜
+		//daÀà¾²Ì¬³ÉÔ±
 		da.extend({
-			isReady: false,			//ç¡®å®šdocumentæ˜¯å¦å¯ä»¥ä½¿ç”¨ï¼Œå¦‚æœå¯ä»¥è®¾ç½®ä¸ºtrue
-			readyWait: 1,				//readyå›è°ƒå‡½æ•°çš„è®¡æ•°å™¨
+			isReady: false,			//È·¶¨documentÊÇ·ñ¿ÉÒÔÊ¹ÓÃ£¬Èç¹û¿ÉÒÔÉèÖÃÎªtrue
+			readyWait: 1,				//ready»Øµ÷º¯ÊıµÄ¼ÆÊıÆ÷
 
-			//ç»‘å®šreadyå‡½æ•°
+			//°ó¶¨readyº¯Êı
 			bindReady: function() {
 				if ( readyBound ) {
 					return;
 				}
 			
-				readyBound = true;		//é¦–æ¬¡ç»‘å®šreadyäº‹ä»¶å‡½æ•°
+				readyBound = true;		//Ê×´Î°ó¶¨readyÊÂ¼şº¯Êı
 			
-				//æµè§ˆå™¨çš„readyäº‹ä»¶è§¦å‘åè¢«$(document).ready()æ•è·
+				//ä¯ÀÀÆ÷µÄreadyÊÂ¼ş´¥·¢ºó±»$(document).ready()²¶»ñ
 				if ( doc.readyState === "complete" ) {
-					return setTimeout( da.ready, 1 );			//å¼‚æ­¥å¤„ç†
+					return setTimeout( da.ready, 1 );			//Òì²½´¦Àí
 				}
 				
-				if ( document.addEventListener ) {						//å…¼å®¹W3Cäº‹ä»¶ç»‘å®š
-					document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );				//ç¡®ä¿åœ¨onloadäº‹ä»¶ä¹‹å‰è§¦å‘
-					window.addEventListener( "load", da.ready, false );														//ç»‘å®šwindow.onloadå›è°ƒï¼Œè¿™ä¸ªäº‹ä»¶æ€»æ˜¯ä¸€ç›´å­˜åœ¨çš„
+				if ( document.addEventListener ) {						//¼æÈİW3CÊÂ¼ş°ó¶¨
+					document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );				//È·±£ÔÚonloadÊÂ¼şÖ®Ç°´¥·¢
+					window.addEventListener( "load", da.ready, false );														//°ó¶¨window.onload»Øµ÷£¬Õâ¸öÊÂ¼ş×ÜÊÇÒ»Ö±´æÔÚµÄ
 			
 				}
-				else if ( document.attachEvent ) {						//å…¼å®¹IE
+				else if ( document.attachEvent ) {						//¼æÈİIE
 					document.attachEvent("onreadystatechange", DOMContentLoaded);
 					window.attachEvent( "onload", da.ready );
 			
-					var toplevel = false;									//å¦‚æœæ˜¯IEå¹¶ä¸”æ²¡æœ‰æ¡†æ¶ç»“æ„ï¼Œç»§ç»­æ£€æŸ¥documentæ˜¯å¦å·²ç»åŠ è½½å®Œæ¯•
+					var toplevel = false;									//Èç¹ûÊÇIE²¢ÇÒÃ»ÓĞ¿ò¼Ü½á¹¹£¬¼ÌĞø¼ì²édocumentÊÇ·ñÒÑ¾­¼ÓÔØÍê±Ï
 					try {
 						toplevel = ( window.frameElement == null );
 					} catch(e) {}
@@ -621,31 +621,31 @@
 				}
 				
 			},
-			//DOMå¯¹è±¡åŠ è½½å®Œæ¯•å¤„ç†å‡½æ•°
+			//DOM¶ÔÏó¼ÓÔØÍê±Ï´¦Àíº¯Êı
 			ready: function( wait ) {
 				// A third-party is pushing the ready event forwards
 				if ( wait === true ) {
 					da.readyWait--;
 				}
 			
-				//å¦‚æœDOMå¯¹è±¡è¿˜æ²¡æœ‰åŠ è½½å®Œæ¯•
+				//Èç¹ûDOM¶ÔÏó»¹Ã»ÓĞ¼ÓÔØÍê±Ï
 				if ( !da.readyWait || (wait !== true && !da.isReady) ) {
-					if ( !doc.body ) {								//åˆ¤æ–­bodyå­˜åœ¨
-						return setTimeout( da.ready, 1 );			//è°ƒç”¨é™æ€readyå‡½æ•°
+					if ( !doc.body ) {								//ÅĞ¶Ïbody´æÔÚ
+						return setTimeout( da.ready, 1 );			//µ÷ÓÃ¾²Ì¬readyº¯Êı
 					}
 					
-					da.isReady = true;								//è®¾ç½®documentçŠ¶æ€ä¸ºå¯ç”¨
+					da.isReady = true;								//ÉèÖÃdocument×´Ì¬Îª¿ÉÓÃ
 					
-					if ( wait !== true && ( --da.readyWait > 0 ) ) {		//å¦‚æœä¸€ä¸ªdocumentçš„readyäº‹ä»¶è¢«è§¦å‘ï¼Œda.readyWaité€’å‡ï¼Œå¹¶ç›´æ¥è¿”å›
+					if ( wait !== true && ( --da.readyWait > 0 ) ) {		//Èç¹ûÒ»¸ödocumentµÄreadyÊÂ¼ş±»´¥·¢£¬da.readyWaitµİ¼õ£¬²¢Ö±½Ó·µ»Ø
 						return;
 					}
 			
-					if ( readyList ) {								//å¦‚æœæœ‰ç»‘å®šå›è°ƒå‡½æ•°ï¼Œå°±æ‰§è¡Œå›è°ƒå‡½æ•°åˆ—è¡¨
+					if ( readyList ) {								//Èç¹ûÓĞ°ó¶¨»Øµ÷º¯Êı£¬¾ÍÖ´ĞĞ»Øµ÷º¯ÊıÁĞ±í
 						var fn,
 							i = 0,
 							ready = readyList;
 		
-						readyList = null;						//ç½®ç©ºå›è°ƒå‡½æ•°åˆ—è¡¨
+						readyList = null;						//ÖÃ¿Õ»Øµ÷º¯ÊıÁĞ±í
 			
 						while ( (fn = ready[ i++ ]) ) {
 							fn.call( doc, da );
@@ -660,25 +660,25 @@
 				}
 			},
 			
-			//ç©ºå‡½æ•°
+			//¿Õº¯Êı
 			noop: function() {},
-			//æ—¶é—´æˆ³ID
+			//Ê±¼ä´ÁID
 			nowId: function(){
 				return (new Date).getTime();
 			},
 			
-			//è·å–å¯¹è±¡ç±»å‹(å°å†™)
+			//»ñÈ¡¶ÔÏóÀàĞÍ(Ğ¡Ğ´)
 			/*
-				obj: ç›®æ ‡å¯¹è±¡
+				obj: Ä¿±ê¶ÔÏó
 			*/
 			type: function( obj ) {
 				return obj == null ?
 				String( obj ) :
 				class2type[ _daToString.call(obj) ] || "object";
 			},
-			//åˆ¤æ–­æ˜¯å¦æ˜¯Windowå¯¹è±¡
+			//ÅĞ¶ÏÊÇ·ñÊÇWindow¶ÔÏó
 			/*
-				obj: åˆ¤æ–­ç›®æ ‡å¯¹è±¡
+				obj: ÅĞ¶ÏÄ¿±ê¶ÔÏó
 			*/
 			// See test/unit/core.js for details concerning isFunction.
 			// Since version 1.3, DOM methods and functions like alert
@@ -687,33 +687,33 @@
 				return obj && typeof obj === "object" && "setInterval" in obj;
 			},
 			
-			//åˆ¤æ–­æ˜¯å¦æ˜¯Documentå¯¹è±¡
+			//ÅĞ¶ÏÊÇ·ñÊÇDocument¶ÔÏó
 			/*
-				obj: åˆ¤æ–­ç›®æ ‡å¯¹è±¡
+				obj: ÅĞ¶ÏÄ¿±ê¶ÔÏó
 			*/
 			isDoc: function( obj ) {
 				return obj.nodeType === 9;
 			},
 			
-			//åˆ¤æ–­æ˜¯å¦æ˜¯Functionå¯¹è±¡
+			//ÅĞ¶ÏÊÇ·ñÊÇFunction¶ÔÏó
 			/*
-				obj: åˆ¤æ–­ç›®æ ‡å¯¹è±¡
+				obj: ÅĞ¶ÏÄ¿±ê¶ÔÏó
 			*/
 			isFunction: function( obj ) {
 				return _daToString.call(obj) === "[object Function]";
 			},
 		
-			//åˆ¤æ–­æ˜¯å¦æ˜¯æ•°ç»„å¯¹è±¡
+			//ÅĞ¶ÏÊÇ·ñÊÇÊı×é¶ÔÏó
 			/*
-				obj: åˆ¤æ–­ç›®æ ‡å¯¹è±¡
+				obj: ÅĞ¶ÏÄ¿±ê¶ÔÏó
 			*/
 			isArray: Array.isArray || function( obj ) {
 				return _daToString.call(obj) === "[object Array]";
 			},
 		
-			//åˆ¤æ–­æ˜¯å¦æ˜¯é”®å€¼å¯¹å¯¹è±¡
+			//ÅĞ¶ÏÊÇ·ñÊÇ¼üÖµ¶Ô¶ÔÏó
 			/*
-				obj: åˆ¤æ–­ç›®æ ‡å¯¹è±¡
+				obj: ÅĞ¶ÏÄ¿±ê¶ÔÏó
 			*/
 			isPlainObj: function( obj ) {
 				// Must be an Object.
@@ -739,14 +739,14 @@
 				return key === undefined || _daHasOwnProperty.call( obj, key );
 			},
 
-			//åˆ¤æ–­æ˜¯å¦æ˜¯æ•°å€¼å¯¹è±¡
+			//ÅĞ¶ÏÊÇ·ñÊÇÊıÖµ¶ÔÏó
 			isNumeric: function( obj ) {
 				return !isNaN( parseFloat(obj) ) && isFinite( obj );
 			},
 
-			//åˆ¤æ–­æ˜¯å¦æ˜¯ç©ºé”®å€¼å¯¹å¯¹è±¡
+			//ÅĞ¶ÏÊÇ·ñÊÇ¿Õ¼üÖµ¶Ô¶ÔÏó
 			/*
-				obj: åˆ¤æ–­ç›®æ ‡å¯¹è±¡
+				obj: ÅĞ¶ÏÄ¿±ê¶ÔÏó
 			*/
 			isEmptyObj: function( obj ) {
 				for ( var name in obj ) {
@@ -755,10 +755,10 @@
 				return true;
 			},
 			
-			//ç©ºå€¼åˆ¤æ–­
+			//¿ÕÖµÅĞ¶Ï
 			/*
-				obj1: åˆ¤ç©ºå¯¹è±¡å¯¹è±¡
-				obj2: obj1ä¸ºç©ºæ›¿ä»£å¯¹è±¡
+				obj1: ÅĞ¿Õ¶ÔÏó¶ÔÏó
+				obj2: obj1Îª¿ÕÌæ´ú¶ÔÏó
 			*/
 			isNull: function( obj1, obj2 ){
 				 var isError = false;
@@ -774,35 +774,35 @@
 			   || ( String.fromCharCode( 160 ) === obj1 ) )
 						isError = true;
 				
-				if( 2 > arguments.length ){										//åªä¼ å…¥ä¸€ä¸ªå‚æ•°ã€‚åªåæ˜¯å¦ä¸ºç©ºåˆ¤æ–­
+				if( 2 > arguments.length ){										//Ö»´«ÈëÒ»¸ö²ÎÊı¡£Ö»×øÊÇ·ñÎª¿ÕÅĞ¶Ï
 					return isError;
 				}
-				else{																					//è‹¥ä¼ å…¥ä¸¤ä¸ªå‚æ•°ã€‚
-					return isError ? obj2 : obj1;								//åˆ¤æ–­ä¸ºç©ºæ—¶ï¼šè¿”å›ç¬¬äºŒä¸ªå‚æ•°å€¼ï¼ˆobj2ï¼‰ï¼Œç»“æœä¸ºæœ‰æ•ˆå€¼æ—¶ï¼šè¿”å›åŸå€¼ï¼ˆobj1ï¼‰
+				else{																					//Èô´«ÈëÁ½¸ö²ÎÊı¡£
+					return isError ? obj2 : obj1;								//ÅĞ¶ÏÎª¿ÕÊ±£º·µ»ØµÚ¶ş¸ö²ÎÊıÖµ£¨obj2£©£¬½á¹ûÎªÓĞĞ§ÖµÊ±£º·µ»ØÔ­Öµ£¨obj1£©
 					
 				}
 			},
 			
-			//æ— æ•ˆæ•°å€¼åˆ¤æ–­
+			//ÎŞĞ§ÊıÖµÅĞ¶Ï
 			/*
-				obj: åˆ¤æ–­å¯¹è±¡
+				obj: ÅĞ¶Ï¶ÔÏó
 			*/
 			isNaN: function( obj ) {
 				return obj == null || !/\d/.test( obj ) || isNaN( obj );
 			},
 				
-			//å…ƒç´ ç±»å‹ååˆ¤æ–­
+			//ÔªËØÀàĞÍÃûÅĞ¶Ï
 			/*
-				elem: å…ƒç´ å¯¹è±¡
-				name: è¦åˆ¤æ–­çš„å…ƒç´ ç±»å‹å
+				elem: ÔªËØ¶ÔÏó
+				name: ÒªÅĞ¶ÏµÄÔªËØÀàĞÍÃû
 			*/
 			isNodeName: function( elem, name ) {
 				return elem.nodeName && elem.nodeName.toUpperCase() === name.toUpperCase();
 			},
 			
-			/**å–ç¬¬ä¸€ä¸ªæœ‰æ•ˆå€¼
+			/**È¡µÚÒ»¸öÓĞĞ§Öµ
 			*/
-			firstValue: function( /*obj1,obj2,[ obj3,obj4,â€¦,objN ]*/ ){
+			firstValue: function( /*obj1,obj2,[ obj3,obj4,¡­,objN ]*/ ){
 				var val;
 				
 				for( var i=0,len=arguments.length; i<len; i++) {
@@ -816,20 +816,20 @@
 			},
 			
 			
-			//åˆ¤æ–­å…ƒç´ åœ¨æ•°ç»„å†…çš„ä½ç½®
+			//ÅĞ¶ÏÔªËØÔÚÊı×éÄÚµÄÎ»ÖÃ
 			/*
-				elem: å…ƒç´ å¯¹è±¡
-				array: æ•°ç»„å¯¹è±¡
+				elem: ÔªËØ¶ÔÏó
+				array: Êı×é¶ÔÏó
 			*/
 			isInArray: function( elem, array ) {
 				if ( _daIndexOf ) return _daIndexOf.call( array, elem );
 		
 				return array.indexOf( elem );
 			},		
-			//å‹ä¸ºæ•°ç»„( è¿½åŠ  )
+			//Ñ¹ÎªÊı×é( ×·¼Ó )
 			/*
-				srcObj: å‹ä¸ºæ•°ç»„çš„ç›®æ ‡å¯¹è±¡
-				retArray:	æ–°å»ºè¿”å›æˆ–ä¼ å…¥çš„å®¹å™¨æ•°ç»„
+				srcObj: Ñ¹ÎªÊı×éµÄÄ¿±ê¶ÔÏó
+				retArray:	ĞÂ½¨·µ»Ø»ò´«ÈëµÄÈİÆ÷Êı×é
 			*/
 			pushArray: function( srcObj, retArray ){
 					retArray = retArray || [];
@@ -837,38 +837,38 @@
 							var typeObj = da.type( srcObj );
 							
 							// The extra typeof function check is to prevent crashes
-							if ( null == srcObj.length 																			//å› ä¸ºwindow, strings, functions ä¹Ÿæœ‰"length"å±æ€§
-								|| "string" === typeObj 																			//string å¯¹è±¡
-								|| "function" === typeObj 																		//function å¯¹è±¡
-								|| "regexp" === typeObj 																			//Regexp å¯¹è±¡		// Tweaked logic slightly to handle Blackberry 4.7 RegExp issues
-								|| da.isWin( srcObj ) ) {																			//window å¯¹è±¡
-								retArray.push( srcObj );																			//ç›´æ¥æŠŠå¯¹è±¡å‹å…¥æ•°ç»„
+							if ( null == srcObj.length 																			//ÒòÎªwindow, strings, functions Ò²ÓĞ"length"ÊôĞÔ
+								|| "string" === typeObj 																			//string ¶ÔÏó
+								|| "function" === typeObj 																		//function ¶ÔÏó
+								|| "regexp" === typeObj 																			//Regexp ¶ÔÏó		// Tweaked logic slightly to handle Blackberry 4.7 RegExp issues
+								|| da.isWin( srcObj ) ) {																			//window ¶ÔÏó
+								retArray.push( srcObj );																			//Ö±½Ó°Ñ¶ÔÏóÑ¹ÈëÊı×é
 								
 							}
 							else {
-								da.merge( retArray, srcObj );																	//åˆå¹¶ä¸¤ä¸ªæ•°ç»„
+								da.merge( retArray, srcObj );																	//ºÏ²¢Á½¸öÊı×é
 							
 							}
 					}
 					
 					return retArray;
 			},
-			//åˆå¹¶ä¸¤ä¸ªæ•°ç»„
+			//ºÏ²¢Á½¸öÊı×é
 			/*
-				first: ç¬¬ä¸€ä¸ªæ•°ç»„
-				second: ç¬¬äºŒä¸ªæ•°ç»„
+				first: µÚÒ»¸öÊı×é
+				second: µÚ¶ş¸öÊı×é
 			*/
 			merge: function( first, second ) {
 				var i = first.length,
 						j = 0;
 		
-				if ( "number" === typeof second.length ) {						//æ ‡å‡†çš„æ•°ç»„ç±»å‹ï¼Œæ‹¥æœ‰lengthå±æ€§
+				if ( "number" === typeof second.length ) {						//±ê×¼µÄÊı×éÀàĞÍ£¬ÓµÓĞlengthÊôĞÔ
 					for ( var l = second.length; j < l; j++ ) {
 						first[ i++ ] = second[ j ];
 					}
 		
 				}
-				else {																								//å¼•ç”¨ç±»å‹çš„æ•°ç»„ï¼Œå¯èƒ½æ²¡æœ‰lengthå±æ€§
+				else {																								//ÒıÓÃÀàĞÍµÄÊı×é£¬¿ÉÄÜÃ»ÓĞlengthÊôĞÔ
 					while ( undefined !== second[j] ) {
 						first[ i++ ] = second[ j++ ];
 					}
@@ -879,16 +879,16 @@
 				return first;
 			},
 		
-			/**å±æ€§åé©¼å³°æ ¼å¼åŒ–å‡½æ•°
+			/**ÊôĞÔÃûÍÕ·å¸ñÊ½»¯º¯Êı
 			*/
 			camelCase: function( string ) {
 				return string.replace( daRe_msPrefix, "ms-" ).replace( daRe_dashAlpha, fcamelCase );
 			},
-			//ç±»æ•°ç»„æ‰¹å¤„ç†å‡½æ•°
+			//ÀàÊı×éÅú´¦Àíº¯Êı
 			/*
-				objs: æ‰¹å¤„ç†ç›®æ ‡å¯¹è±¡
-				fn:	é€ä¸ªå›è°ƒå‡½æ•°( å¦‚æœæ­¤å‡½æ•°è¿”å›ä¸º false, å¯ä»¥ç»ˆæ­¢æ‰¹å¤„ç†å‡½æ•°çš„ç»§ç»­æ‰§è¡Œ )
-				arg: æ­¤å‚æ•°åªä¾›è„šæœ¬åº“å†…éƒ¨ä½¿ç”¨
+				objs: Åú´¦ÀíÄ¿±ê¶ÔÏó
+				fn:	Öğ¸ö»Øµ÷º¯Êı( Èç¹û´Ëº¯Êı·µ»ØÎª false, ¿ÉÒÔÖÕÖ¹Åú´¦Àíº¯ÊıµÄ¼ÌĞøÖ´ĞĞ )
+				arg: ´Ë²ÎÊıÖ»¹©½Å±¾¿âÄÚ²¿Ê¹ÓÃ
 			*/
 			each: function( objs, fn, args ) {
 					var name,
@@ -897,14 +897,14 @@
 						isObj = ( length === undefined ) || da.isFunction(objs);
 			
 					if( args ) {
-							if ( isObj ) {						//éç±»æ•°ç»„
+							if ( isObj ) {						//·ÇÀàÊı×é
 									for ( name in objs ) {
 											if ( fn.apply( objs[ name ], args ) === false ) {
 												break;
 											}
 									}
 							}
-							else {										//ç±»æ•°ç»„
+							else {										//ÀàÊı×é
 									for ( ; i < length; ) {
 											if ( fn.apply( objs[ i++ ], args ) === false ) {
 												break;
@@ -913,14 +913,14 @@
 							}
 			
 					} else{
-							if ( isObj ) {						//éç±»æ•°ç»„
+							if ( isObj ) {						//·ÇÀàÊı×é
 									for( name in objs ) {
 											if ( fn.call( objs[ name ], name, objs[ name ] ) === false ) {
 												break;
 											}
 									}
 							}
-							else{											//ç±»æ•°ç»„
+							else{											//ÀàÊı×é
 									for( var value=objs[0]; i<length && ( fn.call( value, i, value ) !== false ); value=objs[++i] ) {}
 							}
 					}
@@ -928,11 +928,11 @@
 					return objs;
 			},
 
-			//æ‰¹éªŒè¯å¤„ç†ï¼Œå¹¶è¿”å›ä¸ç¬¦åˆæ¡ä»¶çš„å…ƒç´ é›†åˆå‡½æ•°
+			//ÅúÑéÖ¤´¦Àí£¬²¢·µ»Ø²»·ûºÏÌõ¼şµÄÔªËØ¼¯ºÏº¯Êı
 			/*
-				elems: éœ€è¦æ‰¹éªŒè¯å¤„ç†çš„å…ƒç´ é›†åˆ
-				callback: æ‰¹éªŒè¯å¤„ç†å›è°ƒå‡½æ•°
-				inv: éªŒè¯ç»“æœåŒ¹é…boolå€¼
+				elems: ĞèÒªÅúÑéÖ¤´¦ÀíµÄÔªËØ¼¯ºÏ
+				callback: ÅúÑéÖ¤´¦Àí»Øµ÷º¯Êı
+				inv: ÑéÖ¤½á¹ûÆ¥ÅäboolÖµ
 			*/
 			grep: function( elems, callback, inv ) {
 				inv = !!inv;
@@ -940,9 +940,9 @@
 				var ret = [], retVal;
 		
 				for ( var i=0, len=elems.length; i < len; i++ ) {
-					retVal = !!callback( elems[ i ], i );										//å¾ªç¯æ‰¹å¤„ç†ï¼Œé€šè¿‡è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰éªŒè¯å‡½æ•°ï¼Œå¹¶å¾—åˆ°éªŒè¯è¿”å›å€¼
+					retVal = !!callback( elems[ i ], i );										//Ñ­»·Åú´¦Àí£¬Í¨¹ıµ÷ÓÃÓÃ»§×Ô¶¨ÒåÑéÖ¤º¯Êı£¬²¢µÃµ½ÑéÖ¤·µ»ØÖµ
 					
-					if ( inv !== retVal ) {																	//å¦‚æœéªŒè¯ç»“æœä¸ç¬¦åˆï¼Œå°†ä¸ç¬¦åˆçš„å…ƒç´ å‹å…¥æ•°ç»„ï¼Œå¤„ç†å®Œæ¯•è¿”å›è¯¥æ•°ç»„
+					if ( inv !== retVal ) {																	//Èç¹ûÑéÖ¤½á¹û²»·ûºÏ£¬½«²»·ûºÏµÄÔªËØÑ¹ÈëÊı×é£¬´¦ÀíÍê±Ï·µ»Ø¸ÃÊı×é
 						ret.push( elems[ i ] );
 					}
 				}
@@ -950,17 +950,17 @@
 				return ret;
 			},
 
-			//æ•°ç»„å¯¹è±¡æ˜ å°„è¿‡æ»¤å™¨
+			//Êı×é¶ÔÏóÓ³Éä¹ıÂËÆ÷
 			/*
-				objs: ç›®æ ‡æ•°ç»„å¯¹è±¡
-				fn:	å›è°ƒè¿‡æ»¤å‡½æ•°
-				arg: æ­¤å‚æ•°åªä¾›è„šæœ¬åº“å†…éƒ¨ä½¿ç”¨
+				objs: Ä¿±êÊı×é¶ÔÏó
+				fn:	»Øµ÷¹ıÂËº¯Êı
+				arg: ´Ë²ÎÊıÖ»¹©½Å±¾¿âÄÚ²¿Ê¹ÓÃ
 			*/
 			map: function( objs, fn, arg ) {
 				var retArray = [], 
 					value = null;
 
-				for ( var i = 0, length = objs.length; i < length; i++ ) {				//å¾ªç¯ç›®æ ‡æ•°ç»„å¯¹è±¡ï¼Œé€šè¿‡è°ƒç”¨è¿‡æ»¤å‡½æ•°ï¼Œæœ€ç»ˆå¾—åˆ°è¿‡æ»¤åçš„æœ‰æ•ˆæ•°ç»„
+				for ( var i = 0, length = objs.length; i < length; i++ ) {				//Ñ­»·Ä¿±êÊı×é¶ÔÏó£¬Í¨¹ıµ÷ÓÃ¹ıÂËº¯Êı£¬×îÖÕµÃµ½¹ıÂËºóµÄÓĞĞ§Êı×é
 					value = fn( objs[ i ], i, arg );
 
 					if ( value != null ) {
@@ -972,17 +972,17 @@
 				
 			},
 			
-			guid: 1,				//å…¨å±€å”¯ä¸€æ ‡è¯†ç¬¦
+			guid: 1,				//È«¾ÖÎ¨Ò»±êÊ¶·û
 			
-			//ä»£ç†å‡½æ•°
+			//´úÀíº¯Êı
 			/*
-				fn: æºè¢«ä»£ç†å›è°ƒå‡½æ•°
-				proxy: ä»£ç†å¤„ç†å›è°ƒå‡½æ•°
+				fn: Ô´±»´úÀí»Øµ÷º¯Êı
+				proxy: ´úÀí´¦Àí»Øµ÷º¯Êı
 				thisObject: 
 			*/
 			proxy: function( fn, proxy, thisObject ) {
 				if ( arguments.length === 2 ) {
-					if ( typeof proxy === "string" ) {							//å¦‚æœä¼ å…¥é”®å€¼å¯¹ï¼Œproxy( {click:function(){},dbclick:function(){}}, "click" )
+					if ( typeof proxy === "string" ) {							//Èç¹û´«Èë¼üÖµ¶Ô£¬proxy( {click:function(){},dbclick:function(){}}, "click" )
 						thisObject = fn;
 						fn = thisObject[ proxy ];
 						proxy = undefined;
@@ -1009,14 +1009,14 @@
 				return proxy;
 			},
 
-			//æ“ä½œç±»å‹åˆ¤æ–­å…¥å£ å‡½æ•°
+			//²Ù×÷ÀàĞÍÅĞ¶ÏÈë¿Ú º¯Êı
 			/*
-				elems: DOMèŠ‚ç‚¹å¯¹è±¡é›†æ•°ç»„
-				key: å±æ€§å( å¯ä»¥ä»¥ é”®å€¼å¯¹çš„æ–¹å¼setå¤šä¸ªå±æ€§å€¼)
-				value: å±æ€§å€¼( å¯ä»¥æ˜¯å‡½æ•°çš„å½¢å¼, function(index, value){}, å±æ€§å€¼ä¸ºå‡½æ•°è®¡ç®—è¿”å›å€¼)
-				exec:	åœ¨å±æ€§å€¼çš„ç±»å‹ä¸ºfunctionæ—¶,å¯¹è®¾ç½®ä¹‹å‰çš„valueå€¼æ‰§è¡Œå‡½æ•°( é»˜è®¤ä¸ºtrue )
+				elems: DOM½Úµã¶ÔÏó¼¯Êı×é
+				key: ÊôĞÔÃû( ¿ÉÒÔÒÔ ¼üÖµ¶ÔµÄ·½Ê½set¶à¸öÊôĞÔÖµ)
+				value: ÊôĞÔÖµ( ¿ÉÒÔÊÇº¯ÊıµÄĞÎÊ½, function(index, value){}, ÊôĞÔÖµÎªº¯Êı¼ÆËã·µ»ØÖµ)
+				exec:	ÔÚÊôĞÔÖµµÄÀàĞÍÎªfunctionÊ±,¶ÔÉèÖÃÖ®Ç°µÄvalueÖµÖ´ĞĞº¯Êı( Ä¬ÈÏÎªtrue )
 				fn:	
-				pass: æ˜¯å¦é€šè¿‡daç±»çš„ç›¸åº” æˆå‘˜å‡½æ•°æ¥å¤„ç†å±æ€§å€¼
+				pass: ÊÇ·ñÍ¨¹ıdaÀàµÄÏàÓ¦ ³ÉÔ±º¯ÊıÀ´´¦ÀíÊôĞÔÖµ
 			*/
 			access: function( elems, fn, key, value, chainable, emptyGet, pass  ) {
 				var exec,
@@ -1024,18 +1024,18 @@
 					i = 0,
 					length = elems.dom.length;
 
-				//setå¤šä¸ªå±æ€§
-				if ( key && typeof key === "object" ) {							//åœ¨keyå€¼çš„ç±»å‹ä¸ºobjectæ—¶ï¼Œä¼šæ‹†è§£valueæˆkey,valueå½¢å¼å†æ¬¡é€’å½’ä¼ å…¥da.access
+				//set¶à¸öÊôĞÔ
+				if ( key && typeof key === "object" ) {							//ÔÚkeyÖµµÄÀàĞÍÎªobjectÊ±£¬»á²ğ½âvalue³Ékey,valueĞÎÊ½ÔÙ´Îµİ¹é´«Èëda.access
 					for ( i in key ) {
 						da.access( elems, fn, i, key[i], 1, emptyGet, value );
 					}
 					chainable = 1;
 
 				
-				} //setå•ä¸€å±æ€§
+				} //setµ¥Ò»ÊôĞÔ
 				else if ( value !== undefined ) {
 					// Optionally, function values get executed if exec is true
-					exec = pass === undefined && da.isFunction( value );		//åˆ¤æ–­å±æ€§å€¼æ˜¯å¦æ˜¯ä»¥å‡½æ•°çš„å½¢å¼çš„è®¡ç®—ç»“æœ
+					exec = pass === undefined && da.isFunction( value );		//ÅĞ¶ÏÊôĞÔÖµÊÇ·ñÊÇÒÔº¯ÊıµÄĞÎÊ½µÄ¼ÆËã½á¹û
 
 					if ( bulk ) {
 						// Bulk operations only iterate when executing function values
@@ -1061,7 +1061,7 @@
 					chainable = 1;
 				}
 
-				//getå±æ€§å€¼
+				//getÊôĞÔÖµ
 				return chainable ?
 					elems :
 					// Gets
@@ -1070,12 +1070,12 @@
 						length ? fn( elems.dom[0], key ) : emptyGet;
 			},
 			
-			//é”™è¯¯æŠ›å‡ºå¼‚å¸¸
+			//´íÎóÅ×³öÒì³£
 			error: function( msg ) {
 				throw new Error( msg );
 			},
 			
-			//å»æ‰å­—ç¬¦ä¸²å‰åç©ºæ ¼
+			//È¥µô×Ö·û´®Ç°ºó¿Õ¸ñ
 			trim: ( _daTrim ?
 			function( text ) {
 				return text == null ? "" : _daTrim.call( text );
@@ -1085,9 +1085,9 @@
 				return text == null ? "" : text.toString().replace( daRe_trimLeft, "" ).replace( daRe_trimRight, "" );
 			}),
 			
-			//å¼ºåˆ¶è½¬ä¸ºJSONå¯¹è±¡
+			//Ç¿ÖÆ×ªÎªJSON¶ÔÏó
 			/*
-				data: è½¬æ¢ç›®æ ‡æ•°æ®
+				data: ×ª»»Ä¿±êÊı¾İ
 			*/
 			parseJSON: function( data ) {
 					if ( typeof data !== "string" || !data ) {
@@ -1121,21 +1121,21 @@
 		
 					script.type = "text/javascript";
 		
-					if ( da.support.scriptEval ) {																//é€šè¿‡scriptå…ƒç´ å¼•å…¥å¹¶æ‰§è¡Œè‡ªå®šä¹‰ä»£ç 
+					if ( da.support.scriptEval ) {																//Í¨¹ıscriptÔªËØÒıÈë²¢Ö´ĞĞ×Ô¶¨Òå´úÂë
 						script.appendChild( document.createTextNode( data ) );
 					}
 					else {
 						script.text = data;
 					}
 		
-					head.insertBefore( script, head.firstChild );									//ç”¨insertBeforeè€Œä¸ç”¨appendChildæ˜¯ï¼Œé¿å…IE6çš„bug
+					head.insertBefore( script, head.firstChild );									//ÓÃinsertBefore¶ø²»ÓÃappendChildÊÇ£¬±ÜÃâIE6µÄbug
 					head.removeChild( script );
 				}
 			},
 			
-			/**å°†xmlæ•°æ®è½¬ä¸ºjsonæ•°æ®æ ¼å¼
-			* param {XMLDocument} xml XMLåŸæ•°æ®
-			* param {Function} fn è‡ªå®šä¹‰å›è°ƒå¤„ç†/ç­›é€‰å‡½æ•°
+			/**½«xmlÊı¾İ×ªÎªjsonÊı¾İ¸ñÊ½
+			* param {XMLDocument} xml XMLÔ­Êı¾İ
+			* param {Function} fn ×Ô¶¨Òå»Øµ÷´¦Àí/É¸Ñ¡º¯Êı
 			*/
 			xml2json: function( xml, fn ){
 				var newSet,
@@ -1149,52 +1149,52 @@
 				for( var i=0,i2=0,lenDS=xml.childNodes.length; i<lenDS; i++ ){
 					newSet = xml.childNodes[i];
 					
-					for( var n=0,n2=0,lenROW=newSet.childNodes.length; n<lenROW; n++ ){						//å¾ªç¯æ‰€æœ‰æ•°æ®é›†çš„è®°å½•ï¼Œé€šè¿‡nodeNameè¿›è¡Œæ•°æ®é›†åˆ’åˆ†
+					for( var n=0,n2=0,lenROW=newSet.childNodes.length; n<lenROW; n++ ){						//Ñ­»·ËùÓĞÊı¾İ¼¯µÄ¼ÇÂ¼£¬Í¨¹ınodeName½øĞĞÊı¾İ¼¯»®·Ö
 						rowNode = newSet.childNodes[n];
-						if( 3 === rowNode.nodeType ) continue;												//textç±»å‹æ— æ•ˆå…ƒç´  æˆ–å·²ç»è¢«å‰”é™¤
+						if( 3 === rowNode.nodeType ) continue;												//textÀàĞÍÎŞĞ§ÔªËØ »òÒÑ¾­±»ÌŞ³ı
 						rowObj = {};
-						dsname = rowNode.nodeName;															//æ•°æ®é›†å
+						dsname = rowNode.nodeName;															//Êı¾İ¼¯Ãû
 						
 						if( 0 === n2)
 							dsname2 = dsname;
 						
 						if( !tmp[ dsname ] )
-							tmp[ dsname ] = [];				//åˆ›å»ºä¸‹ä¸€ä¸ªæ•°æ®é›†å®¹å™¨
+							tmp[ dsname ] = [];				//´´½¨ÏÂÒ»¸öÊı¾İ¼¯ÈİÆ÷
 							
 						
-						for( var m=0,m2=0,lenCOL=rowNode.childNodes.length; m<lenCOL; m++ ){				//å¾ªç¯æ¯è¡Œè®°å½•ï¼Œé€šè¿‡nodeNameè¿›è¡Œå­—æ®µåˆ’åˆ†
+						for( var m=0,m2=0,lenCOL=rowNode.childNodes.length; m<lenCOL; m++ ){				//Ñ­»·Ã¿ĞĞ¼ÇÂ¼£¬Í¨¹ınodeName½øĞĞ×Ö¶Î»®·Ö
 							colNode = rowNode.childNodes[m];
-							if( 3 === colNode.nodeType ) continue;											//æ’é™¤textç±»å‹æ— æ•ˆå…ƒç´ 
-							name = colNode.nodeName;														//åˆ—å
+							if( 3 === colNode.nodeType ) continue;											//ÅÅ³ıtextÀàĞÍÎŞĞ§ÔªËØ
+							name = colNode.nodeName;														//ÁĞÃû
 							value = ( undefined === colNode.text ) ? colNode.textContent : colNode.text;
 						
 							rowObj[ name ] = value;
 
 							fn && fn( "field", dsname, { name:name, value:value }, m2 );
-							m2++;		//æœ‰æ•ˆåˆ—æ•° +1
+							m2++;		//ÓĞĞ§ÁĞÊı +1
 						}
 						
 						
-						if( fn && (false === fn( "record", dsname, rowObj, n2 )) ){						//å°†åˆ’åˆ†å¥½çš„å­—æ®µæ•°æ®ï¼Œå‹å…¥å¯¹åº”çš„æ•°æ®é›†å¯¹è±¡å†…
+						if( fn && (false === fn( "record", dsname, rowObj, n2 )) ){						//½«»®·ÖºÃµÄ×Ö¶ÎÊı¾İ£¬Ñ¹Èë¶ÔÓ¦µÄÊı¾İ¼¯¶ÔÏóÄÚ
 							continue;
 						}
 						tmp[ dsname ].push( rowObj );
-						n2++;			//æœ‰æ•ˆè¡Œæ•° +1
+						n2++;			//ÓĞĞ§ĞĞÊı +1
 						
 						
 						if( dsname2 !== dsname ){
-							if( fn && (false === fn( "dataset", dsname, tmp[ dsname2 ], i2 )) ){			//ç¼“å­˜æ•°æ®é›†
+							if( fn && (false === fn( "dataset", dsname, tmp[ dsname2 ], i2 )) ){			//»º´æÊı¾İ¼¯
 								continue;
 							}
 							json[ dsname2 ] = tmp[ dsname2 ];
 							
 							dsname2 = dsname;
-							i2++;				//æœ‰æ•ˆæ•°æ®é›†æ•° +1
+							i2++;				//ÓĞĞ§Êı¾İ¼¯Êı +1
 						}
 					}
 					
 					
-					if( fn && (false === fn( "dataset", dsname, tmp[ dsname2 ], i2 )) ){			//ç¼“å­˜æ•°æ®é›†
+					if( fn && (false === fn( "dataset", dsname, tmp[ dsname2 ], i2 )) ){			//»º´æÊı¾İ¼¯
 						continue;
 					}
 					json[ dsname2 ] = tmp[ dsname2 ];
@@ -1211,12 +1211,12 @@
 			class2type[ "[object " + name + "]" ] = name.toLowerCase();
 		});
 	
-		if ( !daRe_white.test( "\xA0" ) ) {									//ç”¨æ­£åˆ™è¡¨è¾¾å¼çš„\såŒ¹é…ç©ºæ ¼ç¬¦å·ï¼ŒIEä¸­å¯èƒ½ä¼šå¤±è´¥ã€‚
+		if ( !daRe_white.test( "\xA0" ) ) {									//ÓÃÕıÔò±í´ïÊ½µÄ\sÆ¥Åä¿Õ¸ñ·ûºÅ£¬IEÖĞ¿ÉÄÜ»áÊ§°Ü¡£
 			daRe_trimLeft = /^[\s\xA0]+/;
 			daRe_trimRight = /[\s\xA0]+$/;
 		}
 
-		//æ¶ˆé™¤documentçš„readyäº‹ä»¶å‡½æ•°
+		//Ïû³ıdocumentµÄreadyÊÂ¼şº¯Êı
 		if ( doc.addEventListener ) {
 			DOMContentLoaded = function() {
 				doc.removeEventListener( "DOMContentLoaded", DOMContentLoaded, false );
@@ -1225,27 +1225,27 @@
 		
 		} else if ( doc.attachEvent ) {
 			DOMContentLoaded = function() {
-				if ( doc.readyState === "complete" ) {					//é’ˆå¯¹IEè¦åˆ¤æ–­bodyæ˜¯å¦å·²ç»åŠ è½½å®Œæ¯•
+				if ( doc.readyState === "complete" ) {					//Õë¶ÔIEÒªÅĞ¶ÏbodyÊÇ·ñÒÑ¾­¼ÓÔØÍê±Ï
 					doc.detachEvent( "onreadystatechange", DOMContentLoaded );
 					da.ready();
 				}
 			};
 		}
 
-		//å…¼å®¹IE æ£€æŸ¥DOMæ˜¯å¦å·²ç»åŠ è½½å®Œæ¯•
+		//¼æÈİIE ¼ì²éDOMÊÇ·ñÒÑ¾­¼ÓÔØÍê±Ï
 		function doScrollCheck() {
 			if ( da.isReady ) {
 				return;
 			}
 		
 			try {
-				doc.documentElement.doScroll("left");	//é’ˆå¯¹IE ä»£æ›¿DOMContentLoadedæ–¹æ³•çš„ä¸€ç§ç›‘å¬å¤„ç†ï¼ˆåœ¨ondocumentreadyä¹‹å‰ä¼šä¸€ç›´æŠ›å¼‚å¸¸ï¼‰
+				doc.documentElement.doScroll("left");	//Õë¶ÔIE ´úÌæDOMContentLoaded·½·¨µÄÒ»ÖÖ¼àÌı´¦Àí£¨ÔÚondocumentreadyÖ®Ç°»áÒ»Ö±Å×Òì³££©
 			} catch(e) {
-				setTimeout( doScrollCheck, 1 );			//é€šè¿‡åå¤è¿è¡ŒdoScrollCheckè¾¾åˆ°ç›‘å¬documentreadyçš„æ•ˆæœ
+				setTimeout( doScrollCheck, 1 );			//Í¨¹ı·´¸´ÔËĞĞdoScrollCheck´ïµ½¼àÌıdocumentreadyµÄĞ§¹û
 				return;
 			}
 		
-			da.ready();									//documentreadyå°±è°ƒç”¨da.ready();
+			da.ready();									//documentready¾Íµ÷ÓÃda.ready();
 		};
 		
 		daDoc = da( doc );
@@ -1258,12 +1258,12 @@
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: å…¼å®¹æµè§ˆå™¨
+	description: ¼æÈİä¯ÀÀÆ÷
 	version: 1.0.0
 */
 (function(da){
 	da.support = (function(){
-		//æµè§ˆå™¨å…¼å®¹æ€§åˆ¤æ–­
+		//ä¯ÀÀÆ÷¼æÈİĞÔÅĞ¶Ï
 		var	div = document.createElement("div"),
 			id = "script" + da.nowId(),
 			select,
@@ -1284,12 +1284,12 @@
 		support = {
 			leadingWhitespace: ( div.firstChild.nodeType === 3 ),		// IE strips leading whitespace when .innerHTML is used
 		
-			tbody: !!div.getElementsByTagName( "tbody" ).length,		//åˆ¤æ–­æ˜¯å¦è‡ªåŠ¨æ’å…¥äº†tbodyæ ‡ç­¾å…ƒç´ ï¼ŒIEä¼šå¯¹ç©ºçš„tableæ ‡ç­¾è‡ªåŠ¨æ’å…¥tbodyæ ‡ç­¾å…ƒç´ 
+			tbody: !!div.getElementsByTagName( "tbody" ).length,		//ÅĞ¶ÏÊÇ·ñ×Ô¶¯²åÈëÁËtbody±êÇ©ÔªËØ£¬IE»á¶Ô¿ÕµÄtable±êÇ©×Ô¶¯²åÈëtbody±êÇ©ÔªËØ
 
-			htmlSerialize: !!div.getElementsByTagName( "link" ).length,	//åˆ¤è¯»linkå…ƒç´ èƒ½å¦é€šè¿‡innerHTMLæ­£ç¡®çš„è¢«ä¸²è¡ŒåŒ–ï¼ŒIEä¸­ä¸èƒ½é€šè¿‡innerHTMLæ­£å¸¸çš„ä¸²è¡ŒåŒ–linkå’Œscriptæ ‡ç­¾å…ƒç´ 
+			htmlSerialize: !!div.getElementsByTagName( "link" ).length,	//ÅĞ¶ÁlinkÔªËØÄÜ·ñÍ¨¹ıinnerHTMLÕıÈ·µÄ±»´®ĞĞ»¯£¬IEÖĞ²»ÄÜÍ¨¹ıinnerHTMLÕı³£µÄ´®ĞĞ»¯linkºÍscript±êÇ©ÔªËØ
 			
-			opacity: /^0.55$/.test( a.style.opacity ),					//opacity ä¸é€æ˜åº¦å±æ€§å…¼å®¹æ€§åˆ¤æ–­
-			cssFloat: !!a.style.cssFloat,								//float æµ®åŠ¨ä½ç½®å±æ€§å…¼å®¹æ€§åˆ¤æ–­
+			opacity: /^0.55$/.test( a.style.opacity ),					//opacity ²»Í¸Ã÷¶ÈÊôĞÔ¼æÈİĞÔÅĞ¶Ï
+			cssFloat: !!a.style.cssFloat,								//float ¸¡¶¯Î»ÖÃÊôĞÔ¼æÈİĞÔÅĞ¶Ï
 
 			// Make sure that if no value is specified for a checkbox
 			// that it defaults to "on".
@@ -1298,24 +1298,24 @@
 
 			// Make sure that a selected-by-default option has a working selected property.
 			// (WebKit defaults to false instead of true, IE too, if it's in an optgroup)
-			optSelected: opt.selected,						//éªŒè¯optioné»˜è®¤é€‰ä¸­é¡¹ï¼Œæœ‰selectedå±æ€§
+			optSelected: opt.selected,						//ÑéÖ¤optionÄ¬ÈÏÑ¡ÖĞÏî£¬ÓĞselectedÊôĞÔ
 	
-			getComputedStyle: doc.defaultView && doc.defaultView.getComputedStyle,		//defaultView.getComputedStyle å‡½æ•°æ”¯æŒåˆ¤æ–­
+			getComputedStyle: doc.defaultView && doc.defaultView.getComputedStyle,		//defaultView.getComputedStyle º¯ÊıÖ§³ÖÅĞ¶Ï
 			
-			getSetAttribute: div.className !== "t",			//å¦‚æœæ˜¯IEï¼Œå¯ä»¥é€šè¿‡é©¼å³°æ ¼å¼å€¼è®¾ç½®å±æ€§,è¿™æ—¶å€™åœ¨ä»Šåçš„å±æ€§æ“ä½œæ—¶å°±è¦è¿›è¡Œå…¼å®¹å¤„ç†äº†ã€‚
+			getSetAttribute: div.className !== "t",			//Èç¹ûÊÇIE£¬¿ÉÒÔÍ¨¹ıÍÕ·å¸ñÊ½ÖµÉèÖÃÊôĞÔ,ÕâÊ±ºòÔÚ½ñºóµÄÊôĞÔ²Ù×÷Ê±¾ÍÒª½øĞĞ¼æÈİ´¦ÀíÁË¡£
 			
 			// Makes sure cloning an html5 element does not cause problems
 			// Where outerHTML is undefined, this still works
 			html5Clone: document.createElement("nav").cloneNode( true ).outerHTML !== "<:nav></:nav>",
 			
-			boxModel: null,									//ç›’å­æ¨¡å‹æ”¯æŒ
-			inlineBlockNeedsLayout: false,					//inline-blockæ”¯æŒ
-			shrinkWrapBlocks: false,						//æ‹†å°å—æ”¯æŒ
-			// reliableHiddenOffsets: true,					//éšè—å…ƒç´ å¯é æ€§æ”¯æŒ
+			boxModel: null,									//ºĞ×ÓÄ£ĞÍÖ§³Ö
+			inlineBlockNeedsLayout: false,					//inline-blockÖ§³Ö
+			shrinkWrapBlocks: false,						//²ğ·â¿éÖ§³Ö
+			// reliableHiddenOffsets: true,					//Òş²ØÔªËØ¿É¿¿ĞÔÖ§³Ö
 			
-			scriptEval: false,								//åˆ¤æ–­æ˜¯å¦æ”¯æŒscriptå…ƒç´ å¼•å…¥å¹¶æ‰§è¡Œè‡ªå®šä¹‰ä»£ç 
+			scriptEval: false,								//ÅĞ¶ÏÊÇ·ñÖ§³ÖscriptÔªËØÒıÈë²¢Ö´ĞĞ×Ô¶¨Òå´úÂë
 			deleteExpando: true,												
-			ajax: false										//æ˜¯å¦æ”¯æŒXHR requests
+			ajax: false										//ÊÇ·ñÖ§³ÖXHR requests
 		};		
 		
 		// Make sure checked status is properly cloned
@@ -1327,7 +1327,7 @@
 		select.disabled = true;
 		support.optDisabled = !opt.disabled;
 
-		try {																						//é€šè¿‡tryéªŒè¯æ˜¯å¦èƒ½é€šè¿‡deleteåˆ é™¤å…ƒç´ ï¼Œè‡ªå®šä¹‰æ‰©å±•å±æ€§ï¼ˆIEä¼šå¼‚å¸¸ï¼‰
+		try {																						//Í¨¹ıtryÑéÖ¤ÊÇ·ñÄÜÍ¨¹ıdeleteÉ¾³ıÔªËØ£¬×Ô¶¨ÒåÀ©Õ¹ÊôĞÔ£¨IE»áÒì³££©
 			delete div.test;
 		} catch( e ) {
 			support.deleteExpando = false;
@@ -1344,12 +1344,12 @@
 		div.appendChild( input );
 		support.appendChecked = input.checked;																												// Check if a disconnected checkbox will retain its checked, value of true after appended to the DOM (IE6/7)
 		
-		fragment = doc.createDocumentFragment();																											//åˆ¤æ–­æ˜¯å¦æ”¯æŒå…ƒç´ checkedçŠ¶æ€å…‹éš†
+		fragment = doc.createDocumentFragment();																											//ÅĞ¶ÏÊÇ·ñÖ§³ÖÔªËØchecked×´Ì¬¿ËÂ¡
 		fragment.appendChild( div.firstChild );
-		support.checkClone = fragment.cloneNode( true ).cloneNode( true ).lastChild.checked;					//WebKitå†…æ ¸æµè§ˆå™¨ï¼Œåœ¨æ–‡æ¡£ç¢ç‰‡ä¸­ä¸èƒ½å¤Ÿæ­£ç¡®çš„å…‹éš†checked çŠ¶æ€
+		support.checkClone = fragment.cloneNode( true ).cloneNode( true ).lastChild.checked;					//WebKitÄÚºËä¯ÀÀÆ÷£¬ÔÚÎÄµµËéÆ¬ÖĞ²»ÄÜ¹»ÕıÈ·µÄ¿ËÂ¡checked ×´Ì¬
 		
 		
-		if ( window[ id ] ) {														//åˆ¤æ–­æ˜¯å¦æ”¯æŒscriptå…ƒç´ å¼•å…¥å¹¶æ‰§è¡Œè‡ªå®šä¹‰ä»£ç ï¼ˆIEä¸æ”¯æŒï¼Œåªèƒ½é€šè¿‡scriptå…ƒç´ çš„textå±æ€§ä»£æ›¿ï¼‰
+		if ( window[ id ] ) {														//ÅĞ¶ÏÊÇ·ñÖ§³ÖscriptÔªËØÒıÈë²¢Ö´ĞĞ×Ô¶¨Òå´úÂë£¨IE²»Ö§³Ö£¬Ö»ÄÜÍ¨¹ıscriptÔªËØµÄtextÊôĞÔ´úÌæ£©
 			support.scriptEval = true;
 			delete window[ id ];
 		}
@@ -1415,7 +1415,7 @@
 	
 		// Check if empty table cells still have offsetWidth/Height
 		// (IE < 8 fail this test)
-		support.reliableHiddenOffsets = isSupported && ( tds[ 0 ].offsetHeight === 0 );		//éšè—å…ƒç´ å¯é æ€§æ”¯æŒ
+		support.reliableHiddenOffsets = isSupported && ( tds[ 0 ].offsetHeight === 0 );		//Òş²ØÔªËØ¿É¿¿ĞÔÖ§³Ö
 
 		div.innerHTML = "";
 	
@@ -1451,7 +1451,7 @@
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: ç¼“å­˜æœºåˆ¶æ“ä½œå‡½æ•°
+	description: »º´æ»úÖÆ²Ù×÷º¯Êı
 	version: 1.0.0
 */
 (function(da){
@@ -1461,7 +1461,7 @@
 		da_sequence = 0, 
 		da_winData = {};
 
-	function isEmptyDataObject( obj ) {									//æ ¸æŸ¥ä¸€ä¸ªç¼“å­˜å¯¹è±¡æ˜¯å¦ä¸ºç©º
+	function isEmptyDataObject( obj ) {									//ºË²éÒ»¸ö»º´æ¶ÔÏóÊÇ·ñÎª¿Õ
 		for ( var name in obj ) {
 			// if the public data object is empty, the private is still empty
 			if ( name === "data" && da.isEmptyObj( obj[name] ) ) {
@@ -1505,13 +1505,13 @@
 	}
 
 	da.extend({
-		cache: {},							//daå…¨å±€ç¼“å­˜åŒº
+		cache: {},							//daÈ«¾Ö»º´æÇø
 		uuid: 0,
 		
-		expando: "da"+ da.nowId(),		//æ¯ä¸ªé¡µé¢ç”Ÿæˆä¸€ä¸ªç¼“å­˜åŒºåç§°ï¼Œ
-											//å…ƒç´ é€šè¿‡è¿™ä¸ªåŒåå±æ€§å€¼ï¼Œå­˜æ”¾ç€è‡ªå·±çš„ç¼“å­˜æ•°æ®æ‰€åœ¨å…¨å±€ç¼“å­˜åŒºä¸­çš„ç´¢å¼•å·
+		expando: "da"+ da.nowId(),		//Ã¿¸öÒ³ÃæÉú³ÉÒ»¸ö»º´æÇøÃû³Æ£¬
+											//ÔªËØÍ¨¹ıÕâ¸öÍ¬ÃûÊôĞÔÖµ£¬´æ·Å×Å×Ô¼ºµÄ»º´æÊı¾İËùÔÚÈ«¾Ö»º´æÇøÖĞµÄË÷ÒıºÅ
 		
-		noData: {							//å¯æ€•çš„å®¶ä¼™ä»¬ï¼Œè¿™äº›å…ƒç´ å¦‚æœæƒ³ç»™ä»–ä»¬æ·»åŠ å”¯ä¸€æ ‡è¯†ç¬¦da.expandoå±æ€§ï¼Œä¼šæŠ›å‡ºæ— æ³•æ•è·çš„å¼‚å¸¸ï¼ŒçœŸæ¶å¿ƒ ??????
+		noData: {							//¿ÉÅÂµÄ¼Ò»ïÃÇ£¬ÕâĞ©ÔªËØÈç¹ûÏë¸øËûÃÇÌí¼ÓÎ¨Ò»±êÊ¶·ûda.expandoÊôĞÔ£¬»áÅ×³öÎŞ·¨²¶»ñµÄÒì³££¬Õæ¶ñĞÄ ??????
 			"embed": true,
 			// Ban all objects except for Flash (which handle expandos)
 			"object": "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000",
@@ -1523,8 +1523,8 @@
 			return !!elem && !isEmptyDataObject( elem );
 		},
 
-		acceptData: function( elem ) {						//åˆ¤æ–­ä¸€ä¸ªå…ƒç´ æ˜¯å¦èƒ½å¤Ÿè¿›è¡Œç¼“å­˜æ•°æ®ç›¸å…³æ“ä½œ
-			if ( elem.nodeName ) {							//æ’é™¤ç‰¹æ®Šå…ƒç´ ç±»å‹ å¦‚ï¼šembedã€appletç­‰
+		acceptData: function( elem ) {						//ÅĞ¶ÏÒ»¸öÔªËØÊÇ·ñÄÜ¹»½øĞĞ»º´æÊı¾İÏà¹Ø²Ù×÷
+			if ( elem.nodeName ) {							//ÅÅ³ıÌØÊâÔªËØÀàĞÍ Èç£ºembed¡¢appletµÈ
 				var match = da.noData[ elem.nodeName.toLowerCase() ];		
 
 				if ( match ) {
@@ -1534,34 +1534,34 @@
 			return true;
 		},
 		
-		//daç¼“å­˜å‡½æ•°
+		//da»º´æº¯Êı
 		/*
-			obj:	ç¼“å­˜ç›®æ ‡å¯¹è±¡
-			key:	ç¼“å­˜æ•°æ®ç´¢å¼•å€¼
-			val:	ç¼“å­˜æ•°æ®å†…å®¹
+			obj:	»º´æÄ¿±ê¶ÔÏó
+			key:	»º´æÊı¾İË÷ÒıÖµ
+			val:	»º´æÊı¾İÄÚÈİ
 		*/
-		data: function(obj, key, val, pvt/*å†…éƒ¨ç§ç”¨*/ ){
+		data: function(obj, key, val, pvt/*ÄÚ²¿Ë½ÓÃ*/ ){
 			if ( !da.acceptData( obj ) ) return;
 			
-			var pvtCache,									//å†…éƒ¨ç§æœ‰éƒ¨åˆ†ç¼“å­˜æ•°æ®
-				thisCache,									//ç”¨æˆ·å¼€æ”¾éƒ¨åˆ†ç¼“å­˜æ•°æ®
+			var pvtCache,									//ÄÚ²¿Ë½ÓĞ²¿·Ö»º´æÊı¾İ
+				thisCache,									//ÓÃ»§¿ª·Å²¿·Ö»º´æÊı¾İ
 				internalKey = da.expando,
 				getByName = typeof key === "string",
-				isNode = obj.nodeType,						//å…¼å®¹IEçš„GCåƒåœ¾å›æ”¶æœºåˆ¶ä¸åŒï¼Œæ‰€ä»¥DOMå…ƒç´ å’Œjså¯¹è±¡çš„å¤„ç†æ–¹å¼ä¸ä¸€æ ·
-				cache = isNode ? da.cache : obj,			//åªæœ‰DOMå…ƒç´ éœ€è¦å…¨å±€çš„cacheï¼Œæ™®é€šjså¯¹è±¡æ•°æ®å¯ä»¥ç›´æ¥æŒ‡å‘å¦ä¸€ä¸ªå¯¹è±¡
+				isNode = obj.nodeType,						//¼æÈİIEµÄGCÀ¬»ø»ØÊÕ»úÖÆ²»Í¬£¬ËùÒÔDOMÔªËØºÍjs¶ÔÏóµÄ´¦Àí·½Ê½²»Ò»Ñù
+				cache = isNode ? da.cache : obj,			//Ö»ÓĞDOMÔªËØĞèÒªÈ«¾ÖµÄcache£¬ÆÕÍ¨js¶ÔÏóÊı¾İ¿ÉÒÔÖ±½ÓÖ¸ÏòÁíÒ»¸ö¶ÔÏó
 				id = isNode ? obj[ internalKey ] : obj[ internalKey ] && internalKey,
 				isEvents = ("events" === key),
 				ret;
 			
 			
-			if ( getByName 									//getæ“ä½œæ—¶ï¼Œå½“ç›®æ ‡å¯¹è±¡æ²¡æœ‰ä»»ä½•ç¼“å­˜æ•°æ®ï¼Œç›´æ¥è¿”å›ã€‚
+			if ( getByName 									//get²Ù×÷Ê±£¬µ±Ä¿±ê¶ÔÏóÃ»ÓĞÈÎºÎ»º´æÊı¾İ£¬Ö±½Ó·µ»Ø¡£
 			&& undefined === val 
 			&& (!id || !cache[id] || (!isEvents && !pvt && !cache[id].data))) {
 				return;
 			}
 
 			if ( !id ) {
-				if ( isNode ) {								//åªæœ‰DOMå…ƒç´ æ‰éœ€è¦ä¸€ä¸ªå…¨å±€ç¼“å­˜åŒºç´¢å¼•å·
+				if ( isNode ) {								//Ö»ÓĞDOMÔªËØ²ÅĞèÒªÒ»¸öÈ«¾Ö»º´æÇøË÷ÒıºÅ
 					obj[ internalKey ] = id = ++da.uuid;
 				}
 				else {
@@ -1569,7 +1569,7 @@
 				}
 			}
 			
-			if ( !cache[ id ] ) {							//ç¡®å®šç¼“å­˜åŒºæ˜¯ç©ºçš„,å¹¶åˆå§‹åŒ–
+			if ( !cache[ id ] ) {							//È·¶¨»º´æÇøÊÇ¿ÕµÄ,²¢³õÊ¼»¯
 				cache[ id ] = {};
 
 				// Avoids exposing jQuery metadata on plain JS objects when the object
@@ -1579,83 +1579,83 @@
 				}
 			}
 			
-			if ( "object" === typeof key || "function" === typeof key ) {		//ä»¥é”®å€¼å¯¹çš„æ–¹å¼è¿›è¡Œsetæ“ä½œ
-				if ( pvt ) {													//ç§æœ‰éƒ¨åˆ†
-					cache[ id ] = da.extend( cache[ id ], key );				//setæ“ä½œ,é€šè¿‡da.extend()å‡½æ•°å¯¹ç›®æ ‡è¿›è¡Œç¼“å­˜æ•°æ®
+			if ( "object" === typeof key || "function" === typeof key ) {		//ÒÔ¼üÖµ¶ÔµÄ·½Ê½½øĞĞset²Ù×÷
+				if ( pvt ) {													//Ë½ÓĞ²¿·Ö
+					cache[ id ] = da.extend( cache[ id ], key );				//set²Ù×÷,Í¨¹ıda.extend()º¯Êı¶ÔÄ¿±ê½øĞĞ»º´æÊı¾İ
 				} 
-				else {															//å¼€æ”¾éƒ¨åˆ†
+				else {															//¿ª·Å²¿·Ö
 					cache[ id ].data = da.extend( cache[ id ].data, key );
 				}
 			}
 
 			pvtCache = thisCache = cache[ id ];
 
-			if ( !pvt ) {									//ä¸ºäº†é¿å…daåº“å†…éƒ¨ä½¿ç”¨ç¼“å­˜æ•°æ®åï¼Œå’Œç”¨æˆ·ä½¿ç”¨ç¼“å­˜åå†²çªï¼Œ
-				if ( !thisCache.data ) {					//ç¼“å­˜çš„å­˜å‚¨ç»“æ„æ˜¯ï¼Œç”¨æˆ·ä½¿ç”¨ç¼“å­˜å¯¹è±¡ä»¥åä¸º"data"çš„å¯¹è±¡ï¼ŒåµŒå…¥å†…éƒ¨ä½¿ç”¨ç¼“å­˜å¯¹è±¡ä¸­ã€‚
+			if ( !pvt ) {									//ÎªÁË±ÜÃâda¿âÄÚ²¿Ê¹ÓÃ»º´æÊı¾İÃû£¬ºÍÓÃ»§Ê¹ÓÃ»º´æÃû³åÍ»£¬
+				if ( !thisCache.data ) {					//»º´æµÄ´æ´¢½á¹¹ÊÇ£¬ÓÃ»§Ê¹ÓÃ»º´æ¶ÔÏóÒÔÃûÎª"data"µÄ¶ÔÏó£¬Ç¶ÈëÄÚ²¿Ê¹ÓÃ»º´æ¶ÔÏóÖĞ¡£
 					thisCache.data = {};
 				}
 
-				thisCache = thisCache.data;					//æå‡ºç”¨æˆ·ä½¿ç”¨ç¼“å­˜å¯¹è±¡
+				thisCache = thisCache.data;					//Ìá³öÓÃ»§Ê¹ÓÃ»º´æ¶ÔÏó
 			}
 	
-			if ( undefined !== val ) {						//setæ“ä½œ
+			if ( undefined !== val ) {						//set²Ù×÷
 				thisCache[ da.camelCase( key ) ] = val;
 			}
 
-			if ( isEvents && !thisCache[ key ] ) {			//ç”¨æˆ·å¯ä»¥åˆ©ç”¨"events"ä½œä¸ºkey,æå–å‡ºDOMå…ƒç´ ä¸Šçš„ç›‘å¬äº‹ä»¶ç›¸å…³ç¼“å­˜
-				return pvtCache.events;						//å½“ç„¶å‰ææ˜¯ï¼Œåœ¨ç”¨æˆ·å¯ä½¿ç”¨çš„å¼€å‘éƒ¨åˆ†æ²¡æœ‰å®šä¹‰keyçš„åŒåç¼“å­˜
+			if ( isEvents && !thisCache[ key ] ) {			//ÓÃ»§¿ÉÒÔÀûÓÃ"events"×÷Îªkey,ÌáÈ¡³öDOMÔªËØÉÏµÄ¼àÌıÊÂ¼şÏà¹Ø»º´æ
+				return pvtCache.events;						//µ±È»Ç°ÌáÊÇ£¬ÔÚÓÃ»§¿ÉÊ¹ÓÃµÄ¿ª·¢²¿·ÖÃ»ÓĞ¶¨ÒåkeyµÄÍ¬Ãû»º´æ
 			}
 
-			if ( getByName ) {								//getæ“ä½œ,å¹¶ä¸”æœ‰æŒ‡å®šç¼“å­˜å
-				ret = thisCache[ key ];						//åŸå‹åææ•°æ®ï¼Œè‹¥æä¸å‡ºæ•°æ®ï¼Œè½¬æ¢æˆé©¼å³°æ ¼å¼ï¼Œå†ææ•°æ®
+			if ( getByName ) {								//get²Ù×÷,²¢ÇÒÓĞÖ¸¶¨»º´æÃû
+				ret = thisCache[ key ];						//Ô­ĞÍÃûÌáÊı¾İ£¬ÈôÌá²»³öÊı¾İ£¬×ª»»³ÉÍÕ·å¸ñÊ½£¬ÔÙÌáÊı¾İ
 				
 				if ( ret == null ) {
 					ret = thisCache[ da.camelCase( key ) ];
 				}
 			} 
-			else {											//getæ“ä½œï¼Œå…¨éƒ¨
+			else {											//get²Ù×÷£¬È«²¿
 				ret = thisCache;
 			}
 			
 			return ret;
 		},
 
-		/**å†…éƒ¨ç§ç”¨
+		/**ÄÚ²¿Ë½ÓÃ
 		*/
 		_data: function( obj, name, data ) {
 			return da.data( obj, name, data, true );
 		},
 
-		//daåˆ é™¤ç¼“å­˜å‡½æ•°
+		//daÉ¾³ı»º´æº¯Êı
 		/*
-			obj: ç¼“å­˜ç›®æ ‡å¯¹è±¡
-			key: ç¼“å­˜æ•°æ®ç´¢å¼•å€¼
+			obj: »º´æÄ¿±ê¶ÔÏó
+			key: »º´æÊı¾İË÷ÒıÖµ
 		*/
-		removeData: function(obj, key, pvt/*å†…éƒ¨ç§ç”¨*/) {
+		removeData: function(obj, key, pvt/*ÄÚ²¿Ë½ÓÃ*/) {
 			if ( !da.acceptData( obj ) ) return;
 
 			var thisCache,
 				internalKey = da.expando,
-				isNode = obj.nodeType,					//å…¼å®¹IEçš„GCåƒåœ¾å›æ”¶æœºåˆ¶ä¸åŒï¼Œæ‰€ä»¥DOMå…ƒç´ å’Œjså¯¹è±¡çš„å¤„ç†æ–¹å¼ä¸ä¸€æ ·
-				cache = isNode ? da.cache : obj,		//åªæœ‰DOMå…ƒç´ éœ€è¦å…¨å±€çš„cacheï¼Œæ™®é€šjså¯¹è±¡æ•°æ®å¯ä»¥ç›´æ¥æŒ‡å‘å¦ä¸€ä¸ªå¯¹è±¡
+				isNode = obj.nodeType,					//¼æÈİIEµÄGCÀ¬»ø»ØÊÕ»úÖÆ²»Í¬£¬ËùÒÔDOMÔªËØºÍjs¶ÔÏóµÄ´¦Àí·½Ê½²»Ò»Ñù
+				cache = isNode ? da.cache : obj,		//Ö»ÓĞDOMÔªËØĞèÒªÈ«¾ÖµÄcache£¬ÆÕÍ¨js¶ÔÏóÊı¾İ¿ÉÒÔÖ±½ÓÖ¸ÏòÁíÒ»¸ö¶ÔÏó
 				id = isNode ? obj[ internalKey ] : internalKey;
 
-			if ( !cache[ id ] ) return;					//æ²¡æœ‰ç›®æ ‡å¯¹è±¡ä»»ä½•ç¼“å­˜ï¼Œç›´æ¥è¿”å›
+			if ( !cache[ id ] ) return;					//Ã»ÓĞÄ¿±ê¶ÔÏóÈÎºÎ»º´æ£¬Ö±½Ó·µ»Ø
 			
 			if ( key ) {
-				thisCache = pvt ? cache[ id ] : cache[ id ].data;	//éå†…éƒ¨æ“ä½œï¼Œè¿”å›ç”¨æˆ·ç¼“å­˜æ•°æ®
+				thisCache = pvt ? cache[ id ] : cache[ id ].data;	//·ÇÄÚ²¿²Ù×÷£¬·µ»ØÓÃ»§»º´æÊı¾İ
 
 				if ( thisCache ) {
-					if ( !da.isArray( key ) ) {						//æ”¯æŒæ•°ç»„ã€ç©ºæ ¼åˆ†éš”çš„æ–¹å¼æ‰¹é‡æ“ä½œ
-						if ( key in thisCache ){ 					//åˆ¤æ–­æ˜¯å¦å•å€¼æ“ä½œ
+					if ( !da.isArray( key ) ) {						//Ö§³ÖÊı×é¡¢¿Õ¸ñ·Ö¸ôµÄ·½Ê½ÅúÁ¿²Ù×÷
+						if ( key in thisCache ){ 					//ÅĞ¶ÏÊÇ·ñµ¥Öµ²Ù×÷
 							key = [ key ];
 						}
 						else {
 							key = da.camelCase( key );
-							if ( key in thisCache ) {				//è½¬ä¸ºé©¼å³°æ ¼å¼åï¼Œå†åˆ¤æ–­æ˜¯å¦å•å€¼æ“ä½œ
+							if ( key in thisCache ) {				//×ªÎªÍÕ·å¸ñÊ½ºó£¬ÔÙÅĞ¶ÏÊÇ·ñµ¥Öµ²Ù×÷
 								key = [ key ];
 							} 
-							else {									//ç¡®å®šä¸ºç©ºæ ¼åˆ†éš”çš„æ–¹å¼æ‰¹é‡æ“ä½œ
+							else {									//È·¶¨Îª¿Õ¸ñ·Ö¸ôµÄ·½Ê½ÅúÁ¿²Ù×÷
 								key = key.split( " " );
 							}
 						}
@@ -1665,16 +1665,16 @@
 						delete thisCache[ key[i] ];
 					}
 
-					if ( !( pvt ? isEmptyDataObject : da.isEmptyObj )( thisCache ) ) {		//è‹¥å¯¹è±¡ä»ç„¶è¿˜æœ‰å…¶ä»–ç¼“å­˜æ•°æ®ï¼Œè¿™æ—¶å°±å¯ä»¥å…ˆé€€å‡ºäº†ã€‚
+					if ( !( pvt ? isEmptyDataObject : da.isEmptyObj )( thisCache ) ) {		//Èô¶ÔÏóÈÔÈ»»¹ÓĞÆäËû»º´æÊı¾İ£¬ÕâÊ±¾Í¿ÉÒÔÏÈÍË³öÁË¡£
 						return;
 					}
 				}
 			}
 
-			if ( !pvt ) {										//è‹¥å¯¹è±¡å·²ç»æ²¡æœ‰å…¶ä»–ä»»ä½•ç¼“å­˜æ•°æ®äº†ï¼Œå°±å°†ç¼“å­˜åŒºè‡ªèº«ä¹Ÿé”€æ¯
+			if ( !pvt ) {										//Èô¶ÔÏóÒÑ¾­Ã»ÓĞÆäËûÈÎºÎ»º´æÊı¾İÁË£¬¾Í½«»º´æÇø×ÔÉíÒ²Ïú»Ù
 				delete cache[ id ].data;
 
-				if ( !isEmptyDataObject(cache[ id ]) ) {		//å¤–éƒ¨ç”¨æˆ·æ“ä½œï¼Œä¸èƒ½æ¸…é™¤å†…éƒ¨ç§ç”¨çš„ç¼“å­˜åŒº
+				if ( !isEmptyDataObject(cache[ id ]) ) {		//Íâ²¿ÓÃ»§²Ù×÷£¬²»ÄÜÇå³ıÄÚ²¿Ë½ÓÃµÄ»º´æÇø
 					return;
 				}
 			}
@@ -1791,7 +1791,7 @@
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: Elementå±æ€§ç®¡ç†å™¨ æ ¸å¿ƒä»£ç 
+	description: ElementÊôĞÔ¹ÜÀíÆ÷ ºËĞÄ´úÂë
 	version: 1.0.0
 */
 (function(da){
@@ -1816,7 +1816,7 @@
 			});
 		},
 		
-		/**åˆ¤æ–­å…ƒç´ æ˜¯å¦å­˜åœ¨classæ ·å¼
+		/**ÅĞ¶ÏÔªËØÊÇ·ñ´æÔÚclassÑùÊ½
 		*/
 		hasClass: function( str ) {
 			var target = " " + str + " ";
@@ -1830,7 +1830,7 @@
 			return false;
 		},
 		
-		/**æ·»åŠ classæ ·å¼
+		/**Ìí¼ÓclassÑùÊ½
 		*/
 		addClass: function( param ) {
 			if ( da.isFunction( param ) ) {
@@ -1847,12 +1847,12 @@
 					var item = this.dom[i];
 
 					if ( 1 === item.nodeType ) {
-						if ( !item.className ) {									//classNameä¸ºç©º,ç›´æ¥æ·»åŠ 
+						if ( !item.className ) {									//classNameÎª¿Õ,Ö±½ÓÌí¼Ó
 							item.className = param;
 
 						}
-						else {														//è¿½åŠ 
-							var curClass = " " + item.className + " ",				//å½“å‰className,å‰ååŠ " "ç”¨äºæŸ¥æ‰¾
+						else {														//×·¼Ó
+							var curClass = " " + item.className + " ",				//µ±Ç°className,Ç°ºó¼Ó" "ÓÃÓÚ²éÕÒ
 								newClass = item.className;
 
 							for ( var n = 0, len2 = arrClass.length; n < len2; n++ ) {
@@ -1869,7 +1869,7 @@
 			return this;
 		},
 		
-		/**ç§»é™¤classæ ·å¼
+		/**ÒÆ³ıclassÑùÊ½
 		*/
 		removeClass: function( param ) {
 			if ( da.isFunction(param) ) {
@@ -1887,7 +1887,7 @@
 
 					if ( 1 === item.nodeType && item.className ) {
 						if ( param ) {
-							var curClass = (" " + item.className + " ").replace(daRe_class, " ");		//å»ç©ºæ ¼ã€æ¢è¡Œã€åˆ¶è¡¨ç¬¦
+							var curClass = (" " + item.className + " ").replace(daRe_class, " ");		//È¥¿Õ¸ñ¡¢»»ĞĞ¡¢ÖÆ±í·û
 							
 							for ( var n = 0, len2 = arrClass.length; n < len2; n++ ) {
 								curClass = curClass.replace(" " + arrClass[n] + " ", " ");
@@ -1904,11 +1904,11 @@
 			return this;
 		},
 		
-		/**classæ ·å¼å¢ã€åˆ äº¤æ›¿
+		/**classÑùÊ½Ôö¡¢É¾½»Ìæ
 		*/
 		switchClass: function( param, isAdd ) {
 			var type = typeof param,
-				isForce = !!isAdd;						//å½“ç¬¬äºŒå‚æ•°ä¸ºtrueæ—¶ï¼Œå¼ºåˆ¶æ·»åŠ classæ ·å¼
+				isForce = !!isAdd;						//µ±µÚ¶ş²ÎÊıÎªtrueÊ±£¬Ç¿ÖÆÌí¼ÓclassÑùÊ½
 	
 			if ( da.isFunction( param ) ) {
 				return this.each(function(i) {
@@ -1926,13 +1926,13 @@
 						n = 0;
 
 					while ( (className = arrClass[ n++ ]) ) {
-						state = isForce ? state : !item.hasClass( className );		//å¦‚éå¼ºåˆ¶è®¾ç½®ï¼Œå°±æ ¹æ®å½“å‰çŠ¶æ€å¢æˆ–åˆ 
+						state = isForce ? state : !item.hasClass( className );		//Èç·ÇÇ¿ÖÆÉèÖÃ£¬¾Í¸ù¾İµ±Ç°×´Ì¬Ôö»òÉ¾
 						item[ state ? "addClass" : "removeClass" ]( className );
 					}
 				}
-				else if ( type === "undefined" || type === "boolean" ) {			//æ•´ä¸ªå…ƒç´ classæ ·å¼è¿›è¡Œå¢åˆ åˆ‡æ¢
+				else if ( type === "undefined" || type === "boolean" ) {			//Õû¸öÔªËØclassÑùÊ½½øĞĞÔöÉ¾ÇĞ»»
 					if ( this.className ) {
-						da.data( this, "_da_switchClass", this.className );			//ç¼“å­˜æ—§çš„classæ ·å¼
+						da.data( this, "_da_switchClass", this.className );			//»º´æ¾ÉµÄclassÑùÊ½
 					}
 
 					this.className = (this.className || param === false) ? "" : da.data( this, "_da_switchClass" ) || "";
@@ -2014,16 +2014,16 @@
 			readonly: "readOnly"
 		},
 		
-		//ç‰¹æ®Šå±æ€§Hookå¤„ç†
+		//ÌØÊâÊôĞÔHook´¦Àí
 		attrHooks: {
 			type: {
 				set: function( elem, value ) {
-					if ( daRe_type.test( elem.nodeName ) && elem.parentNode ) {		//å…¼å®¹IE,æŸäº›å…ƒç´ ä¸å…è®¸æ”¹å˜å…ƒç´ çš„typeå±æ€§
-						da.error( "æ¸©é¦¨æç¤º:buttonå’Œinputå…ƒç´ ï¼Œä¸å…è®¸æ”¹å˜typeå±æ€§" );
+					if ( daRe_type.test( elem.nodeName ) && elem.parentNode ) {		//¼æÈİIE,Ä³Ğ©ÔªËØ²»ÔÊĞí¸Ä±äÔªËØµÄtypeÊôĞÔ
+						da.error( "ÎÂÜ°ÌáÊ¾:buttonºÍinputÔªËØ£¬²»ÔÊĞí¸Ä±ätypeÊôĞÔ" );
 					} 
 					else if ( !da.support.radioValue 
 					&& "radio" === value 
-					&& da.isNodeName(elem, "input") ) {								//å…¼å®¹IE,å¦‚æœæŸå…ƒç´ è®¾ç½®typeä¸ºradioç±»å‹ï¼Œéœ€è¦é‡æ–°è®¾ç½®é»˜è®¤valueå€¼
+					&& da.isNodeName(elem, "input") ) {								//¼æÈİIE,Èç¹ûÄ³ÔªËØÉèÖÃtypeÎªradioÀàĞÍ£¬ĞèÒªÖØĞÂÉèÖÃÄ¬ÈÏvalueÖµ
 						var val = elem.getAttribute("value");
 						elem.setAttribute( "type", value );
 						
@@ -2048,7 +2048,7 @@
 			}
 		},
 		
-		//ç‰¹æ®Šå…ƒç´ çš„èµ‹å€¼Hookå¤„ç†
+		//ÌØÊâÔªËØµÄ¸³ÖµHook´¦Àí
 		valHooks: {
 			option: {
 				get: function( elem ) {
@@ -2115,21 +2115,21 @@
 			}
 		},
 
-		//æ ¸å¿ƒå…ƒç´ å±æ€§æ“ä½œå‡½æ•°
+		//ºËĞÄÔªËØÊôĞÔ²Ù×÷º¯Êı
 		/*
-			elem: å…ƒç´ å¯¹è±¡
-			name: å±æ€§åç§°
-			value:  å±æ€§å€¼
-			pass: æ˜¯å¦é€šè¿‡daç±»çš„ç›¸åº” æˆå‘˜å‡½æ•°æ¥å¤„ç†å±æ€§å€¼
+			elem: ÔªËØ¶ÔÏó
+			name: ÊôĞÔÃû³Æ
+			value:  ÊôĞÔÖµ
+			pass: ÊÇ·ñÍ¨¹ıdaÀàµÄÏàÓ¦ ³ÉÔ±º¯ÊıÀ´´¦ÀíÊôĞÔÖµ
 		*/
 		attr: function( elem, name, value, pass ) {
-			var nType = elem.nodeType;																			//è·å¾—å…ƒç´ å¯¹è±¡èŠ‚ç‚¹ç±»å‹
+			var nType = elem.nodeType;																			//»ñµÃÔªËØ¶ÔÏó½ÚµãÀàĞÍ
 			
-			if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {			//ä¸èƒ½å¯¹æ–‡æœ¬ã€æ³¨é‡Šã€XMLå±æ€§èŠ‚ç‚¹è¿›è¡Œå±æ€§æ“ä½œï¼Œç›´æ¥è¿”å›undefined
+			if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {			//²»ÄÜ¶ÔÎÄ±¾¡¢×¢ÊÍ¡¢XMLÊôĞÔ½Úµã½øĞĞÊôĞÔ²Ù×÷£¬Ö±½Ó·µ»Øundefined
 				return undefined;
 			}
 	
-			if ( pass && name in da.attrFn ) {															//å…è®¸é€šè¿‡ç‰¹æ®Šæˆå‘˜å‡½æ•°ï¼Œæœ‰é’ˆå¯¹æ€§çš„å¤„ç†ï¼Œå¹¶ä¸”è¯¥å±æ€§ç±»å‹æ­£å¥½æœ‰ä¸ä¹‹å¯¹åº”çš„å¤„ç†å‡½æ•°ï¼Œå°±ç›´æ¥è°ƒç”¨æˆå‘˜å‡½æ•°è¿›è¡Œå¤„ç†ã€‚
+			if ( pass && name in da.attrFn ) {															//ÔÊĞíÍ¨¹ıÌØÊâ³ÉÔ±º¯Êı£¬ÓĞÕë¶ÔĞÔµÄ´¦Àí£¬²¢ÇÒ¸ÃÊôĞÔÀàĞÍÕıºÃÓĞÓëÖ®¶ÔÓ¦µÄ´¦Àíº¯Êı£¬¾ÍÖ±½Óµ÷ÓÃ³ÉÔ±º¯Êı½øĞĞ´¦Àí¡£
 				return da( elem )[ name ]( value );
 			}
 			
@@ -2146,7 +2146,7 @@
 					formHook :
 					undefined );
 	
-			if ( value !== undefined ) {									//setæ“ä½œ
+			if ( value !== undefined ) {									//set²Ù×÷
 				if ( value === null || (value === false && !daRe_special.test( name )) ) {
 					da.removeAttr( elem, name );
 					return undefined;
@@ -2170,7 +2170,7 @@
 				}
 	
 			} 
-			else {															//getæ“ä½œ
+			else {															//get²Ù×÷
 				if ( hooks && "get" in hooks && notxml ) {
 					return hooks.get( elem, name );
 	
@@ -2183,19 +2183,19 @@
 			}
 		},
 		
-		//ç§»é™¤å…ƒç´ å±æ€§
+		//ÒÆ³ıÔªËØÊôĞÔ
 		/*
-			elem: å…ƒç´ å¯¹è±¡
-			name: å±æ€§å
+			elem: ÔªËØ¶ÔÏó
+			name: ÊôĞÔÃû
 		*/
 		removeAttr: function( elem, name ) {
 				if ( 1 === elem.nodeType ) {
 						name = da.attrFix[ name ] || name;
 					
-						if ( da.support.getSetAttribute ) {							//åˆ¤æ–­æµè§ˆå™¨æ˜¯å¦æ”¯æŒremoveAttributeå‡½æ•°
+						if ( da.support.getSetAttribute ) {							//ÅĞ¶Ïä¯ÀÀÆ÷ÊÇ·ñÖ§³ÖremoveAttributeº¯Êı
 							elem.removeAttribute( name );
 						}
-						else {														//å¦‚æœä¸æ”¯æŒï¼Œå¯ä»¥é€šè¿‡XMLèŠ‚ç‚¹ç§»é™¤å‡½æ•°å®Œæˆ
+						else {														//Èç¹û²»Ö§³Ö£¬¿ÉÒÔÍ¨¹ıXML½ÚµãÒÆ³ıº¯ÊıÍê³É
 							da.attr( elem, name, "" );
 							elem.removeAttributeNode( elem.getAttributeNode( name ) );
 						}
@@ -2206,7 +2206,7 @@
 
 
 	// IE6/7 do not support getting/setting some attributes with get/setAttribute
-	if ( !da.support.getSetAttribute ) {											//å…¼å®¹IEé©¼å³°æ ¼å¼
+	if ( !da.support.getSetAttribute ) {											//¼æÈİIEÍÕ·å¸ñÊ½
 		da.attrFix = da.extend( da.attrFix, {
 			"for": "htmlFor",
 			"class": "className",
@@ -2263,7 +2263,7 @@
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: äº‹ä»¶ç®¡ç†æœºåˆ¶ æ ¸å¿ƒä»£ç 
+	description: ÊÂ¼ş¹ÜÀí»úÖÆ ºËĞÄ´úÂë
 	version: 1.0.0
 */
 (function(da){
@@ -2297,27 +2297,27 @@
 		);
 	}
 	
-	//æ”¯æŒç»‘å®šhoveräº‹ä»¶(è½¬ä¸ºmouseenter$1å’Œmouseleave$1)
+	//Ö§³Ö°ó¶¨hoverÊÂ¼ş(×ªÎªmouseenter$1ºÍmouseleave$1)
 	function hoverHack( events ) {
 		return da.event.special.hover ? events : events.replace( daRe_hoverHack, "mouseenter$1 mouseleave$1" );
 	}
 	
-	//æ¸…ç†å‡½æ•°
+	//ÇåÀíº¯Êı
 	function fnCleanup( nm ) {
 		return nm.replace( daRe_escape, "\\$&" );
 	}
 	
-	//æ’è¿”å›Falseçš„å‡½æ•°
+	//ºã·µ»ØFalseµÄº¯Êı
 	function fnReturnFalse() {
 		return false;
 	}
 	
-	//æ’è¿”å›Trueçš„å‡½æ•°
+	//ºã·µ»ØTrueµÄº¯Êı
 	function fnReturnTrue() {
 		return true;
 	}
 	
-	//äº‹ä»¶ç§»é™¤å…¬å…±å‡½æ•°
+	//ÊÂ¼şÒÆ³ı¹«¹²º¯Êı
 	da.removeEvent = document.removeEventListener ?
 	function( elem, type, handle ) {
 		if ( elem.removeEventListener ) {
@@ -2330,17 +2330,17 @@
 		}
 	};
 
-	//da.Eventç±»æ„é€ å‡½æ•°
+	//da.EventÀà¹¹Ôìº¯Êı
 	/*
-		src: åŸå§‹çš„eventå¯¹è±¡ï¼Œä¹Ÿå¯ä»¥æ˜¯äº‹ä»¶ç±»å‹å­—ç¬¦ä¸²å¦‚ï¼š"click","mouseover"ç­‰( thisä¸ºå°è£…åçš„eventå¯¹è±¡ )
+		src: Ô­Ê¼µÄevent¶ÔÏó£¬Ò²¿ÉÒÔÊÇÊÂ¼şÀàĞÍ×Ö·û´®Èç£º"click","mouseover"µÈ( thisÎª·â×°ºóµÄevent¶ÔÏó )
 	*/
 	da.Event = function( src ) {
-		if ( !this.preventDefault ) {				//å–æ¶ˆé»˜è®¤çš„äº‹ä»¶åŠ¨ä½œ
+		if ( !this.preventDefault ) {				//È¡ÏûÄ¬ÈÏµÄÊÂ¼ş¶¯×÷
 			return new da.Event( src );
 		}
 	
 		if ( src && src.type ) {
-			this.originalEvent = src;					//å°†åŸå§‹eventå¯¹è±¡ç¼“å­˜å…¥ï¼Œæ–°eventå¯¹è±¡çš„å±æ€§å˜é‡ä¸­ï¼Œä¾›åé¢åŸå‹æ”¹é€ æ—¶è°ƒç”¨
+			this.originalEvent = src;					//½«Ô­Ê¼event¶ÔÏó»º´æÈë£¬ĞÂevent¶ÔÏóµÄÊôĞÔ±äÁ¿ÖĞ£¬¹©ºóÃæÔ­ĞÍ¸ÄÔìÊ±µ÷ÓÃ
 			this.type = src.type;
 
 			// Events bubbling up the document may have been marked as prevented
@@ -2349,53 +2349,53 @@
 					fnReturnTrue : fnReturnFalse;
 		}
 		else {
-			this.type = src;									//å¦‚æœsrcä¼ å…¥çš„å‚æ•°æ˜¯å­—ç¬¦ä¸²ç±»å‹ï¼šda.Event("click");
+			this.type = src;									//Èç¹ûsrc´«ÈëµÄ²ÎÊıÊÇ×Ö·û´®ÀàĞÍ£ºda.Event("click");
 		}
 	
-		this.timeStamp = da.nowId();				//ä¿®æ­£timeStamp,å› ä¸ºfirefoxä¸­ä¸€äº›eventçš„æ—¶é—´æˆ³ä¸å‡†ç¡®ï¼Œæ‰€ä»¥è¿˜æ˜¯è‡ªå·±å®šä¹‰ä¸ªæ¥å¾—ä¿é™©
-		this[ da.expando ] = true;				//å¯¹å½“å‰eventå¯¹è±¡æ‰“ä¸Šå·²åšå°è£…å¤„ç†çš„æ ‡å¿—
+		this.timeStamp = da.nowId();				//ĞŞÕıtimeStamp,ÒòÎªfirefoxÖĞÒ»Ğ©eventµÄÊ±¼ä´Á²»×¼È·£¬ËùÒÔ»¹ÊÇ×Ô¼º¶¨Òå¸öÀ´µÃ±£ÏÕ
+		this[ da.expando ] = true;				//¶Ôµ±Ç°event¶ÔÏó´òÉÏÒÑ×ö·â×°´¦ÀíµÄ±êÖ¾
 		
 	};
 	
-	//å¯¹da.Eventå¯¹è±¡åŸå‹è¿›è¡Œæ”¹é€ 
+	//¶Ôda.Event¶ÔÏóÔ­ĞÍ½øĞĞ¸ÄÔì
 	da.Event.prototype = {
 		isDefaultPrevented: fnReturnFalse,
 		isPropagationStopped: fnReturnFalse,
 		isImmediatePropagationStopped: fnReturnFalse,
 		
-		//å–æ¶ˆäº‹ä»¶é»˜è®¤åŠ¨ä½œ
+		//È¡ÏûÊÂ¼şÄ¬ÈÏ¶¯×÷
 		preventDefault: function() {
-			this.isDefaultPrevented = fnReturnTrue;					//ä¸­æ­¢äº‹ä»¶é»˜è®¤åŠ¨ä½œ åˆ¤å®šå‡½æ•°( é»˜è®¤è¿”å›ä¸ºfalseï¼Œå³å…è®¸ )
+			this.isDefaultPrevented = fnReturnTrue;					//ÖĞÖ¹ÊÂ¼şÄ¬ÈÏ¶¯×÷ ÅĞ¶¨º¯Êı( Ä¬ÈÏ·µ»ØÎªfalse£¬¼´ÔÊĞí )
 			
-			var e = this.originalEvent;											//å¼¹å‡ºåŸå§‹äº‹ä»¶å¯¹è±¡
+			var e = this.originalEvent;											//µ¯³öÔ­Ê¼ÊÂ¼ş¶ÔÏó
 			if ( !e ) return;
 			
-			if ( e.preventDefault )	e.preventDefault();			//å¦‚æœäº‹ä»¶å¯¹è±¡æœ¬èº«æœ‰preventDefault()å‡½æ•°ï¼Œå°±è°ƒç”¨
-			else e.returnValue = false;											//å¦‚æœæ²¡æœ‰preventDefault()å‡½æ•°,å°±å°†returnValueå±æ€§å€¼è®¾ç½®ä¸ºfalseï¼Œè¿™ä¹Ÿæ˜¯é’ˆå¯¹IEæµè§ˆå™¨çš„
+			if ( e.preventDefault )	e.preventDefault();			//Èç¹ûÊÂ¼ş¶ÔÏó±¾ÉíÓĞpreventDefault()º¯Êı£¬¾Íµ÷ÓÃ
+			else e.returnValue = false;											//Èç¹ûÃ»ÓĞpreventDefault()º¯Êı,¾Í½«returnValueÊôĞÔÖµÉèÖÃÎªfalse£¬ÕâÒ²ÊÇÕë¶ÔIEä¯ÀÀÆ÷µÄ
 		},
 		
-		//ä¸­æ­¢çˆ¶çº§äº‹ä»¶å†’æ³¡
+		//ÖĞÖ¹¸¸¼¶ÊÂ¼şÃ°Åİ
 		stopPropagation: function() {
-			this.isPropagationStopped = fnReturnTrue;				//ä¸­æ­¢çˆ¶çº§äº‹ä»¶å†’æ³¡ åˆ¤å®šå‡½æ•°( é»˜è®¤è¿”å›ä¸ºfalseï¼Œå³å…è®¸ )
+			this.isPropagationStopped = fnReturnTrue;				//ÖĞÖ¹¸¸¼¶ÊÂ¼şÃ°Åİ ÅĞ¶¨º¯Êı( Ä¬ÈÏ·µ»ØÎªfalse£¬¼´ÔÊĞí )
 	
-			var e = this.originalEvent;											//å¼¹å‡ºåŸå§‹äº‹ä»¶å¯¹è±¡
+			var e = this.originalEvent;											//µ¯³öÔ­Ê¼ÊÂ¼ş¶ÔÏó
 			if ( !e ) return;
 			
-			if ( e.stopPropagation ) e.stopPropagation();		//å¦‚æœäº‹ä»¶å¯¹è±¡æœ¬èº«æœ‰stopPropagation()å‡½æ•°ï¼Œå°±è°ƒç”¨
-			else e.cancelBubble = true;											//å¦‚æœæ²¡æœ‰stopPropagation()å‡½æ•°,å°±å°†cancelBubbleå±æ€§å€¼è®¾ç½®ä¸ºtrueï¼Œè¿™ä¹Ÿæ˜¯é’ˆå¯¹IEæµè§ˆå™¨çš„
+			if ( e.stopPropagation ) e.stopPropagation();		//Èç¹ûÊÂ¼ş¶ÔÏó±¾ÉíÓĞstopPropagation()º¯Êı£¬¾Íµ÷ÓÃ
+			else e.cancelBubble = true;											//Èç¹ûÃ»ÓĞstopPropagation()º¯Êı,¾Í½«cancelBubbleÊôĞÔÖµÉèÖÃÎªtrue£¬ÕâÒ²ÊÇÕë¶ÔIEä¯ÀÀÆ÷µÄ
 				
 		},
 		
-		//ä¸­æ­¢æœ¬åœ°æ¬¡ä¼˜å…ˆçº§çš„äº‹ä»¶å“åº” å’Œçˆ¶çº§äº‹ä»¶ä¼ é€’( äº‹ä»¶å†’æ³¡ )
+		//ÖĞÖ¹±¾µØ´ÎÓÅÏÈ¼¶µÄÊÂ¼şÏìÓ¦ ºÍ¸¸¼¶ÊÂ¼ş´«µİ( ÊÂ¼şÃ°Åİ )
 		stopImmediatePropagation: function() {
-			this.isImmediatePropagationStopped = fnReturnTrue;			//ä¸­æ­¢æœ¬åœ°å’Œçˆ¶çº§å†’æ³¡ åˆ¤å®šå‡½æ•°( é»˜è®¤è¿”å›ä¸ºfalseï¼Œå³å…è®¸ )
+			this.isImmediatePropagationStopped = fnReturnTrue;			//ÖĞÖ¹±¾µØºÍ¸¸¼¶Ã°Åİ ÅĞ¶¨º¯Êı( Ä¬ÈÏ·µ»ØÎªfalse£¬¼´ÔÊĞí )
 			
-			this.stopPropagation();													//å¦‚æœäº‹ä»¶å¯¹è±¡æœ¬èº«æœ‰stopPropagation()å‡½æ•°ï¼Œå°±è°ƒç”¨
+			this.stopPropagation();													//Èç¹ûÊÂ¼ş¶ÔÏó±¾ÉíÓĞstopPropagation()º¯Êı£¬¾Íµ÷ÓÃ
 			
 		}
 	};
 	
-	//1.3.5ç‰ˆæœ¬è¿½åŠ ï¼Œæ–¹ä¾¿è®°å¿†ä½¿ç”¨
+	//1.3.5°æ±¾×·¼Ó£¬·½±ã¼ÇÒäÊ¹ÓÃ
 	da.Event.prototype.noDefault = da.Event.prototype.preventDefault;
 	da.Event.prototype.noParent = da.Event.prototype.stopPropagation;
 
@@ -2405,7 +2405,7 @@
 				"fromElement","handler","keyCode","layerX","layerY","metaKey","newValue",
 				"offsetX","offsetY","pageX","pageY","prevValue","relatedNode","relatedTarget",
 				"screenX","screenY","shiftKey","srcElement","target","toElement","view",
-				"wheelDelta","which"],										//eventå¯¹è±¡çš„æ‰€æœ‰ æˆå‘˜åˆ—è¡¨
+				"wheelDelta","which"],										//event¶ÔÏóµÄËùÓĞ ³ÉÔ±ÁĞ±í
 		guid: 1,
 		// proxy: da.proxy,
 		
@@ -2414,7 +2414,7 @@
 		keyHooks: {
 			props: "char charCode key keyCode".split(" "),
 			filter: function( event, original ) {
-				if ( event.which == null ) {					//ä¿®æ­£whichï¼Œé’ˆå¯¹æŒ‰é”®äº‹ä»¶ charCodeï¼ˆé”®ç›˜ï¼‰keyCodeï¼ˆé¼ æ ‡ï¼‰
+				if ( event.which == null ) {					//ĞŞÕıwhich£¬Õë¶Ô°´¼üÊÂ¼ş charCode£¨¼üÅÌ£©keyCode£¨Êó±ê£©
 					event.which = original.charCode != null ? original.charCode : original.keyCode;
 				}
 
@@ -2429,8 +2429,8 @@
 					button = original.button,
 					fromElement = original.fromElement;
 
-				if ( event.pageX == null && original.clientX != null ) {	//ä¿®æ­£pageX/Yã€clientX/Yå±æ€§,eventäº‹ä»¶çš„ä½ç½®æ˜¯ç›¸å¯¹pageï¼Œå¦‚æœé¡µé¢å¯ä»¥æ»šåŠ¨ï¼Œ
-																			//clientä½ç½®è¿˜è¦åŠ ä¸Šscrollï¼Œå¦‚æœæ˜¯IEæµè§ˆå™¨ï¼Œè¿˜è¦å‡å»bodyçš„è¾¹æ¡†å®½
+				if ( event.pageX == null && original.clientX != null ) {	//ĞŞÕıpageX/Y¡¢clientX/YÊôĞÔ,eventÊÂ¼şµÄÎ»ÖÃÊÇÏà¶Ôpage£¬Èç¹ûÒ³Ãæ¿ÉÒÔ¹ö¶¯£¬
+																			//clientÎ»ÖÃ»¹Òª¼ÓÉÏscroll£¬Èç¹ûÊÇIEä¯ÀÀÆ÷£¬»¹Òª¼õÈ¥bodyµÄ±ß¿ò¿í
 					eventDoc = event.target.ownerDocument || document;		
 					doc = eventDoc.documentElement;
 					body = eventDoc.body;
@@ -2439,14 +2439,14 @@
 					event.pageY = original.clientY + ( doc && doc.scrollTop  || body && body.scrollTop  || 0 ) - ( doc && doc.clientTop  || body && body.clientTop  || 0 );
 				}
 
-				if ( !event.relatedTarget && fromElement ) {				//ä¿®æ­£relatedTargetå±æ€§ï¼Œé’ˆå¯¹mouseoverå’Œmouseroutäº‹ä»¶ï¼›
-																			//IEåˆ†æˆäº†toå’Œfromä¸¤ä¸ªå±æ€§å­˜æ”¾ï¼›FFæ²¡æœ‰åˆ†
+				if ( !event.relatedTarget && fromElement ) {				//ĞŞÕırelatedTargetÊôĞÔ£¬Õë¶ÔmouseoverºÍmouseroutÊÂ¼ş£»
+																			//IE·Ö³ÉÁËtoºÍfromÁ½¸öÊôĞÔ´æ·Å£»FFÃ»ÓĞ·Ö
 					event.relatedTarget = fromElement === event.target ? original.toElement : fromElement;
 				}
 
-				//åœ¨ IE é‡Œé¢ æ²¡æœ‰æŒ‰é”®åŠ¨ä½œçš„æ—¶å€™ event.button = 0; å·¦é”®æ˜¯1; ä¸­é”®æ˜¯4; å³é”®æ˜¯2
-				//åœ¨ Firefox é‡Œé¢ æ²¡æœ‰æŒ‰é”®åŠ¨ä½œçš„æ—¶å€™ event.button = 0; å·¦é”®æ˜¯0 ;ä¸­é”®æ˜¯1 ;å³é”®æ˜¯2
-				//TODO: è¿™æ˜¯ä¸æ ‡å‡†çš„ï¼Œæœ€å¥½ä¸è¦ç”¨è¿™ä¸ª
+				//ÔÚ IE ÀïÃæ Ã»ÓĞ°´¼ü¶¯×÷µÄÊ±ºò event.button = 0; ×ó¼üÊÇ1; ÖĞ¼üÊÇ4; ÓÒ¼üÊÇ2
+				//ÔÚ Firefox ÀïÃæ Ã»ÓĞ°´¼ü¶¯×÷µÄÊ±ºò event.button = 0; ×ó¼üÊÇ0 ;ÖĞ¼üÊÇ1 ;ÓÒ¼üÊÇ2
+				//TODO: ÕâÊÇ²»±ê×¼µÄ£¬×îºÃ²»ÒªÓÃÕâ¸ö
 				if ( !event.which && button !== undefined ) {
 					event.which = ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
 				}
@@ -2455,60 +2455,60 @@
 			}
 		},
 		
-		//äº‹ä»¶å°è£…å‡½æ•°
+		//ÊÂ¼ş·â×°º¯Êı
 		/*
-			event: äº‹ä»¶å¯¹è±¡
+			event: ÊÂ¼ş¶ÔÏó
 		*/
 		fix: function( event ) {
-			if ( event[ da.expando ] ) {							//eventå¯¹è±¡å·²ç»å°è£…è¿‡, ç›´æ¥é€€å‡º
+			if ( event[ da.expando ] ) {							//event¶ÔÏóÒÑ¾­·â×°¹ı, Ö±½ÓÍË³ö
 				return event;
 			}
 	
-			var originalEvent = event,								//ç¼“å­˜ä¸€ä¸ªåŸå§‹eventå¯¹è±¡
+			var originalEvent = event,								//»º´æÒ»¸öÔ­Ê¼event¶ÔÏó
 				fixHook = da.event.fixHooks[ event.type ] || {};
 				copy = fixHook.props ? this.props.concat( fixHook.props ) : this.props;
 				
-			event = da.Event( originalEvent );						//eventå¯¹è±¡å¹¶å¯¹å…¶è¿›è¡ŒåŸå‹æ”¹é€ 
+			event = da.Event( originalEvent );						//event¶ÔÏó²¢¶ÔÆä½øĞĞÔ­ĞÍ¸ÄÔì
 	
-			for ( var i = copy.length; i; ) {						//ç»§æ‰¿æµè§ˆå™¨åŸeventå¯¹è±¡çš„å±æ€§
+			for ( var i = copy.length; i; ) {						//¼Ì³Ğä¯ÀÀÆ÷Ô­event¶ÔÏóµÄÊôĞÔ
 				prop = copy[ --i ];
 				event[ prop ] = originalEvent[ prop ];
 			}
 		
-			if ( !event.target ) {									//ç”±äºtargetå±æ€§çš„é‡è¦æ€§ï¼Œæˆ‘ä»¬è¦å†æ¬¡ç¡®è®¤æ˜¯å¦è¢«ç»§æ‰¿è¿‡æ¥(å…¼å®¹IE 6/7/8ã€Safari2)
+			if ( !event.target ) {									//ÓÉÓÚtargetÊôĞÔµÄÖØÒªĞÔ£¬ÎÒÃÇÒªÔÙ´ÎÈ·ÈÏÊÇ·ñ±»¼Ì³Ğ¹ıÀ´(¼æÈİIE 6/7/8¡¢Safari2)
 				event.target = originalEvent.srcElement || document;
 			}
 
-			if ( event.target.nodeType === 3 ) {					//é¿å…targetå±æ€§æŒ‡å‘çš„æ˜¯ä¸€ä¸ªæ–‡æœ¬å¯¹è±¡(å…¼å®¹Safari)
+			if ( event.target.nodeType === 3 ) {					//±ÜÃâtargetÊôĞÔÖ¸ÏòµÄÊÇÒ»¸öÎÄ±¾¶ÔÏó(¼æÈİSafari)
 				event.target = event.target.parentNode;
 			}
 
-			if ( event.metaKey === undefined ) {					//ä¿®æ­£metaKeyï¼Œè‹¹æœç”µè„‘æ²¡æœ‰Ctrlé”®ï¼Œåªæœ‰metaé”®
+			if ( event.metaKey === undefined ) {					//ĞŞÕımetaKey£¬Æ»¹ûµçÄÔÃ»ÓĞCtrl¼ü£¬Ö»ÓĞmeta¼ü
 				event.metaKey = event.ctrlKey;
 			}
 
-			return fixHook.filter? fixHook.filter( event, originalEvent ) : event;			//ç‰¹æ®Šäº‹ä»¶ï¼Œéœ€è¦ç‰¹æ®Šç­›é€‰å¤„ç†
+			return fixHook.filter? fixHook.filter( event, originalEvent ) : event;			//ÌØÊâÊÂ¼ş£¬ĞèÒªÌØÊâÉ¸Ñ¡´¦Àí
 		},
 		
-		global: {},						//äº‹ä»¶ç±»å‹æ³¨å†Œä½¿ç”¨æƒ…å†µï¼Œæ ‡å¿—é›†
+		global: {},						//ÊÂ¼şÀàĞÍ×¢²áÊ¹ÓÃÇé¿ö£¬±êÖ¾¼¯
 
-		//åˆ†æ´¾è‡ªå®šä¹‰äº‹ä»¶å‡½æ•°ï¼Œé€šè¿‡å‘½åç©ºé—´åˆ†ç±»å’Œæœ‰åºçš„æ‰§è¡Œ( thisæ˜¯è§¦å‘eventäº‹ä»¶çš„æºå…ƒç´ å¯¹è±¡ )
+		//·ÖÅÉ×Ô¶¨ÒåÊÂ¼şº¯Êı£¬Í¨¹ıÃüÃû¿Õ¼ä·ÖÀàºÍÓĞĞòµÄÖ´ĞĞ( thisÊÇ´¥·¢eventÊÂ¼şµÄÔ´ÔªËØ¶ÔÏó )
 		/*
-			event: å·²ç»å°è£…è¿‡çš„da.Eventäº‹ä»¶å¯¹è±¡
+			event: ÒÑ¾­·â×°¹ıµÄda.EventÊÂ¼ş¶ÔÏó
 		*/
 		dispatch: function( event ) {
-			event = da.event.fix( event || window.event );				//ä¿®æ­£ä¼ å…¥çš„eventå¯¹è±¡ï¼Œä¿è¯å…¶æ˜¯å°è£…è¿‡çš„
+			event = da.event.fix( event || window.event );				//ĞŞÕı´«ÈëµÄevent¶ÔÏó£¬±£Ö¤ÆäÊÇ·â×°¹ıµÄ
 			
 			var handlers = ( (da._data( this, "events" ) || {} )[ event.type ] || []),
 				delegateCount = handlers.delegateCount,
-				args = [].slice.call( arguments, 0 ),					//æ•°ç»„åŒ–å‚æ•°åˆ—è¡¨
+				args = [].slice.call( arguments, 0 ),					//Êı×é»¯²ÎÊıÁĞ±í
 				run_all = !event.exclusive && !event.namespace,
 				special = da.event.special[ event.type ] || {},
 				handlerQueue = [],
 				daObj, cur, selMatch, matches, handleObj, sel;
 			
-			args[0] = event;											//ç”¨å°è£…å¥½çš„Eventå¯¹è±¡ä»£æ›¿åŸç”Ÿæµè§ˆå™¨eventå¯¹è±¡ä½¿ç”¨
-			event.delegateTarget = this;								//äº‹ä»¶æ‰˜ç®¡ç›®æ ‡æŒ‡å‘è‡ªå·±
+			args[0] = event;											//ÓÃ·â×°ºÃµÄEvent¶ÔÏó´úÌæÔ­Éúä¯ÀÀÆ÷event¶ÔÏóÊ¹ÓÃ
+			event.delegateTarget = this;								//ÊÂ¼şÍĞ¹ÜÄ¿±êÖ¸Ïò×Ô¼º
 			
 			/*TODO:	
 			// Call the preDispatch hook for the mapped type, and let it bail if desired
@@ -2517,23 +2517,23 @@
 			} */
 
 			// Determine handlers that should run if there are delegated events
-			if ( delegateCount && !(event.button && event.type === "click") ) {			//é¿å…éé¼ æ ‡å·¦å•å‡»çš„äº‹ä»¶å†’æ³¡
+			if ( delegateCount && !(event.button && event.type === "click") ) {			//±ÜÃâ·ÇÊó±ê×óµ¥»÷µÄÊÂ¼şÃ°Åİ
 				// Pregenerate a single jQuery object for reuse with .is()
 				daObj = da(this);
 				daObj.context = this.ownerDocument || this;
 
-				for ( cur = event.target; cur != this; cur = cur.parentNode || this ) {	//äº‹ä»¶å†’æ³¡å¤„ç†
-					if ( cur.disabled !== true ) {										//ä¸å¤„ç†ä¸å¯ç”¨çš„å…ƒç´ 
+				for ( cur = event.target; cur != this; cur = cur.parentNode || this ) {	//ÊÂ¼şÃ°Åİ´¦Àí
+					if ( cur.disabled !== true ) {										//²»´¦Àí²»¿ÉÓÃµÄÔªËØ
 						selMatch = {};
 						matches = [];
 						daObj.dom[0] = cur;
 						
 						for ( var i = 0; i < delegateCount; i++ ) {						
-							handleObj = handlers[ i ];									//äº‹ä»¶å¤„ç†ç»“æ„ä½“
-							sel = handleObj.selector;									//å§”æ‰˜å¯¹è±¡é€‰æ‹©å™¨
+							handleObj = handlers[ i ];									//ÊÂ¼ş´¦Àí½á¹¹Ìå
+							sel = handleObj.selector;									//Î¯ÍĞ¶ÔÏóÑ¡ÔñÆ÷
 
 							if ( selMatch[ sel ] === undefined ) {
-								selMatch[ sel ] = (										//å¿«é€ŸåŒ¹é…äº‹ä»¶å§”æ‰˜å¯¹è±¡
+								selMatch[ sel ] = (										//¿ìËÙÆ¥ÅäÊÂ¼şÎ¯ÍĞ¶ÔÏó
 									handleObj.quick ? quickIs( cur, handleObj.quick ) : daObj.is( sel )
 								);
 							}
@@ -2593,66 +2593,66 @@
 			return event.result;
 		},
 	
-		//ç»™å…ƒç´ ç»‘å®šäº‹ä»¶
+		//¸øÔªËØ°ó¶¨ÊÂ¼ş
 		/*
-			elem: ç›®æ ‡å…ƒç´ å¯¹è±¡
-			types: äº‹ä»¶ç±»å‹
-			handler: è‡ªå®šä¹‰äº‹ä»¶å›è°ƒå‡½æ•°,å€¼ä¸ºfalseå¯ä»¥å±è”½äº‹ä»¶å“åº”
-			data: é¢å¤–è‡ªå®šä¹‰ä¼ å…¥æ•°æ®å¯¹è±¡
+			elem: Ä¿±êÔªËØ¶ÔÏó
+			types: ÊÂ¼şÀàĞÍ
+			handler: ×Ô¶¨ÒåÊÂ¼ş»Øµ÷º¯Êı,ÖµÎªfalse¿ÉÒÔÆÁ±ÎÊÂ¼şÏìÓ¦
+			data: ¶îÍâ×Ô¶¨Òå´«ÈëÊı¾İ¶ÔÏó
 		*/
 		add: function( elem, types, handler, data, selector ) {
 			var tns, type, namespaces, 
-				elemData,				//å…ƒç´ dataç¼“å­˜å¯¹è±¡
+				elemData,				//ÔªËØdata»º´æ¶ÔÏó
 				events, eventHandle,
-				handleObjIn,			//handleObjInç”¨äºç¼“å­˜è‡ªå®šä¹‰å‡½æ•°å‚æ•°å¯¹è±¡ï¼›
-				handleObj,				//handleObjäº‹ä»¶å±æ€§é…ç½®å¯¹è±¡ï¼Œç”¨äºäº‹ä»¶å‡½æ•°çš„æ³¨å†Œå­˜æ”¾å’ŒåæœŸç§»é™¤ã€è§¦å‘
+				handleObjIn,			//handleObjInÓÃÓÚ»º´æ×Ô¶¨Òåº¯Êı²ÎÊı¶ÔÏó£»
+				handleObj,				//handleObjÊÂ¼şÊôĞÔÅäÖÃ¶ÔÏó£¬ÓÃÓÚÊÂ¼şº¯ÊıµÄ×¢²á´æ·ÅºÍºóÆÚÒÆ³ı¡¢´¥·¢
 				handlers;
 			
-			if ( elem.nodeType === 3 || elem.nodeType === 8 			//ä¸ç»™æ–‡æœ¬å’Œå¤‡æ³¨èŠ‚ç‚¹ç»‘äº‹ä»¶ï¼Œæ²¡æ„ä¹‰
-			|| !types || !handler 										//ç¼ºå°‘å¿…è¦å‚æ•°
-			|| !(elemData = da._data( elem ))  ) {						//ç¡®ä¿å…ƒç´ dataç¼“å­˜ç»“æ„å­˜åœ¨
+			if ( elem.nodeType === 3 || elem.nodeType === 8 			//²»¸øÎÄ±¾ºÍ±¸×¢½Úµã°óÊÂ¼ş£¬Ã»ÒâÒå
+			|| !types || !handler 										//È±ÉÙ±ØÒª²ÎÊı
+			|| !(elemData = da._data( elem ))  ) {						//È·±£ÔªËØdata»º´æ½á¹¹´æÔÚ
 				return;
 			}
 			
 			/*
-			if ( da.isWin( elem ) && ( elem !== window && !elem.frameElement ) ) {		//IEæµè§ˆå™¨ä¸èƒ½ç›´æ¥å¯¹windowå¯¹è±¡æ“ä½œï¼Œæ‰€ä»¥å…ˆå¤åˆ¶ä¸€ä¸‹
+			if ( da.isWin( elem ) && ( elem !== window && !elem.frameElement ) ) {		//IEä¯ÀÀÆ÷²»ÄÜÖ±½Ó¶Ôwindow¶ÔÏó²Ù×÷£¬ËùÒÔÏÈ¸´ÖÆÒ»ÏÂ
 				elem = window;
 			}
 			
-			if ( handler === false ) handler = fnReturnFalse;							//å¦‚æœhandlerçš„å€¼ä¸ºfalseå¯ä»¥å±è”½äº‹ä»¶å“åº”
+			if ( handler === false ) handler = fnReturnFalse;							//Èç¹ûhandlerµÄÖµÎªfalse¿ÉÒÔÆÁ±ÎÊÂ¼şÏìÓ¦
 			else if ( !handler ) return;
 			*/
 			
-			if ( handler.handler ) {							//å¦‚æœç¬¬3ä¸ªå‚æ•°ï¼Œæ˜¯ä»¥é”®å€¼å¯¹çš„æ–¹å¼ å¦‚ï¼š{ handler: function(){â€¦â€¦}, guid: 520 }
-				handleObjIn = handler;							//ç¼“å­˜ç”¨æˆ·åŸå‚æ•°å¯¹è±¡(è¿™é‡Œæ˜¯é”®å€¼å¯¹å’¯)
-				handler = handleObjIn.handler;					//ä¿®æ­£handleræ“ä½œå‡½æ•°ï¼Œä¸ºä¼ å…¥é”®å€¼å¯¹çš„handlerå±æ€§å¼•ç”¨(å†…å®šçš„,åœ¨ä¸‹é¢çš„ä»£ç å¯ä»¥çœ‹åˆ°)
+			if ( handler.handler ) {							//Èç¹ûµÚ3¸ö²ÎÊı£¬ÊÇÒÔ¼üÖµ¶ÔµÄ·½Ê½ Èç£º{ handler: function(){¡­¡­}, guid: 520 }
+				handleObjIn = handler;							//»º´æÓÃ»§Ô­²ÎÊı¶ÔÏó(ÕâÀïÊÇ¼üÖµ¶Ô¿©)
+				handler = handleObjIn.handler;					//ĞŞÕıhandler²Ù×÷º¯Êı£¬Îª´«Èë¼üÖµ¶ÔµÄhandlerÊôĞÔÒıÓÃ(ÄÚ¶¨µÄ,ÔÚÏÂÃæµÄ´úÂë¿ÉÒÔ¿´µ½)
 				selector = handleObjIn.selector;
 			}
 	
-			if ( !handler.guid ){								//å›è°ƒå‡½æ•°èµ‹å€¼å”¯ä¸€æ ‡è¯†ï¼Œç”¨äºä¹‹åçš„æŸ¥æ‰¾æˆ–ç§»é™¤
+			if ( !handler.guid ){								//»Øµ÷º¯Êı¸³ÖµÎ¨Ò»±êÊ¶£¬ÓÃÓÚÖ®ºóµÄ²éÕÒ»òÒÆ³ı
 				handler.guid = da.guid++;
 			}
 			
-			events = elemData.events;							//å¦‚æœå·²ç»æœ‰ç»‘å®šçš„äº‹ä»¶å‡½æ•°äº†ï¼Œå°†äº‹ä»¶å‡½æ•°éƒ½æå‡ºæ¥ï¼Œä¾›ä¸‹é¢è¿½åŠ äº‹ä»¶ç»‘å®šä½¿ç”¨
+			events = elemData.events;							//Èç¹ûÒÑ¾­ÓĞ°ó¶¨µÄÊÂ¼şº¯ÊıÁË£¬½«ÊÂ¼şº¯Êı¶¼Ìá³öÀ´£¬¹©ÏÂÃæ×·¼ÓÊÂ¼ş°ó¶¨Ê¹ÓÃ
 			eventHandle = elemData.handle;
 			
-			if ( !events ) {									//é¦–æ¬¡addç»‘å®šäº‹ä»¶
-				elemData.events = events = {};					//åˆå§‹åŒ–äº‹ä»¶ç¼“å­˜ç»“æ„ä½“
+			if ( !events ) {									//Ê×´Îadd°ó¶¨ÊÂ¼ş
+				elemData.events = events = {};					//³õÊ¼»¯ÊÂ¼ş»º´æ½á¹¹Ìå
 			}
-			if ( !eventHandle ) {								//åˆå§‹åŒ–æ ¸å¿ƒäº‹ä»¶å¤„ç†å‡½æ•°
-																//å®šä¹‰eventHandleï¼Œåˆ°è¿™é‡Œå…ƒç´ çš„dataç¼“å­˜ç»“æ„ elemData === { events: {}, handle: function(){â€¦â€¦} }
-				elemData.handle = eventHandle = function( e ) {	//é¿å…ä¸€ä¸ªå·²ç»é”€æ¯çš„é¡µé¢äº‹ä»¶è¢«è°ƒç”¨ å’Œ çŸ­æ—¶é—´å†…da.event.trigger()è§¦å‘å¤šæ¬¡åŒä¸€äº‹ä»¶
+			if ( !eventHandle ) {								//³õÊ¼»¯ºËĞÄÊÂ¼ş´¦Àíº¯Êı
+																//¶¨ÒåeventHandle£¬µ½ÕâÀïÔªËØµÄdata»º´æ½á¹¹ elemData === { events: {}, handle: function(){¡­¡­} }
+				elemData.handle = eventHandle = function( e ) {	//±ÜÃâÒ»¸öÒÑ¾­Ïú»ÙµÄÒ³ÃæÊÂ¼ş±»µ÷ÓÃ ºÍ ¶ÌÊ±¼äÄÚda.event.trigger()´¥·¢¶à´ÎÍ¬Ò»ÊÂ¼ş
 					return "undefined" !== typeof da && (!e || e.type !== da.event.triggered ) ?
 						da.event.dispatch.apply( eventHandle.elem, arguments ) :
 						undefined;
 				};
-				eventHandle.elem = elem;						//ç»™äº‹ä»¶å›è°ƒå‡½æ•°å¯¹è±¡æ·»åŠ elemå±æ€§ï¼Œå­˜æ”¾äº‹ä»¶ç»‘å®šç›®æ ‡å…ƒç´ æŒ‰å¯¹è±¡ï¼Œé’ˆå¯¹IEæ²¡æœ‰æœ¬åœ°äº‹ä»¶å¯¹è±¡(IEçš„äº‹ä»¶å¯¹è±¡æ˜¯æ”¾åœ¨windowå¯¹è±¡ä¸‹ç»Ÿä¸€ç®¡ç†çš„),å¯é˜²æ­¢å†…å­˜æ³„éœ²çš„å¤„ç†
+				eventHandle.elem = elem;						//¸øÊÂ¼ş»Øµ÷º¯Êı¶ÔÏóÌí¼ÓelemÊôĞÔ£¬´æ·ÅÊÂ¼ş°ó¶¨Ä¿±êÔªËØ°´¶ÔÏó£¬Õë¶ÔIEÃ»ÓĞ±¾µØÊÂ¼ş¶ÔÏó(IEµÄÊÂ¼ş¶ÔÏóÊÇ·ÅÔÚwindow¶ÔÏóÏÂÍ³Ò»¹ÜÀíµÄ),¿É·ÀÖ¹ÄÚ´æĞ¹Â¶µÄ´¦Àí
 			}
 			
-			types = da.trim( hoverHack(types) ).split( " " );	//æ”¯æŒç©ºæ ¼åˆ†éš”ï¼Œæ‰¹é‡ç»‘å®šäº‹ä»¶ å¦‚ï¼šda.event.add(obj, "mouseover mouseout", fn);
+			types = da.trim( hoverHack(types) ).split( " " );	//Ö§³Ö¿Õ¸ñ·Ö¸ô£¬ÅúÁ¿°ó¶¨ÊÂ¼ş Èç£ºda.event.add(obj, "mouseover mouseout", fn);
 			
-			for (var t = 0; t < types.length; t++ ) {							//æ‰¹é‡å¤„ç†é€ä¸€æ·»åŠ äº‹ä»¶å‡½æ•°
-				tns = daRe_typenamespace.exec( types[t] ) || [];				//æå–äº‹ä»¶çš„å‘½åç©ºé—´
+			for (var t = 0; t < types.length; t++ ) {							//ÅúÁ¿´¦ÀíÖğÒ»Ìí¼ÓÊÂ¼şº¯Êı
+				tns = daRe_typenamespace.exec( types[t] ) || [];				//ÌáÈ¡ÊÂ¼şµÄÃüÃû¿Õ¼ä
 				type = tns[1];
 				namespaces = ( tns[2] || "" ).split( "." ).sort();
 
@@ -2666,7 +2666,7 @@
 				special = da.event.special[ type ] || {};
 
 				// handleObj is passed to all event handlers
-				handleObj = da.extend({						//äº‹ä»¶å¤„ç†æ‰€éœ€è¦çš„æ•°æ®ç»“æ„ä½“
+				handleObj = da.extend({						//ÊÂ¼ş´¦ÀíËùĞèÒªµÄÊı¾İ½á¹¹Ìå
 					type: type,
 					origType: tns[1],
 					data: data,
@@ -2678,13 +2678,13 @@
 					
 				}, handleObjIn );
 
-				handlers = events[ type ];					//æå–å¯¹åº”äº‹ä»¶çš„äº‹ä»¶å‡½æ•°é˜Ÿåˆ—
+				handlers = events[ type ];					//ÌáÈ¡¶ÔÓ¦ÊÂ¼şµÄÊÂ¼şº¯Êı¶ÓÁĞ
 				
-				if ( !handlers ) {							//é¦–æ¬¡æ·»åŠ ï¼Œåˆå§‹åŒ–äº‹ä»¶å‡½æ•°é˜Ÿåˆ—
+				if ( !handlers ) {							//Ê×´ÎÌí¼Ó£¬³õÊ¼»¯ÊÂ¼şº¯Êı¶ÓÁĞ
 					handlers = events[ type ] = [];
-					handlers.delegateCount = 0;				//è¯¥äº‹ä»¶æ‰˜ç®¡å¤„ç†å‡½æ•°æ€»æ•° åˆå§‹åŒ–ä¸º0
+					handlers.delegateCount = 0;				//¸ÃÊÂ¼şÍĞ¹Ü´¦Àíº¯Êı×ÜÊı ³õÊ¼»¯Îª0
 
-					//å¦‚æœéç‰¹æ®Šäº‹ä»¶ç±»å‹ æˆ–da.event.special()åˆ¤å®šå‡½æ•°è¿”å›å€¼ä¸ºfalseï¼Œå°±å¯ä»¥ç›´æ¥ç”¨addEventListener()æˆ– attachEvent()ç»‘å®šäº‹ä»¶å‡½æ•°äº†
+					//Èç¹û·ÇÌØÊâÊÂ¼şÀàĞÍ »òda.event.special()ÅĞ¶¨º¯Êı·µ»ØÖµÎªfalse£¬¾Í¿ÉÒÔÖ±½ÓÓÃaddEventListener()»ò attachEvent()°ó¶¨ÊÂ¼şº¯ÊıÁË
 					if ( !special.setup || special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 						if ( elem.addEventListener ) {
 							elem.addEventListener( type, eventHandle, false );
@@ -2695,89 +2695,89 @@
 					}
 				}
 
-				if ( special.add ) {									//ç‰¹æ®Šäº‹ä»¶ç±»å‹ç»“æ„ä½“ï¼Œå†…éƒ¨å®šä¹‰äº†addå‡½æ•°ï¼Œå°±æ‰§è¡Œ
+				if ( special.add ) {									//ÌØÊâÊÂ¼şÀàĞÍ½á¹¹Ìå£¬ÄÚ²¿¶¨ÒåÁËaddº¯Êı£¬¾ÍÖ´ĞĞ
 					special.add.call( elem, handleObj );
 
-					if ( !handleObj.handler.guid ) {					//ä¿®æ­£guid
+					if ( !handleObj.handler.guid ) {					//ĞŞÕıguid
 						handleObj.handler.guid = handler.guid;
 					}
 				}
 
-				if ( selector ) {										//æ–°äº‹ä»¶å¤„ç†ç»“æ„ä½“ï¼ŒåŠ å…¥é˜Ÿåˆ—
+				if ( selector ) {										//ĞÂÊÂ¼ş´¦Àí½á¹¹Ìå£¬¼ÓÈë¶ÓÁĞ
 					handlers.splice( handlers.delegateCount++, 0, handleObj );
 				}
 				else {
 					handlers.push( handleObj );
 				}
 
-				da.event.global[ type ] = true;					//ç»™da.eventå…¨å±€å˜é‡ç›¸åº”çš„äº‹ä»¶ç±»å‹æ‰“ä¸Šæ ‡è®°ï¼Œè¯´æ˜è¿™ç§äº‹ä»¶ç±»å‹å·²æœ‰è¢«æ³¨å†Œï¼Œå¾…å…¨å±€äº‹ä»¶è§¦å‘æ—¶æŸ¥çœ‹
+				da.event.global[ type ] = true;					//¸øda.eventÈ«¾Ö±äÁ¿ÏàÓ¦µÄÊÂ¼şÀàĞÍ´òÉÏ±ê¼Ç£¬ËµÃ÷ÕâÖÖÊÂ¼şÀàĞÍÒÑÓĞ±»×¢²á£¬´ıÈ«¾ÖÊÂ¼ş´¥·¢Ê±²é¿´
 			}
 
-			elem = null;										//å›æ”¶èµ„æºï¼Œé¿å…å†…å­˜æ³„éœ²(å…¼å®¹IE)
+			elem = null;										//»ØÊÕ×ÊÔ´£¬±ÜÃâÄÚ´æĞ¹Â¶(¼æÈİIE)
 			
 		},
 	
-		//é’ˆå¯¹å…ƒç´ ç§»é™¤æˆ–é‡ç½®ä¸€ä¸ªäº‹ä»¶
+		//Õë¶ÔÔªËØÒÆ³ı»òÖØÖÃÒ»¸öÊÂ¼ş
 		/*
-			elem: ç›®æ ‡å…ƒç´ å¯¹è±¡
-			types: äº‹ä»¶ç±»å‹
-			handler: è‡ªå®šä¹‰äº‹ä»¶å›è°ƒå‡½æ•°,å€¼ä¸ºfalseå¯ä»¥å±è”½äº‹ä»¶å“åº”
+			elem: Ä¿±êÔªËØ¶ÔÏó
+			types: ÊÂ¼şÀàĞÍ
+			handler: ×Ô¶¨ÒåÊÂ¼ş»Øµ÷º¯Êı,ÖµÎªfalse¿ÉÒÔÆÁ±ÎÊÂ¼şÏìÓ¦
 		*/
 		remove: function( elem, types, handler, selector, mappedTypes ) {
-			var elemData = da.hasData( elem ) && da._data( elem ),	//å…ƒç´ ç¼“å­˜æ•°æ®ç»“æ„ä½“
+			var elemData = da.hasData( elem ) && da._data( elem ),	//ÔªËØ»º´æÊı¾İ½á¹¹Ìå
 				tns, namespaces, origType, origCount, type, 
-				events,	eventType,									//å…ƒç´ äº‹ä»¶ç¼“å­˜æ•°æ®
+				events,	eventType,									//ÔªËØÊÂ¼ş»º´æÊı¾İ
 				special, handleObj, handle;
 
-			if ( !elemData || !(events = elemData.events) )	return;	//æ— äº‹ä»¶ç¼“å­˜ï¼Œç›´æ¥è¿”å›
+			if ( !elemData || !(events = elemData.events) )	return;	//ÎŞÊÂ¼ş»º´æ£¬Ö±½Ó·µ»Ø
 			
 			// Once for each type.namespace in types; type may be omitted
-			types = da.trim( hoverHack( types || "" ) ).split(" ");		//åŒæ—¶ç§»é™¤å¤šä¸ªäº‹ä»¶ï¼Œç”¨ç©ºæ ¼ï¼ˆ" "ï¼‰åˆ†éš”ï¼Œå¦‚ï¼šda("...").unbind("mouseover mouseout", fn);
+			types = da.trim( hoverHack( types || "" ) ).split(" ");		//Í¬Ê±ÒÆ³ı¶à¸öÊÂ¼ş£¬ÓÃ¿Õ¸ñ£¨" "£©·Ö¸ô£¬Èç£ºda("...").unbind("mouseover mouseout", fn);
 			
 			for ( var t = 0; t < types.length; t++ ) {
-				tns = daRe_typenamespace.exec( types[t] ) || [];		//å‘½åç©ºé—´çš„æ‰€æœ‰äº‹ä»¶å¤„ç†
+				tns = daRe_typenamespace.exec( types[t] ) || [];		//ÃüÃû¿Õ¼äµÄËùÓĞÊÂ¼ş´¦Àí
 				type = origType = tns[1];
 				namespaces = tns[2];
 
 				// Unbind all events (on this namespace, if provided) for the element
 				if ( !type ) {
-					for ( type in events ) {							//é€’å½’
+					for ( type in events ) {							//µİ¹é
 						da.event.remove( elem, type + types[ t ], handler, selector, true );
 					}
 					continue;
 				}
 
-				special = da.event.special[ type ] || {};				//ç‰¹æ®Šäº‹ä»¶ç±»å‹å¤„ç†
+				special = da.event.special[ type ] || {};				//ÌØÊâÊÂ¼şÀàĞÍ´¦Àí
 				type = ( selector? special.delegateType : special.bindType ) || type;
 				eventType = events[ type ] || [];
 				origCount = eventType.length;
 				namespaces = namespaces ? new RegExp("(^|\\.)" + namespaces.split(".").sort().join("\\.(?:.*\\.)?") + "(\\.|$)") : null;
 
 				// Remove matching events
-				for ( var j = 0; j < eventType.length; j++ ) {			//å¾ªç¯å…ƒç´ æ‰€æœ‰å·²ç»‘å®šçš„äº‹ä»¶ç±»å‹
+				for ( var j = 0; j < eventType.length; j++ ) {			//Ñ­»·ÔªËØËùÓĞÒÑ°ó¶¨µÄÊÂ¼şÀàĞÍ
 					handleObj = eventType[ j ];
 
 					if ( ( mappedTypes || origType === handleObj.origType ) &&
 						 ( !handler || handler.guid === handleObj.guid ) &&
 						 ( !namespaces || namespaces.test( handleObj.namespace ) ) &&
 						 ( !selector || selector === handleObj.selector || selector === "**" && handleObj.selector ) ) {
-						eventType.splice( j--, 1 );						//æ‰¾åˆ°åŒ¹é…çš„äº‹ä»¶å¤„ç†å‡½æ•°ï¼Œå¹¶ä»å…ƒç´ äº‹ä»¶ç±»å‹åˆ—è¡¨ä¸­ç§»é™¤
+						eventType.splice( j--, 1 );						//ÕÒµ½Æ¥ÅäµÄÊÂ¼ş´¦Àíº¯Êı£¬²¢´ÓÔªËØÊÂ¼şÀàĞÍÁĞ±íÖĞÒÆ³ı
 
-						if ( handleObj.selector ) {						//å§”ä»»æ–¹å¼ delegateCountéœ€è¦-1
+						if ( handleObj.selector ) {						//Î¯ÈÎ·½Ê½ delegateCountĞèÒª-1
 							eventType.delegateCount--;
 						}
-						if ( special.remove ) {							//ç‰¹æ®Šäº‹ä»¶ç±»å‹ï¼Œç»“æ„ä½“å†…å®šä¹‰æœ‰removeï¼Œå°±æ‰§è¡Œä¸€ä¸‹ä¸‹
+						if ( special.remove ) {							//ÌØÊâÊÂ¼şÀàĞÍ£¬½á¹¹ÌåÄÚ¶¨ÒåÓĞremove£¬¾ÍÖ´ĞĞÒ»ÏÂÏÂ
 							special.remove.call( elem, handleObj );
 						}
 					}
 				}
 
-				if ( eventType.length === 0 && origCount !== eventType.length ) {			//å¦‚æœå·²ç»ç§»é™¤äº†è¯¥ç§äº‹ä»¶ç±»å‹æ‰€æœ‰å¤„ç†å‡½æ•°ï¼Œå°±æŠŠç›‘å¬äº‹ä»¶ä¹Ÿç§»é™¤
+				if ( eventType.length === 0 && origCount !== eventType.length ) {			//Èç¹ûÒÑ¾­ÒÆ³ıÁË¸ÃÖÖÊÂ¼şÀàĞÍËùÓĞ´¦Àíº¯Êı£¬¾Í°Ñ¼àÌıÊÂ¼şÒ²ÒÆ³ı
 					if ( !special.teardown || false === special.teardown.call( elem, namespaces ) ) {
 						da.removeEvent( elem, type, elemData.handle );
 					}
 
-					delete events[ type ];								//é‡Šæ”¾ç¼“å­˜åŒº
+					delete events[ type ];								//ÊÍ·Å»º´æÇø
 				}
 			}
 
@@ -2803,15 +2803,15 @@
 			"changeData": true
 		},
 
-		//äº‹ä»¶è§¦å‘å™¨( æ”¯æŒåŒäº‹ä»¶å†’æ³¡ )
+		//ÊÂ¼ş´¥·¢Æ÷( Ö§³ÖÍ¬ÊÂ¼şÃ°Åİ )
 		/*
-			event: da.Eventå¯¹è±¡ æˆ–è§¦å‘çš„äº‹ä»¶ç±»å‹event type
-			data: ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ä¼ å…¥ï¼Œæ•°ç»„æ ¼å¼
-			elem: äº‹ä»¶è§¦å‘ç›®æ ‡å…ƒç´ å¯¹è±¡
-			onlyHandlers: é˜»æ­¢äº‹ä»¶å†’æ³¡ï¼Œå¹¶ä¸”ä¸æ‰§è¡Œå…ƒç´ é»˜è®¤äº‹ä»¶
+			event: da.Event¶ÔÏó »ò´¥·¢µÄÊÂ¼şÀàĞÍevent type
+			data: ÓÃ»§×Ô¶¨ÒåÊı¾İ´«Èë£¬Êı×é¸ñÊ½
+			elem: ÊÂ¼ş´¥·¢Ä¿±êÔªËØ¶ÔÏó
+			onlyHandlers: ×èÖ¹ÊÂ¼şÃ°Åİ£¬²¢ÇÒ²»Ö´ĞĞÔªËØÄ¬ÈÏÊÂ¼ş
 		*/
 		trigger: function( event, data, elem, onlyHandlers ) {
-			if ( elem && (elem.nodeType === 3 || elem.nodeType === 8) ) {		//æ–‡æœ¬å’Œæ³¨é‡Šå…ƒç´ ä½ ä»¬å°±ç®—äº†å˜›ï¼Œä½ è¿˜æä»€ä¹ˆäº‹ä»¶å•Š
+			if ( elem && (elem.nodeType === 3 || elem.nodeType === 8) ) {		//ÎÄ±¾ºÍ×¢ÊÍÔªËØÄãÃÇ¾ÍËãÁËÂï£¬Äã»¹¸ãÊ²Ã´ÊÂ¼ş°¡
 				return;
 			}
 			
@@ -2825,10 +2825,10 @@
 				return;
 			}
 
-			if ( type.indexOf( "!" ) >= 0 ) {					//æ”¯æŒ"click!","evtFn!"è¿™ç§å¹å·"!"ç»“å°¾çš„exclusiveæ–¹å¼
+			if ( type.indexOf( "!" ) >= 0 ) {					//Ö§³Ö"click!","evtFn!"ÕâÖÖÌ¾ºÅ"!"½áÎ²µÄexclusive·½Ê½
 				// Exclusive events trigger only for the exact event (no namespaces)
-				type = type.slice(0, -1);						//å»æ‰"!"ç¬¦å·
-				exclusive = true;								//exclusiveæ–¹å¼æ‰“å¼€ï¼Œè¿™å°†ä¼šå¯¹addæ³¨å†Œçš„æ‰€æœ‰äº‹ä»¶å‡½æ•°æ ¹æ®å‘½åç©ºé—´çš„åˆ†ç±»æ¥æ‰§è¡Œ
+				type = type.slice(0, -1);						//È¥µô"!"·ûºÅ
+				exclusive = true;								//exclusive·½Ê½´ò¿ª£¬Õâ½«»á¶Ôadd×¢²áµÄËùÓĞÊÂ¼şº¯Êı¸ù¾İÃüÃû¿Õ¼äµÄ·ÖÀàÀ´Ö´ĞĞ
 			}
 
 			if ( type.indexOf( "." ) >= 0 ) {
@@ -2838,9 +2838,9 @@
 				namespaces.sort();
 			}
 
-			if ( (!elem || da.event.customEvent[ type ]) 						//æ²¡æœ‰åŒ¹é…çš„daå†…éƒ¨è‡ªå®šä¹‰äº‹ä»¶ç±»å‹
-			&& !da.event.global[ type ] ) {										//ä¹Ÿæ²¡æœ‰åŒ¹é…çš„å…¨å±€äº‹ä»¶ç±»å‹
-				return;															//ç›´æ¥é€€å‡º
+			if ( (!elem || da.event.customEvent[ type ]) 						//Ã»ÓĞÆ¥ÅäµÄdaÄÚ²¿×Ô¶¨ÒåÊÂ¼şÀàĞÍ
+			&& !da.event.global[ type ] ) {										//Ò²Ã»ÓĞÆ¥ÅäµÄÈ«¾ÖÊÂ¼şÀàĞÍ
+				return;															//Ö±½ÓÍË³ö
 			}
 
 			// Caller can pass in an Event, Object, or just an event type string
@@ -2860,26 +2860,26 @@
 			ontype = type.indexOf( ":" ) < 0 ? "on" + type : "";
 
 			// Handle a global trigger
-			if ( !elem ) {														//å¦‚æœæ²¡æœ‰æŒ‡å®šäº‹ä»¶è§¦å‘çš„ç›®æ ‡å…ƒç´ å¯¹è±¡ï¼Œå°±æ˜¯å…¨å±€äº‹ä»¶çš„è§¦å‘
+			if ( !elem ) {														//Èç¹ûÃ»ÓĞÖ¸¶¨ÊÂ¼ş´¥·¢µÄÄ¿±êÔªËØ¶ÔÏó£¬¾ÍÊÇÈ«¾ÖÊÂ¼şµÄ´¥·¢
 				// TODO: Stop taunting the data cache; remove global events and always attach to document
-				cache = da.cache;												//åªéœ€è¦è§¦å‘æ³¨å†Œè¿‡çš„äº‹ä»¶ç±»å‹å°±å¯ä»¥äº†å˜›
-				for ( var i in cache ) {										//æ‰¹å¤„ç†å…¨å±€ç¼“å­˜ä¸­æ‰€æœ‰æ³¨å†Œè¿‡äº‹ä»¶å‡½æ•°çš„å…ƒç´ å¯¹è±¡ï¼Œå¹¶è§¦å‘æ‰§è¡Œç›¸åº”çš„äº‹ä»¶å‡½æ•°
+				cache = da.cache;												//Ö»ĞèÒª´¥·¢×¢²á¹ıµÄÊÂ¼şÀàĞÍ¾Í¿ÉÒÔÁËÂï
+				for ( var i in cache ) {										//Åú´¦ÀíÈ«¾Ö»º´æÖĞËùÓĞ×¢²á¹ıÊÂ¼şº¯ÊıµÄÔªËØ¶ÔÏó£¬²¢´¥·¢Ö´ĞĞÏàÓ¦µÄÊÂ¼şº¯Êı
 					if ( cache[ i ].events && cache[ i ].events[ type ] ) {
-						da.event.trigger( event, data, cache[ i ].handle.elem, true );			//é€’å½’é€ä¸ªè§¦å‘æ‰§è¡Œ
+						da.event.trigger( event, data, cache[ i ].handle.elem, true );			//µİ¹éÖğ¸ö´¥·¢Ö´ĞĞ
 					}
 				}
 				return;
 			}
 
 			// Clean up the event in case it is being reused
-			event.result = undefined;											//å¦‚æœæ˜¯å†æ¬¡è§¦å‘ï¼Œå°±å…ˆæŠŠä¹‹å‰è§¦å‘æ‰§è¡Œçš„ç»“æœæ¸…æ¥šæ‰
+			event.result = undefined;											//Èç¹ûÊÇÔÙ´Î´¥·¢£¬¾ÍÏÈ°ÑÖ®Ç°´¥·¢Ö´ĞĞµÄ½á¹ûÇå³şµô
 			if ( !event.target ) {
 				event.target = elem;
 			}
 
 			// Clone any incoming data and prepend the event, creating the handler arg list
-			data = data != null ? da.pushArray( data ) : [];					//å¦‚æœæœ‰ä¼ å…¥æ•°æ®çš„è¯ï¼Œé€šè¿‡pushArrayç¼“å­˜ä¸€ä¸‹ä¸‹å˜›
-			data.unshift( event );												//åœ¨ç¼“å­˜æ•°ç»„é¦–éƒ¨ï¼Œå‹å…¥äº‹ä»¶å¯¹è±¡
+			data = data != null ? da.pushArray( data ) : [];					//Èç¹ûÓĞ´«ÈëÊı¾İµÄ»°£¬Í¨¹ıpushArray»º´æÒ»ÏÂÏÂÂï
+			data.unshift( event );												//ÔÚ»º´æÊı×éÊ×²¿£¬Ñ¹ÈëÊÂ¼ş¶ÔÏó
 
 			// Allow special events to draw outside the lines
 			special = da.event.special[ type ] || {};
@@ -2907,30 +2907,30 @@
 			}
 			
 			// Fire handlers on the event path
-			for ( i = 0; i < eventPath.length && !event.isPropagationStopped(); i++ ) {	//å†’æ³¡è§¦å‘çˆ¶äº²çš„äº‹ä»¶å‡½æ•°( é»˜è®¤å…è®¸ï¼Œ ä¸€ç›´åˆ° Document )
+			for ( i = 0; i < eventPath.length && !event.isPropagationStopped(); i++ ) {	//Ã°Åİ´¥·¢¸¸Ç×µÄÊÂ¼şº¯Êı( Ä¬ÈÏÔÊĞí£¬ Ò»Ö±µ½ Document )
 				cur = eventPath[i][0];
 				event.type = eventPath[i][1];
 
-				handle = ( da._data( cur, "events" ) || {} )[ event.type ] && da._data( cur, "handle" );	//å…ˆå‡å®š"handle"å±æ€§æ˜¯ä¸€ä¸ªå‡½æ•°,è§¦å‘è¿™ä¸ªäº‹ä»¶å‡½æ•°
+				handle = ( da._data( cur, "events" ) || {} )[ event.type ] && da._data( cur, "handle" );	//ÏÈ¼Ù¶¨"handle"ÊôĞÔÊÇÒ»¸öº¯Êı,´¥·¢Õâ¸öÊÂ¼şº¯Êı
 				if ( handle ) {
-					handle.apply( cur, data );						//1. è§¦å‘é€šè¿‡da.event.add()æ·»åŠ çš„ç”¨æˆ·è‡ªå®šä¹‰äº‹ä»¶å‡½æ•°,
-																	//è¿™é‡Œçš„dataä¼šä»¥æ•°ç»„çš„æ–¹å¼ï¼Œè¢«åˆ†åˆ«ä¼ å…¥apply()çš„å¤šä¸ªå‚æ•°
+					handle.apply( cur, data );						//1. ´¥·¢Í¨¹ıda.event.add()Ìí¼ÓµÄÓÃ»§×Ô¶¨ÒåÊÂ¼şº¯Êı,
+																	//ÕâÀïµÄdata»áÒÔÊı×éµÄ·½Ê½£¬±»·Ö±ğ´«Èëapply()µÄ¶à¸ö²ÎÊı
 				}
 				// Note that this is a bare JS function and not a jQuery handler
-				handle = ontype && cur[ ontype ];					//2. è§¦å‘æœ¬åœ°è„šæœ¬æˆ–å…ƒç´ è¡Œå†…è„šæœ¬äº‹ä»¶å‡½æ•°, 
-																	//å¦‚ï¼šobj.onclick=function(){â€¦â€¦}; æˆ– <input onclick="fn();" â€¦â€¦ />
-				if ( handle && da.acceptData( cur ) && handle.apply( cur, data ) === false ) {		//æ‰§è¡Œäº‹ä»¶å‡½æ•°ï¼Œå¦‚æœè¿”å›ä¸ºfalseï¼Œå°±ä¸­æ­¢å…ƒç´ çš„é»˜è®¤äº‹ä»¶è§¦å‘
+				handle = ontype && cur[ ontype ];					//2. ´¥·¢±¾µØ½Å±¾»òÔªËØĞĞÄÚ½Å±¾ÊÂ¼şº¯Êı, 
+																	//Èç£ºobj.onclick=function(){¡­¡­}; »ò <input onclick="fn();" ¡­¡­ />
+				if ( handle && da.acceptData( cur ) && handle.apply( cur, data ) === false ) {		//Ö´ĞĞÊÂ¼şº¯Êı£¬Èç¹û·µ»ØÎªfalse£¬¾ÍÖĞÖ¹ÔªËØµÄÄ¬ÈÏÊÂ¼ş´¥·¢
 					event.preventDefault();
 				}
 			}
 			event.type = type;
 
 			// If nobody prevented the default action, do it now
-			if ( !onlyHandlers && !event.isDefaultPrevented() ) {	//3. è§¦å‘å…ƒç´ äº‹ä»¶é»˜è®¤åŠ¨ä½œ( é»˜è®¤å…è®¸ )ï¼Œå¦‚:form.submit()
+			if ( !onlyHandlers && !event.isDefaultPrevented() ) {	//3. ´¥·¢ÔªËØÊÂ¼şÄ¬ÈÏ¶¯×÷( Ä¬ÈÏÔÊĞí )£¬Èç:form.submit()
 
-				if ( (!special._default || special._default.apply( elem.ownerDocument, data ) === false) &&	//éç‰¹æ®Šäº‹ä»¶ æˆ–ç‰¹æ®Šäº‹ä»¶åˆ¤æ–­è¿”å›false 
-					!(type === "click" && da.isNodeName( elem, "a" )) && da.acceptData( elem ) ) {			//å¹¶ä¸”éè¶…é“¾æ¥clickäº‹ä»¶ 
-																											//å¹¶ä¸”éç‰¹æ®Šå…ƒç´ ç±»å‹ï¼Œæ‰€æœ‰éƒ½æ»¡è¶³äº†ï¼Œå‘¼å‘¼~å°±å¯ä»¥æ‰§è¡Œä¸‹å»äº†
+				if ( (!special._default || special._default.apply( elem.ownerDocument, data ) === false) &&	//·ÇÌØÊâÊÂ¼ş »òÌØÊâÊÂ¼şÅĞ¶Ï·µ»Øfalse 
+					!(type === "click" && da.isNodeName( elem, "a" )) && da.acceptData( elem ) ) {			//²¢ÇÒ·Ç³¬Á´½ÓclickÊÂ¼ş 
+																											//²¢ÇÒ·ÇÌØÊâÔªËØÀàĞÍ£¬ËùÓĞ¶¼Âú×ãÁË£¬ºôºô~¾Í¿ÉÒÔÖ´ĞĞÏÂÈ¥ÁË
 					// Call a native DOM method on the target with the same name name as the event.
 					// Can't use an .isFunction() check here because IE6/7 fails that test.
 					// Don't do default actions on window, that's where global variables be (#6170)
@@ -2938,18 +2938,18 @@
 					if ( ontype && elem[ type ] && ((type !== "focus" && type !== "blur") || event.target.offsetWidth !== 0) && !da.isWin( elem ) ) {
 
 						// Don't re-trigger an onFOO event when we call its FOO() method
-						old = elem[ ontype ];					//å–å‡ºäº‹ä»¶å‡½æ•°
+						old = elem[ ontype ];					//È¡³öÊÂ¼şº¯Êı
 						
-						if ( old ) {							//è¿™é‡Œçš„åˆ¤æ–­ å’Œç´§æ¥ç€çš„ç½®ç©ºï¼Œå¯ä»¥é¿å…æŸäº›äº‹ä»¶,
-							elem[ ontype ] = null;				//åœ¨äº‹ä»¶å‡½æ•°æ‰§è¡Œå®Œæ¯•è¿”å›ä¹‹å‰ï¼Œè¢«å†æ¬¡é‡å¤è§¦å‘( å¦‚ï¼š )
+						if ( old ) {							//ÕâÀïµÄÅĞ¶Ï ºÍ½ô½Ó×ÅµÄÖÃ¿Õ£¬¿ÉÒÔ±ÜÃâÄ³Ğ©ÊÂ¼ş,
+							elem[ ontype ] = null;				//ÔÚÊÂ¼şº¯ÊıÖ´ĞĞÍê±Ï·µ»ØÖ®Ç°£¬±»ÔÙ´ÎÖØ¸´´¥·¢( Èç£º )
 						}
 
 						// Prevent re-triggering of the same event, since we already bubbled it above
-						da.event.triggered = type;				//æ‰“ä¸Šå·²è§¦å‘æ‰§è¡Œä¸­æ ‡è®°
+						da.event.triggered = type;				//´òÉÏÒÑ´¥·¢Ö´ĞĞÖĞ±ê¼Ç
 						elem[ type ]();
-						da.event.triggered = undefined;			//æ’¤é”€è§¦å‘æ‰§è¡Œä¸­æ ‡è®°
+						da.event.triggered = undefined;			//³·Ïú´¥·¢Ö´ĞĞÖĞ±ê¼Ç
 
-						if ( old ) {							//è¿˜åŸäº‹ä»¶å‡½æ•°
+						if ( old ) {							//»¹Ô­ÊÂ¼şº¯Êı
 							elem[ ontype ] = old;					
 						}
 					}
@@ -2981,10 +2981,10 @@
 			}
 		},
 	
-		//ç‰¹æ®Šäº‹ä»¶å‡½æ•°ç±»å‹è¿‡æ»¤å’Œå¤„ç†
+		//ÌØÊâÊÂ¼şº¯ÊıÀàĞÍ¹ıÂËºÍ´¦Àí
 		special: {
 			ready: {
-				setup: da.bindReady							//åœ¨ç»‘å®šäº‹ä»¶å‰ï¼Œç¡®å®šreadyäº‹ä»¶å·²ç»è¢«åˆå§‹åŒ–
+				setup: da.bindReady							//ÔÚ°ó¶¨ÊÂ¼şÇ°£¬È·¶¨readyÊÂ¼şÒÑ¾­±»³õÊ¼»¯
 			},
 
 			load: {
@@ -3172,17 +3172,17 @@
 	}
 
 	
-	//daå¯¹è±¡æ‰©å±•äº‹ä»¶æ“ä½œå‡½æ•°
+	//da¶ÔÏóÀ©Õ¹ÊÂ¼ş²Ù×÷º¯Êı
 	da.fnStruct.extend({
-		/**ç›‘å¬äº‹ä»¶
+		/**¼àÌıÊÂ¼ş
 		*/
-		on: function( types, objs, data, fn, one/*å†…éƒ¨ä½¿ç”¨*/ ) {
+		on: function( types, objs, data, fn, one/*ÄÚ²¿Ê¹ÓÃ*/ ) {
 			var fnUser, type;
 			
-			//å‚æ•°çŸ«æ­£å¤„ç†
-			if ( typeof types === "object" ) {				//( types-Object, selector, data ) ä»¥é”®å€¼å¯¹çš„æ–¹å¼ç»‘å®šäº‹ä»¶å‡½æ•°ï¼Œå¦‚ï¼š{"click":funcion(){},"dbclick":funcion(){}}
-				if ( typeof objs !== "string" ) { 			//( types-Object, data ) objsä¸ä¸ºnull, ä¹Ÿä¸æ˜¯é€‰æ‹©å™¨å­—ç¬¦ä¸²
-					data = data || objs;					//å‰ç§»dataå‚æ•°çš„ä½ç½®
+			//²ÎÊı½ÃÕı´¦Àí
+			if ( typeof types === "object" ) {				//( types-Object, selector, data ) ÒÔ¼üÖµ¶ÔµÄ·½Ê½°ó¶¨ÊÂ¼şº¯Êı£¬Èç£º{"click":funcion(){},"dbclick":funcion(){}}
+				if ( typeof objs !== "string" ) { 			//( types-Object, data ) objs²»Îªnull, Ò²²»ÊÇÑ¡ÔñÆ÷×Ö·û´®
+					data = data || objs;					//Ç°ÒÆdata²ÎÊıµÄÎ»ÖÃ
 					objs = undefined;
 				}
 				for ( type in types ) {
@@ -3191,49 +3191,49 @@
 				return this;
 			}
 
-			if ( data == null && fn == null ) {				//( types, fn )æœªä¼ ç¬¬2ã€3ä¸ªå‚æ•°
+			if ( data == null && fn == null ) {				//( types, fn )Î´´«µÚ2¡¢3¸ö²ÎÊı
 				fn = objs;									
 				data = objs = undefined;
 			} 
 			else if ( fn == null ) {
-				if ( typeof objs === "string" ) {			//( types, objs, fn )æœªä¼ ç¬¬3ä¸ªå‚æ•°
+				if ( typeof objs === "string" ) {			//( types, objs, fn )Î´´«µÚ3¸ö²ÎÊı
 					fn = data;
 					data = undefined;
 				} 
-				else {										//( types, data, fn )æœªä¼ ç¬¬2ä¸ªå‚æ•°
+				else {										//( types, data, fn )Î´´«µÚ2¸ö²ÎÊı
 					fn = data;
 					data = objs;
 					objs = undefined;
 				}
 			}
 			
-			if ( fn === false ) {							//äº‹ä»¶å±è”½å¤„ç†
+			if ( fn === false ) {							//ÊÂ¼şÆÁ±Î´¦Àí
 				fn = fnReturnFalse;
 			}
-			else if ( !fn ) {								//å‚æ•°çŸ«æ­£åä»æ— è‡ªå®šä¹‰å¤„ç†å‡½æ•°ï¼Œå‚æ•°æœ‰è¯¯
+			else if ( !fn ) {								//²ÎÊı½ÃÕıºóÈÔÎŞ×Ô¶¨Òå´¦Àíº¯Êı£¬²ÎÊıÓĞÎó
 				return this;
 			}
 
-			if ( one === 1 ) {										//ä¸€æ¬¡æ€§äº‹ä»¶å¤„ç†
+			if ( one === 1 ) {										//Ò»´ÎĞÔÊÂ¼ş´¦Àí
 				fnUser = fn;
 				fn = function( event ) {
-					da().off( event );								//å› ä¸ºæ˜¯ä¸€æ¬¡æ€§äº‹ä»¶ï¼Œæ‰€ä»¥å…ˆç§»é™¤å…ƒç´ ä¸Šçš„äº‹ä»¶ç»‘å®š
-					return fnUser.apply( this, arguments );			//å†é€šè¿‡å¼•ç”¨æ–¹å¼è°ƒç”¨åŸäº‹ä»¶å›è°ƒå‡½æ•°
+					da().off( event );								//ÒòÎªÊÇÒ»´ÎĞÔÊÂ¼ş£¬ËùÒÔÏÈÒÆ³ıÔªËØÉÏµÄÊÂ¼ş°ó¶¨
+					return fnUser.apply( this, arguments );			//ÔÙÍ¨¹ıÒıÓÃ·½Ê½µ÷ÓÃÔ­ÊÂ¼ş»Øµ÷º¯Êı
 				};
 				// Use same guid so caller can remove using fnUser
 				//fn.guid = fnUser.guid || ( fnUser.guid = jQuery.guid++ );
 			}
 			
-			return this.each( function() {							//äº‹ä»¶æ·»åŠ 
+			return this.each( function() {							//ÊÂ¼şÌí¼Ó
 				da.event.add( this, types, fn, data, objs );
 			});
 		},
 		
-		/**å…³é—­äº‹ä»¶ç›‘å¬
+		/**¹Ø±ÕÊÂ¼ş¼àÌı
 		*/
 		off: function( types, objs, fn ) {
 			/* TODO:
-			if ( types && types.preventDefault && types.handleObj ) {	//( event )ä¼ å…¥Eventå¯¹è±¡æ–¹å¼ï¼Œç§»é™¤äº‹ä»¶
+			if ( types && types.preventDefault && types.handleObj ) {	//( event )´«ÈëEvent¶ÔÏó·½Ê½£¬ÒÆ³ıÊÂ¼ş
 				var handleObj = types.handleObj;
 				
 				jQuery( types.delegateTarget ).off(
@@ -3244,17 +3244,17 @@
 				return this;
 			}
 			 */
-			if ( typeof types === "object" ) {						//( types-object [, objs] )ä»¥é”®å€¼å¯¹çš„æ–¹å¼å…³é—­ç›‘å¬å‡½æ•°
+			if ( typeof types === "object" ) {						//( types-object [, objs] )ÒÔ¼üÖµ¶ÔµÄ·½Ê½¹Ø±Õ¼àÌıº¯Êı
 				for ( var type in types ) {
 					this.off( type, objs, types[ type ] );
 				}
 				return this;
 			}
-			if ( objs === false || typeof objs === "function" ) {	//( types [, fn] )æœªä¼ ç¬¬2ä¸ªå‚æ•°
+			if ( objs === false || typeof objs === "function" ) {	//( types [, fn] )Î´´«µÚ2¸ö²ÎÊı
 				fn = objs;
 				objs = undefined;
 			}
-			if ( fn === false ) {									//äº‹ä»¶å±è”½å¤„ç†
+			if ( fn === false ) {									//ÊÂ¼şÆÁ±Î´¦Àí
 				fn = fnReturnFalse;
 			}
 			return this.each(function() {
@@ -3334,7 +3334,7 @@
 
 })( da );
 
-/***************** Sizzleé€‰æ‹©å™¨ *****************/
+/***************** SizzleÑ¡ÔñÆ÷ *****************/
 /*!
  * Sizzle CSS Selector Engine
  *  Copyright 2011, The Dojo Foundation
@@ -3365,7 +3365,7 @@
 	
 		var origContext = context;
 		
-		if ( !context || context.nodeType !== 1 && context.nodeType !== 9 ) {									//danny æ·»åŠ !contextæ¡ä»¶åˆ¤æ–­ 2011-11-7 10:22:37
+		if ( !context || context.nodeType !== 1 && context.nodeType !== 9 ) {									//danny Ìí¼Ó!contextÌõ¼şÅĞ¶Ï 2011-11-7 10:22:37
 			return [];
 		}
 		
@@ -4742,7 +4742,7 @@
 		return Sizzle.filter( later, tmpSet );
 	};
 	
-	//****************** é›†æˆSizzleé€‰æ‹©å™¨ ***********************/
+	//****************** ¼¯³ÉSizzleÑ¡ÔñÆ÷ ***********************/
 	// EXPOSE
 	//window.Sizzle = Sizzle;
 	da.find = Sizzle;
@@ -4752,19 +4752,19 @@
 	da.text = Sizzle.getText;
 	da.isXMLDoc = Sizzle.isXML;
 	da.contains = Sizzle.contains;
-	//****************** é›†æˆSizzleé€‰æ‹©å™¨ ***********************/
+	//****************** ¼¯³ÉSizzleÑ¡ÔñÆ÷ ***********************/
 })(da);
 
-/***************** Sizzleé€‰æ‹©å™¨ æ‰©å±• *****************/
+/***************** SizzleÑ¡ÔñÆ÷ À©Õ¹ *****************/
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: Sizzleé€‰æ‹©å™¨ æ‰©å±•æ¥å£å‡½æ•°
+	description: SizzleÑ¡ÔñÆ÷ À©Õ¹½Ó¿Úº¯Êı
 	version: 1.0.0
 */
 (function(da){
 	if ( da.expr && da.expr.filters ) {
-		/**Sizzleé€‰æ‹©å™¨æ‰©å±•hiddenå±æ€§å€¼åˆ¤æ–­
+		/**SizzleÑ¡ÔñÆ÷À©Õ¹hiddenÊôĞÔÖµÅĞ¶Ï
 		*/
 		da.expr.filters.hidden = function( elem ) {
 			var width = elem.offsetWidth,
@@ -4773,7 +4773,7 @@
 			return (width === 0 && height === 0) || (!da.support.reliableHiddenOffsets && (elem.style.display || da.curCSS( elem, "display" )) === "none");
 		};
 
-		/**Sizzleé€‰æ‹©å™¨æ‰©å±•visibleå±æ€§å€¼åˆ¤æ–­
+		/**SizzleÑ¡ÔñÆ÷À©Õ¹visibleÊôĞÔÖµÅĞ¶Ï
 		*/
 		da.expr.filters.visible = function( elem ) {
 			return !da.expr.filters.hidden( elem );
@@ -4799,10 +4799,10 @@ var daRe_until = /Until$/,
 	};
 	
 	
-	//å…ƒç´ æŒ‘é€‰å‡½æ•° //Implement the identical functionality for filter and not
+	//ÔªËØÌôÑ¡º¯Êı //Implement the identical functionality for filter and not
 	/*
-		elements: å…ƒç´ é›†åˆ
-		qualifier: è¿‡æ»¤æ¡ä»¶
+		elements: ÔªËØ¼¯ºÏ
+		qualifier: ¹ıÂËÌõ¼ş
 		keep: ????????
 	*/
 	function winnow( elements, qualifier, keep ) {
@@ -4811,21 +4811,21 @@ var daRe_until = /Until$/,
 		// Set to 0 to skip string check
 		qualifier = qualifier || 0;
 	
-		if ( da.isFunction( qualifier ) ) {												//å¦‚æœè¿‡æ»¤æ¡ä»¶æ˜¯function
-			return da.grep(elements, function( elem, i ) {					//é€šè¿‡da.grep()å‡½æ•°æ‰¹å¤„ç†ï¼Œå¾—åˆ°è¿‡æ»¤åçš„åˆæ ¼å…ƒç´ é›†åˆ
+		if ( da.isFunction( qualifier ) ) {												//Èç¹û¹ıÂËÌõ¼şÊÇfunction
+			return da.grep(elements, function( elem, i ) {					//Í¨¹ıda.grep()º¯ÊıÅú´¦Àí£¬µÃµ½¹ıÂËºóµÄºÏ¸ñÔªËØ¼¯ºÏ
 				var retVal = !!qualifier.call( elem, i, elem );
 				return retVal === keep;
 			});
 	
 		}
-		else if ( qualifier.nodeType ) {													//å¦‚æœè¿‡æ»¤æ¡ä»¶æ˜¯èŠ‚ç‚¹å…ƒç´ å¯¹è±¡
+		else if ( qualifier.nodeType ) {													//Èç¹û¹ıÂËÌõ¼şÊÇ½ÚµãÔªËØ¶ÔÏó
 			return da.grep(elements, function( elem, i ) {
 				return (elem === qualifier) === keep;
 			});
 	
 		} 
-		else if ( typeof qualifier === "string" ) {								//å¦‚æœè¿‡æ»¤æ¡ä»¶æ˜¯Sizzleé€‰æ‹©å™¨å­—ç¬¦ä¸²
-			var filtered = da.grep(elements, function( elem ) {			//é€‰å‡ºSizzleå¯æ“ä½œçš„å…ƒç´ å¯¹è±¡
+		else if ( typeof qualifier === "string" ) {								//Èç¹û¹ıÂËÌõ¼şÊÇSizzleÑ¡ÔñÆ÷×Ö·û´®
+			var filtered = da.grep(elements, function( elem ) {			//Ñ¡³öSizzle¿É²Ù×÷µÄÔªËØ¶ÔÏó
 				return elem.nodeType === 1;
 			});
 	
@@ -4844,14 +4844,14 @@ var daRe_until = /Until$/,
 	
 
 	da.extend({
-		//è¿‡æ»¤å‡½æ•°
+		//¹ıÂËº¯Êı
 		/*
-			expr: é€‰æ‹©å™¨è¡¨è¾¾å¼
-			elems: å…ƒç´ é›†åˆ
-			not: æ˜¯å¦å–å(é€‰æ‹©å™¨è¡¨è¾¾å¼)
+			expr: Ñ¡ÔñÆ÷±í´ïÊ½
+			elems: ÔªËØ¼¯ºÏ
+			not: ÊÇ·ñÈ¡·´(Ñ¡ÔñÆ÷±í´ïÊ½)
 		*/
 		filter: function( expr, elems, not ) {
-			if ( not ) {							//å¦‚æœéœ€è¦å–åï¼Œè¡¨è¾¾å¼åŒ…è£¹å–åå‰ç¼€
+			if ( not ) {							//Èç¹ûĞèÒªÈ¡·´£¬±í´ïÊ½°ü¹üÈ¡·´Ç°×º
 				expr = ":not(" + expr + ")";
 			}
 			
@@ -4900,13 +4900,13 @@ var daRe_until = /Until$/,
 	});
 
 	da.fnStruct.extend({
-		/**å…ƒç´ é€‰æ‹©å™¨è¿‡æ»¤å‡½æ•°
+		/**ÔªËØÑ¡ÔñÆ÷¹ıÂËº¯Êı
 		*/
 		filter: function( selector ) {
 			return this.pushStack( winnow(this.dom, selector, true), "filter", selector );
 		},
 		
-		/**å…ƒç´ é€‰æ‹©å™¨åˆ¤æ–­å‡½æ•°
+		/**ÔªËØÑ¡ÔñÆ÷ÅĞ¶Ïº¯Êı
 		*/
 		is: function( selector ) {
 			return !!selector && ( typeof selector === "string" ?
@@ -4916,14 +4916,14 @@ var daRe_until = /Until$/,
 				this.filter( selector ).length > 0 );
 		},
 		
-		//daç±»å¯¹è±¡DOMé€‰æ‹©å™¨å‡½æ•°
+		//daÀà¶ÔÏóDOMÑ¡ÔñÆ÷º¯Êı
 		/*
-			selector: é€‰æ‹©å™¨å­—ç¬¦ä¸²
+			selector: Ñ¡ÔñÆ÷×Ö·û´®
 		*/
 		find: function( selector ) {
 			var self = this, i, l;
 			
-			if ( typeof selector !== "string" ) {													//selectorä¸æ˜¯å­—ç¬¦ä¸²
+			if ( typeof selector !== "string" ) {													//selector²»ÊÇ×Ö·û´®
 				return da( selector ).filter(function() {
 					for ( i=0, l=self.length; i < l; i++ ) {
 						if ( da.contains( self.dom[ i ], this ) ) {
@@ -4934,7 +4934,7 @@ var daRe_until = /Until$/,
 				});
 			}
 		
-			var ret = this.pushStack( "", "find", selector ),							//selectorå¯èƒ½æ˜¯é€‰æ‹©å™¨å­—ç¬¦ä¸²
+			var ret = this.pushStack( "", "find", selector ),							//selector¿ÉÄÜÊÇÑ¡ÔñÆ÷×Ö·û´®
 					len, n, r;
 		
 			for ( i = 0, l = this.dom.length; i < l; i++ ) {
@@ -4943,7 +4943,7 @@ var daRe_until = /Until$/,
 	
 				if ( i > 0 ) {
 					// Make sure that the results are unique
-					for ( n = len; n < ret.dom.length; n++ ) {										//ä¿è¯retè¿”å›çš„å…ƒç´ é›†æ¯ä¸€ä¸ªå­é¡¹æ˜¯å”¯ä¸€çš„
+					for ( n = len; n < ret.dom.length; n++ ) {										//±£Ö¤ret·µ»ØµÄÔªËØ¼¯Ã¿Ò»¸ö×ÓÏîÊÇÎ¨Ò»µÄ
 						for ( r = 0; r < len; r++ ) {
 							if ( ret.dom[r] === ret.dom[n] ) {
 								ret.dom.splice(n--, 1);
@@ -5047,21 +5047,21 @@ var daRe_until = /Until$/,
 
 })(da);
 
-/***************** å…ƒç´ æ“ä½œ *****************/
+/***************** ÔªËØ²Ù×÷ *****************/
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: Elements æ“ä½œç®¡ç†å™¨ æ ¸å¿ƒä»£ç 
+	description: Elements ²Ù×÷¹ÜÀíÆ÷ ºËĞÄ´úÂë
 	version: 1.0.0
 */
 (function(da){
 	var daRe_inlineDA = / da\d+="(?:\d+|null)"/g,
-		daRe_leadingWhitespace = /^\s+/,							//åŒ¹é…æœ‰å‰æ®µç©ºæ ¼çš„å­—ç¬¦ä¸²
+		daRe_leadingWhitespace = /^\s+/,							//Æ¥ÅäÓĞÇ°¶Î¿Õ¸ñµÄ×Ö·û´®
 		daRe_html = /<|&#?\w+;/,
 		daRe_xhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig,
 		daRe_tagName = /<([\w:]+)/,
-		daRe_tbody = /<tbody/i,										//åˆ¤æ–­æ˜¯å¦æœ‰tbodyæ ‡ç­¾
-		daRe_scriptType = /\/(java|ecma)script/i,					//åˆ¤æ–­æ˜¯å¦æœ‰è„šæ­¥æ ‡ç­¾
+		daRe_tbody = /<tbody/i,										//ÅĞ¶ÏÊÇ·ñÓĞtbody±êÇ©
+		daRe_scriptType = /\/(java|ecma)script/i,					//ÅĞ¶ÏÊÇ·ñÓĞ½Å²½±êÇ©
 		daRe_cleanScript = /^\s*<!(?:\[CDATA\[|\-\-)|[\]\-]{2}>\s*$/g,
 		
 		daRe_nocache = /<(?:script|object|embed|option|style)/i,	//?????????
@@ -5072,7 +5072,7 @@ var daRe_until = /Until$/,
 		daRe_noshimcache = new RegExp("<(?:" + nodeNames + ")[\\s/>]", "i"),
 
 		
-		daWrapMap = {												//å…ƒç´ åŒ…è£¹æ˜ å°„è¡¨
+		daWrapMap = {												//ÔªËØ°ü¹üÓ³Éä±í
 			option: [ 1, "<select multiple='multiple'>", "</select>" ],
 			legend: [ 1, "<fieldset>", "</fieldset>" ],
 			thead: [ 1, "<table>", "</table>" ],
@@ -5087,7 +5087,7 @@ var daRe_until = /Until$/,
 	daWrapMap.tbody = daWrapMap.tfoot = daWrapMap.colgroup = daWrapMap.caption = daWrapMap.thead;
 	daWrapMap.th = daWrapMap.td;
 
-	if ( !da.support.htmlSerialize ) {											//IEä¸èƒ½æ­£å¸¸çš„ä¸²è¡ŒåŒ–linkå’Œscriptæ ‡ç­¾å…ƒç´ 
+	if ( !da.support.htmlSerialize ) {											//IE²»ÄÜÕı³£µÄ´®ĞĞ»¯linkºÍscript±êÇ©ÔªËØ
 		daWrapMap._default = [ 1, "div<div>", "</div>" ];
 	}
 
@@ -5249,9 +5249,9 @@ var daRe_until = /Until$/,
 				this;
 		},
 		
-		/**ç§»é™¤å…ƒç´  æˆ–ç§»é™¤æŸå…ƒç´ å†…éƒ¨åŒ¹é…å­å…ƒç´ 
-		* params {String} selector å­å…ƒç´ åŒ¹é…é€‰æ‹©å™¨
-		* params {boolean} keepData æ˜¯å¦ä¿ç•™å…ƒç´ çš„è‡ªå®šä¹‰å±æ€§æ•°æ®
+		/**ÒÆ³ıÔªËØ »òÒÆ³ıÄ³ÔªËØÄÚ²¿Æ¥Åä×ÓÔªËØ
+		* params {String} selector ×ÓÔªËØÆ¥ÅäÑ¡ÔñÆ÷
+		* params {boolean} keepData ÊÇ·ñ±£ÁôÔªËØµÄ×Ô¶¨ÒåÊôĞÔÊı¾İ
 		*/
 		remove: function( selector, keepData ) {
 			for ( var i = 0, elem; (elem = this.dom[i]) != null; i++ ) {
@@ -5262,7 +5262,7 @@ var daRe_until = /Until$/,
 					}
 					
 				  if( da.browser.ie && elem.parentNode){
-					  var ownerWin = elem.ownerDocument.parentWindow;           //è·å–è¢«åˆ é™¤å¯¹è±¡æ‰€å±çª—ä½“å¯¹è±¡ï¼ˆæ‰¾åˆ°ç›¸åº”çš„åƒåœ¾æ¡¶ï¼‰
+					  var ownerWin = elem.ownerDocument.parentWindow;           //»ñÈ¡±»É¾³ı¶ÔÏóËùÊô´°Ìå¶ÔÏó£¨ÕÒµ½ÏàÓ¦µÄÀ¬»øÍ°£©
 				  
 					  if( !ownerWin.da.dustbin ){
 						var obj = ownerWin.document.createElement('div');
@@ -5477,14 +5477,14 @@ var daRe_until = /Until$/,
 		dest.removeAttribute( "_change_attached" );
 	}
 	
-	//æ–‡æ¡£ç‰‡æ®µç¼“å­˜åŒº
+	//ÎÄµµÆ¬¶Î»º´æÇø
 	da.fragments = {};
 	
-	//æ„å»ºã€ç¼“å­˜æ–‡æ¡£ä»£ç ç‰‡æ®µå‡½æ•°
+	//¹¹½¨¡¢»º´æÎÄµµ´úÂëÆ¬¶Îº¯Êı
 	/*
-		args: å‚æ•°åˆ—è¡¨
-		nodes: å…ƒç´ ç‰‡æ®µ
-		scripts: è„šæœ¬ç‰‡æ®µ
+		args: ²ÎÊıÁĞ±í
+		nodes: ÔªËØÆ¬¶Î
+		scripts: ½Å±¾Æ¬¶Î
 	*/
 	da.buildFragment = function( args, nodes, scripts ) {
 		var fragment, cacheable, cacheresults, doc,
@@ -5500,10 +5500,10 @@ var daRe_until = /Until$/,
 
 		if ( args.length === 1 && 
 			typeof first === "string" && 
-			first.length < 512 && 										//åªç¼“å­˜0.5KB çš„HTMLä»£ç ç‰‡æ®µ
-			doc === document &&											//åªç¼“å­˜ä¸å½“å‰Documentç›¸å…³çš„HTMLä»£ç ç‰‡æ®µ
-			first.charAt(0) === "<" && !daRe_nocache.test( first ) &&	//IE6 ä¸èƒ½æ­£ç¡®çš„å…‹éš†æ–‡æ¡£ç‰‡æ®µä¸­optionå…ƒç´ çš„selectedé€‰ä¸­çŠ¶æ€å±æ€§ï¼Œobjectå’Œembedä¹Ÿä¼šå‡ºé—®é¢˜ï¼Œæ‰€ä»¥ä¸ç¼“å­˜äº†ã€‚
-			(da.support.checkClone || !daRe_checked.test( first )) &&	//WebKitæµè§ˆå™¨åœ¨æ–‡æ¡£ç‰‡æ®µä¸­ï¼Œå…‹éš†å…ƒç´ æ—¶ï¼Œä¸èƒ½æ­£ç¡®çš„å¤åˆ¶checkedçŠ¶æ€å±æ€§ï¼Œæ‰€ä»¥ä¸ç¼“å­˜äº†ã€‚
+			first.length < 512 && 										//Ö»»º´æ0.5KB µÄHTML´úÂëÆ¬¶Î
+			doc === document &&											//Ö»»º´æÓëµ±Ç°DocumentÏà¹ØµÄHTML´úÂëÆ¬¶Î
+			first.charAt(0) === "<" && !daRe_nocache.test( first ) &&	//IE6 ²»ÄÜÕıÈ·µÄ¿ËÂ¡ÎÄµµÆ¬¶ÎÖĞoptionÔªËØµÄselectedÑ¡ÖĞ×´Ì¬ÊôĞÔ£¬objectºÍembedÒ²»á³öÎÊÌâ£¬ËùÒÔ²»»º´æÁË¡£
+			(da.support.checkClone || !daRe_checked.test( first )) &&	//WebKitä¯ÀÀÆ÷ÔÚÎÄµµÆ¬¶ÎÖĞ£¬¿ËÂ¡ÔªËØÊ±£¬²»ÄÜÕıÈ·µÄ¸´ÖÆchecked×´Ì¬ÊôĞÔ£¬ËùÒÔ²»»º´æÁË¡£
 			(da.support.html5Clone || !daRe_noshimcache.test( first )) ) {
 
 			cacheable = true;
@@ -5514,19 +5514,19 @@ var daRe_until = /Until$/,
 			}
 		}
 
-		if ( !fragment ) {				//æ²¡æœ‰ç¼“å­˜è¿‡æ–‡æ¡£ç‰‡æ®µï¼Œå°±ç”Ÿäº§æ–‡æ¡£ç‰‡æ®µ
+		if ( !fragment ) {				//Ã»ÓĞ»º´æ¹ıÎÄµµÆ¬¶Î£¬¾ÍÉú²úÎÄµµÆ¬¶Î
 			fragment = doc.createDocumentFragment();
-			da.clean( args, doc, fragment, scripts );			//ç”Ÿäº§å‡ºæ¥çš„æ–‡æ¡£ç‰‡æ®µéœ€è¦é€šè¿‡da.clean()å‡½æ•°ä¿®æ­£æ¸…ç†ä¸€ä¸‹
+			da.clean( args, doc, fragment, scripts );			//Éú²ú³öÀ´µÄÎÄµµÆ¬¶ÎĞèÒªÍ¨¹ıda.clean()º¯ÊıĞŞÕıÇåÀíÒ»ÏÂ
 		}
 
-		if ( cacheable ) {				//å¯¹æ–‡æ¡£ç‰‡æ®µç¼“å­˜setæ“ä½œ
+		if ( cacheable ) {				//¶ÔÎÄµµÆ¬¶Î»º´æset²Ù×÷
 			da.fragments[ first ] = cacheresults ? fragment : 1;
 		}
 
-		return { fragment: fragment, cacheable: cacheable };	//è¿”å›æ–‡æ¡£ç‰‡æ®µ
+		return { fragment: fragment, cacheable: cacheable };	//·µ»ØÎÄµµÆ¬¶Î
 	};
 
-	//æ‰©å±•éƒ¨åˆ†æ·»åŠ ã€æ’å…¥ç­‰ç‰¹æ®ŠåŠŸèƒ½çš„DOMå¯¹è±¡æ“ä½œå‡½æ•°
+	//À©Õ¹²¿·ÖÌí¼Ó¡¢²åÈëµÈÌØÊâ¹¦ÄÜµÄDOM¶ÔÏó²Ù×÷º¯Êı
 	da.each({
 		appendTo: "append",
 		prependTo: "prepend",
@@ -5569,37 +5569,37 @@ var daRe_until = /Until$/,
 		}
 	}
 	
-	//ä¿®æ­£checkboxå’Œredioçš„defaultCheckedå±æ€§å‡½æ•°
+	//ĞŞÕıcheckboxºÍredioµÄdefaultCheckedÊôĞÔº¯Êı
 	/*
-		elem: éœ€è¦ä¿®æ­£çš„å…ƒç´ å¯¹è±¡
+		elem: ĞèÒªĞŞÕıµÄÔªËØ¶ÔÏó
 	*/
 	function fixDefaultChecked( elem ) {
-		if ( elem.type === "checkbox" || elem.type === "radio" ) {						//åˆ¤æ–­æ˜¯å¦æ˜¯checkboxæˆ–redioæ§ä»¶
+		if ( elem.type === "checkbox" || elem.type === "radio" ) {						//ÅĞ¶ÏÊÇ·ñÊÇcheckbox»òredio¿Ø¼ş
 			elem.defaultChecked = elem.checked;
 		}
 	}
 	
-	//æ‰¾åˆ°æ‰€æœ‰inputå…ƒç´ ç„¶åä¼ ç»™fixDefaultChecked()å‡½æ•°å¤„ç†
+	//ÕÒµ½ËùÓĞinputÔªËØÈ»ºó´«¸øfixDefaultChecked()º¯Êı´¦Àí
 	/*
-		elem: æŸ¥æ‰¾èŒƒå›´å…ƒç´ å¯¹è±¡
+		elem: ²éÕÒ·¶Î§ÔªËØ¶ÔÏó
 	*/
 	function findInputs( elem ) {
-		if ( da.isNodeName( elem, "input" ) ) {																//å¦‚æœæŸ¥æ‰¾èŒƒå›´å…ƒç´ æœ¬èº«æ˜¯input,å°±ç›´æ¥æ‰ç”¨fixDefaultChecked()å‡½æ•°å¤„ç†
+		if ( da.isNodeName( elem, "input" ) ) {																//Èç¹û²éÕÒ·¶Î§ÔªËØ±¾ÉíÊÇinput,¾ÍÖ±½ÓµôÓÃfixDefaultChecked()º¯Êı´¦Àí
 			fixDefaultChecked( elem );
 		} 
-		else if ( elem.getElementsByTagName ) {																//å¦‚æœå¯èƒ½æœ‰å¤šä¸ªinputå…ƒç´ ï¼Œå°±å°†fixDefaultChecked()å‡½æ•°ä½œä¸ºéªŒè¯å›è°ƒå¤„ç†å‡½æ•°ï¼Œé€šè¿‡da.grep()å‡½æ•°æ¥æ‰¹å¤„ç†ã€‚
+		else if ( elem.getElementsByTagName ) {																//Èç¹û¿ÉÄÜÓĞ¶à¸öinputÔªËØ£¬¾Í½«fixDefaultChecked()º¯Êı×÷ÎªÑéÖ¤»Øµ÷´¦Àíº¯Êı£¬Í¨¹ıda.grep()º¯ÊıÀ´Åú´¦Àí¡£
 			da.grep( elem.getElementsByTagName("input"), fixDefaultChecked );
 		}
 		
 	}
 	
-	//å…ƒç´ å…‹éš†å’Œæ¸…ç†å‡½æ•°é›†åˆ
+	//ÔªËØ¿ËÂ¡ºÍÇåÀíº¯Êı¼¯ºÏ
 	da.extend({
-		//å…‹éš†å…ƒç´ å‡½æ•°
+		//¿ËÂ¡ÔªËØº¯Êı
 		/*
-			elem: å…ƒç´ å¯¹è±¡
-			dataAndEvents: å…ƒç´ å¯¹åº”æ•°æ®å’Œäº‹ä»¶
-			deepDataAndEvents: æ·±åº¦å…ƒç´ æ•°æ®å’Œäº‹ä»¶
+			elem: ÔªËØ¶ÔÏó
+			dataAndEvents: ÔªËØ¶ÔÓ¦Êı¾İºÍÊÂ¼ş
+			deepDataAndEvents: Éî¶ÈÔªËØÊı¾İºÍÊÂ¼ş
 		*/
 		clone: function( elem, dataAndEvents, deepDataAndEvents ) {
 			var clone = elem.cloneNode(true),
@@ -5648,12 +5648,12 @@ var daRe_until = /Until$/,
 			return clone;
 		},
 		
-		//ä¿®æ•´æ¸…ç†æ–‡æ¡£ç‰‡æ®µå‡½æ•°
+		//ĞŞÕûÇåÀíÎÄµµÆ¬¶Îº¯Êı
 		/*
-			elemsï¼š å…ƒç´ å¯¹è±¡é›†åˆ
-			context: ä¸Šä¸‹æ–‡
-			fragment: æ–‡æ¡£ç‰‡æ®µ
-			scripts: è„šæœ¬ç‰‡æ®µ
+			elems£º ÔªËØ¶ÔÏó¼¯ºÏ
+			context: ÉÏÏÂÎÄ
+			fragment: ÎÄµµÆ¬¶Î
+			scripts: ½Å±¾Æ¬¶Î
 		*/
 		clean: function( elems, context, fragment, scripts ) {
 			var checkScriptType;
@@ -5676,26 +5676,26 @@ var daRe_until = /Until$/,
 					continue;
 				}
 	
-				if ( "string" === typeof elem ) {											//å°†HTMLä»£ç ç‰‡æ®µå†™å…¥å…ƒç´ èŠ‚ç‚¹å¯¹è±¡ä¸­ï¼Œè¿›è¡Œè½¬æ¢
-					if ( !daRe_html.test( elem ) ) {										//åŒ¹é…åˆ¤æ–­æ˜¯å¦æœ‰å…ƒç´ æ ‡ç­¾ç¬¦å·ï¼Œå¦‚æœæ²¡æœ‰å°±åˆ›å»ºä¸ºæ–‡æœ¬æ ‡ç­¾
+				if ( "string" === typeof elem ) {											//½«HTML´úÂëÆ¬¶ÎĞ´ÈëÔªËØ½Úµã¶ÔÏóÖĞ£¬½øĞĞ×ª»»
+					if ( !daRe_html.test( elem ) ) {										//Æ¥ÅäÅĞ¶ÏÊÇ·ñÓĞÔªËØ±êÇ©·ûºÅ£¬Èç¹ûÃ»ÓĞ¾Í´´½¨ÎªÎÄ±¾±êÇ©
 						elem = context.createTextNode( elem );
 					} 
-					else {																							//éœ€è¦åˆ›å»ºå…ƒç´ èŠ‚ç‚¹
-						elem = elem.replace( daRe_xhtmlTag, "<$1></$2>" );											//è®©æ‰€æœ‰æµè§ˆå™¨å…¼å®¹"XHTML"çš„styleæ ‡ç­¾
+					else {																							//ĞèÒª´´½¨ÔªËØ½Úµã
+						elem = elem.replace( daRe_xhtmlTag, "<$1></$2>" );											//ÈÃËùÓĞä¯ÀÀÆ÷¼æÈİ"XHTML"µÄstyle±êÇ©
 	
 						// Trim whitespace, otherwise indexOf won't work as expected
 						var tag = ( daRe_tagName.exec( elem ) || ["", ""] )[1].toLowerCase(),
-								wrap = daWrapMap[ tag ] || daWrapMap._default,											//å¦‚æœæ–‡æ¡£ç‰‡æ®µå…ƒç´ å¯¹è±¡éœ€è¦åŒ…è£¹
+								wrap = daWrapMap[ tag ] || daWrapMap._default,											//Èç¹ûÎÄµµÆ¬¶ÎÔªËØ¶ÔÏóĞèÒª°ü¹ü
 								depth = wrap[0],
 								div = context.createElement("div");
 	
 						div.innerHTML = wrap[1] + elem + wrap[2];					// Go to html and back, then peel off extra wrappers
 	
-						while ( depth-- ) {																//é€šè¿‡åŒ…è£¹å±‚æ•°ï¼Œæ‰¾åˆ°ç”Ÿäº§çš„å…ƒç´ å¯¹è±¡
+						while ( depth-- ) {																//Í¨¹ı°ü¹ü²ãÊı£¬ÕÒµ½Éú²úµÄÔªËØ¶ÔÏó
 							div = div.lastChild;
 						}
 	
-						if ( da.support.tbody ) {													//å¦‚æœæ˜¯IEæµè§ˆå™¨ï¼Œè¿˜è¦åˆ é™¤è‡ªåŠ¨æ’å…¥çš„tBodyæ ‡ç­¾å…ƒç´ 
+						if ( da.support.tbody ) {													//Èç¹ûÊÇIEä¯ÀÀÆ÷£¬»¹ÒªÉ¾³ı×Ô¶¯²åÈëµÄtBody±êÇ©ÔªËØ
 							var hasBody = daRe_tbody.test(elem),
 									tbody = ( "table" === tag && !hasBody ) ? 
 									( div.firstChild && div.firstChild.childNodes ) : ( "<table>" === wrap[1] && !hasBody ) ?											// String was a bare <thead> or <tfoot>
@@ -5709,7 +5709,7 @@ var daRe_until = /Until$/,
 							
 						}
 	
-						if ( !da.support.leadingWhitespace 								//IEåœ¨æ‰§è¡ŒinnerHTMLæ—¶å°†å»é™¤HTMLä»£ç å‰éƒ¨çš„æ‰€æœ‰ç©ºæ ¼
+						if ( !da.support.leadingWhitespace 								//IEÔÚÖ´ĞĞinnerHTMLÊ±½«È¥³ıHTML´úÂëÇ°²¿µÄËùÓĞ¿Õ¸ñ
 						&& daRe_leadingWhitespace.test( elem ) ) {													
 							div.insertBefore( context.createTextNode( daRe_leadingWhitespace.exec( elem )[0] ), div.firstChild );
 						}
@@ -5719,7 +5719,7 @@ var daRe_until = /Until$/,
 					
 				}
 				
-				//å¦‚æœæ˜¯IE6/7ï¼Œåœ¨ç”Ÿäº§æ–‡æ¡£å¯¹è±¡ç‰‡æ®µä¸­redioå’Œcheckboxä¹‹å‰ï¼Œéœ€è¦ä¿®æ­£ä¸€ä¸‹defaultCheckedå±æ€§
+				//Èç¹ûÊÇIE6/7£¬ÔÚÉú²úÎÄµµ¶ÔÏóÆ¬¶ÎÖĞredioºÍcheckboxÖ®Ç°£¬ĞèÒªĞŞÕıÒ»ÏÂdefaultCheckedÊôĞÔ
 				var len;
 				if ( !da.support.appendChecked ) {
 					if ( elem[0] && "number" === typeof (len = elem.length) ) {
@@ -5732,28 +5732,28 @@ var daRe_until = /Until$/,
 					}
 				}
 				
-				if ( elem.nodeType ) {								//å•ä¸ªå…ƒç´ 
+				if ( elem.nodeType ) {								//µ¥¸öÔªËØ
 					ret.push( elem );
 				}
-				else {																//å¤šä¸ªå…ƒç´ çš„æ•°ç»„ï¼Œå¯ä»¥é€šè¿‡da.merge()å‡½æ•°åˆå¹¶åˆ°retæ•°ç»„ä¸­
+				else {																//¶à¸öÔªËØµÄÊı×é£¬¿ÉÒÔÍ¨¹ıda.merge()º¯ÊıºÏ²¢µ½retÊı×éÖĞ
 					ret = da.merge( ret, elem );			
 				}
 				
 			}
 	
 			if ( fragment ) {
-				checkScriptType = function( elem ) {														//ä¸´æ—¶å‡½æ•°ï¼ŒéªŒè¯å…ƒç´  æ˜¯å¦æ˜¯è„šæœ¬å…ƒç´ ç±»å‹ å¤„ç†å‡½æ•°
+				checkScriptType = function( elem ) {														//ÁÙÊ±º¯Êı£¬ÑéÖ¤ÔªËØ ÊÇ·ñÊÇ½Å±¾ÔªËØÀàĞÍ ´¦Àíº¯Êı
 					return !elem.type || daRe_scriptType.test( elem.type );
 				};
 				
 				for ( var i=0; ret[i]; i++ ) {
-					if ( scripts 																																							//å¦‚æœç”¨æˆ·æœ‰ä¼ å…¥è„šæœ¬ç¼“å­˜åŒº
-					&& da.isNodeName( ret[i], "script" ) 																											//å¹¶ä¸” æ–‡æ¡£ç‰‡æ®µä¸­æœ‰è„šæ­¥å…ƒç´ 
-					&& (!ret[i].type || ret[i].type.toLowerCase() === "text/javascript") ) {									//å¹¶ä¸” è„šæœ¬å…ƒç´ å¿…é¡»ä¸ºjsç±»å‹
-						scripts.push( ret[i].parentNode ? ret[i].parentNode.removeChild( ret[i] ) : ret[i] );		//å°†è„šæœ¬ç‰‡æ®µå‹å…¥è„šæœ¬ç¼“å­˜åŒº
+					if ( scripts 																																							//Èç¹ûÓÃ»§ÓĞ´«Èë½Å±¾»º´æÇø
+					&& da.isNodeName( ret[i], "script" ) 																											//²¢ÇÒ ÎÄµµÆ¬¶ÎÖĞÓĞ½Å²½ÔªËØ
+					&& (!ret[i].type || ret[i].type.toLowerCase() === "text/javascript") ) {									//²¢ÇÒ ½Å±¾ÔªËØ±ØĞëÎªjsÀàĞÍ
+						scripts.push( ret[i].parentNode ? ret[i].parentNode.removeChild( ret[i] ) : ret[i] );		//½«½Å±¾Æ¬¶ÎÑ¹Èë½Å±¾»º´æÇø
 	
 					}
-					else {																																										//å¦‚æœæ²¡æœ‰è„šæœ¬ç¼“å­˜åŒº å°±é€šè¿‡æ‰“æ ‡å¿—çš„æ–¹å¼åŒºåˆ†å§
+					else {																																										//Èç¹ûÃ»ÓĞ½Å±¾»º´æÇø ¾ÍÍ¨¹ı´ò±êÖ¾µÄ·½Ê½Çø·Ö°É
 						if ( ret[i].nodeType === 1 ) {
 							var jsTags = da.grep( ret[i].getElementsByTagName( "script" ), checkScriptType );
 	
@@ -5770,9 +5770,9 @@ var daRe_until = /Until$/,
 			return ret;
 		},
 	
-		//æ¸…ç†å…ƒç´ æ•°æ®å‡½æ•°
+		//ÇåÀíÔªËØÊı¾İº¯Êı
 		/*
-			elems: å…ƒç´ å¯¹è±¡é›†åˆ
+			elems: ÔªËØ¶ÔÏó¼¯ºÏ
 		*/
 		cleanData: function( elems ) {
 			var data, id, cache = da.cache,
@@ -5786,7 +5786,7 @@ var daRe_until = /Until$/,
 				id = elem[ da.expando ];
 	
 				if ( id ) {
-//					data = cache[ id ] && cache[ id ][ internalKey ];					//internalKey ç”¨äºå†…éƒ¨ä½¿ç”¨æ ‡è®°ï¼Œæš‚æ—¶ä¸åŠ å…¥è¯¥ä¿éšœæœºåˆ¶å§ï¼ˆæ¶‰åŠç›¸å…³ä»£ç å¤ªå¤šï¼‰ã€‚
+//					data = cache[ id ] && cache[ id ][ internalKey ];					//internalKey ÓÃÓÚÄÚ²¿Ê¹ÓÃ±ê¼Ç£¬ÔİÊ±²»¼ÓÈë¸Ã±£ÕÏ»úÖÆ°É£¨Éæ¼°Ïà¹Ø´úÂëÌ«¶à£©¡£
 					data = cache[ id ];
 					
 					if ( data && data.events ) {
@@ -5829,12 +5829,12 @@ var daRe_until = /Until$/,
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: å…ƒç´ æ ·å¼ç®¡ç†å™¨
+	description: ÔªËØÑùÊ½¹ÜÀíÆ÷
 	version: 1.0.0
 */
 (function(da){
 
-	//CSSå…¬ç”¨æºç æ­£åˆ™è¡¨è¾¾å¼
+	//CSS¹«ÓÃÔ´ÂëÕıÔò±í´ïÊ½
 	var	daRe_exclude = /z-?index|font-?weight|opacity|zoom|line-?height/i,
 		daRe_alpha = /alpha\([^)]*\)/,
 		daRe_opacity = /opacity=([^)]*)/,
@@ -5843,18 +5843,18 @@ var daRe_until = /Until$/,
 		daRe_numpx = /^-?\d+(?:px)?$/i,
 		daRe_num = /^-?\d/;
 	
-	//DOMå¯¹è±¡ æ ·å¼å±æ€§ æ“ä½œå‡½æ•°æ‰©å±•
+	//DOM¶ÔÏó ÑùÊ½ÊôĞÔ ²Ù×÷º¯ÊıÀ©Õ¹
 	da.fnStruct.extend({
-		//èŠ‚ç‚¹æ ·å¼å±æ€§ æ“ä½œå‡½æ•°
+		//½ÚµãÑùÊ½ÊôĞÔ ²Ù×÷º¯Êı
 		/*
-			name: styleæ ·å¼å±æ€§å
-			value: styleæ ·å¼å±æ€§å€¼
+			name: styleÑùÊ½ÊôĞÔÃû
+			value: styleÑùÊ½ÊôĞÔÖµ
 		*/
 		css: function(name, value ) {
 			var ret = da.access( this, function( elem, name, value ) {
 				return value !== undefined ?
-					da.style( elem, name, value ) :			//setæ“ä½œ
-					da.css( elem, name );					//getæ“ä½œ
+					da.style( elem, name, value ) :			//set²Ù×÷
+					da.css( elem, name );					//get²Ù×÷
 					
 			}, name, value, arguments.length > 1 );
 			
@@ -5863,7 +5863,7 @@ var daRe_until = /Until$/,
 	});
 	
 	da.extend({
-		/**épxä¸ºå•ä½çš„å±æ€§å¯¹ç…§è¡¨
+		/**·ÇpxÎªµ¥Î»µÄÊôĞÔ¶ÔÕÕ±í
 		*/
 		cssNumber: {
 			"zIndex": true,
@@ -5875,38 +5875,38 @@ var daRe_until = /Until$/,
 			"orphans": true
 		},
 		
-		//èŠ‚ç‚¹æœ€é«˜ä¼˜å…ˆçº§æ ·å¼å±æ€§ æ“ä½œå‡½æ•°
+		//½Úµã×î¸ßÓÅÏÈ¼¶ÑùÊ½ÊôĞÔ ²Ù×÷º¯Êı
 		/*
-			obj: DOMèŠ‚ç‚¹å¯¹è±¡
-			name: styleæ ·å¼å±æ€§å
+			obj: DOM½Úµã¶ÔÏó
+			name: styleÑùÊ½ÊôĞÔÃû
 		*/
 		curCSS: function( obj, name ) {
 			var ret, style = obj.style, filter;
 			
-			//IEä¸æ”¯æŒopacityå±æ€§ï¼Œéœ€è¦ç”¨filteræ»¤é•œå¤„ç†
-			if ( !da.support.opacity && "opacity"===name && obj.currentStyle ) {									//currentStyleä»£è¡¨äº†åœ¨å…¨å±€æ ·å¼è¡¨ã€å†…åµŒæ ·å¼ã€HTMLæ ‡ç­¾å±æ€§ä¸­æŒ‡å®šçš„å¯¹è±¡æ ¼å¼æˆ–æ ·å¼(å¦‚widthã€height)ã€‚
-				ret = daRe_opacity.test(obj.currentStyle.filter || "") ? ((parseFloat(RegExp.$1)/100) +"") : "";		//å¦‚æœæ‰¾åˆ°opacityå±æ€§ï¼Œè¿”å›ç¬¬ä¸€ä¸ªåŒ¹é…çš„å±æ€§å€¼
+			//IE²»Ö§³ÖopacityÊôĞÔ£¬ĞèÒªÓÃfilterÂË¾µ´¦Àí
+			if ( !da.support.opacity && "opacity"===name && obj.currentStyle ) {									//currentStyle´ú±íÁËÔÚÈ«¾ÖÑùÊ½±í¡¢ÄÚÇ¶ÑùÊ½¡¢HTML±êÇ©ÊôĞÔÖĞÖ¸¶¨µÄ¶ÔÏó¸ñÊ½»òÑùÊ½(Èçwidth¡¢height)¡£
+				ret = daRe_opacity.test(obj.currentStyle.filter || "") ? ((parseFloat(RegExp.$1)/100) +"") : "";		//Èç¹ûÕÒµ½opacityÊôĞÔ£¬·µ»ØµÚÒ»¸öÆ¥ÅäµÄÊôĞÔÖµ
 				
-				return (""===ret) ? "1" : ret;		//å¦‚æœæ²¡æœ‰å®šä¹‰opacityå±æ€§é»˜è®¤è¿”å›1 (100%æ˜¾ç¤º)
+				return (""===ret) ? "1" : ret;		//Èç¹ûÃ»ÓĞ¶¨ÒåopacityÊôĞÔÄ¬ÈÏ·µ»Ø1 (100%ÏÔÊ¾)
 			}
 	
-			//å±æ€§å æ ¼å¼æ ‡å‡†åŒ–å¤„ç†
-			if ( daRe_float.test( name ) ) name=da.support.cssFloat ? "cssFloat" : "styleFloat";			//å› ä¸ºfloatæ˜¯jsçš„å…³é”®å­—,æ‰€ä»¥jsè§„å®šæ–¹ä½floatè¦ç”¨cssFloatï¼Œè€Œä¸ºäº†å…¼å®¹IEè¦ç”¨styleFloatè®¿é—®
+			//ÊôĞÔÃû ¸ñÊ½±ê×¼»¯´¦Àí
+			if ( daRe_float.test( name ) ) name=da.support.cssFloat ? "cssFloat" : "styleFloat";			//ÒòÎªfloatÊÇjsµÄ¹Ø¼ü×Ö,ËùÒÔjs¹æ¶¨·½Î»floatÒªÓÃcssFloat£¬¶øÎªÁË¼æÈİIEÒªÓÃstyleFloat·ÃÎÊ
 			
-			//å¦‚æœèŠ‚ç‚¹styleå±æ€§æœ‰ç›¸åº”çš„å†…åµŒå€¼ï¼Œç›´æ¥å–å†…åµŒå€¼
-			//styleä¸­çš„å±æ€§ä¼˜å…ˆçº§é«˜äºclass,æ‰€ä»¥å¯ä»¥å…ˆä»styleä¸­æ‰¾ï¼Œç„¶åå†ä»å·²ç»è®¡ç®—å¥½çš„csså±æ€§ä¸­æ‰¾ã€‚
-			//å¦‚æœå†…åµŒstyleå±æ€§ä½¿ç”¨äº†!importå¤„ç†å…¼å®¹é—®é¢˜ï¼Œå°±ä¸èƒ½ç›´æ¥å–styleå±æ€§å€¼äº†
+			//Èç¹û½ÚµãstyleÊôĞÔÓĞÏàÓ¦µÄÄÚÇ¶Öµ£¬Ö±½ÓÈ¡ÄÚÇ¶Öµ
+			//styleÖĞµÄÊôĞÔÓÅÏÈ¼¶¸ßÓÚclass,ËùÒÔ¿ÉÒÔÏÈ´ÓstyleÖĞÕÒ£¬È»ºóÔÙ´ÓÒÑ¾­¼ÆËãºÃµÄcssÊôĞÔÖĞÕÒ¡£
+			//Èç¹ûÄÚÇ¶styleÊôĞÔÊ¹ÓÃÁË!import´¦Àí¼æÈİÎÊÌâ£¬¾Í²»ÄÜÖ±½ÓÈ¡styleÊôĞÔÖµÁË
 			if ( style && style[ name ] ) {
 				ret = style[ name ];
 	
 			}
-			//FireFox ç­‰æ ‡å‡†çš„æµè§ˆå™¨é€šè¿‡getComputedStyleè·å–å½“å‰è®¡ç®—å¥½çš„æ ·å¼å±æ€§å€¼
+			//FireFox µÈ±ê×¼µÄä¯ÀÀÆ÷Í¨¹ıgetComputedStyle»ñÈ¡µ±Ç°¼ÆËãºÃµÄÑùÊ½ÊôĞÔÖµ
 			else if ( da.support.getComputedStyle ) {
-				if ( daRe_float.test( name ) ) {															//åœ¨ä½¿ç”¨getPropertyValueè·å–floatå±æ€§å€¼æ—¶ï¼Œéœ€è¦å°†å‰é¢æ ¼å¼åŒ–å¥½çš„cssFloatæˆ–styleFloatå±æ€§åï¼Œæ”¹å›ä¸ºfloat
+				if ( daRe_float.test( name ) ) {															//ÔÚÊ¹ÓÃgetPropertyValue»ñÈ¡floatÊôĞÔÖµÊ±£¬ĞèÒª½«Ç°Ãæ¸ñÊ½»¯ºÃµÄcssFloat»òstyleFloatÊôĞÔÃû£¬¸Ä»ØÎªfloat
 					name = "float";
 				}
 				
-				name = name.replace( daRe_upper, "-$1" ).toLowerCase();				//å¦‚:font-WeightæŠŠä¸­é—´éƒ¨åˆ†å¤§å†™çš„é©¼å³°æ ¼å¼ "-W"æ›¿æ¢æˆ "-w"å°å†™
+				name = name.replace( daRe_upper, "-$1" ).toLowerCase();				//Èç:font-Weight°ÑÖĞ¼ä²¿·Ö´óĞ´µÄÍÕ·å¸ñÊ½ "-W"Ìæ»»³É "-w"Ğ¡Ğ´
 	
 				var defaultView = obj.ownerDocument.defaultView;
 	
@@ -5920,26 +5920,26 @@ var daRe_until = /Until$/,
 					ret = computedStyle.getPropertyValue( name );
 				}
 	
-				if ( "opacity"===name && ""===ret ) {										//å¦‚æœæ²¡æœ‰å®šä¹‰opacityå±æ€§é»˜è®¤è¿”å›1 (100%æ˜¾ç¤º)
+				if ( "opacity"===name && ""===ret ) {										//Èç¹ûÃ»ÓĞ¶¨ÒåopacityÊôĞÔÄ¬ÈÏ·µ»Ø1 (100%ÏÔÊ¾)
 					ret = "1";			
 				}
 		
 			}
-			//IE é€šè¿‡currentStyleè·å–å½“å‰è®¡ç®—å¥½çš„æ ·å¼å±æ€§å€¼
+			//IE Í¨¹ıcurrentStyle»ñÈ¡µ±Ç°¼ÆËãºÃµÄÑùÊ½ÊôĞÔÖµ
 			else if ( obj.currentStyle ) {
-				var camelCase = da.camelCase(name);						//å¦‚:font-weightæŠŠä¸­é—´éƒ¨åˆ† "-w"æ›¿æ¢æˆ "-W"å¤§å†™çš„é©¼å³°æ ¼å¼
+				var camelCase = da.camelCase(name);						//Èç:font-weight°ÑÖĞ¼ä²¿·Ö "-w"Ìæ»»³É "-W"´óĞ´µÄÍÕ·å¸ñÊ½
 	
 				ret = obj.currentStyle[ name ] || obj.currentStyle[ camelCase ];
 	
-				//å°†éåƒç´ å•ä½çš„å±æ€§å€¼ è½¬åŒ–ä¸ºä»¥åƒç´ ä¸ºå•ä½çš„å€¼
-				if ( !(daRe_numpx.test( ret )) && (daRe_num.test( ret )) ) {			//æœ‰å€¼å¹¶ä¸”ä¸æ˜¯pxå•ä½çš„å±æ€§å€¼
-						var left = style.left, rsLeft = obj.runtimeStyle.left;				//ç¼“å­˜ä¸€ä¸‹å½“å‰çš„å±æ€§å€¼
+				//½«·ÇÏñËØµ¥Î»µÄÊôĞÔÖµ ×ª»¯ÎªÒÔÏñËØÎªµ¥Î»µÄÖµ
+				if ( !(daRe_numpx.test( ret )) && (daRe_num.test( ret )) ) {			//ÓĞÖµ²¢ÇÒ²»ÊÇpxµ¥Î»µÄÊôĞÔÖµ
+						var left = style.left, rsLeft = obj.runtimeStyle.left;				//»º´æÒ»ÏÂµ±Ç°µÄÊôĞÔÖµ
 						
-						obj.runtimeStyle.left = obj.currentStyle.left;								//æŠŠä¼˜å…ˆçº§æœ€é«˜çš„æ ·å¼ èµ‹å€¼ç»™runtimeStyleï¼ˆå½“å‰å‘ˆç°çš„æ ·å¼å±æ€§ï¼‰
-						style.left = ("fontSize"===camelCase) ? "1em" : (ret || 0);		//åœ¨å‹å…¥æ–°å±æ€§å€¼åï¼Œè·å–å…¨æ–°è®¡ç®—å‡ºæ¥ ä»¥åƒç´ ä¸ºå•ä½çš„æ ·å¼å€¼
+						obj.runtimeStyle.left = obj.currentStyle.left;								//°ÑÓÅÏÈ¼¶×î¸ßµÄÑùÊ½ ¸³Öµ¸øruntimeStyle£¨µ±Ç°³ÊÏÖµÄÑùÊ½ÊôĞÔ£©
+						style.left = ("fontSize"===camelCase) ? "1em" : (ret || 0);		//ÔÚÑ¹ÈëĞÂÊôĞÔÖµºó£¬»ñÈ¡È«ĞÂ¼ÆËã³öÀ´ ÒÔÏñËØÎªµ¥Î»µÄÑùÊ½Öµ
 						ret = style.pixelLeft + "px";
 		
-						style.left = left;																						//è¿˜åŸè¢«ä¸´æ—¶æ”¹å˜çš„å±æ€§å€¼
+						style.left = left;																						//»¹Ô­±»ÁÙÊ±¸Ä±äµÄÊôĞÔÖµ
 						obj.runtimeStyle.left = rsLeft;
 				}
 			}
@@ -5947,43 +5947,43 @@ var daRe_until = /Until$/,
 			return ret;
 		},
 		
-		//é€šè¿‡éƒ¨åˆ†æ ·å¼å€¼å, å›è°ƒcallbackå‡½æ•°, ç„¶åè¿˜åŸæ ·å¼
+		//Í¨¹ı²¿·ÖÑùÊ½Öµºó, »Øµ÷callbackº¯Êı, È»ºó»¹Ô­ÑùÊ½
 		/*
-			obj: DOMèŠ‚ç‚¹å¯¹è±¡
-			options: æ ·å¼å€¼é”®å€¼å¯¹å¯¹è±¡
-			callback:	å›è°ƒå‡½æ•°
+			obj: DOM½Úµã¶ÔÏó
+			options: ÑùÊ½Öµ¼üÖµ¶Ô¶ÔÏó
+			callback:	»Øµ÷º¯Êı
 		*/
 		swap: function( obj, options, callback ) {
 			var old = {};
 	
-			for ( var name in options ) {						//ç¼“å­˜ä¸€ä¸‹å½“å‰çš„å±æ€§å€¼
+			for ( var name in options ) {						//»º´æÒ»ÏÂµ±Ç°µÄÊôĞÔÖµ
 				old[ name ] = obj.style[ name ];
 				obj.style[ name ] = options[ name ];
 			}
 			
 			callback.call( obj );
 			
-			for ( var name in options ) {						//è¿˜åŸè¢«ä¸´æ—¶æ”¹å˜çš„å±æ€§å€¼
+			for ( var name in options ) {						//»¹Ô­±»ÁÙÊ±¸Ä±äµÄÊôĞÔÖµ
 				obj.style[ name ] = old[ name ];
 			}
 		},
 		
-		//èŠ‚ç‚¹æ ·å¼å±æ€§ æ“ä½œå‡½æ•°
+		//½ÚµãÑùÊ½ÊôĞÔ ²Ù×÷º¯Êı
 		/*
-			obj: DOMèŠ‚ç‚¹å¯¹è±¡
-			name: styleæ ·å¼å±æ€§å
-			extra: åŒ…å«,å¦‚:margin, padding, border
+			obj: DOM½Úµã¶ÔÏó
+			name: styleÑùÊ½ÊôĞÔÃû
+			extra: °üº¬,Èç:margin, padding, border
 		*/
 		css: function( obj, name, extra ) {
-			//å¯¹èŠ‚ç‚¹å…ƒç´ çš„é«˜å®½è¿›è¡Œæµè§ˆå™¨å…¼å®¹å™¨ç®—æ³•çš„ç»Ÿä¸€
-			//IEä¸­èŠ‚ç‚¹å…ƒç´ çš„å®é™…é«˜å®½æ˜¯åŒ…å«content, padding, borderçš„æ€»å’Œ,è€Œfirefoxç­‰åªæ˜¯contentçš„å°ºå¯¸;
-			//è¿™é‡Œé»˜è®¤ä»¥contentçš„å°ºå¯¸ä¸ºèŠ‚ç‚¹å…ƒç´ çš„å®é™…é«˜å®½
+			//¶Ô½ÚµãÔªËØµÄ¸ß¿í½øĞĞä¯ÀÀÆ÷¼æÈİÆ÷Ëã·¨µÄÍ³Ò»
+			//IEÖĞ½ÚµãÔªËØµÄÊµ¼Ê¸ß¿íÊÇ°üº¬content, padding, borderµÄ×ÜºÍ,¶øfirefoxµÈÖ»ÊÇcontentµÄ³ß´ç;
+			//ÕâÀïÄ¬ÈÏÒÔcontentµÄ³ß´çÎª½ÚµãÔªËØµÄÊµ¼Ê¸ß¿í
 			if ( name === "width" || name === "height" ) {
 				var val,
 				props = { position: "absolute", visibility: "hidden", display:"block" }, 
 				which = ("width"===name ? [ "Left", "Right" ] : [ "Top", "Bottom" ]);
 				
-				//æ±‚èŠ‚ç‚¹å…ƒç´ çš„å®é™…é«˜åº¦å’Œå®½åº¦ï¼ˆé™¤paddingå’Œborderï¼‰
+				//Çó½ÚµãÔªËØµÄÊµ¼Ê¸ß¶ÈºÍ¿í¶È£¨³ıpaddingºÍborder£©
 				function getWH() {
 					val = name === "width" ? obj.offsetWidth : obj.offsetHeight;
 	
@@ -6005,11 +6005,11 @@ var daRe_until = /Until$/,
 					}
 				}
 				
-				//å¦‚æœèŠ‚ç‚¹å…ƒç´ å½“å‰ä¸ºå¯è§ï¼Œå°±ç›´æ¥é€šè¿‡getWH å‡½æ•°æ¥è®¡ç®—å®é™…é«˜åº¦å’Œå®½åº¦
+				//Èç¹û½ÚµãÔªËØµ±Ç°Îª¿É¼û£¬¾ÍÖ±½ÓÍ¨¹ıgetWH º¯ÊıÀ´¼ÆËãÊµ¼Ê¸ß¶ÈºÍ¿í¶È
 				if ( obj.offsetWidth !== 0 ) {
 					getWH();
 				}
-				//å¦‚æœèŠ‚ç‚¹å…ƒç´ å½“å‰ ä¸å¯è§ï¼Œå…ˆè®©èŠ‚ç‚¹å…ƒç´ å®šä¹‰ä¸ºç»å¯¹å®šä½( position: "absolute" )ã€å¯è§( visibility: "hidden"ï¼Œdisplay:"block" )ç„¶åå†å–å®é™…é«˜åº¦å’Œå®½åº¦( å› ä¸ºä¸å¯è§çš„èŠ‚ç‚¹å…ƒç´ æµè§ˆå™¨æ˜¯ä¸è®¡ç®—èµ·é«˜å®½çš„ )
+				//Èç¹û½ÚµãÔªËØµ±Ç° ²»¿É¼û£¬ÏÈÈÃ½ÚµãÔªËØ¶¨ÒåÎª¾ø¶Ô¶¨Î»( position: "absolute" )¡¢¿É¼û( visibility: "hidden"£¬display:"block" )È»ºóÔÙÈ¡Êµ¼Ê¸ß¶ÈºÍ¿í¶È( ÒòÎª²»¿É¼ûµÄ½ÚµãÔªËØä¯ÀÀÆ÷ÊÇ²»¼ÆËãÆğ¸ß¿íµÄ )
 				else {
 					da.swap( obj, props, getWH );
 				}
@@ -6020,42 +6020,42 @@ var daRe_until = /Until$/,
 			return da.curCSS( obj, name );
 		},
 	
-		//èŠ‚ç‚¹styleæ ·å¼å±æ€§æ“ä½œå‡½æ•°
+		//½ÚµãstyleÑùÊ½ÊôĞÔ²Ù×÷º¯Êı
 		/*
-			obj: DOMèŠ‚ç‚¹å¯¹è±¡
-			name: styleæ ·å¼å±æ€§å
-			value: styleæ ·å¼å±æ€§å€¼
+			obj: DOM½Úµã¶ÔÏó
+			name: styleÑùÊ½ÊôĞÔÃû
+			value: styleÑùÊ½ÊôĞÔÖµ
 		*/
 		style: function( obj, name, value ) {
-			if ( !obj || !obj.style || obj.nodeType === 3 || obj.nodeType === 8 ) {			//ä¸èƒ½è®¾ç½®é£æ ¼å±æ€§çš„ç®€å•æ–‡æœ¬ æˆ–ä¸€äº›ç‰¹æ®Šç±»å‹çš„èŠ‚ç‚¹å…ƒç´ ï¼ˆnodeTypeï¼š 1=å…ƒç´ elementï¼› 2=å±æ€§attrï¼› 3=æ–‡æœ¬textï¼› 8=æ³¨é‡Šcommentsï¼› 9=æ–‡æ¡£documentï¼‰
+			if ( !obj || !obj.style || obj.nodeType === 3 || obj.nodeType === 8 ) {			//²»ÄÜÉèÖÃ·ç¸ñÊôĞÔµÄ¼òµ¥ÎÄ±¾ »òÒ»Ğ©ÌØÊâÀàĞÍµÄ½ÚµãÔªËØ£¨nodeType£º 1=ÔªËØelement£» 2=ÊôĞÔattr£» 3=ÎÄ±¾text£» 8=×¢ÊÍcomments£» 9=ÎÄµµdocument£©
 				return undefined;
 			}
 	
-			if ( ( "width"===name || "height"===name ) && parseFloat(value) < 0 ) {		//width å’Œheightå±æ€§ä¸èƒ½ä¸ºè´Ÿæ•°
+			if ( ( "width"===name || "height"===name ) && parseFloat(value) < 0 ) {		//width ºÍheightÊôĞÔ²»ÄÜÎª¸ºÊı
 				value = undefined;
 			}
 	
-			var style = obj.style || obj, set = value !== undefined;				//å¦‚æœæ˜¯èµ‹å€¼æ“ä½œï¼Œè·å¾—æ•°å€¼
+			var style = obj.style || obj, set = value !== undefined;				//Èç¹ûÊÇ¸³Öµ²Ù×÷£¬»ñµÃÊıÖµ
 	
-			//IEä¸æ”¯æŒopacityå±æ€§ï¼Œéœ€è¦ç”¨filteræ»¤é•œå¤„ç†
+			//IE²»Ö§³ÖopacityÊôĞÔ£¬ĞèÒªÓÃfilterÂË¾µ´¦Àí
 			if ( !da.support.opacity && "opacity"===name ) {
 				if ( set ) {
-					style.zoom = 1;			//IEçš„bug,ç»™élayoutæ¨¡å¼çš„å…ƒç´ ä½¿ç”¨opacityå±æ€§ä¼šå¤±æ•ˆ,åŠ ä¸Šzoomå€¼å¯ä»¥è§£å†³
+					style.zoom = 1;			//IEµÄbug,¸ø·ÇlayoutÄ£Ê½µÄÔªËØÊ¹ÓÃopacityÊôĞÔ»áÊ§Ğ§,¼ÓÉÏzoomÖµ¿ÉÒÔ½â¾ö
 	
-					var opacity = "NaN"===(parseInt( value, 10 )+ "") ? "" : ("alpha(opacity="+ value*100+ ")");	//é€šè¿‡alphaå‡½æ•°è®¾ç½®æœ‰æ•ˆçš„opacityå±æ€§
-					var filter = style.filter || da.curCSS( obj, "filter" ) || "";																//æŸ¥æ‰¾èŠ‚ç‚¹çš„styleé›†åˆ å’Œæ ·å¼è¡¨ä¸­çš„æ»¤é•œå±æ€§
+					var opacity = "NaN"===(parseInt( value, 10 )+ "") ? "" : ("alpha(opacity="+ value*100+ ")");	//Í¨¹ıalphaº¯ÊıÉèÖÃÓĞĞ§µÄopacityÊôĞÔ
+					var filter = style.filter || da.curCSS( obj, "filter" ) || "";																//²éÕÒ½ÚµãµÄstyle¼¯ºÏ ºÍÑùÊ½±íÖĞµÄÂË¾µÊôĞÔ
 					
-					style.filter = daRe_alpha.test(filter) ? filter.replace(daRe_alpha, opacity) : opacity;			//æ ¡æ­£èŠ‚ç‚¹æ»¤é•œå±æ€§
+					style.filter = daRe_alpha.test(filter) ? filter.replace(daRe_alpha, opacity) : opacity;			//Ğ£Õı½ÚµãÂË¾µÊôĞÔ
 				}
 	
-				return (style.filter && 0<=style.filter.indexOf("opacity=")) ? ((parseFloat( daRe_opacity.exec(style.filter)[1] ) / 100) +"") : "";			//è¿”å›ä¸é€æ˜åº¦å±æ€§å€¼
+				return (style.filter && 0<=style.filter.indexOf("opacity=")) ? ((parseFloat( daRe_opacity.exec(style.filter)[1] ) / 100) +"") : "";			//·µ»Ø²»Í¸Ã÷¶ÈÊôĞÔÖµ
 			}
 			
-			//å±æ€§å æ ¼å¼æ ‡å‡†åŒ–å¤„ç†
-			if ( daRe_float.test( name ) ) name=da.support.cssFloat ? "cssFloat" : "styleFloat";			//å› ä¸ºfloatæ˜¯jsçš„å…³é”®å­—,æ‰€ä»¥jsè§„å®šæ–¹ä½floatè¦ç”¨cssFloatï¼Œè€Œä¸ºäº†å…¼å®¹IEè¦ç”¨styleFloatè®¿é—®
-			name = da.camelCase(name);																		//å¦‚:font-weightæŠŠä¸­é—´éƒ¨åˆ† "-w"æ›¿æ¢æˆ "-W"å¤§å†™çš„é©¼å³°æ ¼å¼
+			//ÊôĞÔÃû ¸ñÊ½±ê×¼»¯´¦Àí
+			if ( daRe_float.test( name ) ) name=da.support.cssFloat ? "cssFloat" : "styleFloat";			//ÒòÎªfloatÊÇjsµÄ¹Ø¼ü×Ö,ËùÒÔjs¹æ¶¨·½Î»floatÒªÓÃcssFloat£¬¶øÎªÁË¼æÈİIEÒªÓÃstyleFloat·ÃÎÊ
+			name = da.camelCase(name);																		//Èç:font-weight°ÑÖĞ¼ä²¿·Ö "-w"Ìæ»»³É "-W"´óĞ´µÄÍÕ·å¸ñÊ½
 	
-			if ( set )	style[ name ] = value;			//å¦‚æœæ˜¯èµ‹å€¼æ“ä½œï¼Œå°±ç»™ç›¸åº”æ ·å¼å±æ€§èµ‹å€¼
+			if ( set )	style[ name ] = value;			//Èç¹ûÊÇ¸³Öµ²Ù×÷£¬¾Í¸øÏàÓ¦ÑùÊ½ÊôĞÔ¸³Öµ
 
 			return style[ name ];
 		}
@@ -6068,7 +6068,7 @@ var daRe_until = /Until$/,
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: Ajaxå¼‚æ­¥è¯·æ±‚ç®¡ç†æœºåˆ¶ æ ¸å¿ƒä»£ç 
+	description: AjaxÒì²½ÇëÇó¹ÜÀí»úÖÆ ºËĞÄ´úÂë
 	version: 1.0.0
 */
 (function(da){
@@ -6083,7 +6083,7 @@ var daRe_until = /Until$/,
 			daRe_bracket = /\[\]$/;
 
 	// Attach a bunch of functions for handling common AJAX events
-	//æ‰©å±•å‡ºajaxå…¨å±€å‡½æ•°
+	//À©Õ¹³öajaxÈ«¾Öº¯Êı
 	da.each( "ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".split(" "), 
 	function( i, v ) {
 		da.fnStruct[v] = function( f ) {
@@ -6134,51 +6134,51 @@ var daRe_until = /Until$/,
 			});
 		},
 		
-		//å°†requestè¯·æ±‚çš„è¡¨å•å…ƒç´ æ•°ç»„æˆ–é”®å€¼å¯¹å‚æ•°é›†ï¼Œä¸²è¡ŒåŒ–ä¸ºä¸€ä¸ªæŸ¥è¯¢å­—ç¬¦ä¸²
+		//½«requestÇëÇóµÄ±íµ¥ÔªËØÊı×é»ò¼üÖµ¶Ô²ÎÊı¼¯£¬´®ĞĞ»¯ÎªÒ»¸ö²éÑ¯×Ö·û´®
 		/*
-			a: è¡¨å•å…ƒç´ æ•°ç»„æˆ–é”®å€¼å¯¹å‚æ•°é›†
-			traditional: æ˜¯å¦ç”¨ä¼ ç»Ÿçš„æ–¹å¼æ¥åºåˆ—åŒ–æ•°æ®
+			a: ±íµ¥ÔªËØÊı×é»ò¼üÖµ¶Ô²ÎÊı¼¯
+			traditional: ÊÇ·ñÓÃ´«Í³µÄ·½Ê½À´ĞòÁĞ»¯Êı¾İ
 		*/
 		param: function( a, traditional ) {
 			var s = [],
 					add = function( key, value ) {
-						value = da.isFunction(value) ? value() : value;																//å¦‚æœå‚æ•°å€¼æ˜¯å‡½æ•°ç±»å‹ï¼Œå°±è°ƒç”¨å‡½æ•°ï¼Œå†è·å¾—è¿”å›å€¼
-						s[ s.length ] = encodeURIComponent(key) + "=" + encodeURIComponent(value);		//å°†å‚æ•°åå’Œå‚æ•°å€¼éƒ½ç¼–ç åå‹å…¥ä¸´æ—¶æ•°ç»„
+						value = da.isFunction(value) ? value() : value;																//Èç¹û²ÎÊıÖµÊÇº¯ÊıÀàĞÍ£¬¾Íµ÷ÓÃº¯Êı£¬ÔÙ»ñµÃ·µ»ØÖµ
+						s[ s.length ] = encodeURIComponent(key) + "=" + encodeURIComponent(value);		//½«²ÎÊıÃûºÍ²ÎÊıÖµ¶¼±àÂëºóÑ¹ÈëÁÙÊ±Êı×é
 					};
 			
-			if ( traditional === undefined ) {						//è€ç‰ˆæœ¬traditionalä¸ºtrue
+			if ( traditional === undefined ) {						//ÀÏ°æ±¾traditionalÎªtrue
 				traditional = da.ajaxSettings.traditional;
 			}
 			
 			//if ( da.isArray(a) || a.jquery ) {
-			if ( da.isArray(a) ) {												//å¦‚æœä¼ å…¥çš„aæ˜¯æ•°ç»„ç±»å‹ï¼Œå°±å…ˆå‡å®šå®ƒæ˜¯è¡¨å•DOMå¯¹è±¡å…ƒç´ é›†,å°†å…ƒç´ çš„nameå’Œvalue,åˆ†åˆ«æ˜ å°„åˆ°keyå’Œvalue
-				da.each( a, function() {										//ä¸²è¡ŒåŒ–è¡¨å•å…ƒç´ æ•°ç»„
+			if ( da.isArray(a) ) {												//Èç¹û´«ÈëµÄaÊÇÊı×éÀàĞÍ£¬¾ÍÏÈ¼Ù¶¨ËüÊÇ±íµ¥DOM¶ÔÏóÔªËØ¼¯,½«ÔªËØµÄnameºÍvalue,·Ö±ğÓ³Éäµ½keyºÍvalue
+				da.each( a, function() {										//´®ĞĞ»¯±íµ¥ÔªËØÊı×é
 					add( this.name, this.value );
 				});
 				
 			} 
-			else {																				//å¦‚æœä¼ å…¥çš„aæ˜¯é”®å€¼å¯¹å‚æ•°é›†
+			else {																				//Èç¹û´«ÈëµÄaÊÇ¼üÖµ¶Ô²ÎÊı¼¯
 				// If traditional, encode the "old" way (the way 1.3.2 or older
 				// did it), otherwise encode params recursively.
 				for ( var prefix in a ) {
-					buildParams( prefix, a[prefix], traditional, add );				//é’ˆå¯¹é”®å€¼å¯¹ï¼Œå¯èƒ½æ˜¯å¤šçº§ï¼Œä¸“é—¨å†™ä¸€ä¸ªbuildParams()å‡½æ•°æ¥ä¸²è¡ŒåŒ–
+					buildParams( prefix, a[prefix], traditional, add );				//Õë¶Ô¼üÖµ¶Ô£¬¿ÉÄÜÊÇ¶à¼¶£¬×¨ÃÅĞ´Ò»¸öbuildParams()º¯ÊıÀ´´®ĞĞ»¯
 				}
 			}
 			
-			return s.join("&").replace(daRe_20, "+");					//ç”¨&ç¬¦å·åˆ†éš”,ä¸²æ¥ä¸´æ—¶æ•°ç»„ï¼Œå¹¶æŠŠç©ºæ ¼(" ")ç»è¿‡encodeURIComponent()å‡½æ•°ç¼–ç åçš„å­—ç¬¦"%20"æ›¿æ¢ä¸º"+"å·
+			return s.join("&").replace(daRe_20, "+");					//ÓÃ&·ûºÅ·Ö¸ô,´®½ÓÁÙÊ±Êı×é£¬²¢°Ñ¿Õ¸ñ(" ")¾­¹ıencodeURIComponent()º¯Êı±àÂëºóµÄ×Ö·û"%20"Ìæ»»Îª"+"ºÅ
 		},
 		
-		ajaxSetup: function( settings ) {								//ajaxå…¨å±€é…ç½®
+		ajaxSetup: function( settings ) {								//ajaxÈ«¾ÖÅäÖÃ
 			da.extend( da.ajaxSettings, settings );
 		},
 	
 		ajaxSettings: {	
-			url: location.href,																		//è¯·æ±‚åœ°å€
+			url: location.href,																		//ÇëÇóµØÖ·
 			global: true,
-			type: "GET",																					//è¯·æ±‚æ¨¡å¼
-			contentType: "application/x-www-form-urlencoded",			//å‘é€ä¿¡æ¯è‡³æœåŠ¡å™¨æ—¶å†…å®¹ç¼–ç ç±»å‹ã€‚é»˜è®¤å€¼é€‚åˆå¤§å¤šæ•°æƒ…å†µã€‚
-			processData: true,																		//æ˜¯å¦å…è®¸ä¼ å…¥æ•°æ®å€¼
-			async: true,																					//æ˜¯å¦å¼‚æ­¥
+			type: "GET",																					//ÇëÇóÄ£Ê½
+			contentType: "application/x-www-form-urlencoded",			//·¢ËÍĞÅÏ¢ÖÁ·şÎñÆ÷Ê±ÄÚÈİ±àÂëÀàĞÍ¡£Ä¬ÈÏÖµÊÊºÏ´ó¶àÊıÇé¿ö¡£
+			processData: true,																		//ÊÇ·ñÔÊĞí´«ÈëÊı¾İÖµ
+			async: true,																					//ÊÇ·ñÒì²½
 			/*
 			timeout: 0,
 			data: null,
@@ -6200,66 +6200,66 @@ var daRe_until = /Until$/,
 			}
 		},
 	
-		//å¼‚æ­¥æ•°æ®è®¿é—®
+		//Òì²½Êı¾İ·ÃÎÊ
 		/*
-			origSettings: å‚æ•°é›†
-			{å±æ€§å: å¯é€‰å€¼ = 
+			origSettings: ²ÎÊı¼¯
+			{ÊôĞÔÃû: ¿ÉÑ¡Öµ = 
 				[type: "GET"/"POST"/"PUT"/"DELETE" = "GET"],
 				[url: "" = location.href],
 			}
 		*/
 		ajax: function( origSettings ) {
-			var s = da.extend( true, {}, da.ajaxSettings, origSettings ),					//å°†ajaxSettingså’ŒorigSettingså¯¹è±¡åˆå¹¶åæ”¾å…¥så±€éƒ¨å˜é‡
-				jsonp, 																							//jsonpä¸´æ—¶å¯¹è±¡
-				status, 																						//requestè¯·æ±‚å¯¹è±¡çŠ¶æ€
-				data, 																							//æœåŠ¡å™¨å›ä¼ æ•°æ®ç¼“å­˜
-				type = s.type.toUpperCase(), 												//è¯·æ±‚æ–¹å¼å±æ€§ "POST" æˆ– "GET"( é»˜è®¤ä¸º "GET" )
+			var s = da.extend( true, {}, da.ajaxSettings, origSettings ),					//½«ajaxSettingsºÍorigSettings¶ÔÏóºÏ²¢ºó·ÅÈës¾Ö²¿±äÁ¿
+				jsonp, 																							//jsonpÁÙÊ±¶ÔÏó
+				status, 																						//requestÇëÇó¶ÔÏó×´Ì¬
+				data, 																							//·şÎñÆ÷»Ø´«Êı¾İ»º´æ
+				type = s.type.toUpperCase(), 												//ÇëÇó·½Ê½ÊôĞÔ "POST" »ò "GET"( Ä¬ÈÏÎª "GET" )
 				noContent = daRe_noContent.test( type );
 	
-			s.url = s.url.replace( daRe_hash, "" );								//å»æ‰urlé”šç‚¹å‚æ•°â€œ#â€¦â€¦â€
+			s.url = s.url.replace( daRe_hash, "" );								//È¥µôurlÃªµã²ÎÊı¡°#¡­¡­¡±
 			s.context = ( origSettings && origSettings.context != null ) ? 
-									origSettings.context : s;																	//ajaxç›¸å…³å›è°ƒå‡½æ•°(success,error,complate)çš„ä¸Šä¸‹æ–‡,å¦‚æœç”¨æˆ·æä¾›äº†ä¸Šä¸‹æ–‡,å°±ç”¨æä¾›çš„ã€‚( é»˜è®¤thiså°±æŒ‡å‘è°ƒç”¨æœ¬æ¬¡ajaxè¯·æ±‚æ—¶ä¼ é€’çš„optionså‚æ•° )
+									origSettings.context : s;																	//ajaxÏà¹Ø»Øµ÷º¯Êı(success,error,complate)µÄÉÏÏÂÎÄ,Èç¹ûÓÃ»§Ìá¹©ÁËÉÏÏÂÎÄ,¾ÍÓÃÌá¹©µÄ¡£( Ä¬ÈÏthis¾ÍÖ¸Ïòµ÷ÓÃ±¾´ÎajaxÇëÇóÊ±´«µİµÄoptions²ÎÊı )
 	
-			if ( s.data && s.processData && ( "string" !== typeof s.data ) ) {		//å¦‚æœæœ‰ä¼ å…¥æ•°æ®dataå±æ€§æœ‰å€¼ï¼Œè€Œä¸”éœ€è¦å¤„ç†ä¼ å…¥æ•°æ®processData( é»˜è®¤ä¸ºtrue )ï¼Œå¹¶ä¸”dataä¸æ˜¯ä»¥å­—ç¬¦ä¸²çš„å½¢å¼ä¼ å…¥ï¼Œå°†å¯¹è±¡è½¬ä¸ºæŸ¥è¯¢å­—ç¬¦ä¸²
+			if ( s.data && s.processData && ( "string" !== typeof s.data ) ) {		//Èç¹ûÓĞ´«ÈëÊı¾İdataÊôĞÔÓĞÖµ£¬¶øÇÒĞèÒª´¦Àí´«ÈëÊı¾İprocessData( Ä¬ÈÏÎªtrue )£¬²¢ÇÒdata²»ÊÇÒÔ×Ö·û´®µÄĞÎÊ½´«Èë£¬½«¶ÔÏó×ªÎª²éÑ¯×Ö·û´®
 				s.data = da.param( s.data, s.traditional );
 			}
 	
-			//************ ä»¥jsonpæ–¹å¼æ³¨å†Œå›è°ƒå‡½æ•°å¤„ç† begin ******************/
-			if ( s.dataType === "jsonp" ) {												//æ„å»ºjsonpå‚æ•°é›†
-				if ( type === "GET" ) {															//å¦‚æœæ˜¯getæ¨¡å¼
-					if ( !daRe_jsre.test( s.url ) ) {									//ä¿è¯getæ¨¡å¼ä¸‹çš„urlåœ°å€ä¸­æœ‰ callback=? åœ¨ä¹‹åçš„ä»£ç ä¼šåŠ ä¸Šå›è°ƒå‡½æ•°å
+			//************ ÒÔjsonp·½Ê½×¢²á»Øµ÷º¯Êı´¦Àí begin ******************/
+			if ( s.dataType === "jsonp" ) {												//¹¹½¨jsonp²ÎÊı¼¯
+				if ( type === "GET" ) {															//Èç¹ûÊÇgetÄ£Ê½
+					if ( !daRe_jsre.test( s.url ) ) {									//±£Ö¤getÄ£Ê½ÏÂµÄurlµØÖ·ÖĞÓĞ callback=? ÔÚÖ®ºóµÄ´úÂë»á¼ÓÉÏ»Øµ÷º¯ÊıÃû
 						s.url += (rquery.test( s.url ) ? "&" : "?") 
 											+ (s.jsonp || "callback") 
 											+ "=?";
 					}
 				}
-				else if ( !s.data || !daRe_jsre.test(s.data) ) {		//å¦‚æœä¸æ˜¯getæ¨¡å¼,å¹¶ä¸”è¿dataå±æ€§ä¸­ä¹Ÿæ²¡æœ‰ callback=? å°±åŠ å…¥è¯¥å‚æ•°æ¨¡å‹
+				else if ( !s.data || !daRe_jsre.test(s.data) ) {		//Èç¹û²»ÊÇgetÄ£Ê½,²¢ÇÒÁ¬dataÊôĞÔÖĞÒ²Ã»ÓĞ callback=? ¾Í¼ÓÈë¸Ã²ÎÊıÄ£ĞÍ
 					s.data = (s.data ? s.data+"&" : "") 
 										+ (s.jsonp || "callback") 
 										+ "=?";
 				}
-				s.dataType = "json";																//å› ä¸ºjsonpæ˜¯jsonæ ¼å¼çš„æ‰©å±•
+				s.dataType = "json";																//ÒòÎªjsonpÊÇjson¸ñÊ½µÄÀ©Õ¹
 			}
 	
-			if ( s.dataType === "json" && (s.data && daRe_jsre.test(s.data) || daRe_jsre.test(s.url)) ) {			//å¦‚æœæ•°æ®æ ¼å¼æ˜¯jsonå¹¶ä¸”ç¬¦åˆæ‹¥æœ‰ callback=? å‚æ•°æ¨¡å‹çš„æ¡ä»¶,å°±å¯¹å…¶æ„å»ºjsonä¸´æ—¶å‡½æ•°
-				jsonp = s.jsonpCallback || ("jsonp" + jsc++);				//å¦‚æœæ²¡æœ‰ä¼ å…¥å‚æ•° å°±ç”¨é»˜è®¤jsonp+å”¯ä¸€ID çš„æ ¼å¼
+			if ( s.dataType === "json" && (s.data && daRe_jsre.test(s.data) || daRe_jsre.test(s.url)) ) {			//Èç¹ûÊı¾İ¸ñÊ½ÊÇjson²¢ÇÒ·ûºÏÓµÓĞ callback=? ²ÎÊıÄ£ĞÍµÄÌõ¼ş,¾Í¶ÔÆä¹¹½¨jsonÁÙÊ±º¯Êı
+				jsonp = s.jsonpCallback || ("jsonp" + jsc++);				//Èç¹ûÃ»ÓĞ´«Èë²ÎÊı ¾ÍÓÃÄ¬ÈÏjsonp+Î¨Ò»ID µÄ¸ñÊ½
 	
 				if ( s.data ) {
-					s.data = (s.data + "").replace( daRe_jsre, "=" + jsonp + "$1" );	//æ›¿æ¢ä¼ å…¥å‚æ•°dataå±æ€§ä¸­ callback=?çš„å‚æ•°æ¨¡å‹,$1ä¸ºç‰¹æ®Šè¯†åˆ«åç¼€
+					s.data = (s.data + "").replace( daRe_jsre, "=" + jsonp + "$1" );	//Ìæ»»´«Èë²ÎÊıdataÊôĞÔÖĞ callback=?µÄ²ÎÊıÄ£ĞÍ,$1ÎªÌØÊâÊ¶±ğºó×º
 				}
 		
-				s.url = s.url.replace( daRe_jsre, "=" + jsonp + "$1" );							//æ›¿æ¢urlå±æ€§ä¸­ callback=?çš„å‚æ•°æ¨¡å‹,$1ä¸ºç‰¹æ®Šè¯†åˆ«åç¼€
+				s.url = s.url.replace( daRe_jsre, "=" + jsonp + "$1" );							//Ìæ»»urlÊôĞÔÖĞ callback=?µÄ²ÎÊıÄ£ĞÍ,$1ÎªÌØÊâÊ¶±ğºó×º
 	
-				s.dataType = "script";															//ä¿è¯è¿™ä¸ªjsonpçš„æ ¼å¼æ˜¯script,è¿™æ ·æ‰èƒ½ä¿è¯æœåŠ¡å™¨è¿”å›ä»£ç è¢«æ­£ç¡®æ‰§è¡Œ
+				s.dataType = "script";															//±£Ö¤Õâ¸öjsonpµÄ¸ñÊ½ÊÇscript,ÕâÑù²ÅÄÜ±£Ö¤·şÎñÆ÷·µ»Ø´úÂë±»ÕıÈ·Ö´ĞĞ
 	
-				var customJsonp = window[ jsonp ];									//é¿å…jsonpå‡½æ•°é‡è½½
+				var customJsonp = window[ jsonp ];									//±ÜÃâjsonpº¯ÊıÖØÔØ
 				
-				window[ jsonp ] = function( tmp ) {									//åœ¨å½“å‰é¡µé¢æ³¨å†Œä¸€ä¸ªjsonpå›è°ƒå‡½æ•°,åœ¨ä¹‹åçš„ajaxæœåŠ¡å™¨è¯·æ±‚åè¿”å›æ‰§è¡Œå®ƒ
-						if ( da.isFunction( customJsonp ) ) {						//å¦‚æœå®¢æˆ·ç«¯åŒåæˆå‘˜ ä¹Ÿæ˜¯ä¸€ä¸ªå‡½æ•°ï¼Œå°±å…ˆæ‰§è¡Œå®¢æˆ·ç«¯åŒåå‡½æ•°
+				window[ jsonp ] = function( tmp ) {									//ÔÚµ±Ç°Ò³Ãæ×¢²áÒ»¸öjsonp»Øµ÷º¯Êı,ÔÚÖ®ºóµÄajax·şÎñÆ÷ÇëÇóºó·µ»ØÖ´ĞĞËü
+						if ( da.isFunction( customJsonp ) ) {						//Èç¹û¿Í»§¶ËÍ¬Ãû³ÉÔ± Ò²ÊÇÒ»¸öº¯Êı£¬¾ÍÏÈÖ´ĞĞ¿Í»§¶ËÍ¬Ãûº¯Êı
 							customJsonp( tmp );
 		
 						}
-						else {																					//èµ„æºå›æ”¶å½“å‰jsonpå›è°ƒå‡½æ•°
+						else {																					//×ÊÔ´»ØÊÕµ±Ç°jsonp»Øµ÷º¯Êı
 							window[ jsonp ] = undefined;
 							try {
 								delete window[ jsonp ];
@@ -6267,61 +6267,61 @@ var daRe_until = /Until$/,
 							
 						}
 		
-						data = tmp;																			//æœåŠ¡å™¨å›ä¼ å‚æ•°æ•°æ®ç¼“å­˜
-						da.handleSuccess( s, xhr, status, data );				//è§¦å‘Successå›è°ƒå‡½æ•°
-						da.handleComplete( s, xhr, status, data );			//è§¦å‘Completeå›è°ƒå‡½æ•°
+						data = tmp;																			//·şÎñÆ÷»Ø´«²ÎÊıÊı¾İ»º´æ
+						da.handleSuccess( s, xhr, status, data );				//´¥·¢Success»Øµ÷º¯Êı
+						da.handleComplete( s, xhr, status, data );			//´¥·¢Complete»Øµ÷º¯Êı
 						
 						if ( head ) {
-							head.removeChild( script );										//å»é™¤headä¸­åŠ å…¥çš„scriptå…ƒç´ 
+							head.removeChild( script );										//È¥³ıheadÖĞ¼ÓÈëµÄscriptÔªËØ
 						}
 						
 				};
 			}
-			//************ ä»¥jsonpæ–¹å¼æ³¨å†Œå›è°ƒå‡½æ•°å¤„ç† end ******************/
+			//************ ÒÔjsonp·½Ê½×¢²á»Øµ÷º¯Êı´¦Àí end ******************/
 	
 	
-			//************ ä»¥scriptTagæ–¹å¼æ‰§è¡Œå›è°ƒå‡½æ•° begin ******************/
+			//************ ÒÔscriptTag·½Ê½Ö´ĞĞ»Øµ÷º¯Êı begin ******************/
 			if ( s.dataType === "script" && s.cache === null ) {
 				s.cache = false;
 			}
 	
-			if ( s.cache === false && noContent ) {								//cache: falseåŠ ä¸Šæ—¶é—´æˆ³
+			if ( s.cache === false && noContent ) {								//cache: false¼ÓÉÏÊ±¼ä´Á
 				var ts = da.nowId();
 	
-				var ret = s.url.replace( daRe_ts, "$1_=" + ts );		//å°†â€œ_=â€æ›¿æ¢â€œ$1_=æ—¶é—´æˆ³â€
-				s.url = ret + ((ret === s.url) ? ( (daRe_query.test(s.url) ? "&" : "?") + "_=" + ts ) : "");		//å¦‚æœæ²¡å“Ÿæ›¿æ¢åˆ°ä¸œè¥¿ï¼Œå°±åœ¨åé¢è¿½åŠ æ—¶é—´æˆ³
+				var ret = s.url.replace( daRe_ts, "$1_=" + ts );		//½«¡°_=¡±Ìæ»»¡°$1_=Ê±¼ä´Á¡±
+				s.url = ret + ((ret === s.url) ? ( (daRe_query.test(s.url) ? "&" : "?") + "_=" + ts ) : "");		//Èç¹ûÃ»Ó´Ìæ»»µ½¶«Î÷£¬¾ÍÔÚºóÃæ×·¼ÓÊ±¼ä´Á
 				
 			}
 	
-			if ( s.data && noContent ) {													//å¯¹äºGET|HEADç±»å‹è¯·æ±‚ï¼Œå¹¶ä¸”dataå±æ€§æœ‰æ•ˆï¼Œå°†dataè¯·æ±‚å‚æ•°æ·»åŠ åˆ°urlå‚æ•°åˆ—è¡¨ä¸­
+			if ( s.data && noContent ) {													//¶ÔÓÚGET|HEADÀàĞÍÇëÇó£¬²¢ÇÒdataÊôĞÔÓĞĞ§£¬½«dataÇëÇó²ÎÊıÌí¼Óµ½url²ÎÊıÁĞ±íÖĞ
 				s.url += ( daRe_query.test(s.url) ? "&" : "?" ) + s.data;
 			}
 	
-			if ( s.global && da.active++ === 0 ) {								//éœ€è¦è°ƒç”¨ajaxå…¨å±€å‡½æ•°ajaxStart(é»˜è®¤ä¸ºtrue)ï¼Œå¹¶ä¸”å¦‚æœda.active ä¸º 0ï¼Œå¼€å¯ä¸€ä¸ªæ–°çš„è¯·æ±‚ç›‘å¬
+			if ( s.global && da.active++ === 0 ) {								//ĞèÒªµ÷ÓÃajaxÈ«¾Öº¯ÊıajaxStart(Ä¬ÈÏÎªtrue)£¬²¢ÇÒÈç¹ûda.active Îª 0£¬¿ªÆôÒ»¸öĞÂµÄÇëÇó¼àÌı
 					da.event.trigger( "ajaxStart" );
 			}
 	
-			var parts = daRe_url.exec( s.url ),										//ç›‘å¬ç»å¯¹urlåœ°å€,å¹¶ä¸”ä¿å­˜domain
-					remote = parts && (parts[1] && parts[1].toLowerCase() !== location.protocol || parts[2].toLowerCase() !== location.host);		//locationæ˜¯å½“å‰windowçš„å±æ€§ï¼Œä¸urlåœ°å€æ¯”è¾ƒï¼Œåˆ¤æ–­æ˜¯å¦è¿œç¨‹è·¨åŸŸ
+			var parts = daRe_url.exec( s.url ),										//¼àÌı¾ø¶ÔurlµØÖ·,²¢ÇÒ±£´ædomain
+					remote = parts && (parts[1] && parts[1].toLowerCase() !== location.protocol || parts[2].toLowerCase() !== location.host);		//locationÊÇµ±Ç°windowµÄÊôĞÔ£¬ÓëurlµØÖ·±È½Ï£¬ÅĞ¶ÏÊÇ·ñÔ¶³Ì¿çÓò
 	
-			if ( s.dataType === "script" && type === "GET" && remote ) {						//å¦‚æœè¯·æ±‚çš„æ˜¯ä¸€ä¸ªéƒ½è¿œç¨‹è·¨åŸŸçš„æ–‡æ¡£ï¼Œå¹¶ä¸”å°è¯•åŠ è½½getæ¨¡å¼ä¸‹çš„jsonæˆ–script
+			if ( s.dataType === "script" && type === "GET" && remote ) {						//Èç¹ûÇëÇóµÄÊÇÒ»¸ö¶¼Ô¶³Ì¿çÓòµÄÎÄµµ£¬²¢ÇÒ³¢ÊÔ¼ÓÔØgetÄ£Ê½ÏÂµÄjson»òscript
 				var head = document.getElementsByTagName("head")[0] || document.documentElement;
 				var script = document.createElement("script");
-				if ( s.scriptCharset ) {														//scriptCharsetè„šæœ¬ç¼–ç 
+				if ( s.scriptCharset ) {														//scriptCharset½Å±¾±àÂë
 					script.charset = s.scriptCharset;
 				}
-				script.src = s.url;																	//jsæ–‡ä»¶åœ°å€æº
+				script.src = s.url;																	//jsÎÄ¼şµØÖ·Ô´
 	
-				if ( !jsonp ) {																			//å¦‚æœä¸æ˜¯jsonpåŠ è½½script,é€šè¿‡scriptå…ƒç´ çš„onloadå’Œonreadystatechangeäº‹ä»¶æ¥è§¦å‘å›è°ƒå‡½æ•°
+				if ( !jsonp ) {																			//Èç¹û²»ÊÇjsonp¼ÓÔØscript,Í¨¹ıscriptÔªËØµÄonloadºÍonreadystatechangeÊÂ¼şÀ´´¥·¢»Øµ÷º¯Êı
 					var done = false;
 	
 					script.onload = script.onreadystatechange = function() {
 							if ( !done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") ) {
 									done = true;
-									da.handleSuccess( s, xhr, status, data );							//è§¦å‘Successå›è°ƒå‡½æ•°
-									da.handleComplete( s, xhr, status, data );						//è§¦å‘Completeå›è°ƒå‡½æ•°
+									da.handleSuccess( s, xhr, status, data );							//´¥·¢Success»Øµ÷º¯Êı
+									da.handleComplete( s, xhr, status, data );						//´¥·¢Complete»Øµ÷º¯Êı
 			
-									script.onload = script.onreadystatechange = null;			//èµ„æºå›æ”¶å½“å‰jsonpå›è°ƒå‡½æ•°
+									script.onload = script.onreadystatechange = null;			//×ÊÔ´»ØÊÕµ±Ç°jsonp»Øµ÷º¯Êı
 									if ( head && script.parentNode ) {
 											head.removeChild( script );
 									}
@@ -6330,17 +6330,17 @@ var daRe_until = /Until$/,
 					
 				}
 	
-				head.insertBefore( script, head.firstChild );								//ç”¨insertBeforeï¼Œè€Œä¸ç”¨appendChildä¸»è¦æ˜¯é’ˆå¯¹ IE6çš„bug.
+				head.insertBefore( script, head.firstChild );								//ÓÃinsertBefore£¬¶ø²»ÓÃappendChildÖ÷ÒªÊÇÕë¶Ô IE6µÄbug.
 	
-				return undefined;				//å·²ç»ä½¿ç”¨äº†scriptå…ƒç´ æ³¨å†Œæ¥å¤„ç†
+				return undefined;				//ÒÑ¾­Ê¹ÓÃÁËscriptÔªËØ×¢²áÀ´´¦Àí
 			}
-			//************ ä»¥scriptTagæ–¹å¼æ‰§è¡Œå›è°ƒå‡½æ•° end ******************/
+			//************ ÒÔscriptTag·½Ê½Ö´ĞĞ»Øµ÷º¯Êı end ******************/
 	
-			var requestDone = false;	//requestè¯·æ±‚çŠ¶æ€
-			var xhr = s.xhr();				//åˆ›å»ºä¸€ä¸ªXMLHttpRequestå¯¹è±¡
+			var requestDone = false;	//requestÇëÇó×´Ì¬
+			var xhr = s.xhr();				//´´½¨Ò»¸öXMLHttpRequest¶ÔÏó
 			if ( !xhr ) return;
 	
-			if ( s.username ) {																						//åˆ›å»ºä¸€ä¸ªè¯·æ±‚è¿æ¥ï¼Œåœ¨Operaæµè§ˆå™¨ä¸­usernameä¸ºnullå°†ä¼šå¼¹å‡ºç™»å½•ç•Œé¢ï¼Œæ‰€ä»¥è¦ä¼ å…¥usernameå’Œpassword
+			if ( s.username ) {																						//´´½¨Ò»¸öÇëÇóÁ¬½Ó£¬ÔÚOperaä¯ÀÀÆ÷ÖĞusernameÎªnull½«»áµ¯³öµÇÂ¼½çÃæ£¬ËùÒÔÒª´«ÈëusernameºÍpassword
 				xhr.open(type, s.url, s.async, s.username, s.password);
 			}
 			else {
@@ -6348,13 +6348,13 @@ var daRe_until = /Until$/,
 				
 			}
 	
-			try {											//é˜²æ­¢firefoxåœ¨è·¨åŸŸè¯·æ±‚çš„æ—¶å€™æŠ¥é”™æ‰€ä»¥å¥—ä¸Štryã€catch
+			try {											//·ÀÖ¹firefoxÔÚ¿çÓòÇëÇóµÄÊ±ºò±¨´íËùÒÔÌ×ÉÏtry¡¢catch
 				if ( ( s.data != null && !noContent ) 
-						|| ( origSettings && origSettings.contentType ) ) {			//å¦‚æœcontent-typeæœ‰ç‰¹å®šçš„å‚æ•°ï¼Œå°±è®¾ç½®content-type
-					xhr.setRequestHeader("Content-Type", s.contentType);			//contentType(é»˜è®¤: "application/x-www-form-urlencoded") å‘é€ä¿¡æ¯è‡³æœåŠ¡å™¨æ—¶å†…å®¹ç¼–ç ç±»å‹ã€‚é»˜è®¤å€¼é€‚åˆå¤§å¤šæ•°æƒ…å†µã€‚
+						|| ( origSettings && origSettings.contentType ) ) {			//Èç¹ûcontent-typeÓĞÌØ¶¨µÄ²ÎÊı£¬¾ÍÉèÖÃcontent-type
+					xhr.setRequestHeader("Content-Type", s.contentType);			//contentType(Ä¬ÈÏ: "application/x-www-form-urlencoded") ·¢ËÍĞÅÏ¢ÖÁ·şÎñÆ÷Ê±ÄÚÈİ±àÂëÀàĞÍ¡£Ä¬ÈÏÖµÊÊºÏ´ó¶àÊıÇé¿ö¡£
 				}
 	
-				if ( s.ifModified ) {																				//ifModified(é»˜è®¤: false) ä»…åœ¨æœåŠ¡å™¨æ•°æ®æ”¹å˜æ—¶è·å–æ–°æ•°æ®ã€‚ä½¿ç”¨ HTTP åŒ… Last-Modified å¤´ä¿¡æ¯åˆ¤æ–­ã€‚ä»–ä¹Ÿä¼šæ£€æŸ¥æœåŠ¡å™¨æŒ‡å®šçš„'etag'æ¥ç¡®å®šæ•°æ®æ²¡æœ‰è¢«ä¿®æ”¹è¿‡ã€‚
+				if ( s.ifModified ) {																				//ifModified(Ä¬ÈÏ: false) ½öÔÚ·şÎñÆ÷Êı¾İ¸Ä±äÊ±»ñÈ¡ĞÂÊı¾İ¡£Ê¹ÓÃ HTTP °ü Last-Modified Í·ĞÅÏ¢ÅĞ¶Ï¡£ËûÒ²»á¼ì²é·şÎñÆ÷Ö¸¶¨µÄ'etag'À´È·¶¨Êı¾İÃ»ÓĞ±»ĞŞ¸Ä¹ı¡£
 					if ( da.lastModified[s.url] ) {
 						xhr.setRequestHeader("If-Modified-Since", da.lastModified[s.url]);
 					}
@@ -6365,54 +6365,54 @@ var daRe_until = /Until$/,
 				}
 	
 				if ( !remote ) {																						
-					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");						//è®¾ç½®requestå¤´ï¼Œè®©æœåŠ¡å™¨çŸ¥é“è¿™æ˜¯ä¸€ä¸ªXMLHttpRequestï¼Œè¿™ä¸æ˜¯ä¸€ä¸ªè·¨åŸŸè®¿é—®çš„xhrï¼Œé‚£ä¹ˆå°†åªä¼šå‘é€è¿™ä¸ªå¤´ä¿¡æ¯
+					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");						//ÉèÖÃrequestÍ·£¬ÈÃ·şÎñÆ÷ÖªµÀÕâÊÇÒ»¸öXMLHttpRequest£¬Õâ²»ÊÇÒ»¸ö¿çÓò·ÃÎÊµÄxhr£¬ÄÇÃ´½«Ö»»á·¢ËÍÕâ¸öÍ·ĞÅÏ¢
 				}
 	
 				xhr.setRequestHeader("Accept", ( s.dataType && s.accepts[ s.dataType ] ) ? 
-																					( s.accepts[ s.dataType ] + ", */*; q=0.01" ) : s.accepts._default );			//æ ¹æ®dataTypeå±æ€§å€¼ï¼Œè®¾ç½®acceptså¤´ï¼Œä¼ é€’ç»™æœåŠ¡å™¨è¿™ä¸ªèƒ½æ¥æ”¶çš„content-typeç±»å‹(é»˜è®¤ä¸ºæ‰€æœ‰ç±»å‹*/*)
+																					( s.accepts[ s.dataType ] + ", */*; q=0.01" ) : s.accepts._default );			//¸ù¾İdataTypeÊôĞÔÖµ£¬ÉèÖÃacceptsÍ·£¬´«µİ¸ø·şÎñÆ÷Õâ¸öÄÜ½ÓÊÕµÄcontent-typeÀàĞÍ(Ä¬ÈÏÎªËùÓĞÀàĞÍ*/*)
 				
 			} catch( headerError ) {}
 	
-			if ( s.beforeSend && s.beforeSend.call(s.context, xhr, s) === false ) {		//beforeSend()æ‹¦æˆªå‡½æ•°ï¼Œè¿™å¯ä»¥åœ¨å‘é€reqestè¯·æ±‚ä¹‹å‰è°ƒç”¨åˆ¤æ–­ï¼Œå¦‚æœbeforeSend()å‡½æ•°è¿”å›å€¼ä¸ºfalseï¼Œé‚£ä¹ˆè¿™ä¸ªreqestè¯·æ±‚å°†è¢«ä¸­æ–­
-				if ( s.global && da.active-- === 1 ) {					//è¯¥reqestè¯·æ±‚è¢«ä¸­æ­¢æ‰ï¼Œè®¡æ•°å™¨ -1
+			if ( s.beforeSend && s.beforeSend.call(s.context, xhr, s) === false ) {		//beforeSend()À¹½Øº¯Êı£¬Õâ¿ÉÒÔÔÚ·¢ËÍreqestÇëÇóÖ®Ç°µ÷ÓÃÅĞ¶Ï£¬Èç¹ûbeforeSend()º¯Êı·µ»ØÖµÎªfalse£¬ÄÇÃ´Õâ¸öreqestÇëÇó½«±»ÖĞ¶Ï
+				if ( s.global && da.active-- === 1 ) {					//¸ÃreqestÇëÇó±»ÖĞÖ¹µô£¬¼ÆÊıÆ÷ -1
 					da.event.trigger( "ajaxStop" );
 				}
 	
-				xhr.abort();																		//ä¸­æ­¢requestè¿æ¥
+				xhr.abort();																		//ÖĞÖ¹requestÁ¬½Ó
 				return false;
 			}
 			
-			if ( s.global ) {																	//è§¦å‘ajaxå…¨å±€å‡½æ•°ajaxSend
+			if ( s.global ) {																	//´¥·¢ajaxÈ«¾Öº¯ÊıajaxSend
 				da.triggerGlobal( s, "ajaxSend", [xhr, s] );
 			}
 
-			//readyStateçŠ¶æ€è¯´æ˜
+			//readyState×´Ì¬ËµÃ÷
 			//
-			//(0)æœªåˆå§‹åŒ–
-			//			æ­¤é˜¶æ®µç¡®è®¤XMLHttpRequestå¯¹è±¡æ˜¯å¦åˆ›å»ºï¼Œå¹¶ä¸ºè°ƒç”¨open()æ–¹æ³•è¿›è¡Œæœªåˆå§‹åŒ–ä½œå¥½å‡†å¤‡ã€‚å€¼ä¸º0è¡¨ç¤ºå¯¹è±¡å·²ç»å­˜åœ¨ï¼Œå¦åˆ™æµè§ˆå™¨ä¼šæŠ¥é”™ï¼ï¼å¯¹è±¡ä¸å­˜åœ¨ã€‚
-			//(1)è½½å…¥
-			//			æ­¤é˜¶æ®µå¯¹XMLHttpRequestå¯¹è±¡è¿›è¡Œåˆå§‹åŒ–ï¼Œå³è°ƒç”¨open()æ–¹æ³•ï¼Œæ ¹æ®å‚æ•°(method,url,true)å®Œæˆå¯¹è±¡çŠ¶æ€çš„è®¾ç½®ã€‚å¹¶è°ƒç”¨send()æ–¹æ³•å¼€å§‹å‘æœåŠ¡ç«¯å‘é€è¯·æ±‚ã€‚å€¼ä¸º1è¡¨ç¤ºæ­£åœ¨å‘æœåŠ¡ç«¯å‘é€è¯·æ±‚ã€‚
-			//(2)è½½å…¥å®Œæˆ
-			//			æ­¤é˜¶æ®µæ¥æ”¶æœåŠ¡å™¨ç«¯çš„å“åº”æ•°æ®ã€‚ä½†è·å¾—çš„è¿˜åªæ˜¯æœåŠ¡ç«¯å“åº”çš„åŸå§‹æ•°æ®ï¼Œå¹¶ä¸èƒ½ç›´æ¥åœ¨å®¢æˆ·ç«¯ä½¿ç”¨ã€‚å€¼ä¸º2è¡¨ç¤ºå·²ç»æ¥æ”¶å®Œå…¨éƒ¨å“åº”æ•°æ®ã€‚å¹¶ä¸ºä¸‹ä¸€é˜¶æ®µå¯¹æ•°æ®è§£æä½œå¥½å‡†å¤‡ã€‚
-			//(3)äº¤äº’
-			//			æ­¤é˜¶æ®µè§£ææ¥æ”¶åˆ°çš„æœåŠ¡å™¨ç«¯å“åº”æ•°æ®ã€‚å³æ ¹æ®æœåŠ¡å™¨ç«¯å“åº”å¤´éƒ¨è¿”å›çš„MIMEç±»å‹æŠŠæ•°æ®è½¬æ¢æˆèƒ½é€šè¿‡responseBodyã€responseTextæˆ–responseXMLå±æ€§å­˜å–çš„æ ¼å¼ï¼Œä¸ºåœ¨å®¢æˆ·ç«¯è°ƒç”¨ä½œå¥½å‡†å¤‡ã€‚çŠ¶æ€3è¡¨ç¤ºæ­£åœ¨è§£ææ•°æ®ã€‚
-			//(4)å®Œæˆ
-			//			æ­¤é˜¶æ®µç¡®è®¤å…¨éƒ¨æ•°æ®éƒ½å·²ç»è§£æä¸ºå®¢æˆ·ç«¯å¯ç”¨çš„æ ¼å¼ï¼Œè§£æå·²ç»å®Œæˆã€‚å€¼ä¸º4è¡¨ç¤ºæ•°æ®è§£æå®Œæ¯•ï¼Œå¯ä»¥é€šè¿‡XMLHttpRequestå¯¹è±¡çš„ç›¸åº”å±æ€§å–å¾—æ•°æ®ã€‚
-			//æ¦‚è€Œæ‹¬ä¹‹ï¼Œæ•´ä¸ªXMLHttpRequestå¯¹è±¡çš„ç”Ÿå‘½å‘¨æœŸåº”è¯¥åŒ…å«å¦‚ä¸‹é˜¶æ®µï¼š
-			//åˆ›å»ºï¼åˆå§‹åŒ–è¯·æ±‚ï¼å‘é€è¯·æ±‚ï¼æ¥æ”¶æ•°æ®ï¼è§£ææ•°æ®ï¼å®Œæˆ
-			var onreadystatechange = xhr.onreadystatechange = function( isTimeout ) {					//ç›‘å¬responseè¿”å›ï¼Œå®šä¹‰ä¸€ä¸ªonreadystatechangeå‡½æ•°å¯¹è±¡ï¼Œä¸»è¦ä¸ºåé¢å›è°ƒç”¨
-						if ( !xhr || xhr.readyState === 0 || isTimeout === "abort" ) {							//è¯·æ±‚è¢«ä¸­æ­¢
-								if ( !requestDone ) {																										//Operaæµè§ˆå™¨xhrä¸­æ­¢äº†ä¸ä¼šè°ƒç”¨onreadystatechange,æ‰€ä»¥æ¨¡æ‹Ÿè°ƒç”¨ä¸€ä¸‹
+			//(0)Î´³õÊ¼»¯
+			//			´Ë½×¶ÎÈ·ÈÏXMLHttpRequest¶ÔÏóÊÇ·ñ´´½¨£¬²¢Îªµ÷ÓÃopen()·½·¨½øĞĞÎ´³õÊ¼»¯×÷ºÃ×¼±¸¡£ÖµÎª0±íÊ¾¶ÔÏóÒÑ¾­´æÔÚ£¬·ñÔòä¯ÀÀÆ÷»á±¨´í£­£­¶ÔÏó²»´æÔÚ¡£
+			//(1)ÔØÈë
+			//			´Ë½×¶Î¶ÔXMLHttpRequest¶ÔÏó½øĞĞ³õÊ¼»¯£¬¼´µ÷ÓÃopen()·½·¨£¬¸ù¾İ²ÎÊı(method,url,true)Íê³É¶ÔÏó×´Ì¬µÄÉèÖÃ¡£²¢µ÷ÓÃsend()·½·¨¿ªÊ¼Ïò·şÎñ¶Ë·¢ËÍÇëÇó¡£ÖµÎª1±íÊ¾ÕıÔÚÏò·şÎñ¶Ë·¢ËÍÇëÇó¡£
+			//(2)ÔØÈëÍê³É
+			//			´Ë½×¶Î½ÓÊÕ·şÎñÆ÷¶ËµÄÏìÓ¦Êı¾İ¡£µ«»ñµÃµÄ»¹Ö»ÊÇ·şÎñ¶ËÏìÓ¦µÄÔ­Ê¼Êı¾İ£¬²¢²»ÄÜÖ±½ÓÔÚ¿Í»§¶ËÊ¹ÓÃ¡£ÖµÎª2±íÊ¾ÒÑ¾­½ÓÊÕÍêÈ«²¿ÏìÓ¦Êı¾İ¡£²¢ÎªÏÂÒ»½×¶Î¶ÔÊı¾İ½âÎö×÷ºÃ×¼±¸¡£
+			//(3)½»»¥
+			//			´Ë½×¶Î½âÎö½ÓÊÕµ½µÄ·şÎñÆ÷¶ËÏìÓ¦Êı¾İ¡£¼´¸ù¾İ·şÎñÆ÷¶ËÏìÓ¦Í·²¿·µ»ØµÄMIMEÀàĞÍ°ÑÊı¾İ×ª»»³ÉÄÜÍ¨¹ıresponseBody¡¢responseText»òresponseXMLÊôĞÔ´æÈ¡µÄ¸ñÊ½£¬ÎªÔÚ¿Í»§¶Ëµ÷ÓÃ×÷ºÃ×¼±¸¡£×´Ì¬3±íÊ¾ÕıÔÚ½âÎöÊı¾İ¡£
+			//(4)Íê³É
+			//			´Ë½×¶ÎÈ·ÈÏÈ«²¿Êı¾İ¶¼ÒÑ¾­½âÎöÎª¿Í»§¶Ë¿ÉÓÃµÄ¸ñÊ½£¬½âÎöÒÑ¾­Íê³É¡£ÖµÎª4±íÊ¾Êı¾İ½âÎöÍê±Ï£¬¿ÉÒÔÍ¨¹ıXMLHttpRequest¶ÔÏóµÄÏàÓ¦ÊôĞÔÈ¡µÃÊı¾İ¡£
+			//¸Å¶øÀ¨Ö®£¬Õû¸öXMLHttpRequest¶ÔÏóµÄÉúÃüÖÜÆÚÓ¦¸Ã°üº¬ÈçÏÂ½×¶Î£º
+			//´´½¨£­³õÊ¼»¯ÇëÇó£­·¢ËÍÇëÇó£­½ÓÊÕÊı¾İ£­½âÎöÊı¾İ£­Íê³É
+			var onreadystatechange = xhr.onreadystatechange = function( isTimeout ) {					//¼àÌıresponse·µ»Ø£¬¶¨ÒåÒ»¸öonreadystatechangeº¯Êı¶ÔÏó£¬Ö÷ÒªÎªºóÃæ»Øµ÷ÓÃ
+						if ( !xhr || xhr.readyState === 0 || isTimeout === "abort" ) {							//ÇëÇó±»ÖĞÖ¹
+								if ( !requestDone ) {																										//Operaä¯ÀÀÆ÷xhrÖĞÖ¹ÁË²»»áµ÷ÓÃonreadystatechange,ËùÒÔÄ£Äâµ÷ÓÃÒ»ÏÂ
 									da.handleComplete( s, xhr, status, data );
 								}
 				
 								requestDone = true;
 								if ( xhr ) {
-									xhr.onreadystatechange = da.noop;			//æ”¹å˜çŠ¶æ€, ç½®ç©ºæ¶ˆæ¯å‡½æ•°
+									xhr.onreadystatechange = da.noop;			//¸Ä±ä×´Ì¬, ÖÃ¿ÕÏûÏ¢º¯Êı
 								}
 			
 						}
-						else if ( !requestDone && xhr && (xhr.readyState === 4 || isTimeout === "timeout") ) {					//è¿™ä¸ªè¯·æ±‚ä¼ é€’å®Œæˆå¹¶ä¸”æ•°æ®æœ‰æ•ˆ æˆ–è€…è¯·æ±‚è¶…æ—¶äº†
+						else if ( !requestDone && xhr && (xhr.readyState === 4 || isTimeout === "timeout") ) {					//Õâ¸öÇëÇó´«µİÍê³É²¢ÇÒÊı¾İÓĞĞ§ »òÕßÇëÇó³¬Ê±ÁË
 								requestDone = true;
 								xhr.onreadystatechange = da.noop;
 				
@@ -6423,84 +6423,84 @@ var daRe_until = /Until$/,
 								var errMsg;
 				
 								if ( status === "success" ) {
-									try {																					//æ•è·XML documentè§£æå¼‚å¸¸
-										data = da.httpData( xhr, s.dataType, s );		//è§£æä»æœåŠ¡å™¨è·å¾—çš„æ•°æ® process the data (runs the xml through httpData regardless of callback)
+									try {																					//²¶»ñXML document½âÎöÒì³£
+										data = da.httpData( xhr, s.dataType, s );		//½âÎö´Ó·şÎñÆ÷»ñµÃµÄÊı¾İ process the data (runs the xml through httpData regardless of callback)
 									} catch( parserError ) {
-										status = "parsererror:å¤„ç†è¿”å›HTTPæ•°æ®æ—¶å¼‚å¸¸ã€‚";
-										errMsg = parserError;												//å°†æ•è·çš„exceptionå¯¹è±¡èµ‹å€¼ç»™errMsgç¼“å­˜
+										status = "parsererror:´¦Àí·µ»ØHTTPÊı¾İÊ±Òì³£¡£";
+										errMsg = parserError;												//½«²¶»ñµÄexception¶ÔÏó¸³Öµ¸øerrMsg»º´æ
 									}
 								}
 				
-								if ( status === "success" || status === "notmodified" ) {			//å¦‚æœrequestçŠ¶æ€ä¸º"æœªä¿®æ”¹"æˆ–"æˆåŠŸ",å³é"è¶…æ—¶"å’Œ"é”™è¯¯"
-									if ( !jsonp ) {																//éjsonpæ‰æ‰§è¡ŒSuccesså›è°ƒå‡½æ•°ï¼Œå› ä¸ºjsonpæ“ä½œå·²æœ‰æ³¨å†Œçš„å›è°ƒå‡½æ•°
+								if ( status === "success" || status === "notmodified" ) {			//Èç¹ûrequest×´Ì¬Îª"Î´ĞŞ¸Ä"»ò"³É¹¦",¼´·Ç"³¬Ê±"ºÍ"´íÎó"
+									if ( !jsonp ) {																//·Çjsonp²ÅÖ´ĞĞSuccess»Øµ÷º¯Êı£¬ÒòÎªjsonp²Ù×÷ÒÑÓĞ×¢²áµÄ»Øµ÷º¯Êı
 										da.handleSuccess( s, xhr, status, data );
 									}
 								}
-								else {																												//å¦‚æœrequestçŠ¶æ€ä¸º"è¶…æ—¶"å’Œ"é”™è¯¯"
-									da.handleError( s, xhr, status, errMsg );			//æ‰§è¡ŒErrorå›è°ƒå‡½æ•°
+								else {																												//Èç¹ûrequest×´Ì¬Îª"³¬Ê±"ºÍ"´íÎó"
+									da.handleError( s, xhr, status, errMsg );			//Ö´ĞĞError»Øµ÷º¯Êı
 								}
 				
-								if ( !jsonp ) {																	//éjsonpæ¨¡å¼ä¸‹æœ€åè§¦å‘Completeå‡½æ•°
+								if ( !jsonp ) {																	//·ÇjsonpÄ£Ê½ÏÂ×îºó´¥·¢Completeº¯Êı
 									da.handleComplete( s, xhr, status, data );
 								}
 				
-								if ( isTimeout === "timeout" ) {								//å¦‚æœrequestè¯·æ±‚ä¸ºè¶…æ—¶ï¼Œå°±å°†xhrä¸­æ­¢
+								if ( isTimeout === "timeout" ) {								//Èç¹ûrequestÇëÇóÎª³¬Ê±£¬¾Í½«xhrÖĞÖ¹
 									xhr.abort();
 								}
 				
-								if ( s.async ) {																//å¦‚æœä¸ºå¼‚æ­¥ï¼Œå°†xhrç½®ç©º
+								if ( s.async ) {																//Èç¹ûÎªÒì²½£¬½«xhrÖÃ¿Õ
 									xhr = null;
 								}
 						}
 			};
 	
-			try {														//é‡è½½ä¸­æ­¢å‡½æ•°ï¼ŒOperaæµè§ˆå™¨åœ¨requestä¸­æ­¢çš„æ—¶ä¸ä¼šè§¦å‘onreadystatechangeå‡½æ•°
+			try {														//ÖØÔØÖĞÖ¹º¯Êı£¬Operaä¯ÀÀÆ÷ÔÚrequestÖĞÖ¹µÄÊ±²»»á´¥·¢onreadystatechangeº¯Êı
 				var oldAbort = xhr.abort;
 				xhr.abort = function() {
 					if ( xhr ) {
-						Function.prototype.call.call( oldAbort, xhr );		//å› ä¸ºåœ¨IE7ä¸­oldAbortå‡½æ•°ä¸å­˜åœ¨callå±æ€§ï¼Œæ— æ³•é€šè¿‡oldAbort.call()æ–¹å¼è°ƒç”¨ï¼Œæ‰€ä»¥åªæœ‰å€ŸåŠ©Function.prototype.call()åŸå‹å‡½æ•°æ¥è°ƒç”¨
+						Function.prototype.call.call( oldAbort, xhr );		//ÒòÎªÔÚIE7ÖĞoldAbortº¯Êı²»´æÔÚcallÊôĞÔ£¬ÎŞ·¨Í¨¹ıoldAbort.call()·½Ê½µ÷ÓÃ£¬ËùÒÔÖ»ÓĞ½èÖúFunction.prototype.call()Ô­ĞÍº¯ÊıÀ´µ÷ÓÃ
 					}
-					onreadystatechange( "abort" );											//å›è°ƒä¸Šé¢å®šä¹‰çš„ç›‘å¬å‡½æ•°
+					onreadystatechange( "abort" );											//»Øµ÷ÉÏÃæ¶¨ÒåµÄ¼àÌıº¯Êı
 					
 				};
 			} catch( abortError ) {}
 	
-			if ( s.async && s.timeout > 0 ) {				//å¼‚æ­¥è¯·æ±‚ï¼Œå¹¶ä¸”æœ‰è¶…æ—¶å±æ€§å€¼ä¼ å…¥ï¼Œå°±é€šè¿‡setTimeout()å‡½æ•°æ¥å¯åŠ¨ä¸€ä¸ªå®šæ—¶å™¨
+			if ( s.async && s.timeout > 0 ) {				//Òì²½ÇëÇó£¬²¢ÇÒÓĞ³¬Ê±ÊôĞÔÖµ´«Èë£¬¾ÍÍ¨¹ısetTimeout()º¯ÊıÀ´Æô¶¯Ò»¸ö¶¨Ê±Æ÷
 				setTimeout(function() {
-					if ( xhr && !requestDone ) {				//æ ¸å¯¹å¦‚æœrequestè¯·æ±‚ä»»ç„¶æœªå®Œæˆï¼Œå°±å›è°ƒè§¦å‘è¶…æ—¶äº‹ä»¶
+					if ( xhr && !requestDone ) {				//ºË¶ÔÈç¹ûrequestÇëÇóÈÎÈ»Î´Íê³É£¬¾Í»Øµ÷´¥·¢³¬Ê±ÊÂ¼ş
 						onreadystatechange( "timeout" );
 					}
 				}, s.timeout);
 				
 			}
 	
-			try {																		//å‘é€requestæ•°æ®
+			try {																		//·¢ËÍrequestÊı¾İ
 				xhr.send( noContent || s.data == null ? null : s.data );
 	
 			} 
-			catch( sendError ) {										//å‘é€æ•°æ®å¼å‘ç”Ÿå¼‚å¸¸ï¼Œå°±è§¦å‘Errorå‡½æ•°å’ŒCompleteå‡½æ•°
+			catch( sendError ) {										//·¢ËÍÊı¾İÊ½·¢ÉúÒì³££¬¾Í´¥·¢Errorº¯ÊıºÍCompleteº¯Êı
 				da.handleError( s, xhr, null, sendError );
 				da.handleComplete( s, xhr, status, data );
 			}
 	
-			if ( !s.async ) {												//å¯¹äºåŒæ­¥è¯·æ±‚ firefox1.5æµè§ˆå™¨ä¸èƒ½è§¦å‘onreadystatechangeå‡½æ•°ï¼Œéœ€è¦å¹²é¢„è§¦å‘
+			if ( !s.async ) {												//¶ÔÓÚÍ¬²½ÇëÇó firefox1.5ä¯ÀÀÆ÷²»ÄÜ´¥·¢onreadystatechangeº¯Êı£¬ĞèÒª¸ÉÔ¤´¥·¢
 				onreadystatechange();
 			}
 	
-			return xhr;								//è¿”å›xhrå¯¹è±¡ï¼Œä»¥ä¾¿äºå…è®¸ä¸­æ­¢requestè¯·æ±‚æˆ–å…¶ä»–æ“ä½œ
+			return xhr;								//·µ»Øxhr¶ÔÏó£¬ÒÔ±ãÓÚÔÊĞíÖĞÖ¹requestÇëÇó»òÆäËû²Ù×÷
 		}
 	
 	});
 
-	//ä¸²è¡ŒåŒ–é”®å€¼å¯¹å¤šçº§å‹å‚æ•°é›†
+	//´®ĞĞ»¯¼üÖµ¶Ô¶à¼¶ĞÍ²ÎÊı¼¯
 	/*
-		prefix:	é”®å€¼å¯¹çš„é”®key
-		obj:	é”®å€¼å¯¹çš„å€¼value(å¯èƒ½ä¹Ÿæ˜¯é”®å€¼å¯¹å¯¹è±¡æˆ–æ•°ç»„ï¼Œå¤šçº§)
-		traditional:	æ˜¯å¦ç”¨è€çš„æ–¹å¼ä¸²è¡ŒåŒ–
-		add: ä¸²è¡ŒåŒ–åå­—ç¬¦ä¸²åŠ å…¥ä¸´æ—¶æ•°ç»„å›è°ƒæ“ä½œå‡½æ•°
+		prefix:	¼üÖµ¶ÔµÄ¼ükey
+		obj:	¼üÖµ¶ÔµÄÖµvalue(¿ÉÄÜÒ²ÊÇ¼üÖµ¶Ô¶ÔÏó»òÊı×é£¬¶à¼¶)
+		traditional:	ÊÇ·ñÓÃÀÏµÄ·½Ê½´®ĞĞ»¯
+		add: ´®ĞĞ»¯ºó×Ö·û´®¼ÓÈëÁÙÊ±Êı×é»Øµ÷²Ù×÷º¯Êı
 	*/
 	function buildParams( prefix, obj, traditional, add ) {
-		if ( da.isArray(obj) && obj.length ) {																	//å¦‚æœå­é¡¹ä¸ºæ•°ç»„ç±»å‹
+		if ( da.isArray(obj) && obj.length ) {																	//Èç¹û×ÓÏîÎªÊı×éÀàĞÍ
 			da.each( obj, function( i, v ) {
 				if ( traditional || daRe_bracket.test( prefix ) ) {
 					// Treat each array item as a scalar.
@@ -6520,7 +6520,7 @@ var daRe_until = /Until$/,
 			});
 				
 		}
-		else if ( !traditional && obj != null && typeof obj === "object" ) {		//å¦‚æœå­é¡¹ä¸ºé”®å€¼å¯¹ç±»å‹
+		else if ( !traditional && obj != null && typeof obj === "object" ) {		//Èç¹û×ÓÏîÎª¼üÖµ¶ÔÀàĞÍ
 			if ( da.isEmptyObj( obj ) ) {
 				add( prefix, "" );
 			} 
@@ -6531,7 +6531,7 @@ var daRe_until = /Until$/,
 			}
 						
 		}
-		else {																																	//æ²¡æœ‰å­é¡¹äº†
+		else {																																	//Ã»ÓĞ×ÓÏîÁË
 			add( prefix, obj );
 		}
 	}
@@ -6539,42 +6539,42 @@ var daRe_until = /Until$/,
 	// This is still on the jQuery object... for now
 	// Want to move this to jQuery.ajax some day
 	da.extend({
-		active: 0,											//å¼‚æ­¥è¯·æ±‚è®¡æ•°å™¨
+		active: 0,											//Òì²½ÇëÇó¼ÆÊıÆ÷
 	
 		// Last-Modified header cache for next request
 		lastModified: {},
 		etag: {},
 	
 		handleError: function( s, xhr, status, e ) {
-			if ( s.error ) {																			//å¦‚æœæœ‰errorå›è°ƒå‡½æ•°,`éœ€è¦è§¦å‘errorå›è°ƒå‡½æ•°
+			if ( s.error ) {																			//Èç¹ûÓĞerror»Øµ÷º¯Êı,`ĞèÒª´¥·¢error»Øµ÷º¯Êı
 				s.error.call( s.context, xhr, status, e );
 			}
 
-			if ( s.global ) {																			//å¦‚æœæœ‰ajaxErrorå›è°ƒå‡½æ•°,`éœ€è¦è§¦å‘ajaxErrorå›è°ƒå‡½æ•°
+			if ( s.global ) {																			//Èç¹ûÓĞajaxError»Øµ÷º¯Êı,`ĞèÒª´¥·¢ajaxError»Øµ÷º¯Êı
 				da.triggerGlobal( s, "ajaxError", [xhr, s, e] );
 			}
 		},
 	
 		handleSuccess: function( s, xhr, status, data ) {
-			if ( s.success ) {																		//å¦‚æœæœ‰successå›è°ƒå‡½æ•°,`éœ€è¦è§¦å‘successå›è°ƒå‡½æ•°
+			if ( s.success ) {																		//Èç¹ûÓĞsuccess»Øµ÷º¯Êı,`ĞèÒª´¥·¢success»Øµ÷º¯Êı
 				s.success.call( s.context, data, status, xhr );
 			}
 	
-			if ( s.global ) {																			//éœ€è¦è§¦å‘ajaxå…¨å±€çš„ajaxSuccesså›è°ƒå‡½æ•°,é»˜è®¤ä¸ºtrue
+			if ( s.global ) {																			//ĞèÒª´¥·¢ajaxÈ«¾ÖµÄajaxSuccess»Øµ÷º¯Êı,Ä¬ÈÏÎªtrue
 				da.triggerGlobal( s, "ajaxSuccess", [xhr, s] );
 			}
 		},
 	
 		handleComplete: function( s, xhr, status ) {
-			if ( s.complete ) {																		//å¦‚æœæœ‰completeå›è°ƒå‡½æ•°,`éœ€è¦è§¦å‘completeå›è°ƒå‡½æ•°
+			if ( s.complete ) {																		//Èç¹ûÓĞcomplete»Øµ÷º¯Êı,`ĞèÒª´¥·¢complete»Øµ÷º¯Êı
 				s.complete.call( s.context, xhr, status );
 			}
 	
-			if ( s.global ) {																			//éœ€è¦è§¦å‘ajaxå…¨å±€çš„ajaxCompleteå›è°ƒå‡½æ•°,é»˜è®¤ä¸ºtrue
+			if ( s.global ) {																			//ĞèÒª´¥·¢ajaxÈ«¾ÖµÄajaxComplete»Øµ÷º¯Êı,Ä¬ÈÏÎªtrue
 				da.triggerGlobal( s, "ajaxComplete", [xhr, s] );
 			}
 	
-			if ( s.global && da.active-- === 1 ) {								//å½“å¼‚æ­¥è¯·æ±‚è®¡æ•°å™¨ä¸º 1 æ—¶è§¦å‘ajaxå…¨å±€çš„ajaxStopå›è°ƒå‡½æ•°,é»˜è®¤ä¸ºtrue
+			if ( s.global && da.active-- === 1 ) {								//µ±Òì²½ÇëÇó¼ÆÊıÆ÷Îª 1 Ê±´¥·¢ajaxÈ«¾ÖµÄajaxStop»Øµ÷º¯Êı,Ä¬ÈÏÎªtrue
 				da.event.trigger( "ajaxStop" );
 			}
 		},
@@ -6672,12 +6672,12 @@ var daRe_until = /Until$/,
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: å…ƒç´ ä½ç½®ç®¡ç†å™¨
+	description: ÔªËØÎ»ÖÃ¹ÜÀíÆ÷
 	version: 1.0.0
 */
 (function(da){
 	da.offset = {
-		initialize: function() {								//å…³äºä½ç½®æ ·å¼æ“ä½œçš„ æµè§ˆå™¨å…¼å®¹æ€§åˆ¤æ–­ åˆå§‹åŒ–å‡½æ•°
+		initialize: function() {								//¹ØÓÚÎ»ÖÃÑùÊ½²Ù×÷µÄ ä¯ÀÀÆ÷¼æÈİĞÔÅĞ¶Ï ³õÊ¼»¯º¯Êı
 			var body = document.body,
 					container = document.createElement( "div" ),
 					innerDiv, checkDiv, table, td,
@@ -6707,20 +6707,20 @@ var daRe_until = /Until$/,
 			innerDiv.style.overflow = "hidden", innerDiv.style.position = "relative";
 			this.subtractsBorderForOverflowNotVisible = (checkDiv.offsetTop === -5);
 	
-			this.doesNotIncludeMarginInBodyOffset = (body.offsetTop !== bodyMarginTop);							//é’ˆå¯¹bodyçš„ä½ç½®åç§»é‡ æ˜¯å¦åŒ…å«marginTop çš„åˆ¤æ–­
+			this.doesNotIncludeMarginInBodyOffset = (body.offsetTop !== bodyMarginTop);							//Õë¶ÔbodyµÄÎ»ÖÃÆ«ÒÆÁ¿ ÊÇ·ñ°üº¬marginTop µÄÅĞ¶Ï
 	
 			body.removeChild( container );
 			body = container = innerDiv = checkDiv = table = td = null;
 			
-			da.offset.initialize = da.noop;							//å›æ”¶èµ„æºï¼Œé¿å…å†…å­˜æ³„éœ²ï¼Œåˆå§‹åŒ–æ“ä½œåªä¸€æ¬¡
+			da.offset.initialize = da.noop;							//»ØÊÕ×ÊÔ´£¬±ÜÃâÄÚ´æĞ¹Â¶£¬³õÊ¼»¯²Ù×÷Ö»Ò»´Î
 		},
 	
 		getBodyOffset: function( body ) {
-			var top = body.offsetTop, left = body.offsetLeft;										//åˆå§‹å€¼è‡³å°‘åº”è¯¥åŒ…å«bodyçš„åç§»å€¼
+			var top = body.offsetTop, left = body.offsetLeft;										//³õÊ¼ÖµÖÁÉÙÓ¦¸Ã°üº¬bodyµÄÆ«ÒÆÖµ
 	
-			da.offset.initialize();				//å…ˆåˆå§‹åŒ– å…³äºä½ç½®æ ·å¼çš„å…¼å®¹æ€§åˆ¤æ–­
+			da.offset.initialize();				//ÏÈ³õÊ¼»¯ ¹ØÓÚÎ»ÖÃÑùÊ½µÄ¼æÈİĞÔÅĞ¶Ï
 	
-			if ( da.offset.doesNotIncludeMarginInBodyOffset ) {									//å¦‚æœå½“å‰æµè§ˆå™¨åç§»å€¼ä¸åŒ…å«marginTop, å…¨éƒ¨ç»Ÿä¸€ä¸ºåŒ…å«bodyçš„marginTopå€¼
+			if ( da.offset.doesNotIncludeMarginInBodyOffset ) {									//Èç¹ûµ±Ç°ä¯ÀÀÆ÷Æ«ÒÆÖµ²»°üº¬marginTop, È«²¿Í³Ò»Îª°üº¬bodyµÄmarginTopÖµ
 				top  += parseFloat( da.curCSS(body, "marginTop", true) ) || 0;
 				left += parseFloat( da.curCSS(body, "marginLeft", true) ) || 0;
 			}
@@ -6728,14 +6728,14 @@ var daRe_until = /Until$/,
 			return { top: top, left: left };
 		},
 		
-		//è®¾ç½®DOMå¯¹è±¡çš„åç§»åæ ‡
+		//ÉèÖÃDOM¶ÔÏóµÄÆ«ÒÆ×ø±ê
 		/*
-			obj: ç›®æ ‡å¯¹è±¡
+			obj: Ä¿±ê¶ÔÏó
 			options: 
 			i: 
 		*/
 		setOffset: function( obj, options, i ) {
-			if ( /static/.test( da.curCSS( obj, "position" ) ) ) {							//åœ¨è®¾ç½®åç§»ä½ç½®æ—¶è¦ä¿è¯positionå±æ€§ä¸ºéstatic, é»˜è®¤è®¾ç½®ä¸ºrelative
+			if ( /static/.test( da.curCSS( obj, "position" ) ) ) {							//ÔÚÉèÖÃÆ«ÒÆÎ»ÖÃÊ±Òª±£Ö¤positionÊôĞÔÎª·Çstatic, Ä¬ÈÏÉèÖÃÎªrelative
 				obj.style.position = "relative";
 			}
 			var curElem	= da( obj ),
@@ -6752,7 +6752,7 @@ var daRe_until = /Until$/,
 				left: (options.left - curOffset.left) + curLeft
 			};
 	
-			if ( "using" in options ) {															//ä¸çŸ¥é“æœ‰ä»€ä¹ˆç‰¹æ®Šçš„ä½œç”¨????????????
+			if ( "using" in options ) {															//²»ÖªµÀÓĞÊ²Ã´ÌØÊâµÄ×÷ÓÃ????????????
 				options.using.call( obj, pos );
 			}
 			else {
@@ -6803,24 +6803,24 @@ var daRe_until = /Until$/,
 					});
 			},
 			
-			//è®¾ç½®DOMå…ƒç´ çš„åç§»ä½ç½®ï¼ˆç›®æ ‡å¯¹è±¡å¿…é¡» è¦æœ‰leftã€topæ ·å¼å±æ€§ï¼‰
+			//ÉèÖÃDOMÔªËØµÄÆ«ÒÆÎ»ÖÃ£¨Ä¿±ê¶ÔÏó±ØĞë ÒªÓĞleft¡¢topÑùÊ½ÊôĞÔ£©
 			/*
-				options: leftã€topé”®å€¼å¯¹
+				options: left¡¢top¼üÖµ¶Ô
 			*/
 			offset: function( options ){
 				var obj = this.dom[0];
 			
-				if ( options ) {																	//æ‰¹é‡å…¨å¤„ç†
+				if ( options ) {																	//ÅúÁ¿È«´¦Àí
 					return this.each(function( i ) {
 						da.offset.setOffset( this, options, i );
 					});
 				}
 			
-				if ( !obj || !obj.ownerDocument ) {								//å¦‚æœDOMå¯¹è±¡è¿˜æ²¡æœ‰å†™å…¥ä»»ä½•ä¸€ä¸ªdocumentç›´æ¥è¿”å›ç©º
+				if ( !obj || !obj.ownerDocument ) {								//Èç¹ûDOM¶ÔÏó»¹Ã»ÓĞĞ´ÈëÈÎºÎÒ»¸ödocumentÖ±½Ó·µ»Ø¿Õ
 					return null;
 				}
 			
-				if ( obj === obj.ownerDocument.body ) {						//å¦‚æœæ˜¯è®¡ç®—bodyçš„åç§»å€¼, ç›´æ¥è°ƒç”¨da.offset.getBodyOffset() å‡½æ•°
+				if ( obj === obj.ownerDocument.body ) {						//Èç¹ûÊÇ¼ÆËãbodyµÄÆ«ÒÆÖµ, Ö±½Óµ÷ÓÃda.offset.getBodyOffset() º¯Êı
 					return da.offset.getBodyOffset( obj );
 				}
 			
@@ -6879,49 +6879,49 @@ var daRe_until = /Until$/,
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: å…ƒç´ å°ºå¯¸å¤§å°ç®¡ç†å™¨
+	description: ÔªËØ³ß´ç´óĞ¡¹ÜÀíÆ÷
 	version: 1.0.0
 */
 (function(da){
-	//DOMå¯¹è±¡ ä½ç½®å°ºå¯¸ æ“ä½œå‡½æ•°æ‰©å±•
-	//å› ä¸ºwidthã€heightå±æ€§å€¼çš„è·å–æ“ä½œç›¸ä¼¼ï¼Œæ‰€ä»¥é€šè¿‡eachå‡½æ•°æ¥æ‰¹é‡æ‰©å±•daåº“çš„height() å’Œ width()å‡½æ•°
+	//DOM¶ÔÏó Î»ÖÃ³ß´ç ²Ù×÷º¯ÊıÀ©Õ¹
+	//ÒòÎªwidth¡¢heightÊôĞÔÖµµÄ»ñÈ¡²Ù×÷ÏàËÆ£¬ËùÒÔÍ¨¹ıeachº¯ÊıÀ´ÅúÁ¿À©Õ¹da¿âµÄheight() ºÍ width()º¯Êı
 	da.each([ "Height", "Width" ], function( i, name ) {
 	
-		var type = name.toLowerCase();													//"height" æˆ– "width"
+		var type = name.toLowerCase();													//"height" »ò "width"
 	
-		da.fnStruct["inner" + name] = function() {							//ç»™daå¯¹è±¡æ‰©å±• innerHeight å’Œ innerWidthå±æ€§
+		da.fnStruct["inner" + name] = function() {							//¸øda¶ÔÏóÀ©Õ¹ innerHeight ºÍ innerWidthÊôĞÔ
 			return this.dom[0] ? parseFloat( da.css( this.dom[0], type, "padding" ) ) : null;
 		};
 	
-		da.fnStruct["outer" + name] = function( margin ) {			//ç»™daå¯¹è±¡æ‰©å±• outerHeight and outerWidthå±æ€§
+		da.fnStruct["outer" + name] = function( margin ) {			//¸øda¶ÔÏóÀ©Õ¹ outerHeight and outerWidthÊôĞÔ
 			return this.dom[0] ? parseFloat( da.css( this.dom[0], type, margin ? "margin" : "border" ) ) : null;
 		};
 		
-		//ç»™daåº“æ‰©å±•å¯¹åº”çš„height() å’Œ width()å‡½æ•°
+		//¸øda¿âÀ©Õ¹¶ÔÓ¦µÄheight() ºÍ width()º¯Êı
 		/*
-			size:	ç›®æ ‡DOMå¯¹è±¡ å°ºå¯¸å€¼å®¹å™¨å˜é‡
+			size:	Ä¿±êDOM¶ÔÏó ³ß´çÖµÈİÆ÷±äÁ¿
 		*/
 		da.fnStruct[ type ] = function( size ) {
 			var obj = this.dom[0];
 			if ( !obj ) {
-				return size == null ? null : this;									//å¦‚æœæ²¡æœ‰ç›®æ ‡DOMå¯¹è±¡ï¼Œè¿”å›thiså¯¹è±¡
+				return size == null ? null : this;									//Èç¹ûÃ»ÓĞÄ¿±êDOM¶ÔÏó£¬·µ»Øthis¶ÔÏó
 			}
 			
-			//getæ¨¡å¼
-			if ( da.isFunction( size ) ) {												//å¦‚æœsizeæ˜¯å›è°ƒå‡½æ•°çš„æ–¹å¼æ‰¹å¤„ç†è·å–å¤šä¸ªdomçš„é«˜å®½æ•°æ®ï¼Œå°±é€šè¿‡eachæ‰¹å¤„ç†è°ƒç”¨ï¼Œåœ¨å›è°ƒå‡½æ•°è¿”å›å¤„ç†åå†æ¬¡è°ƒç”¨ç›¸åº”height() å’Œ width()å‡½æ•°
+			//getÄ£Ê½
+			if ( da.isFunction( size ) ) {												//Èç¹ûsizeÊÇ»Øµ÷º¯ÊıµÄ·½Ê½Åú´¦Àí»ñÈ¡¶à¸ödomµÄ¸ß¿íÊı¾İ£¬¾ÍÍ¨¹ıeachÅú´¦Àíµ÷ÓÃ£¬ÔÚ»Øµ÷º¯Êı·µ»Ø´¦ÀíºóÔÙ´Îµ÷ÓÃÏàÓ¦height() ºÍ width()º¯Êı
 				return this.each(function( i ) {
 					var objSelf = da( this );
-					objSelf[ type ]( size.call( this, i, objSelf[ type ]() ) );			//å›è°ƒå‡½æ•°é»˜è®¤å›ä¼ domå¯¹è±¡ã€domæ•°ç»„ç´¢å¼•å·ã€å½“å‰heightæˆ–widthå€¼ä¸‰ä¸ªå‚æ•°
+					objSelf[ type ]( size.call( this, i, objSelf[ type ]() ) );			//»Øµ÷º¯ÊıÄ¬ÈÏ»Ø´«dom¶ÔÏó¡¢domÊı×éË÷ÒıºÅ¡¢µ±Ç°height»òwidthÖµÈı¸ö²ÎÊı
 				});
 			}
 			
-			if ( da.isWin( obj ) ) {										//å¦‚æœç›®æ ‡å¯¹è±¡æ˜¯çª—å£
+			if ( da.isWin( obj ) ) {										//Èç¹ûÄ¿±ê¶ÔÏóÊÇ´°¿Ú
 				// Everyone else use document.documentElement or document.body depending on Quirks vs Standards mode
 				return ( obj.document.compatMode === "CSS1Compat" && obj.document.documentElement[ "client" + name ] ) 
 				|| obj.document.body[ "client" + name ];
 	
 			}
-			else if ( da.isDoc( obj ) ) {								//å¦‚æœç›®æ ‡å¯¹è±¡æ˜¯document ï¼ˆnodeTypeï¼š 1=å…ƒç´ elementï¼› 2=å±æ€§attrï¼› 3=æ–‡æœ¬textï¼› 8=æ³¨é‡Šcommentsï¼› 9=æ–‡æ¡£documentï¼‰
+			else if ( da.isDoc( obj ) ) {								//Èç¹ûÄ¿±ê¶ÔÏóÊÇdocument £¨nodeType£º 1=ÔªËØelement£» 2=ÊôĞÔattr£» 3=ÎÄ±¾text£» 8=×¢ÊÍcomments£» 9=ÎÄµµdocument£©
 					return Math.max(
 						obj.body["scroll" + name],
 						obj.body["offset" + name],
@@ -6932,14 +6932,14 @@ var daRe_until = /Until$/,
 	
 			}
 			
-			else if ( size === undefined ) {							//å¦‚æœæ²¡æœ‰ä¼ å…¥ å°ºå¯¸å€¼å®¹å™¨å˜é‡ å°±ç›´æ¥è¿”å›æ•°æ®
+			else if ( size === undefined ) {							//Èç¹ûÃ»ÓĞ´«Èë ³ß´çÖµÈİÆ÷±äÁ¿ ¾ÍÖ±½Ó·µ»ØÊı¾İ
 					var tmpv = da.css( obj, type ), ret = parseFloat( tmpv );
 		
 					return da.isNaN( ret ) ? tmpv : ret;
 	
 			}
 			
-			//setæ¨¡å¼
+			//setÄ£Ê½
 			else{
 				return this.css( type, typeof size === "string" ? size : size + "px" );
 			}
@@ -6953,7 +6953,7 @@ var daRe_until = /Until$/,
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: å…¨å±€è®¡æ—¶å™¨
+	description: È«¾Ö¼ÆÊ±Æ÷
 	version: 1.0.0
 */
 (function(da){
@@ -6970,7 +6970,7 @@ var daRe_until = /Until$/,
 				var timeNow = new Date().getTime(),
 					item;
 
-				for(var i=0,len=da.queueHandle.length; i<len; i++){			//å¾ªç¯timeré˜Ÿåˆ—
+				for(var i=0,len=da.queueHandle.length; i<len; i++){			//Ñ­»·timer¶ÓÁĞ
 					item = da.queueHandle[i];
 					
 					if( item && item.delay <= (timeNow - item.prevTime ) ){
@@ -6992,10 +6992,10 @@ var daRe_until = /Until$/,
 			if( da.timer_queueHandle ) clearInterval( da.timer_queueHandle );
 		},
 		
-		/**å¯åŠ¨é—­åŒ…å°è£…çš„setInterval æˆ– setTimeoutï¼ˆå¯ä»¥é€šè¿‡callçš„åµŒå…¥thisä¸Šä¸‹æ–‡ï¼Œthisé»˜è®¤ä¸ºdaç±» ï¼‰
-		* delay æ‰§è¡Œå»¶æ—¶( é»˜è®¤å¯åŠ¨setTimeoutï¼Œæ·»åŠ â€œ_loopâ€åç¼€å¯åŠ¨setInterval )
-		* fn è‡ªå®šä¹‰å›è°ƒå‡½æ•°
-		* params å›è°ƒä¼ å…¥å‚æ•°
+		/**Æô¶¯±Õ°ü·â×°µÄsetInterval »ò setTimeout£¨¿ÉÒÔÍ¨¹ıcallµÄÇ¶ÈëthisÉÏÏÂÎÄ£¬thisÄ¬ÈÏÎªdaÀà £©
+		* delay Ö´ĞĞÑÓÊ±( Ä¬ÈÏÆô¶¯setTimeout£¬Ìí¼Ó¡°_loop¡±ºó×ºÆô¶¯setInterval )
+		* fn ×Ô¶¨Òå»Øµ÷º¯Êı
+		* params »Øµ÷´«Èë²ÎÊı
 		*/
 		timer: function( /*delay, fn, params*/ ){
 			if( 2 > arguments.length ) return;
@@ -7004,11 +7004,11 @@ var daRe_until = /Until$/,
 			var arrTmp = arguments[0].toString().split("_");
 			
 			var item = {
-				type: (arrTmp[1] && "loop" == arrTmp[1]) ? "keep" : "timer",		//ç±»å‹
-				delay: parseInt(arrTmp[0],10) || 13,								//å‘¨æœŸ
-				prevTime: new Date().getTime(),										//ä¸Šä¸€æ¬¡æ‰§è¡Œæ—¶é—´
-				handle: arguments[1],												//è‡ªå®šä¹‰å¤„ç†å‡½æ•°
-				params: [].slice.call( arguments, 2 )								//å‰”é™¤å‰ä¸¤ä¸ªä¸ªå‚æ•°
+				type: (arrTmp[1] && "loop" == arrTmp[1]) ? "keep" : "timer",		//ÀàĞÍ
+				delay: parseInt(arrTmp[0],10) || 13,								//ÖÜÆÚ
+				prevTime: new Date().getTime(),										//ÉÏÒ»´ÎÖ´ĞĞÊ±¼ä
+				handle: arguments[1],												//×Ô¶¨Òå´¦Àíº¯Êı
+				params: [].slice.call( arguments, 2 )								//ÌŞ³ıÇ°Á½¸ö¸ö²ÎÊı
 			};
 
 			da.queueHandle.push( item );
@@ -7017,10 +7017,10 @@ var daRe_until = /Until$/,
 			return da.queueHandle.length -1;
 		},
 		
-		/**å¯åŠ¨é—­åŒ…å°è£…çš„setIntervalï¼ˆå¯ä»¥é€šè¿‡callçš„åµŒå…¥thisä¸Šä¸‹æ–‡ï¼Œthisé»˜è®¤ä¸ºdaç±» ï¼‰
-		* delay æ‰§è¡Œå»¶æ—¶
-		* fn	è‡ªå®šä¹‰å›è°ƒå‡½æ•°s
-		* params å›è°ƒä¼ å…¥å‚æ•°
+		/**Æô¶¯±Õ°ü·â×°µÄsetInterval£¨¿ÉÒÔÍ¨¹ıcallµÄÇ¶ÈëthisÉÏÏÂÎÄ£¬thisÄ¬ÈÏÎªdaÀà £©
+		* delay Ö´ĞĞÑÓÊ±
+		* fn	×Ô¶¨Òå»Øµ÷º¯Êıs
+		* params »Øµ÷´«Èë²ÎÊı
 		*/
 		keep: function( /*delay, fn, params*/ ){
 			arguments[0] += "_loop";
@@ -7040,44 +7040,44 @@ var daRe_until = /Until$/,
 
 })(da);
 
-/***************** åŠ å¯†è§£å¯† *************************************/
+/***************** ¼ÓÃÜ½âÃÜ *************************************/
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: åŠ å¯†è§£å¯†ã€ç¼–ç è§£ç 
+	description: ¼ÓÃÜ½âÃÜ¡¢±àÂë½âÂë
 	version: 1.0.0
 */
 (function(da){
-	//å¯†é’¥
+	//ÃÜÔ¿
 	var codeKey = "1Q2AqzWaYxZdXswcf3SgvpC45EKbehDVoj6Tn7LBk8OFmRrGlUyNui9IHPtMJ0",
 	
-	//ç´¢å¼• è½¬ä¸º ç¼–ç 
+	//Ë÷Òı ×ªÎª ±àÂë
 	toChar = function( arrTmp, idx ){
 		arrTmp[ arrTmp.length ] = codeKey.charAt( idx );
 	},
 	
-	//ç¼–ç  è½¬ä¸º ç´¢å¼•
+	//±àÂë ×ªÎª Ë÷Òı
 	toIdx = function( code, char ){
 		return codeKey.indexOf( char );
 	};
 	
 	da.extend({
-		//åŠ å¯†
+		//¼ÓÃÜ
 		code: function( str ){
-				if( 0 <= str.indexOf( "*da*" ) ) return str;		//åŠ å¯†è¿‡å°±ä¸ç”¨åŠ å¯†äº†
+				if( 0 <= str.indexOf( "*da*" ) ) return str;		//¼ÓÃÜ¹ı¾Í²»ÓÃ¼ÓÃÜÁË
 				
-				var len = str.length,										//æºå­—ç¬¦ä¸²é•¿åº¦
+				var len = str.length,										//Ô´×Ö·û´®³¤¶È
 						arrTmp=[],res,
-					  kLen = codeKey.length,			//å¯†é’¥çš„ é•¿åº¦
-					  klen2 = kLen * kLen,								//å¯†é’¥çš„ 2å€é•¿åº¦
-					  klen5 = kLen * 5;										//å¯†é’¥çš„ 5å€é•¿åº¦
+					  kLen = codeKey.length,			//ÃÜÔ¿µÄ ³¤¶È
+					  klen2 = kLen * kLen,								//ÃÜÔ¿µÄ 2±¶³¤¶È
+					  klen5 = kLen * 5;										//ÃÜÔ¿µÄ 5±¶³¤¶È
 			  
 				for( var i=0,a; i < len; i++ )
 				{
-					a = str.charCodeAt(i);																	//é€ä¸ªå–å‡ºæºå­—ç¬¦ä¸²çš„ å­—ç¬¦
+					a = str.charCodeAt(i);																	//Öğ¸öÈ¡³öÔ´×Ö·û´®µÄ ×Ö·û
 					
 					if( a < klen5 ){
-							toChar( arrTmp, Math.floor( a / kLen ));				//å°äºç­‰äºå…¶æ•°å€¼å‚æ•°çš„æœ€å¤§æ•´æ•°( ä¸‹é™æ•´æ•° )
+							toChar( arrTmp, Math.floor( a / kLen ));				//Ğ¡ÓÚµÈÓÚÆäÊıÖµ²ÎÊıµÄ×î´óÕûÊı( ÏÂÏŞÕûÊı )
 							toChar( arrTmp, a % kLen );
 					}
 					else{
@@ -7088,27 +7088,27 @@ var daRe_until = /Until$/,
 				}
 				res = arrTmp.join("");
 				
-				return "*da*" + String( res.length ).length + String( res.length ) + res;				//ç¬¬ä¸€ä½ï¼šç¼–ç åå­—ç¬¦é•¿åº¦æ•°å€¼çš„ä½æ•°ï¼ˆæœ€å¤§9ä½ï¼‰ï¼›é€šè¿‡ç¬¬ä¸€ä½æ•°å€¼ï¼Œå–å¾—ç¼–ç åå­—ç¬¦é•¿åº¦æ•°å€¼ï¼›ç„¶åå‰©ä¸‹çš„æ˜¯ç¼–ç åçš„å­—ç¬¦ï¼›æœ€å‰é¢åŠ ä¸Šè‡ªå®šä¹‰ç¼–ç å¤´*da*
-																																												//å¦‚ï¼š31771G1O1s1Z1o1o1o1â€¦â€¦y191s1Zâ€¦â€¦1G1s1Z  ï¼ˆè§£é‡Šï¼š3 - "177"çš„é•¿åº¦ã€‚  177 - ç¼–ç åå­—ç¬¦é•¿åº¦ï¼‰
+				return "*da*" + String( res.length ).length + String( res.length ) + res;				//µÚÒ»Î»£º±àÂëºó×Ö·û³¤¶ÈÊıÖµµÄÎ»Êı£¨×î´ó9Î»£©£»Í¨¹ıµÚÒ»Î»ÊıÖµ£¬È¡µÃ±àÂëºó×Ö·û³¤¶ÈÊıÖµ£»È»ºóÊ£ÏÂµÄÊÇ±àÂëºóµÄ×Ö·û£»×îÇ°Ãæ¼ÓÉÏ×Ô¶¨Òå±àÂëÍ·*da*
+																																												//Èç£º31771G1O1s1Z1o1o1o1¡­¡­y191s1Z¡­¡­1G1s1Z  £¨½âÊÍ£º3 - "177"µÄ³¤¶È¡£  177 - ±àÂëºó×Ö·û³¤¶È£©
 		},
 		
-		//è§£å¯†
+		//½âÃÜ
 		decode: function( code ){
-				if( 0 != code.indexOf( "*da*" ) ) return code;		//ç¼–ç å¤´è¿‡æ»¤,å¹¶å»æ‰ç¼–ç å¤´
+				if( 0 != code.indexOf( "*da*" ) ) return code;		//±àÂëÍ·¹ıÂË,²¢È¥µô±àÂëÍ·
 				code = code.substr( 4 );
 				
-				var nlen = code.charAt( 0 ) * 1;			//å»ç¬¬ä¸€ä½å­—ç¬¦ï¼Œå¹¶é€šè¿‡è¿ç®—ç¬¦éšå¼è½¬æ¢ä¸ºæ•´å‹
-				if( isNaN( nlen ) ) return "";				//é€šè¿‡isNaN()å‡½æ•°åˆ¤æ–­æ˜¯å¦ç¬¦åˆ é•¿åº¦ä¿¡æ¯æ ¼å¼
+				var nlen = code.charAt( 0 ) * 1;			//È¥µÚÒ»Î»×Ö·û£¬²¢Í¨¹ıÔËËã·ûÒşÊ½×ª»»ÎªÕûĞÍ
+				if( isNaN( nlen ) ) return "";				//Í¨¹ıisNaN()º¯ÊıÅĞ¶ÏÊÇ·ñ·ûºÏ ³¤¶ÈĞÅÏ¢¸ñÊ½
 				
-				nlen = code.substr( 1, nlen ) * 1;		//å–å®é™…ç¼–ç å­—ç¬¦é•¿åº¦æ•°å€¼
+				nlen = code.substr( 1, nlen ) * 1;		//È¡Êµ¼Ê±àÂë×Ö·û³¤¶ÈÊıÖµ
 				if( isNaN( nlen ) ) return code;				
 				
-				var clen = code.length,								//å–æ•´ä¸ªç¼–ç ä¸²é•¿åº¦ï¼ˆåŒ…å«äº†é•¿åº¦ä¿¡æ¯ä½ï¼‰
+				var clen = code.length,								//È¡Õû¸ö±àÂë´®³¤¶È£¨°üº¬ÁË³¤¶ÈĞÅÏ¢Î»£©
 						arrTmp = [],a,f,b,
-						i = String( nlen ).length + 1,		//åŠ ä¸Šç¬¬ä¸€ä½ï¼ˆé•¿åº¦ä¿¡æ¯å€¼çš„ ä½æ•°ä¿¡æ¯ï¼‰
-						kLen = codeKey.length;					//å¯†é’¥çš„ é•¿åº¦
+						i = String( nlen ).length + 1,		//¼ÓÉÏµÚÒ»Î»£¨³¤¶ÈĞÅÏ¢ÖµµÄ Î»ÊıĞÅÏ¢£©
+						kLen = codeKey.length;					//ÃÜÔ¿µÄ ³¤¶È
 						
-				if( clen != i + nlen ) return code;		//åŒ¹é…å®é™…ç¼–ç å­—ç¬¦é•¿åº¦ å’Œ é•¿åº¦ä¿¡æ¯ æ˜¯å¦ä¸ä¸€è‡´
+				if( clen != i + nlen ) return code;		//Æ¥ÅäÊµ¼Ê±àÂë×Ö·û³¤¶È ºÍ ³¤¶ÈĞÅÏ¢ ÊÇ·ñ²»Ò»ÖÂ
 
 				while( i < clen )
 				{
@@ -7125,7 +7125,7 @@ var daRe_until = /Until$/,
 				return arrTmp.join( "" );
 		},
 		
-		//ç¼–ç 
+		//±àÂë
 		toHex: function( str ) {
 			str = da.isNull( str.toString(), "" );
 			
@@ -7136,10 +7136,10 @@ var daRe_until = /Until$/,
 				
 				for (var i=0, len=str.length; i<len; i++ ) 
 				{
-					code = str.charCodeAt(i).toString(16);				//å•å­—ç¬¦è½¬ä¸º16è¿›åˆ¶å­—ç¬¦ä¸²
-					code = da.zeroFill( code, 4 );						//4ä½16è¿›åˆ¶,ä¸å¤Ÿè¡¥é›¶
+					code = str.charCodeAt(i).toString(16);				//µ¥×Ö·û×ªÎª16½øÖÆ×Ö·û´®
+					code = da.zeroFill( code, 4 );						//4Î»16½øÖÆ,²»¹»²¹Áã
 					
-					rs.push( code.slice(2, 4) + code.slice(0, 2) );		//é«˜ä½ä½é¢ å€’å¤„ç†
+					rs.push( code.slice(2, 4) + code.slice(0, 2) );		//¸ßµÍÎ»µßµ¹´¦Àí
 				}
 				return ('~h`' + rs.join(""));
 			}
@@ -7147,12 +7147,12 @@ var daRe_until = /Until$/,
 			return str;
 		},
 		
-		//è§£ç 
+		//½âÂë
 		toStr: function ( hex ){
 			hex = da.isNull( hex, "" );
 			
 			if (0 == hex.indexOf('~h`')) {
-				hex = hex.substr(3);									//å»å‰ç¼€
+				hex = hex.substr(3);									//È¥Ç°×º
 				
 				if ( "" != hex ) {
 					var str='', rs = [];
@@ -7174,11 +7174,11 @@ var daRe_until = /Until$/,
 	});
 })(da);
 
-/***************** é®ç½©å±‚ **************************/
+/***************** ÕÚÕÖ²ã **************************/
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: é®ç½©å±‚
+	description: ÕÚÕÖ²ã
 	version: 1.0.0
 */
 (function(da){
@@ -7254,9 +7254,9 @@ var daRe_until = /Until$/,
 	});
 	
 	da.extend({
-			//åˆå§‹åŒ–é®ç½©å±‚å¯¹è±¡		//bodyçš„onLoadäº‹ä»¶ä¼šé‡è½½
+			//³õÊ¼»¯ÕÚÕÖ²ã¶ÔÏó		//bodyµÄonLoadÊÂ¼ş»áÖØÔØ
 			/*
-				zIndex: æ˜¾ç¤ºè¦†ç›–çš„zåæ ‡
+				zIndex: ÏÔÊ¾¸²¸ÇµÄz×ø±ê
 			*/
 			daMaskInit: function( maskWin, zIndex ){
 				maskWin = maskWin || window;
@@ -7264,9 +7264,9 @@ var daRe_until = /Until$/,
 						objMask = maskDoc.createElement("div");
 						
 				objMask.id = 'daMask';
-				objMask.style.cssText = 'position:absolute; top:0px; left:0px; display:none; background:#000; filter: Alpha(opacity=50);/* IE */ -moz-opacity:0.5;/* FF ä¸»è¦æ˜¯ä¸ºäº†å…¼å®¹è€ç‰ˆæœ¬çš„FF */ opacity:0.5;/* FF */';
+				objMask.style.cssText = 'position:absolute; top:0px; left:0px; display:none; background:#000; filter: Alpha(opacity=50);/* IE */ -moz-opacity:0.5;/* FF Ö÷ÒªÊÇÎªÁË¼æÈİÀÏ°æ±¾µÄFF */ opacity:0.5;/* FF */';
 				
-				objMask.style.zIndex = zIndex || 19998;								//è¿™é‡Œçš„æ˜¾ç¤ºå±‚çº§åº”è¯¥æ˜¯å°äºdaWinæ´»åŠ¨çª—å£ï¼Œå¤§äºdaWinéæ´»åŠ¨çª—å£
+				objMask.style.zIndex = zIndex || 19998;								//ÕâÀïµÄÏÔÊ¾²ã¼¶Ó¦¸ÃÊÇĞ¡ÓÚdaWin»î¶¯´°¿Ú£¬´óÓÚdaWin·Ç»î¶¯´°¿Ú
 				
 				objMask.style.width = Math.max( da( maskWin ).width(), maskDoc.body.scrollWidth, maskDoc.documentElement.scrollWidth )+ "px";
 				objMask.style.height = Math.max( da( maskWin ).height(), maskDoc.body.scrollHeight, maskDoc.documentElement.scrollHeight )+ "px";
@@ -7277,7 +7277,7 @@ var daRe_until = /Until$/,
 				
 				da(objMask).bgiframe();
 				
-				//bodyå¤§å°æ”¹å˜æ—¶ï¼Œè°ƒç”¨é®ç½©å±‚æ›´æ–°å°ºå¯¸å‡½æ•°
+				//body´óĞ¡¸Ä±äÊ±£¬µ÷ÓÃÕÚÕÖ²ã¸üĞÂ³ß´çº¯Êı
 				da( maskWin ).bind( "resize", function(){
 					da.daMaskFresh( this );
 				});
@@ -7285,7 +7285,7 @@ var daRe_until = /Until$/,
 				return objMask;
 			},
 			
-			//æ˜¯å¦å·²ç»åˆå§‹åŒ–
+			//ÊÇ·ñÒÑ¾­³õÊ¼»¯
 			daGetMask: function( maskWin ){
 				maskWin = maskWin || window;
 				var objMask = maskWin.document.getElementById("daMask");
@@ -7293,7 +7293,7 @@ var daRe_until = /Until$/,
 				else return objMask;
 			},
 			
-			//æ›´æ–°é®ç½©å±‚å¯¹è±¡å¤§å°å°ºå¯¸   //bodyçš„onResizeäº‹ä»¶ä¼šé‡è½½
+			//¸üĞÂÕÚÕÖ²ã¶ÔÏó´óĞ¡³ß´ç   //bodyµÄonResizeÊÂ¼ş»áÖØÔØ
 			daMaskFresh: function( maskWin ){
 				maskWin = maskWin || window;
 				var maskDoc = maskWin.document,
@@ -7306,9 +7306,9 @@ var daRe_until = /Until$/,
 				//this.daMaskShow( maskWin );
 			},
 			
-			//æ˜¾ç¤ºé®ç½©å±‚
+			//ÏÔÊ¾ÕÚÕÖ²ã
 			/*
-				zIndex: æ˜¾ç¤ºè¦†ç›–çš„zåæ ‡
+				zIndex: ÏÔÊ¾¸²¸ÇµÄz×ø±ê
 			*/
 			daMaskShow: function( maskWin, opacity, color, zIndex ){
 				maskWin = maskWin || window;
@@ -7322,7 +7322,7 @@ var daRe_until = /Until$/,
 				objMask.style.filter = "Alpha(opacity="+ (opacity || 50) +")";
 				objMask.style.opacity = ( opacity || 50 )/100;
 				//objMask.style.mozOpacity = opacity || 0.5;
-				objMask.style.zIndex = zIndex || 19998;									//è¿™é‡Œçš„æ˜¾ç¤ºå±‚çº§åº”è¯¥æ˜¯å°äºdaWinæ´»åŠ¨çª—å£ï¼Œå¤§äºdaWinéæ´»åŠ¨çª—å£
+				objMask.style.zIndex = zIndex || 19998;									//ÕâÀïµÄÏÔÊ¾²ã¼¶Ó¦¸ÃÊÇĞ¡ÓÚdaWin»î¶¯´°¿Ú£¬´óÓÚdaWin·Ç»î¶¯´°¿Ú
 				
 				if( "undefined" !== typeof daFx )
 					da( objMask ).fadeIn(300);
@@ -7331,13 +7331,13 @@ var daRe_until = /Until$/,
 				
 			},
 			
-			//éšè—é®ç½©å±‚
+			//Òş²ØÕÚÕÖ²ã
 			daMaskHide: function( maskWin ){
 				maskWin = maskWin || window;
 				var objMask = da.daGetMask( maskWin );
 				if( !objMask ) return;
 				
-	//				if( "undefined" !== typeof daFx )															//å¼‚æ­¥åŠ¨ä½œå®¹æ˜“å‡ºé”™å•Šã€‚
+	//				if( "undefined" !== typeof daFx )															//Òì²½¶¯×÷ÈİÒ×³ö´í°¡¡£
 	//					da( objMask ).fadeOut(300);
 	//				else
 					objMask.style.display = "none";
@@ -7347,16 +7347,16 @@ var daRe_until = /Until$/,
 	});
 })(da);
 
-/***************** Tools å‡½æ•° *****************/
+/***************** Tools º¯Êı *****************/
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: åº“åŠŸèƒ½å‡½æ•°
+	description: ¿â¹¦ÄÜº¯Êı
 	version: 1.0.0
 */
 (function(da){
 	da.extend({
-		//è·å–æµè§ˆå™¨ç±»å‹å’Œç‰ˆæœ¬
+		//»ñÈ¡ä¯ÀÀÆ÷ÀàĞÍºÍ°æ±¾
 		browser: (function(){
 			var Sys = {},
 					ua = navigator.userAgent.toLowerCase(),
@@ -7370,27 +7370,27 @@ var daRe_until = /Until$/,
 			return Sys;
 		})(),
 		
-		//åšä»£ç æ€§èƒ½æµ‹è¯•æ—¶ä½¿ç”¨åœ¨testA()å’ŒtestB()è°ƒç”¨ä¹‹é—´ï¼Œå°±æ˜¯è¦æµ‹è¯•çš„ä»£ç è¿è¡Œæ—¶é—´(å¼‚æ­¥ä»£ç æ— æ•ˆ)
+		//×ö´úÂëĞÔÄÜ²âÊÔÊ±Ê¹ÓÃÔÚtestA()ºÍtestB()µ÷ÓÃÖ®¼ä£¬¾ÍÊÇÒª²âÊÔµÄ´úÂëÔËĞĞÊ±¼ä(Òì²½´úÂëÎŞĞ§)
 		testTime: null,
 		
-		//å¼€å§‹
+		//¿ªÊ¼
 		testA: function(){
 			da.testTime = new Date();
 		},
 		
-		//ç»ˆæ­¢å¹¶è¿”å›æ—¶é—´å·®ä¿¡æ¯
+		//ÖÕÖ¹²¢·µ»ØÊ±¼ä²îĞÅÏ¢
 		testB: function(){
 			var now = new Date();
-			return ["è€—æ—¶ï¼š",(now - da.testTime),"ms"].join("");
+			return ["ºÄÊ±£º",(now - da.testTime),"ms"].join("");
 		},
 		
-		//å°†è¾“å‡ºå†…å®¹æ”¾å…¥å‰ªè´´æ¿
+		//½«Êä³öÄÚÈİ·ÅÈë¼ôÌù°å
 		copy: function(sText,sTitle){
 			sTitle = sTitle || "Text";
 			
 			if (window.clipboardData) {				//IE
 				window.clipboardData.clearData();   
-			  return ( window.clipboardData.setData( sTitle,sText ) );			//å¤åˆ¶åˆ°å‰ªè´´æ¿
+			  return ( window.clipboardData.setData( sTitle,sText ) );			//¸´ÖÆµ½¼ôÌù°å
 			}
 			else if(navigator.userAgent.indexOf("Opera") != -1) {    
 				window.location = sText;    
@@ -7400,7 +7400,7 @@ var daRe_until = /Until$/,
 				netscape.security.PrivilegeManager.enablePrivilege( "UniversalXPConnect" );    
 			}
 			catch(e){
-				alert("è¢«æµè§ˆå™¨æ‹’ç»ï¼\nè¯·åœ¨æµè§ˆå™¨åœ°å€æ è¾“å…¥'about:config'å¹¶å›è½¦\nç„¶åå°†[ signed.applets.codebase_principal_support ]è®¾ç½®ä¸º'true'");
+				alert("±»ä¯ÀÀÆ÷¾Ü¾ø£¡\nÇëÔÚä¯ÀÀÆ÷µØÖ·À¸ÊäÈë'about:config'²¢»Ø³µ\nÈ»ºó½«[ signed.applets.codebase_principal_support ]ÉèÖÃÎª'true'");
 				return false;
 			}    
 			var clip = Components.classes[ '@mozilla.org/widget/clipboard;1' ].createInstance( Components.interfaces.nsIClipboard );    
@@ -7419,16 +7419,16 @@ var daRe_until = /Until$/,
 			
 			if ( !clip ) return false;
 			clip.setData( trans, null, clipid.kGlobalClipboard );    
-			alert( "å¤åˆ¶æˆåŠŸï¼" )    
+			alert( "¸´ÖÆ³É¹¦£¡" )    
 			}
 
 			return false;
 		},
 		
-		//è¾“å‡ºè°ƒè¯•ä¿¡æ¯
+		//Êä³öµ÷ÊÔĞÅÏ¢
 		/*
-			msg: è°ƒè¯•ä¿¡æ¯
-			color: è°ƒè¯•ä¿¡æ¯è¡Œé¢œè‰²
+			msg: µ÷ÊÔĞÅÏ¢
+			color: µ÷ÊÔĞÅÏ¢ĞĞÑÕÉ«
 		*/
 		out: function( msg, color ){
 			color = color || "#ffff99";
@@ -7451,7 +7451,7 @@ var daRe_until = /Until$/,
 				
 				titleDiv = pushDoc.createElement("div");
 				titleDiv.style.cssText= "position:absolute;left:5px;top:0px;height:30px;line-height:30px;width:100%;font-size:12px;text-indent:10px; color:#f0f0f0;";
-				titleDiv.innerHTML = "è°ƒè¯•ä¿¡æ¯";
+				titleDiv.innerHTML = "µ÷ÊÔĞÅÏ¢";
 				containerDiv.insertBefore( titleDiv, null );
 				
 				outDiv = pushDoc.createElement("div");
@@ -7502,7 +7502,7 @@ var daRe_until = /Until$/,
 
 			}
 			
-			if( da.isArray( msg ) ){							//åˆ¤æ–­æ˜¯å¦ä¸ºæ•°ç»„
+			if( da.isArray( msg ) ){							//ÅĞ¶ÏÊÇ·ñÎªÊı×é
 				for( var i=0,len=msg.length; i<len; i++ ){
 					lineObj = pushDoc.createElement("div");
 					lineObj.style.backgroundColor = color;
@@ -7510,9 +7510,9 @@ var daRe_until = /Until$/,
 					outDiv.insertBefore( lineObj, outDiv.firstChild );
 				}
 			}
-			else if( /<|&#?\w+;/.test( msg ) ){					//åˆ¤æ–­æ˜¯å¦æœ‰å…ƒç´ æ ‡ç­¾
+			else if( /<|&#?\w+;/.test( msg ) ){					//ÅĞ¶ÏÊÇ·ñÓĞÔªËØ±êÇ©
 				lineObj = pushDoc.createElement("textarea");
-				lineObj.value = "ä»£ç ï¼š\n" + msg;
+				lineObj.value = "´úÂë£º\n" + msg;
 				lineObj.style.cssText= "width:80%;height:150px;margin:5px;border:2px solid #663300;background-color:"+color;
 				outDiv.insertBefore( lineObj, outDiv.firstChild );
 			}
@@ -7567,7 +7567,7 @@ var daRe_until = /Until$/,
 				closeDiv.style.cssText= "position:absolute; right:5px; top:0px; color:#fff; line-height:25px; font-size:25px; font-family:arial; cursor:pointer;";
 				closeDiv.style.color = params.color;
 				closeDiv.innerHTML = "X";
-				closeDiv.title = "å…³é—­";
+				closeDiv.title = "¹Ø±Õ";
 				containerDiv.insertBefore( closeDiv, null );
 				
 				da( closeDiv ).bind( "click",function( evt ){
@@ -7674,27 +7674,27 @@ var daRe_until = /Until$/,
 			});
 		},
 		
-		//è®¾ç½®æˆ–è·å–cookie
+		//ÉèÖÃ»ò»ñÈ¡cookie
 		cookie: function( name, value, expires, path, domain, se3cure ) {
-				//getæ“ä½œ
+				//get²Ù×÷
 				if( undefined == value ){
 					var start = document.cookie.indexOf( name + "=" ),
 						len = start + name.length + 1;
 						
-						if ( start == -1 ) return null;													//æ²¡æœ‰æ‰¾åˆ°å¯¹åº”nameçš„cookie;
-					if ( ( !start ) && ( name != document.cookie.substring( 0, name.length ) ) ) return null;			//æ‰¾åˆ°æ­£å¥½æ˜¯ç¬¬ä¸€ä¸ª,ä½†å¦‚æœä¸æ˜¯å¯¹åº”çš„name
+						if ( start == -1 ) return null;													//Ã»ÓĞÕÒµ½¶ÔÓ¦nameµÄcookie;
+					if ( ( !start ) && ( name != document.cookie.substring( 0, name.length ) ) ) return null;			//ÕÒµ½ÕıºÃÊÇµÚÒ»¸ö,µ«Èç¹û²»ÊÇ¶ÔÓ¦µÄname
 					
-					var end = document.cookie.indexOf( ';', len );					//daè‡ªå®šä¹‰cookieé»˜è®¤æ ¼å¼,æœ‰æ•ˆæœŸã€è·¯å¾„ç­‰å‚æ•°æ˜¯é€šè¿‡"ï¼›"åˆ†éš”çš„,å–å€¼åªéœ€å–åˆ°ç¬¬ä¸€ä¸ªåˆ†å·ä¸ºæ­¢
-					if ( end == -1 ) end = document.cookie.length;					//å¦‚æœæ²¡æœ‰æŒ‰daé»˜è®¤æ ¼å¼"ï¼›",å°±ç›´æ¥å–å®Œ
+					var end = document.cookie.indexOf( ';', len );					//da×Ô¶¨ÒåcookieÄ¬ÈÏ¸ñÊ½,ÓĞĞ§ÆÚ¡¢Â·¾¶µÈ²ÎÊıÊÇÍ¨¹ı"£»"·Ö¸ôµÄ,È¡ÖµÖ»ĞèÈ¡µ½µÚÒ»¸ö·ÖºÅÎªÖ¹
+					if ( end == -1 ) end = document.cookie.length;					//Èç¹ûÃ»ÓĞ°´daÄ¬ÈÏ¸ñÊ½"£»",¾ÍÖ±½ÓÈ¡Íê
 					
 					return unescape(document.cookie.substring(len, end));
 				}
-				//setæ“ä½œ
+				//set²Ù×÷
 			var expires_date = null,
-					today = new Date();																	//è·å–å½“å‰æ—¶é—´
+					today = new Date();																	//»ñÈ¡µ±Ç°Ê±¼ä
 			
 			today.setTime(today.getTime());
-			if (expires) expires = expires * 1000 * 60 * 60 * 24;		//æœ‰æ•ˆæ—¶é—´ å•ä½å¤©
+			if (expires) expires = expires * 1000 * 60 * 60 * 24;		//ÓĞĞ§Ê±¼ä µ¥Î»Ìì
 			expires_date = new Date( today.getTime() + ( expires ) );
 			
 			document.cookie = [
@@ -7707,46 +7707,46 @@ var daRe_until = /Until$/,
 			
 		},
 		
-		//åˆ é™¤cookie
+		//É¾³ıcookie
 		removeCookie: function(name, path, domain) {
 			if (da.cookie(name))
 				document.cookie = name + '=' + ((path) ? ';path=' + path: '') + ((domain) ? ';domain=' + domain: '') + ';expires=Thu, 01-Jan-1970 00:00:01 GMT';
 		},
 		
-		//é¢„åŠ è½½å›¾ç‰‡
+		//Ô¤¼ÓÔØÍ¼Æ¬
 		/*
-			url:	å›¾ç‰‡åœ°å€
-			callback:	åŠ è½½å®Œæ¯•å›è°ƒå‡½æ•°
+			url:	Í¼Æ¬µØÖ·
+			callback:	¼ÓÔØÍê±Ï»Øµ÷º¯Êı
 		*/
 		loadImage: function( url, fn ) {
-		  var img = new Image(); 			//åˆ›å»ºä¸€ä¸ªImageå¯¹è±¡ï¼Œå®ç°å›¾ç‰‡çš„é¢„ä¸‹è½½
+		  var img = new Image(); 			//´´½¨Ò»¸öImage¶ÔÏó£¬ÊµÏÖÍ¼Æ¬µÄÔ¤ÏÂÔØ
 		  img.src = url;
 		  if( !da.isFunction(fn) ) return;
 		  
-		  if (img.complete) { 				// å¦‚æœå›¾ç‰‡å·²ç»å­˜åœ¨äºæµè§ˆå™¨ç¼“å­˜ï¼Œç›´æ¥è°ƒç”¨å›è°ƒå‡½æ•°
+		  if (img.complete) { 				// Èç¹ûÍ¼Æ¬ÒÑ¾­´æÔÚÓÚä¯ÀÀÆ÷»º´æ£¬Ö±½Óµ÷ÓÃ»Øµ÷º¯Êı
 			fn.call(img);
 		  }
 			else{
-			  da( img ).bind( "load", function () { 	//å›¾ç‰‡ä¸‹è½½å®Œæ¯•æ—¶å¼‚æ­¥è°ƒç”¨callbackå‡½æ•°ã€‚
-					fn.call(img);													//å°†å›è°ƒå‡½æ•°çš„thisæ›¿æ¢ä¸ºImageå¯¹è±¡
+			  da( img ).bind( "load", function () { 	//Í¼Æ¬ÏÂÔØÍê±ÏÊ±Òì²½µ÷ÓÃcallbackº¯Êı¡£
+					fn.call(img);													//½«»Øµ÷º¯ÊıµÄthisÌæ»»ÎªImage¶ÔÏó
 			  });
 			}
 		},
 		
-		/**éšæœºæ•°
-		* Min: èŒƒå›´æœ€å°å€¼
-		* Max: èŒƒå›´æœ€å¤§å€¼
+		/**Ëæ»úÊı
+		* Min: ·¶Î§×îĞ¡Öµ
+		* Max: ·¶Î§×î´óÖµ
 		*/
 		random: function (Min,Max){
-			Min = Min || 0;			//é»˜è®¤èŒƒå›´
+			Min = Min || 0;			//Ä¬ÈÏ·¶Î§
 			Max = Max || 100;
-			var Range = Max - Min;					//èŒƒå›´
-			var Rand = Math.random();				//0~1éšæœºå€¼
-			var addNum = Rand * Range;			//å¢é‡
+			var Range = Max - Min;					//·¶Î§
+			var Rand = Math.random();				//0~1Ëæ»úÖµ
+			var addNum = Rand * Range;			//ÔöÁ¿
 			return(Min + Math.round(Rand * Range));
 		},
 		
-		/**è¡¥é›¶
+		/**²¹Áã
 		*/
 		zeroFill: function ( str, len, isRight ){
 			if( "number" === typeof str ) str = str.toString();
@@ -7763,29 +7763,29 @@ var daRe_until = /Until$/,
 		},
 		
 		
-		//è·å–urlå‚æ•°
+		//»ñÈ¡url²ÎÊı
 		/*
-			url:	åœ°å€ä¸²
+			url:	µØÖ·´®
 		*/
 		urlParams: function( url ){
-			url = url || location.search.substring(1);      		//è·å–è¦æŸ¥è¯¢çš„urlåœ°å€ä¸²
+			url = url || location.search.substring(1);      		//»ñÈ¡Òª²éÑ¯µÄurlµØÖ·´®
 			
-			var	arrPair = url.split(/[\&\?]/g),              		//åˆ‡å¼€å‚æ•°
+			var	arrPair = url.split(/[\&\?]/g),              		//ÇĞ¿ª²ÎÊı
 				args = {}, idx;
 			 
 			 for(var i=0; i < arrPair.length; i++) {
-				idx = arrPair[i].indexOf('=');         				//é€šè¿‡"="å‘ç°å‚æ•°
-				if (idx == -1) continue;                   			//æ²¡æœ‰æ‰¾åˆ°"="ç¬¦å·,ç›´æ¥è·³è¿‡
+				idx = arrPair[i].indexOf('=');         				//Í¨¹ı"="·¢ÏÖ²ÎÊı
+				if (idx == -1) continue;                   			//Ã»ÓĞÕÒµ½"="·ûºÅ,Ö±½ÓÌø¹ı
 				 
-				 var argName = arrPair[i].substring( 0, idx ); 		//è·å–å‚æ•°å
-				 var argValue = arrPair[i].substring( idx + 1 );	//è·å–å‚æ•°å€¼
-				 //value = decodeURIComponent(value);        		//å¦‚æœéœ€è¦å¯ä»¥ç¼–ç 
-				 args[argName] = argValue;                    		//ç¼“å­˜å…¥mapå¯¹è±¡
+				 var argName = arrPair[i].substring( 0, idx ); 		//»ñÈ¡²ÎÊıÃû
+				 var argValue = arrPair[i].substring( idx + 1 );	//»ñÈ¡²ÎÊıÖµ
+				 //value = decodeURIComponent(value);        		//Èç¹ûĞèÒª¿ÉÒÔ±àÂë
+				 args[argName] = argValue;                    		//»º´æÈëmap¶ÔÏó
 			 }
-			 return args;                                   		//è¿”å›æ•´ä¸ªå‚æ•°åˆ—è¡¨å¯¹è±¡
+			 return args;                                   		//·µ»ØÕû¸ö²ÎÊıÁĞ±í¶ÔÏó
 		},
 		
-		/**æ£€éªŒurlåœ°å€æ˜¯å¦å¯æœ‰æ•ˆè®¿é—®
+		/**¼ìÑéurlµØÖ·ÊÇ·ñ¿ÉÓĞĞ§·ÃÎÊ
 		*/
 		urlCheck: function( url ){
 			var obj = da.ajaxSettings.xhr(),
@@ -7803,7 +7803,7 @@ var daRe_until = /Until$/,
 			return res;
 		},
 		
-		//è·å–æœ€å¤–å±‚æ¡†æ¶é¡µé¢çš„çª—ä½“å¯¹è±¡
+		//»ñÈ¡×îÍâ²ã¿ò¼ÜÒ³ÃæµÄ´°Ìå¶ÔÏó
 		getRootWin: function( sPage ){
 			var curWin = window;
 			var parentWin = curWin.parent;
@@ -7817,23 +7817,23 @@ var daRe_until = /Until$/,
 			return curWin;
 		},
 		
-		/**å°†sqlserveræ•°æ®åº“æ—¥æœŸæ ¼å¼è½¬ä¸ºDateæ ¼å¼
-		* params {String} sqlDate åå°ç›´æ¥è¿”å›çš„æ•°æ®åº“æ—¥æœŸæ ¼å¼å­—ç¬¦ä¸²
-		* params {String} sFormat æ—¥æœŸæ ¼å¼åŒ–å¯¹ç…§å­—ç¬¦ä¸²
+		/**½«sqlserverÊı¾İ¿âÈÕÆÚ¸ñÊ½×ªÎªDate¸ñÊ½
+		* params {String} sqlDate ºóÌ¨Ö±½Ó·µ»ØµÄÊı¾İ¿âÈÕÆÚ¸ñÊ½×Ö·û´®
+		* params {String} sFormat ÈÕÆÚ¸ñÊ½»¯¶ÔÕÕ×Ö·û´®
 		*/
 		db2date: function( sqlDate, sFormat ){
-			var t = sqlDate.replace("+08:00",""),								//å»æ‰æ—¶åŒºåç¼€
-				d = t.split(/[-\.\/T:]/g);										//é€šè¿‡split()å‡½æ•° åˆ†éš”å‡º [å¹´ï¼Œæœˆï¼Œæ—¥ï¼Œæ—¶ï¼Œåˆ†ï¼Œç§’ï¼Œæ¯«ç§’] æ•°ç»„
+			var t = sqlDate.replace("+08:00",""),								//È¥µôÊ±Çøºó×º
+				d = t.split(/[-\.\/T:]/g);										//Í¨¹ısplit()º¯Êı ·Ö¸ô³ö [Äê£¬ÔÂ£¬ÈÕ£¬Ê±£¬·Ö£¬Ãë£¬ºÁÃë] Êı×é
 
 			d = new Date( d[0],d[1],d[2],d[3],d[4],d[5],d[6]||0 );
 			return sFormat ? d.format( sFormat ) : d;
 					
 		},
 		
-		/**æ—¥æœŸæ•°æ®åŠ å‡
-		* params {Date|String} dateObj æ—¥æœŸæ•°æ®
-		* params {Int} nValue é—´éš”å·®å€¼ï¼ˆç›¸å‡ä¸ºè´Ÿæ•°ï¼‰
-		* params {String} type è®¡ç®—å¯¹è±¡[ "y", "M", "d", "h", "m", "s", "ms" ]ï¼Œé»˜è®¤ä¸º"d"ï¼ˆæ—¥ï¼‰
+		/**ÈÕÆÚÊı¾İ¼Ó¼õ
+		* params {Date|String} dateObj ÈÕÆÚÊı¾İ
+		* params {Int} nValue ¼ä¸ô²îÖµ£¨Ïà¼õÎª¸ºÊı£©
+		* params {String} type ¼ÆËã¶ÔÏó[ "y", "M", "d", "h", "m", "s", "ms" ]£¬Ä¬ÈÏÎª"d"£¨ÈÕ£©
 		*/
 		addDate: function( dateObj, nValue, type ){
 			type = type || "d";
@@ -7862,16 +7862,16 @@ var daRe_until = /Until$/,
 		return dateObj;
 		},
 		
-		//é™åˆ¶æœ€å¤§é•¿åº¦å­—ç¬¦ä¸²
+		//ÏŞÖÆ×î´ó³¤¶È×Ö·û´®
 		/*
-			str: ç›®æ ‡å­—ç¬¦ä¸²
-			mxlen: æœ€å¤§é•¿åº¦
+			str: Ä¿±ê×Ö·û´®
+			mxlen: ×î´ó³¤¶È
 		*/
 		limitStr: function(str,mxlen){
-			return str.length > mxlen ? str.substring(0,mxlen-3)+"â€¦":str;
+			return str.length > mxlen ? str.substring(0,mxlen-3)+"¡­":str;
 		},
 		
-		/**å‘é¡µé¢åŠ¨æ€åµŒå…¥æ ·å¼in-inline-css
+		/**ÏòÒ³Ãæ¶¯Ì¬Ç¶ÈëÑùÊ½in-inline-css
 		*/
 		addStyle: function( id, cssText ){
 			if( 0 <= id.indexOf("#") ){
@@ -7896,19 +7896,19 @@ var daRe_until = /Until$/,
 			}
 		},
 		
-		/**å»htmlå…ƒç´ 
+		/**È¥htmlÔªËØ
 		*/
 		deleteHtml: function( str ){
 			return str.replace( /<("[^"]*"|'[^']*'|[^'">])*>/gi, "");
 		},
 		
-		/**æµ®ç‚¹å‹æ•°å€¼æ ¼å¼åŒ–
+		/**¸¡µãĞÍÊıÖµ¸ñÊ½»¯
 		*/
 		fmtFloat: function( val, fmt ){
 			return new Number( val ).format( fmt );
 		},
 		
-		/**æ—¥æœŸæ ¼å¼åŒ–
+		/**ÈÕÆÚ¸ñÊ½»¯
 		*/
 		fmtDate: function( sdate, fmt ){
 			if( "" === da.isNull(sdate,"")) return sdate;
@@ -7917,21 +7917,21 @@ var daRe_until = /Until$/,
 				sdate = sdate.format("yyyy-mm-dd hh:nn:ss i");
 			}
 		
-			var tmp = sdate.replace("+08:00",""),							//å»æ‰æ—¶åŒºåç¼€(æ•°æ®åº“å­˜å‚¨æ ¼å¼)
+			var tmp = sdate.replace("+08:00",""),							//È¥µôÊ±Çøºó×º(Êı¾İ¿â´æ´¢¸ñÊ½)
 				isCN, d;
 
-			if( isCN = (0 <= fmt.indexOf("/p")) )							//åˆ¤æ–­ä¸­æ–‡æ¨¡å¼
+			if( isCN = (0 <= fmt.indexOf("/p")) )							//ÅĞ¶ÏÖĞÎÄÄ£Ê½
 				fmt = fmt.replace(/\/p/g, "");
 
-			d = sdate.split(/[-\.\/T\s:]|\+08:00/g);						//é€šè¿‡split()å‡½æ•° åˆ†éš”å‡º [å¹´ï¼Œæœˆï¼Œæ—¥ï¼Œæ—¶ï¼Œåˆ†ï¼Œç§’ï¼Œæ¯«ç§’] æ•°ç»„
-																			//å¯èƒ½å‡ºç°çš„åˆ†éš”ç¬¦æœ‰ï¼š"-", ".", "/", "T", " ", ":", "+08:00"
-			for(var i=0,len=d.length; i<len; i++){							//çŸ«æ­£æ•°æ®æ ¼å¼
+			d = sdate.split(/[-\.\/T\s:]|\+08:00/g);						//Í¨¹ısplit()º¯Êı ·Ö¸ô³ö [Äê£¬ÔÂ£¬ÈÕ£¬Ê±£¬·Ö£¬Ãë£¬ºÁÃë] Êı×é
+																			//¿ÉÄÜ³öÏÖµÄ·Ö¸ô·ûÓĞ£º"-", ".", "/", "T", " ", ":", "+08:00"
+			for(var i=0,len=d.length; i<len; i++){							//½ÃÕıÊı¾İ¸ñÊ½
 				d[i] = parseInt( d[i] || 0,10 );
 			}
 																			
 			var date = new Date( d[0], d[1]-1, d[2], d[3]||0, d[4]||0, d[5]||0, d[6]||0 );
 			
-			if( !isCN ) return fmt ? date.format( fmt ) : date;				//éä¸­æ–‡æ¨¡å¼ï¼Œä¸å†è¿›è¡Œä¸‹é¢çš„å¤„ç†
+			if( !isCN ) return fmt ? date.format( fmt ) : date;				//·ÇÖĞÎÄÄ£Ê½£¬²»ÔÙ½øĞĞÏÂÃæµÄ´¦Àí
 			
 			
 			var now = new Date(),
@@ -7946,104 +7946,104 @@ var daRe_until = /Until$/,
 					now.getMilliseconds()
 				];
 				
-			if( 0 > ntime ){	//è¿‡å»æ—¶
-				// ntime *= -1;						//çŸ«æ­£æ—¶é—´å·®ç¬¦å·
+			if( 0 > ntime ){	//¹ıÈ¥Ê±
+				// ntime *= -1;						//½ÃÕıÊ±¼ä²î·ûºÅ
 
-				if( "undefined" != typeof d[0] && d[0]!=d2[0] ){										//ä¸åŒå¹´
+				if( "undefined" != typeof d[0] && d[0]!=d2[0] ){										//²»Í¬Äê
 					switch( d2[0]-d[0] ){
-						case 1: return "<span style='color:#900'>å»å¹´</span>" + date.format( "mæœˆdå·" );
-						case 2: return "<span style='color:#900'>å‰å¹´</span>" + date.format( "mæœˆdå·" );
+						case 1: return "<span style='color:#900'>È¥Äê</span>" + date.format( "mÔÂdºÅ" );
+						case 2: return "<span style='color:#900'>Ç°Äê</span>" + date.format( "mÔÂdºÅ" );
 						default: return fmt ? date.format( fmt ) : date;
 					}
 				}
-				else if( "undefined" != typeof d[1] && d[1]!=d2[1] ){									//åŒå¹´,ä¸åŒæœˆ
+				else if( "undefined" != typeof d[1] && d[1]!=d2[1] ){									//Í¬Äê,²»Í¬ÔÂ
 					switch( Math.abs(d2[1]-d[1]) ){
 						case 1: 
-							return "<span style='color:#900'>ä¸Šä¸ªæœˆ</span>" + date.format( "då·" );
+							return "<span style='color:#900'>ÉÏ¸öÔÂ</span>" + date.format( "dºÅ" );
 						case 2: 
-							return "<span style='color:#900'>ä¸¤ä¸ªæœˆå‰</span>" + date.format( "då·" );
+							return "<span style='color:#900'>Á½¸öÔÂÇ°</span>" + date.format( "dºÅ" );
 						case 3: 
-							return "<span style='color:#900'>ä¸‰ä¸ªæœˆå‰</span>" + date.format( "då·" );
-						default: return date.format( "mæœˆdå·" );
+							return "<span style='color:#900'>Èı¸öÔÂÇ°</span>" + date.format( "dºÅ" );
+						default: return date.format( "mÔÂdºÅ" );
 					}
 				}
-				else if( "undefined" != typeof d[2] && d[2]!=d2[2] ){									//åŒå¹´,åŒæœˆ,ä¸åŒæ—¥
+				else if( "undefined" != typeof d[2] && d[2]!=d2[2] ){									//Í¬Äê,Í¬ÔÂ,²»Í¬ÈÕ
 					switch( Math.abs(d2[2]-d[2]) ){
 						case 1:
-							return "<span style='color:#900'>æ˜¨å¤©</span>" + date.format( "hæ—¶nåˆ†" );
+							return "<span style='color:#900'>×òÌì</span>" + date.format( "hÊ±n·Ö" );
 						case 2:
-							return "<span style='color:#900'>å‰å¤©</span>" + date.format( "hæ—¶nåˆ†" );
+							return "<span style='color:#900'>Ç°Ìì</span>" + date.format( "hÊ±n·Ö" );
 						case 3:
-							return "<span style='color:#900'>ä¸‰å¤©å‰</span>" + date.format( "hæ—¶nåˆ†" );
+							return "<span style='color:#900'>ÈıÌìÇ°</span>" + date.format( "hÊ±n·Ö" );
 						default:
-							return "<span style='color:#900'>å½“æœˆ</span>" + date.format( "då·" );
+							return "<span style='color:#900'>µ±ÔÂ</span>" + date.format( "dºÅ" );
 					}
 				}
-				else if( "undefined" != typeof d[3] && d[3]!=d2[3] ){									//åŒå¹´,åŒæœˆ,åŒæ—¥,ä¸åŒå°æ—¶
+				else if( "undefined" != typeof d[3] && d[3]!=d2[3] ){									//Í¬Äê,Í¬ÔÂ,Í¬ÈÕ,²»Í¬Ğ¡Ê±
 					switch( Math.abs(d2[3]-d[3]) ){
 						case 1:
-							return "<span style='color:#900'>å‰1å°æ—¶</span>" + date.format( "nåˆ†" );
+							return "<span style='color:#900'>Ç°1Ğ¡Ê±</span>" + date.format( "n·Ö" );
 						case 2:
-							return "<span style='color:#900'>å‰2å°æ—¶</span>" + date.format( "nåˆ†" );
+							return "<span style='color:#900'>Ç°2Ğ¡Ê±</span>" + date.format( "n·Ö" );
 						case 3:
-							return "<span style='color:#900'>å‰3å°æ—¶</span>" + date.format( "nåˆ†" );
+							return "<span style='color:#900'>Ç°3Ğ¡Ê±</span>" + date.format( "n·Ö" );
 						default:
-							return "<span style='color:#900'>ä»Šå¤©</span>" + date.format( "hæ—¶nåˆ†" );
+							return "<span style='color:#900'>½ñÌì</span>" + date.format( "hÊ±n·Ö" );
 					}
 				}
-				else if( "undefined" != typeof d[4] && d[4]!=d2[4] ){									//åŒå¹´,åŒæœˆ,åŒæ—¥,åŒå°æ—¶,ä¸åŒåˆ†é’Ÿ
-					return "<span style='color:#900'>"+ Math.abs(d2[4]-d[4]) +"åˆ†é’Ÿå‰</span>";
+				else if( "undefined" != typeof d[4] && d[4]!=d2[4] ){									//Í¬Äê,Í¬ÔÂ,Í¬ÈÕ,Í¬Ğ¡Ê±,²»Í¬·ÖÖÓ
+					return "<span style='color:#900'>"+ Math.abs(d2[4]-d[4]) +"·ÖÖÓÇ°</span>";
 				}
 				else{
 					return fmt ? date.format( fmt ) : date;
 				}
 			}
-			else{				//å°†æ¥æ—¶
+			else{				//½«À´Ê±
 
-				if( "undefined" != typeof d[0] && d[0]!=d2[0] ){										//ä¸åŒå¹´
+				if( "undefined" != typeof d[0] && d[0]!=d2[0] ){										//²»Í¬Äê
 					switch( d2[0]-d[0] ){
-						case 1: return "<span style='color:#900'>æ˜å¹´</span>" + date.format( "mæœˆdå·" );
-						case 2: return "<span style='color:#900'>åå¹´</span>" + date.format( "mæœˆdå·" );
+						case 1: return "<span style='color:#900'>Ã÷Äê</span>" + date.format( "mÔÂdºÅ" );
+						case 2: return "<span style='color:#900'>ºóÄê</span>" + date.format( "mÔÂdºÅ" );
 						default: return fmt ? date.format( fmt ) : date;
 					}
 				}
-				else if( "undefined" != typeof d[1] && d[1]!=d2[1] ){									//åŒå¹´,ä¸åŒæœˆ
+				else if( "undefined" != typeof d[1] && d[1]!=d2[1] ){									//Í¬Äê,²»Í¬ÔÂ
 					switch( Math.abs(d2[1]-d[1]) ){
 						case 1: 
-							return "<span style='color:#900'>ä¸‹ä¸ªæœˆ</span>" + date.format( "då·" );
+							return "<span style='color:#900'>ÏÂ¸öÔÂ</span>" + date.format( "dºÅ" );
 						case 2: 
-							return "<span style='color:#900'>ä¸¤ä¸ªæœˆå</span>" + date.format( "då·" );
+							return "<span style='color:#900'>Á½¸öÔÂºó</span>" + date.format( "dºÅ" );
 						case 3: 
-							return "<span style='color:#900'>ä¸‰ä¸ªæœˆå</span>" + date.format( "då·" );
-						default: return date.format( "mæœˆdå·" );
+							return "<span style='color:#900'>Èı¸öÔÂºó</span>" + date.format( "dºÅ" );
+						default: return date.format( "mÔÂdºÅ" );
 					}
 				}
-				else if( "undefined" != typeof d[2] && d[2]!=d2[2] ){									//åŒå¹´,åŒæœˆ,ä¸åŒæ—¥
+				else if( "undefined" != typeof d[2] && d[2]!=d2[2] ){									//Í¬Äê,Í¬ÔÂ,²»Í¬ÈÕ
 					switch( Math.abs(d2[2]-d[2]) ){
 						case 1:
-							return "<span style='color:#900'>æ˜å¤©</span>" + date.format( "hæ—¶nåˆ†" );
+							return "<span style='color:#900'>Ã÷Ìì</span>" + date.format( "hÊ±n·Ö" );
 						case 2:
-							return "<span style='color:#900'>åå¤©</span>" + date.format( "hæ—¶nåˆ†" );
+							return "<span style='color:#900'>ºóÌì</span>" + date.format( "hÊ±n·Ö" );
 						case 3:
-							return "<span style='color:#900'>ä¸‰å¤©å</span>" + date.format( "hæ—¶nåˆ†" );
+							return "<span style='color:#900'>ÈıÌìºó</span>" + date.format( "hÊ±n·Ö" );
 						default:
-							return "<span style='color:#900'>å½“æœˆ</span>" + date.format( "då·" );
+							return "<span style='color:#900'>µ±ÔÂ</span>" + date.format( "dºÅ" );
 					}
 				}
-				else if( "undefined" != typeof d[3] && d[3]!=d2[3] ){									//åŒå¹´,åŒæœˆ,åŒæ—¥,ä¸åŒå°æ—¶
+				else if( "undefined" != typeof d[3] && d[3]!=d2[3] ){									//Í¬Äê,Í¬ÔÂ,Í¬ÈÕ,²»Í¬Ğ¡Ê±
 					switch( Math.abs(d2[3]-d[3]) ){
 						case 1:
-							return "<span style='color:#900'>1å°æ—¶å</span>" + date.format( "nåˆ†" );
+							return "<span style='color:#900'>1Ğ¡Ê±ºó</span>" + date.format( "n·Ö" );
 						case 2:
-							return "<span style='color:#900'>2å°æ—¶å</span>" + date.format( "nåˆ†" );
+							return "<span style='color:#900'>2Ğ¡Ê±ºó</span>" + date.format( "n·Ö" );
 						case 3:
-							return "<span style='color:#900'>3å°æ—¶å</span>" + date.format( "nåˆ†" );
+							return "<span style='color:#900'>3Ğ¡Ê±ºó</span>" + date.format( "n·Ö" );
 						default:
-							return "<span style='color:#900'>ä»Šå¤©</span>" + date.format( " hæ—¶nåˆ†" );
+							return "<span style='color:#900'>½ñÌì</span>" + date.format( " hÊ±n·Ö" );
 					}
 				}
-				else if( "undefined" != typeof d[4] && d[4]!=d2[4] ){									//åŒå¹´,åŒæœˆ,åŒæ—¥,åŒå°æ—¶,ä¸åŒåˆ†é’Ÿ
-					return "<span style='color:#900'>"+ Math.abs(d2[4]-d[4]) +"åˆ†é’Ÿå</span>";
+				else if( "undefined" != typeof d[4] && d[4]!=d2[4] ){									//Í¬Äê,Í¬ÔÂ,Í¬ÈÕ,Í¬Ğ¡Ê±,²»Í¬·ÖÖÓ
+					return "<span style='color:#900'>"+ Math.abs(d2[4]-d[4]) +"·ÖÖÓºó</span>";
 				}
 				else{
 					return fmt ? date.format( fmt ) : date;
@@ -8057,52 +8057,52 @@ var daRe_until = /Until$/,
 })(da);
 
 
-	//å…¨å±€å˜é‡
+	//È«¾Ö±äÁ¿
 	win.da = da;
 	
 })(window);
 
 
-/***************** æ•°æ®äº¤äº’ *****************/
+/***************** Êı¾İ½»»¥ *****************/
 /*
 	author:	danny.xu
 	date: 2012.5.17
-	description: æ•°æ®äº¤äº’éƒ¨åˆ†åŠŸèƒ½ä»£ç ï¼Œä¸ä¸šåŠ¡åŠŸèƒ½å¼€å‘å…³ç³»å¯†åˆ‡
+	description: Êı¾İ½»»¥²¿·Ö¹¦ÄÜ´úÂë£¬ÓëÒµÎñ¹¦ÄÜ¿ª·¢¹ØÏµÃÜÇĞ
 	version: 1.0.0
 */
 
-var $flds = [];			//ä¸ºå…¼å®¹è¿‡å»çš„ ebså‡½æ•°åº“ç”¨æ³•å®šä¹‰çš„ä¸€äº›å…¨å±€å˜é‡ã€‚
+var $flds = [];			//Îª¼æÈİ¹ıÈ¥µÄ ebsº¯Êı¿âÓÃ·¨¶¨ÒåµÄÒ»Ğ©È«¾Ö±äÁ¿¡£
     $f = [],
 	$v = [];
 
 da.extend({
-	/**æ ¼å¼åŒ–æ•°æ®
+	/**¸ñÊ½»¯Êı¾İ
 	*/
 	fmtData: function( val, fmt ){
 		if( !fmt ) return val;
 		
 		var val_format = val;
 		
-		if( "money" == fmt ){																//è´§å¸å‹
-			val_format = "<span style='color:#900'>ï¿¥</span>" + da.fmtFloat(val_format, "#,##");
+		if( "money" == fmt ){																//»õ±ÒĞÍ
+			val_format = "<span style='color:#900'>£¤</span>" + da.fmtFloat(val_format, "#,##");
 		}
-		else if( /[#\.\,]/.test(fmt) ){														//æ•°å€¼å‹
+		else if( /[#\.\,]/.test(fmt) ){														//ÊıÖµĞÍ
 			val_format = da.fmtFloat( val_format, fmt );
 		}
-		else{																				//æ—¥æœŸå‹
+		else{																				//ÈÕÆÚĞÍ
 			val_format = da.fmtDate( val_format, fmt );
 		}
 
 		return val_format;
 	},
 	
-	/**ç»™æ§ä»¶èµ‹å€¼
-	* å¦‚: da.setValue( "#p_name", "AH100" );
+	/**¸ø¿Ø¼ş¸³Öµ
+	* Èç: da.setValue( "#p_name", "AH100" );
 	*/
 	setValue: function( obj, val ){
 		var daObj = da(obj);
 		
-		if ( "string" === typeof obj && 0 >= daObj.dom.length ){			//éœ€è¦é€šè¿‡nameæ¥å®šä½ï¼Œå¦‚:checkboxã€radio
+		if ( "string" === typeof obj && 0 >= daObj.dom.length ){			//ĞèÒªÍ¨¹ınameÀ´¶¨Î»£¬Èç:checkbox¡¢radio
 			var arr = obj.split(",");
 			
 			for( var i=0,len=arr.length; i<len; i++ ){
@@ -8114,19 +8114,19 @@ da.extend({
 		var tag, fmt, curVal;
 		
 		daObj.each(function(i){
-			tag = this.tagName.toLowerCase();			//å…ƒç´ ç±»å‹
+			tag = this.tagName.toLowerCase();			//ÔªËØÀàĞÍ
 			
 			switch( tag ){
 				case "input":{
-					var type = this.type.toLowerCase();				//inputä¸­çš„æ§ä»¶ç±»å‹
+					var type = this.type.toLowerCase();				//inputÖĞµÄ¿Ø¼şÀàĞÍ
 					switch(type){
-						case "checkbox":							//å¤é€‰æ§ä»¶
-						case "radio":{								//å•é€‰æ§ä»¶
+						case "checkbox":							//¸´Ñ¡¿Ø¼ş
+						case "radio":{								//µ¥Ñ¡¿Ø¼ş
 							curVal = da.isNull(this.value, "");
 							
-							var tmpObj = da._data( this, "daOption" );	//åˆ¤æ–­æ˜¯å¦å¼•ç”¨äº†daOptionå°è£…ç±»
-							if( tmpObj ){								//å¦‚æœå¼•ç”¨äº†daOptionï¼Œå°±ç”¨checkå‡½æ•°è®¾ç½®
-								if ( "" == curVal || "on" == curVal ) {	//ç‰¹æ®Šå€¼äº’ç­‰("" == "on" == 0)
+							var tmpObj = da._data( this, "daOption" );	//ÅĞ¶ÏÊÇ·ñÒıÓÃÁËdaOption·â×°Àà
+							if( tmpObj ){								//Èç¹ûÒıÓÃÁËdaOption£¬¾ÍÓÃcheckº¯ÊıÉèÖÃ
+								if ( "" == curVal || "on" == curVal ) {	//ÌØÊâÖµ»¥µÈ("" == "on" == 0)
 									tmpObj.check( "0" == val || true == val || "true" == val );
 								}
 								else {
@@ -8134,7 +8134,7 @@ da.extend({
 								};
 							}
 							else{
-								if ( "" == curVal || "on" == curVal ) {	//ç‰¹æ®Šå€¼äº’ç­‰ "" == "on" == 0
+								if ( "" == curVal || "on" == curVal ) {	//ÌØÊâÖµ»¥µÈ "" == "on" == 0
 									this.setAttribute( "checked", "0" == val );
 								}
 								else {
@@ -8144,7 +8144,7 @@ da.extend({
 							
 							break;
 						}
-						case "text":								//å•è¡Œè¾“å…¥æ¡†
+						case "text":								//µ¥ĞĞÊäÈë¿ò
 						default:{
 							fmt = da.isNull( this.getAttribute("fmt"), "" );
 							
@@ -8159,7 +8159,7 @@ da.extend({
 					}
 					break;
 				}
-				case "textarea":{									//æ–‡æœ¬åŸŸ
+				case "textarea":{									//ÎÄ±¾Óò
 					fmt = da.isNull( this.getAttribute("fmt"), "" );
 					
 					if( "" !== fmt ){
@@ -8202,12 +8202,12 @@ da.extend({
 		});
 	},
 	
-	/**æ•°æ®äº¤äº’
+	/**Êı¾İ½»»¥
 	*/
 	runDB: function( url, data, fnLoaded, fnError ) {
 		if( !url ) return;
 		
-		// if (url.toLowerCase().indexOf(".asp") < 0) {		//ä¿®æ­£urlå‚æ•°
+		// if (url.toLowerCase().indexOf(".asp") < 0) {		//ĞŞÕıurl²ÎÊı
 			// url = "/sys/aspx/execsqllist.aspx?sqlname=" + url;
 		// }
 		if (url.indexOf("?") < 0) {
@@ -8243,20 +8243,20 @@ da.extend({
 						break;
 					}
 					case "xml": {
-						$flds = [];													//ä¸ºå…¼å®¹è¿‡å»çš„ ebså‡½æ•°åº“ç”¨æ³•å®šä¹‰çš„ä¸€äº›å…¨å±€å˜é‡ã€‚
+						$flds = [];													//Îª¼æÈİ¹ıÈ¥µÄ ebsº¯Êı¿âÓÃ·¨¶¨ÒåµÄÒ»Ğ©È«¾Ö±äÁ¿¡£
 						$f = [],
 						$v = [];
 						
 						var firstTime = true;
 						xml2json = da.xml2json( data, function( type, dsname, data, idx ){
-							if( "field" == type ){									//é€å­—æ®µ
+							if( "field" == type ){									//Öğ×Ö¶Î
 								if( firstTime ){
-									window["_"+ data.name] = idx;					//ä¸ºå…¼å®¹è¿‡å»çš„ ebså‡½æ•°åº“ç”¨æ³•å®šä¹‰çš„ä¸€äº›å…¨å±€å˜é‡ã€‚
+									window["_"+ data.name] = idx;					//Îª¼æÈİ¹ıÈ¥µÄ ebsº¯Êı¿âÓÃ·¨¶¨ÒåµÄÒ»Ğ©È«¾Ö±äÁ¿¡£
 									$flds.push( data.name );
 								}
 								$f.push( data.value );
 							}
-							if( "record" == type && data ){							//é€è¡Œ
+							if( "record" == type && data ){							//ÖğĞĞ
 								if( firstTime ){
 									firstTime = false;
 								}
@@ -8264,14 +8264,14 @@ da.extend({
 								$v = $f;
 								fnLoaded && fnLoaded( false, data, dsname, idx);
 								
-								$f = [];											//æ¸…é™¤è¡Œæ•°æ®
+								$f = [];											//Çå³ıĞĞÊı¾İ
 								$v = [];
 							}
-							if( "dataset" == type && da.isArray(data) ){			//é€æ•°æ®é›†
+							if( "dataset" == type && da.isArray(data) ){			//ÖğÊı¾İ¼¯
 								fnLoaded && fnLoaded( true, data, dsname, idx);
 							}
 						});
-						fnLoaded && fnLoaded( true, xml2json, undefined, undefined );		//ç»“æŸå›è°ƒ
+						fnLoaded && fnLoaded( true, xml2json, undefined, undefined );		//½áÊø»Øµ÷
 						
 						break;
 					}
@@ -8283,7 +8283,7 @@ da.extend({
 	},
 
 	setForm: function( pid, url, data, fnField, fnLoaded, fnError ){
-		if( "string" === typeof pid && 0 !== pid.indexOf("#") )		//ä¿®æ­£idæœªåŠ "#"
+		if( "string" === typeof pid && 0 !== pid.indexOf("#") )		//ĞŞÕıidÎ´¼Ó"#"
 			pid = "#" + pid;
 		
 		var parentObj = da( pid );
@@ -8332,18 +8332,18 @@ da.extend({
 					val_tohex = da.toHex(fldvalue);
 				
 				if( fnField ) {
-					val_format = fnField( fldname, fldvalue, data1 );				//å­—æ®µå€¼ï¼Œç”¨æˆ·æ ¼å¼åŒ–å¤„ç†
+					val_format = fnField( fldname, fldvalue, data1 );				//×Ö¶ÎÖµ£¬ÓÃ»§¸ñÊ½»¯´¦Àí
 				}
 				
 				val_format = da.fmtData( val_format, fmt );
 				
-				if( 0 <= res.indexOf("_org") ){									//è¿”å›åŸæ•°æ®
+				if( 0 <= res.indexOf("_org") ){									//·µ»ØÔ­Êı¾İ
 					return fldvalue;
 				}
-				else if( 0 <= res.indexOf("_raw") ){							//è¿”å›ç¼–ç æ•°æ®
+				else if( 0 <= res.indexOf("_raw") ){							//·µ»Ø±àÂëÊı¾İ
 					return val_tohex;
 				}
-				else{															//è¿”å›æ ¼å¼åŒ–æ•°æ®
+				else{															//·µ»Ø¸ñÊ½»¯Êı¾İ
 					return val_format;
 				}
 			});
@@ -8358,7 +8358,7 @@ da.extend({
 	
 });
 
-/*********ä¸ºå…¼å®¹è¿‡å»çš„ ebså‡½æ•°åº“ç”¨æ³•å®šä¹‰çš„ä¸€äº›å…¨å±€å‡½æ•°ã€‚*********/
+/*********Îª¼æÈİ¹ıÈ¥µÄ ebsº¯Êı¿âÓÃ·¨¶¨ÒåµÄÒ»Ğ©È«¾Öº¯Êı¡£*********/
 var $value = da.setValue,
 	$value2 = da.setValue,
 	runsql = da.runDB,
