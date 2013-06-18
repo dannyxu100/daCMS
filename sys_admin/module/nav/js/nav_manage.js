@@ -123,6 +123,182 @@ function removeHoverDom(treeId, treeNode) {
 	$("#addBtn_"+treeNode.id).unbind().remove();
 };
 
+
+/**上传略缩图
+*/
+function uploadimg(){
+	if( "" == g_nid ){
+		alert("对不起，没有指定某一栏目");
+		return;
+	}
+
+	var newfolder = "/uploads/nav/"+ new Date().format("yyyymmdd") + "/";
+
+	fn_uploadfile("允许上传文件类型：gif、jpg、png", {
+        "fileTypeDesc": "图片文件",
+		// "multi": true,
+		"fileTypeExts": "*.gif; *.jpg; *.png",
+		"formData": {
+			"folder": newfolder
+		}
+	},function( files, res ){
+		for( var k in files ){
+			url = newfolder + res[files[k].name];
+		}
+		
+		da.runDB("/sys_admin/module/nav/action/nav_update_img.php",{
+			n_id: g_nid,
+			n_img: url
+			
+		},function( res ){
+			if("FALSE"!= res){
+				da("#n_img").val( url );
+				var viewobj = da("#n_img_view");
+				viewobj.attr("src", url?url:"/images/no_img.gif");
+				viewobj.dom[0].src = url?url:"/images/no_img.gif";
+				
+			}
+			else{
+				alert("对不起，操作失败。");
+			}
+		});
+	});
+}
+
+/**上传相册
+*/
+function uploadpicture(){
+	if( "" == g_nid ){
+		alert("对不起，没有指定某一栏目");
+		return;
+	}
+
+	var newfolder = "/uploads/picture/"+ new Date().format("yyyymmdd") + "/";
+
+	fn_uploadfile("允许上传文件类型：gif、jpg、png", {
+        "fileTypeDesc": "图片文件",
+		"multi": true,
+		"fileTypeExts": "*.gif; *.jpg; *.png",
+		"formData": {
+			"folder": newfolder
+		}
+	},function( files, res ){
+		var newfile="", urls = [], names=[];
+		
+		for( var k in files ){
+			newfile = res[files[k].name];
+			urls.push( newfolder + newfile );
+			names.push( newfile );
+		}
+		
+		da.runDB("/sys_admin/module/picture/action/picture_add_list.php",{
+			type: "NAV",
+			cid: g_nid,
+			urls: urls.join("□"),
+			names: names.join("□")
+		},function( res ){
+			if("FALSE"!= res){
+				loadpicture();
+			}
+			else{
+				alert("对不起，操作失败。");
+			}
+		});
+	});
+}
+
+/**删除相册
+*/
+function deletepic( pid ){
+	confirm("您确定要删除吗？", function(){
+		da.runDB("/sys_admin/module/picture/action/picture_delete_item.php", {
+			dataType: "json",
+			p_id: pid
+			
+		},function(res){
+			if("FALSE"!= res){
+				loadpicture();
+			}
+			else{
+				alert("对不起，操作失败。");
+			}
+			
+		},function(code,msg,ex){
+			// debugger;
+		});
+	});
+}
+
+/**修改相册信息
+*/
+function updatepic( pid ){
+	var data = {
+		dataType: "json",
+		p_type: "NAV", 
+		p_id: pid
+	};
+
+	da("input,textarea", "#picitem_"+pid ).each(function( idx, obj ){
+		data[ obj.name ] = obj.value
+	});
+	
+	da.runDB("/sys_admin/module/picture/action/picture_update_item.php", data,
+	function(res){
+		if("FALSE"!= res){
+			alert("修改成功。");
+			loadpicture();
+		}
+		else{
+			alert("对不起，操作失败。");
+		}
+		
+	},function(code,msg,ex){
+		// debugger;
+	});
+}
+
+/**加载相册
+*/
+function loadpicture(){
+	var viewpad = da("#n_picture_view");
+	viewpad.empty();
+	
+	da.runDB("/sys_admin/module/picture/action/picture_get_list.php",{
+		dataType: "json",
+		type: "NAV", 
+		cid: g_nid
+		
+	},function(data){
+		if("FALSE"!= data){
+			var strHTML = [];
+			
+			for(var i=0; i<data.length; i++){
+				strHTML.push('<div class="picitem">'
+								+'<a href="'+ data[i].p_url +'" target="_blank"><img src="'+ data[i].p_url +'"/></a>'
+								+'<div id="picitem_'+ data[i].p_id +'" class="inputs">'
+									+'标题: <input type="text" name="p_name" value="'+ data[i].p_name +'"/><br/>'
+									+'图片: <input type="text" name="p_url" value="'+ data[i].p_url +'" disabled="disabled"/><br/>'
+									+'链接: <input type="text" name="p_href" value="'+ data[i].p_href +'" /><br/>'
+									+'简介: <textarea name="p_text" >'+ data[i].p_text +'</textarea><br/>'
+								+'</div>'
+								+'<div class="tools">'
+									+'<a class="bt_link" href="javascript:void(0)" onclick="updatepic('+ data[i].p_id +')" ><img src="/images/sys_icon/save.png" /> 保存</a>'
+									+'<a class="bt_link" href="javascript:void(0)" onclick="deletepic('+ data[i].p_id +')" ><img src="/images/sys_icon/delete.png" /> 删除</a>'
+								+'</div>'
+								+'<div style="clear:both; "></div>'
+							+'</div>');
+			}
+			viewpad.html(strHTML.join(""));
+			
+			autoframeheight();
+		}
+		
+	},function(code,msg,ex){
+		// debugger;
+	});
+}
+
+
 /**加载导航基本信息
 */
 function loadinfo(){
@@ -155,6 +331,7 @@ function clicknode(treeId, treeNode){
 	g_nid = treeNode.id;
 
 	loadinfo();
+	loadpicture();
 }
 
 /** 修改导航信息

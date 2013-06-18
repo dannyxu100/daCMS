@@ -283,7 +283,7 @@ function loadtypeinfo( fn ){
 				da("#pad_config").hide();
 				da("#norecord").show();
 				
-				da("#pt_name").text(data[0].at_name);
+				da("#pt_name").text(data[0].pt_name);
 			}
 			else{
 				da("#pad_config").show();

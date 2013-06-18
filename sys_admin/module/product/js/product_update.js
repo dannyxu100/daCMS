@@ -95,9 +95,50 @@ function updatetag(){
 }
 
 
+/**上传略缩图
+*/
+function uploadimg(){
+	if( "" == g_pid ){
+		alert("对不起，没有指定某一商品");
+		return;
+	}
+
+	var newfolder = "/uploads/product/"+ new Date().format("yyyymmdd") + "/";
+
+	fn_uploadfile("允许上传文件类型：gif、jpg、png", {
+        "fileTypeDesc": "图片文件",
+		// "multi": true,
+		"fileTypeExts": "*.gif; *.jpg; *.png",
+		"formData": {
+			"folder": newfolder
+		}
+	},function( files, res ){
+		for( var k in files ){
+			url = newfolder + res[files[k].name];
+		}
+		
+		da.runDB("/sys_admin/module/product/action/product_update_img.php",{
+			p_id: g_pid,
+			p_img: url
+			
+		},function( res ){
+			if("FALSE"!= res){
+				da("#p_img").val( url );
+				var viewobj = da("#p_img_view");
+				viewobj.attr("src", url?url:"/images/no_img.gif");
+				viewobj.dom[0].src = url?url:"/images/no_img.gif";
+				
+			}
+			else{
+				alert("对不起，操作失败。");
+			}
+		});
+	});
+}
+
 /**上传相册
 */
-function uploadimgs(){
+function uploadpicture(){
 	if( "" == g_pid ){
 		alert("对不起，没有指定某一商品");
 		return;

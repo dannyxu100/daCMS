@@ -62,6 +62,7 @@ function saveproduct(){
 	function(res){
 		if("FALSE" != res){
 			alert("添加成功。");
+			location.href = "/sys_admin/module/product/product_update.php?pid="+ res;
 		}
 		else{
 			alert("操作失败！");

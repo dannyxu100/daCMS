@@ -169,7 +169,7 @@
 					<td class="header">略缩图</td>
 					<td colspan="3">
 						<input id="p_img" type="text" style="width:320px;" value=""/>
-						<a class="bt_link" href="javascript:void(0)" onclick="uploadoneimg();" ><img src="/images/sys_icon/upload.png" /> 上传</a>
+						<a class="bt_link" href="javascript:void(0)" onclick="alert('请先保存。');" ><img src="/images/sys_icon/upload.png" /> 上传</a>
 					</td>
 					<tr>
 						<td class="header">&nbsp;</td>
@@ -185,7 +185,7 @@
 				<tr>
 					<td class="header">商品相册</td>
 					<td colspan="3">
-						<a class="bt_link" href="javascript:void(0)" onclick="uploadimgs();" ><img src="/images/sys_icon/upload.png" /> 上传</a>
+						<a class="bt_link" href="javascript:void(0)" onclick="alert('请先保存。');" ><img src="/images/sys_icon/upload.png" /> 批量上传</a>
 					</td>
 				</tr>
 				<tr>
@@ -208,7 +208,7 @@
 				<tr>
 					<td class="header" style="width:80px;">相关商品</td>
 					<td colspan="3">
-						<input type="button" style="width:80px; height:22px;" value="上传"/>
+						<input type="button" style="width:80px; height:22px;" value="选择产品" onclick="alert('暂未开发');"/>
 					</td>
 					<tr>
 						<td class="header">&nbsp;</td>

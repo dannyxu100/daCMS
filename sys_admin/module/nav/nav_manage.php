@@ -51,11 +51,7 @@
 							2. URL地址,菜单项的链接地址。<br/>
 							3. 拥有子级菜单,URL地址填写"#"。<br/>
 							4. 跳转到首页,URL地址填写"/"。<br/>
-							5. 默认栏目地址速查。<br/>
-							&nbsp;&nbsp;&nbsp;&nbsp;[文章列表页] :/web/article/articlelist.php?atid=(文章分类编码)<br/>
-							&nbsp;&nbsp;&nbsp;&nbsp;[文章详细页] :/web/article/articledetail.php?aid=(文章编码)<br/>
-							&nbsp;&nbsp;&nbsp;&nbsp;[产品列表页] :/web/product/prolist.php?ptid=(产品分类编码)<br/>
-							&nbsp;&nbsp;&nbsp;&nbsp;[产品详细页] :/web/product/prodetail.php?pid=(产品编码)<br/>
+							5. 系统<a href="sys_link_list.htm" target="_blank">保留页面链接地址</a>速查。<br/>
 						</div>
 						<table id="navform" class="grid" style="width:100%">
 							<tr>
@@ -89,21 +85,34 @@
 								</td>
 							</tr>
 							<tr>
+								<td class="header">备注</td>
+								<td colspan="3"><textarea id="n_remark" style="width:400px;height:100px;"></textarea></td>
+							</tr>
+							<tr>
 								<td class="header">图标</td>
 								<td colspan="3">
 									<input id="n_img" type="text" style="width:320px;" value=""/>
-									<input type="button" style="width:80px; height:22px;" value="上传"/>
+									<a class="bt_link" href="javascript:void(0)" onclick="uploadimg();" ><img src="/images/sys_icon/upload.png" /> 上传</a>
 								</td>
 							</tr>
 							<tr>
-								<td class="header">预览</td>
+								<td class="header">&nbsp;</td>
 								<td colspan="3">
-									<img id="n_img_view" src="" style="margin:5px; height:80px;"/>
+									<img id="n_img_view" src="/images/no_img.gif" style="margin:5px; height:80px;"/>
 								</td>
 							</tr>
 							<tr>
-								<td class="header">备注</td>
-								<td colspan="3"><textarea id="n_remark" style="width:400px;height:100px;"></textarea></td>
+								<td class="header">栏目相册</td>
+								<td colspan="3">
+									<a class="bt_link" href="javascript:void(0)" onclick="uploadpicture();" ><img src="/images/sys_icon/upload.png" /> 批量上传</a>
+
+								</td>
+							</tr>
+							<tr>
+								<td class="header">&nbsp;</td>
+								<td colspan="3">
+									<div id="n_picture_view" class="piclist"></div>
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -123,4 +132,5 @@
 <script type="text/javascript" src="/plugin/ztree/jquery.ztree.exedit-3.5.min.js"></script>
 <script type="text/javascript" src="/plugin/ztree/jquery.ztree.excheck-3.5.min.js"></script>
 <script type="text/javascript" src="/plugin/da/daLoader_source_1.1.js"></script>
+<script type="text/javascript" src="/js/fn.js"></script>
 <script type="text/javascript" src="js/nav_manage.js"></script>
