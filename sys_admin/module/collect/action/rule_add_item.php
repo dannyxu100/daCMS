@@ -8,14 +8,14 @@
 	
 	$sql = "insert into sys_collectrule(r_name, r_pagecode, r_urltype, 
 	r_urlsource, r_urlsource2, r_num1, r_num2, r_step, r_urlsource3, r_urlsource4, 
-	r_urlallowed, r_urlunallowed, r_urlrange1, r_urlrange2, r_titlerule, r_titleclear, 
+	r_urlallowed, r_urlunallowed, r_urlrange1, r_urlrange2, r_urlbase, r_titlerule, r_titleclear, 
 	r_keywordsrule, r_keywordsclear, r_descriptionrule, r_descriptionclear, r_contentrule, r_contentclear, 
 	r_split, r_splittype, r_splitrange1, r_splitrange2, 
 	r_downloadimg, r_date) 
 	
 	values(:r_name, :r_pagecode, :r_urltype, 
 	:r_urlsource, :r_urlsource2, :r_num1, :r_num2, :r_step, :r_urlsource3, :r_urlsource4, 
-	:r_urlallowed, :r_urlunallowed, :r_urlrange1, :r_urlrange2, :r_titlerule, :r_titleclear, 
+	:r_urlallowed, :r_urlunallowed, :r_urlrange1, :r_urlrange2, :r_urlbase, :r_titlerule, :r_titleclear, 
 	:r_keywordsrule, :r_keywordsclear, :r_descriptionrule, :r_descriptionclear, :r_contentrule, :r_contentclear, 
 	:r_split, :r_splittype, :r_splitrange1, :r_splitrange2, 
 	:r_downloadimg, :r_date)";
@@ -35,6 +35,7 @@
 	$db->param(":r_urlunallowed", $_POST["r_urlunallowed"]);
 	$db->param(":r_urlrange1", $_POST["r_urlrange1"]);
 	$db->param(":r_urlrange2", $_POST["r_urlrange2"]);
+	$db->param(":r_urlbase", $_POST["r_urlbase"]);
 	$db->param(":r_titlerule", $_POST["r_titlerule"]);
 	$db->param(":r_titleclear", $_POST["r_titleclear"]);
 	$db->param(":r_keywordsrule", $_POST["r_keywordsrule"]);

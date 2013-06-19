@@ -83,6 +83,13 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="header">当前文件地址</td>
+				<td colspan="2">
+					<input type="text" id="r_urlbase" style="width:400px;" />
+					<br/><span style="color:#900">(使用于相对路径链接地址/网页设置有base配置)</span>
+				</td>
+			</tr>
+			<tr>
 				<td class="header">网址过滤</td>
 				<td>
 					<input id="r_urlallowed" type="text" style="width:90%; "/>

@@ -1,5 +1,6 @@
 ﻿<?php
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/Xml.class.php";
+	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
 
 	define('SITE_URL', (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''));
 	
@@ -26,9 +27,9 @@
 				if ("RSS" == $config['sourcetype']) { 			//RSS
 					$xml = new Xml();
 					$html = $xml->xml_unserialize($html);	//xml转数组
-					// if ( '' == $config['codeset']) {
-						// $html = array_iconv($html, 'utf-8', 'gbk');
-					// }
+					if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
+						$html = self::array_iconv( $config['codeset'], 'UTF-8', $html );
+					}
 					
 					$data = array();
 					if (is_array($html['rss']['channel']['item'])){
@@ -41,6 +42,11 @@
 					
 				} else {
 					$html = self::cut_html($html, $config['url_start'], $config['url_end']);
+					Log::out(('UTF-8-'.$config['codeset']));
+					if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
+						$html = iconv( $config['codeset'], 'UTF-8', $html );
+					}
+					
 					$html = str_replace(array("\r", "\n"), '', $html);
 					$html = str_replace(array("</a>", "</A>"), "</a>\n", $html);
 
@@ -58,7 +64,10 @@
 					foreach ($out[1] as $k=>$v) {		
 						// Log::out($out[2][$k].'-------'.$out[1][$k].'-------'.$out[0][$k]);
 						
-						if (preg_match('/href=[\'"]?([^\'" ]*)[\'"]?/i', $v, $match_out)) {
+						if ( !preg_match('/href=[\'"]?([^\'" ]*)[\'"]?/i', $v, $match_out) ) {
+							continue;
+						}
+						else {
 							if ($config['url_contain']) {					//url地址必须包含字符
 								if (strpos($match_out[1], $config['url_contain']) === false) {
 									continue;
@@ -88,8 +97,6 @@
 								"title" => strip_tags($out[2][$k])			//剥去 HTML、XML 以及 PHP 的标签
 							));
 							
-						} else {
-							continue;
 						}
 					}
 
@@ -116,7 +123,7 @@
 				if ($url[0] == '/') {
 					$url = $urlinfo['scheme'].'://'.$urlinfo['host'].$url;
 				} else {
-					if ($config['page_base']) {		//判断网站是否有base配置
+					if ( !empty($config['page_base']) ) {		//判断网站是否有base配置
 						$url = $config['page_base'].$url;
 					} else {
 						$url = $baseurl.$url;
@@ -572,5 +579,25 @@
 				return 'http://'.$okurl;
 			}
 		}
+		
+		/**
+		* 字符串/二维数组/多维数组编码转换
+		* @param string $in_charset 
+		* @param string $out_charset 
+		* @param mixed $data 
+		**/
+		protected static function array_iconv( $in_charset, $out_charset, $data ){
+			if (!is_array($data)){
+				$output = iconv($in_charset, $out_charset, $data);
+			}elseif(count($data)===count($data, 1)){//判断是否是二维数组
+				foreach($data as $key => $value){
+					$output[$key] = iconv($in_charset, $out_charset, $value);
+				}
+			}else{
+				eval('$output = '.iconv($in_charset, $out_charset, var_export($data, TRUE)).';');
+			}
+			return $output;
+		}
+
 	}
 ?>

@@ -30,7 +30,7 @@
 			<tr>
 				<td class="header">页面编码</td>
 				<td colspan="2">
-					<label><input name="r_pagecode" type="radio" value="UTF8" checked="true"/>UTF8</label>
+					<label><input name="r_pagecode" type="radio" value="UTF-8" checked="true"/>UTF8</label>
 					<label><input name="r_pagecode" type="radio" value="GBK"/>GBK</label>
 					<label><input name="r_pagecode" type="radio" value="BIG5"/>BIG5</label>
 				</td>
@@ -80,6 +80,13 @@
 					<input type="text" id="r_urlsource4" style="width:400px;" />
 					<br/>
 					<br/>
+				</td>
+			</tr>
+			<tr>
+				<td class="header">当前文件地址</td>
+				<td colspan="2">
+					<input type="text" id="r_urlbase" style="width:400px;" />
+					<br/><span style="color:#900">(使用于相对路径链接地址/网页设置有base配置)</span>
 				</td>
 			</tr>
 			<tr>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-16 00:27:43
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-19 09:40:56
          compiled from "_sys_productlist.htm" */ ?>
 <?php /*%%SmartyHeaderCode:2410551bc95aa40c3a5-17902413%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1e7a736258c055699555ca8ee8a3b359c65e69b8' => 
     array (
       0 => '_sys_productlist.htm',
-      1 => 1371313634,
+      1 => 1371531602,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51bc95aa6e84f6_24823652')) {function content_51bc95aa6e84f6_24823652($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\plugin\\smarty\\plugins\\modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_51bc95aa6e84f6_24823652')) {function content_51bc95aa6e84f6_24823652($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'E:\\workfiles\\daCMS\\plugin\\smarty\\plugins\\modifier.date_format.php';
 ?>﻿
 <?php if ("SINGLEPAGE"==$_smarty_tpl->tpl_vars['producttype']->value['pt_style']){?>
 	
