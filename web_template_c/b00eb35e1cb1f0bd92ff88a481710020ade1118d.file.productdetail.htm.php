@@ -1,30 +1,30 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-19 09:40:58
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-19 20:20:34
          compiled from "productdetail.htm" */ ?>
-<?php /*%%SmartyHeaderCode:1783851bc95ac526562-04901064%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2820551c1a2128879f1-56226008%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'b00eb35e1cb1f0bd92ff88a481710020ade1118d' => 
     array (
       0 => 'productdetail.htm',
-      1 => 1371531602,
+      1 => 1371303242,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1783851bc95ac526562-04901064',
+  'nocache_hash' => '2820551c1a2128879f1-56226008',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51bc95ac727092_56456690',
   'variables' => 
   array (
     'product' => 0,
     'producttype' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_51c1a212a63109_15080502',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51bc95ac727092_56456690')) {function content_51bc95ac727092_56456690($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'E:\\workfiles\\daCMS\\plugin\\smarty\\plugins\\modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_51c1a212a63109_15080502')) {function content_51c1a212a63109_15080502($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\plugin\\smarty\\plugins\\modifier.date_format.php';
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

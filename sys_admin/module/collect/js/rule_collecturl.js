@@ -77,7 +77,6 @@ function collecturl(){
 		},
 		loaded: function( idx, xml, json, ds ){
 			//link_click("#tb_list tbody[name=details_auto] tr");
-			debugger;
 			autoframeheight();
 		},
 		error: function( msg, code, content ){

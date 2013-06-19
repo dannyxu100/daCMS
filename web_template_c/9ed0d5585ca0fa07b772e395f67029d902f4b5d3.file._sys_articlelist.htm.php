@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-19 09:40:50
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-20 02:23:09
          compiled from "_sys_articlelist.htm" */ ?>
-<?php /*%%SmartyHeaderCode:1544751bc8b755251f8-50865383%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1036051c1f70d9b23f8-95966580%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '9ed0d5585ca0fa07b772e395f67029d902f4b5d3' => 
     array (
       0 => '_sys_articlelist.htm',
-      1 => 1371531601,
+      1 => 1371311101,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1544751bc8b755251f8-50865383',
+  'nocache_hash' => '1036051c1f70d9b23f8-95966580',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51bc8b75cd6a91_39334295',
   'variables' => 
   array (
     'articletype' => 0,
@@ -28,8 +26,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'pager_Next' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_51c1f70e2dd7b1_40273427',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51bc8b75cd6a91_39334295')) {function content_51bc8b75cd6a91_39334295($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_51c1f70e2dd7b1_40273427')) {function content_51c1f70e2dd7b1_40273427($_smarty_tpl) {?>
 <?php if ("SINGLEPAGE"==$_smarty_tpl->tpl_vars['articletype']->value['at_style']){?>
 	<!-- 单页面 -->
 	<div>

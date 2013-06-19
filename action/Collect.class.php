@@ -23,13 +23,19 @@
 				"url_except" => 网址过滤(不能包含的字符)
 			) 
 			*/
+			// Log::out($url);
+			// Log::out(self::get_html($url, $config));
 			if ($html = self::get_html($url, $config)) {
 				if ("RSS" == $config['sourcetype']) { 			//RSS
 					$xml = new Xml();
 					$html = $xml->xml_unserialize($html);	//xml转数组
-					if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
-						$html = self::array_iconv( $config['codeset'], 'UTF-8', $html );
-					}
+					
+					$encode = mb_detect_encoding($html, array("ASCII", "GB2312", "GBK", "UTF-8", "BIG5")); 		//判断编码方式
+					$html = self::array_iconv( $encode, 'UTF-8', $html );
+					
+					// if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
+						// $html = self::array_iconv( $config['codeset'], 'UTF-8', $html );
+					// }
 					
 					$data = array();
 					if (is_array($html['rss']['channel']['item'])){
@@ -42,10 +48,14 @@
 					
 				} else {
 					$html = self::cut_html($html, $config['url_start'], $config['url_end']);
-					Log::out(('UTF-8-'.$config['codeset']));
-					if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
-						$html = iconv( $config['codeset'], 'UTF-8', $html );
-					}
+					// Log::out($html);
+					// Log::out( $config['codeset'] );
+					$encode = mb_detect_encoding($html, array("ASCII", "GB2312", "GBK", "UTF-8", "BIG5")); 		//判断编码方式
+					$html = self::array_iconv( $encode, 'UTF-8', $html );
+					
+					// if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
+						// $html = iconv( $config['codeset'], 'UTF-8', $html );
+					// }
 					
 					$html = str_replace(array("\r", "\n"), '', $html);
 					$html = str_replace(array("</a>", "</A>"), "</a>\n", $html);
@@ -170,6 +180,13 @@
 			$html = "";
 			
 			if ($html = self::get_html($url)) {
+				$encode = mb_detect_encoding($html, array("ASCII", "GB2312", "GBK", "UTF-8", "BIG5")); 		//判断编码方式
+				$html = self::array_iconv( $encode, 'UTF-8', $html );
+				
+				// if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
+					// $html = self::array_iconv( $config['codeset'], 'UTF-8', $html );
+				// }
+				
 				if (empty($page)) {
 					//获取标题
 					if ($config['title_rule']) {
@@ -287,13 +304,34 @@
 		 * @param string $url    获取地址
 		 */
 		protected static function get_html($url) {
-			if (!empty($url) && $html = @file_get_contents($url)) {
-				return $html;
-			} else {
-				return false;
-			}
-		}
+			if( function_exists("curl_init") ){					//判断curl是否开启
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $url);
 
+				//设置URL，可以放入curl_init参数中
+				curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.202 Safari/535.1");
+
+				//设置UA
+				$timeout = 30;
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+
+				//将curl_exec()获取的信息以文件流的形式返回，而不是直接输出。 如果不加，即使没有echo,也会自动输出
+				$html = curl_exec($ch);
+
+				//释放
+				curl_close($ch);
+				return $html;
+			}
+			
+			if( function_exists("file_get_contents") ){	//判断file_get_contents是否开启
+				if (!empty($url) && $html = @file_get_contents($url)) {
+					return $html;
+				}
+			}
+			return false;
+		}
+		
 		/**
 		 * HTML切取
 		 * @param string $html    要进入切取的HTML代码
@@ -301,13 +339,28 @@
 		 * @param string $end     结束
 		 */
 		protected static function cut_html($html, $start, $end) {
-			if (empty($html)) return false;
+			if ( empty($html) ) return false;
+			// Log::out($start);
+			// Log::out($end);
 			$html = str_replace(array("\r", "\n"), "", $html);
-			$start = str_replace(array("\r", "\n"), "", $start);
-			$end = str_replace(array("\r", "\n"), "", $end);
-			$html = explode(trim($start), $html);
-			if(is_array($html)) $html = explode(trim($end), $html[1]);
-			return $html[0];
+			if( !empty($start) ){
+				$start = str_replace(array("\r", "\n"), "", $start);
+				$html = explode(trim($start), $html);
+			}
+			
+			// Log::out(is_array($html));
+			if( is_array($html) ){
+				if( !empty($end) ){
+					$end = str_replace(array("\r", "\n"), "", $end);
+					$html = explode(trim($end), $html[1]);
+					return $html[0];
+				}
+				else{
+					return $html[1];
+				}
+			}
+			
+			return $html;
 		}
 
 		/**

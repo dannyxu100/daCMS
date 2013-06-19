@@ -2,7 +2,7 @@
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/Collect.class.php";
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
 
 	$sql = "select * from sys_collectrule where r_id=".$_POST["rid"];
 	
@@ -22,7 +22,12 @@
 		
 		switch( $set["r_urltype"] ){
 			case "LIST":
-				$arr = Collect::get_url_lists( $set["r_urlsource"], $config );
+				$list = explode("\n", $set["r_urlsource"]);
+				$arr = array();
+				foreach ($list as $k=>$v) {
+					$tmp = Collect::get_url_lists( $v, $config );
+					$arr = array_merge($arr, $tmp);
+				}
 				break;
 			case "NUMBER":
 				$arr = array();
@@ -48,7 +53,7 @@
 				$arr[$k]["isold"] = "TRUE";
 			}
 			
-			Log::out($v);
+			// Log::out($v);
 		}
 		
 		$list = array(

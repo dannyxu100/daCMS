@@ -15,6 +15,7 @@
 	
 	if(is_array($set) && 0<count($set)){
 		$config = array(
+			"codeset" => $set["r_pagecode"],
 			"title_rule" => $set["r_titlerule"],
 			"title_html_rule" => $set["r_titleclear"],
 			"keywords_rule" => $set["r_keywordsrule"],
@@ -51,6 +52,7 @@
 			if( 0 >= $db->getcount("select * from sys_collect where c_rid=:c_rid and c_url=:c_url") ){
 				
 				$collect = Collect::get_content( $urls[$i], $config, 0 );
+				if( null == $collect){ continue; }
 				
 				$param2 = array();
 				array_push($param2, array(":c_rid", $rid));

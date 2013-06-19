@@ -30,7 +30,7 @@
 			<tr>
 				<td class="header">页面编码</td>
 				<td colspan="2">
-					<label><input name="r_pagecode" type="radio" value="UTF8" checked="true"/>UTF8</label>
+					<label><input name="r_pagecode" type="radio" value="UTF-8" checked="true"/>UTF8</label>
 					<label><input name="r_pagecode" type="radio" value="GBK"/>GBK</label>
 					<label><input name="r_pagecode" type="radio" value="BIG5"/>BIG5</label>
 				</td>
