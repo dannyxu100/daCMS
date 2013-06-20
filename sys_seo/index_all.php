@@ -85,7 +85,9 @@
         </div>
 	  </div>
       </div>
-    </div>    
+    </div>
+	
+	<!--
     <div class="box" id="Content_0">
     <div class="col">
     <div id="b_2">   
@@ -210,4 +212,5 @@
   </div>
 </div>
 </div>
+-->
 <?php @require_once('foot.php');?>

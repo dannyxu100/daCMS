@@ -1,0 +1,90 @@
+﻿<?php 
+	/* 
+	define('IN_SEO', TRUE);
+	$hu = 'keys'; 
+	header("Content-Type:text/html;charset=gb2312");
+	*/
+
+	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	require '../../action/fn.php';
+	
+	//域名
+	$domain = isset($_POST['domain']) ? $_POST['domain'] : ( isset($_GET['domain']) ? $_GET['domain'] : "" );
+	//关键词
+	$keys = isset($_POST['keys']) ? $_POST['keys'] : ( isset($_GET['keys']) ? $_GET['keys'] :" ");
+	//搜索引擎
+	$engine = isset($_POST['engine']) ? $_POST['engine'] : ( isset($_GET['engine']) ? $_GET['engine'] : 1);
+
+	//页数
+	$pn = intval( isset($_POST['pn']) ? $_POST['pn'] : ( isset($_GET['pn']) ? $_GET['pn'] : 0 ));
+	//每页条数
+	$rn = intval( isset($_POST['rn']) ? $_POST['rn'] : ( isset($_GET['rn']) ? $_GET['rn'] : 10 ));
+
+	$keysa = explode(" ",$keys);		//多关键词空格分隔
+	$output = '';
+	$ara = array();
+
+	for( $k=0; $k<sizeof($keysa); $k++ ){
+		if( !preg_match('/(\w).*/', $keysa[$k], $arrk) ){	//过滤特殊符号
+			$output = '';
+			$tab_text = str_split($keysa[$k]);
+			
+			foreach ($tab_text as $id=>$char){				//转码
+			  $hex = dechex(ord($char));
+			  $output.= '%' . $hex;
+			}
+			
+		}else{
+			$output = $keysa[$k];
+		}
+		array_push($ara,$output);
+	}
+
+
+	$output = implode("+",$ara);
+	if($engine == 1){  
+	  $ROBOT['baidu']['site_url'] = 'http://www.baidu.com/s?wd='.$output."&rn=".$rn."&pn=".$pn;
+	  $job = "baidu";
+	}else{ 
+	  $ROBOT['google']['site_url'] = 'http://www.google.com.hk/search?hl=zh-CN&q='.$output."&num=".$rn."&start=".$pn;
+	  $job = "google";
+	}
+
+	$domain = strtolower($domain);
+	
+	$result = "";
+	if($domain){
+		fn_is_domain($domain) or exit( "<script language=javascript>alert('请输入正确的域名！');location.href='keys.php';</script>");
+		$result = fn_keywordsinfo($domain, $job, $pn, $keys, $engine, $output, $rn);
+		!empty($result) or exit('Invalid Request');
+	}
+
+	//缓存文件处理
+	if( $domain ){
+		if(file_exists("../../cache/cache.php")){
+			@require_once("../../cache/cache.php");
+			$urls = fn_filehave($urls, $domain);
+			
+		}else{
+			$urls = fn_fileno($domain);
+		}
+		writeover("../../cache/cache.php","<?php\r\n\$urls=".fn_vvarexport($urls).";\r\n?>");
+	}
+	
+	$arrlast = array();
+	
+	//获取缓存
+	if( !empty($urls) ){
+		foreach ($urls as $key=>$v){
+			array_push($arrlast, "<a href=http://".$urls[$key]." target=_blank>".$urls[$key]."</a>&nbsp;&nbsp;");
+		}
+	}
+	
+	$res = array(
+		"result"=>$result,
+		"arrlast"=>$arrlast				//记录集
+	);
+	
+	echo json_encode($res);
+	
+?>

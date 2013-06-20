@@ -1,5 +1,5 @@
       <div class="foot">
-          Powered by <a href="http://bbs.cnzzsq.com" target="_blank">站长工具tool v2.0</a> Certificate Code  &copy; 2010-2010 <a href="http://www.cnzzsq.com" target="_blank">cnzzsq.com</a> Corporation <br/> 
+          Powered by <a href="http://bbs.cnzzsq.com" target="_blank">seo 查询工具</a> Certificate Code  &copy; 2013-2013 <a href="http://www.cnzzsq.com" target="_blank">www.dannyxu.com</a> Corporation <br/> 
   <div onmouseout='BoxHide()' onmouseover="this.style.display='block'"  id="ToolBox">
        <div id="xhead"></div>
        <ul id="xlist"></ul>
