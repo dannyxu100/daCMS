@@ -1,13 +1,8 @@
 ﻿<?php 
-	/* 
-	define('IN_SEO', TRUE);
-	$hu = 'keys'; 
-	header("Content-Type:text/html;charset=gb2312");
-	*/
-
-	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
 	require '../../action/fn.php';
 	
+	set_time_limit(300);		//超时设置5分钟
 	//域名
 	$domain = isset($_POST['domain']) ? $_POST['domain'] : ( isset($_GET['domain']) ? $_GET['domain'] : "" );
 	//关键词
@@ -19,12 +14,14 @@
 	$pn = intval( isset($_POST['pn']) ? $_POST['pn'] : ( isset($_GET['pn']) ? $_GET['pn'] : 0 ));
 	//每页条数
 	$rn = intval( isset($_POST['rn']) ? $_POST['rn'] : ( isset($_GET['rn']) ? $_GET['rn'] : 10 ));
-
-	$keysa = explode(" ",$keys);		//多关键词空格分隔
+	
+	$keys = preg_replace("/,| |　|，|，]/is", ",", trim($keys));		//多关键词","分隔
+	$keysa = explode(",", $keys);
 	$output = '';
-	$ara = array();
-
-	for( $k=0; $k<sizeof($keysa); $k++ ){
+	$result = array();
+	
+	
+	for( $k=0; $k<count($keysa); $k++ ){
 		if( !preg_match('/(\w).*/', $keysa[$k], $arrk) ){	//过滤特殊符号
 			$output = '';
 			$tab_text = str_split($keysa[$k]);
@@ -33,31 +30,34 @@
 			  $hex = dechex(ord($char));
 			  $output.= '%' . $hex;
 			}
-			
-		}else{
+		}
+		else{
 			$output = $keysa[$k];
 		}
-		array_push($ara,$output);
+
+		if($engine == 1){
+			$ROBOT['baidu']['site_url'] = 'http://www.baidu.com/s?wd='.$output."&rn=".$rn."&pn=".$pn;
+			$job = "baidu";
+		}
+		else{ 
+			$ROBOT['google']['site_url'] = 'http://www.google.com.hk/search?hl=zh-CN&q='.$output."&num=".$rn."&start=".$pn;
+			$job = "google";
+		}
+
+		$domain = strtolower($domain);
+		
+		if($domain){
+			if( fn_is_domain($domain) ){
+				$item = fn_keywordsinfo($domain, $job, $pn, $keysa[$k], $engine, $output, $rn);
+				array_push($result, $item);
+			}
+			else{
+				array_push($result, false);
+			}
+			
+		}
 	}
 
-
-	$output = implode("+",$ara);
-	if($engine == 1){  
-	  $ROBOT['baidu']['site_url'] = 'http://www.baidu.com/s?wd='.$output."&rn=".$rn."&pn=".$pn;
-	  $job = "baidu";
-	}else{ 
-	  $ROBOT['google']['site_url'] = 'http://www.google.com.hk/search?hl=zh-CN&q='.$output."&num=".$rn."&start=".$pn;
-	  $job = "google";
-	}
-
-	$domain = strtolower($domain);
-	
-	$result = "";
-	if($domain){
-		fn_is_domain($domain) or exit( "<script language=javascript>alert('请输入正确的域名！');location.href='keys.php';</script>");
-		$result = fn_keywordsinfo($domain, $job, $pn, $keys, $engine, $output, $rn);
-		!empty($result) or exit('Invalid Request');
-	}
 
 	//缓存文件处理
 	if( $domain ){
@@ -81,7 +81,8 @@
 	}
 	
 	$res = array(
-		"result"=>$result,
+		"seo"=>$result,
+		"keys"=>$keysa,
 		"arrlast"=>$arrlast				//记录集
 	);
 	
