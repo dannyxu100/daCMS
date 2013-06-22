@@ -1,4 +1,4 @@
-﻿var g_aid = "";
+var g_aid = "";
 
 function savearticle(){
 	// 将编辑器的HTML数据同步到textarea
