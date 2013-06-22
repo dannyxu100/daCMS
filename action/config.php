@@ -1,8 +1,8 @@
 <?php
 	// error_reporting(0);
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/plugin/smarty/Smarty.class.php";
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/smarty/Smarty.class.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/db.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/fn.php";
 	
 	/*** 网站基本配置信息常量 ***/

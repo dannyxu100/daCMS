@@ -1,5 +1,5 @@
 ﻿<?php 
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
 	require '../../action/fn.php';
 	
 	set_time_limit(300);		//超时设置5分钟
@@ -58,6 +58,7 @@
 		}
 	}
 
+	set_time_limit(30);
 
 	//缓存文件处理
 	if( $domain ){

@@ -1,5 +1,5 @@
 <?php
-	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
 	
 	/****************  关键词排名查询-正则常量 **********************/
 	define("REG_KW_BAIDU_LIST", "/<div id=\"content_left\">(.*)<p id=\"page\" >/Uis");		//list内容

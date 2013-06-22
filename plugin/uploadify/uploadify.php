@@ -6,7 +6,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 */
 
 
-include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
 
 date_default_timezone_set('ETC/GMT-8');
 

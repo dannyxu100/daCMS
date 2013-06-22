@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-19 20:20:29
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-22 19:26:53
          compiled from "_sys_productlist.htm" */ ?>
-<?php /*%%SmartyHeaderCode:2242551c1a20d23c978-01334206%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:897751c589fd0acb55-36636636%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2242551c1a20d23c978-01334206',
+  'nocache_hash' => '897751c589fd0acb55-36636636',
   'function' => 
   array (
   ),
@@ -27,9 +27,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51c1a20d7668b8_89810402',
+  'unifunc' => 'content_51c589fd6ece87_09032332',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51c1a20d7668b8_89810402')) {function content_51c1a20d7668b8_89810402($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\plugin\\smarty\\plugins\\modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_51c589fd6ece87_09032332')) {function content_51c589fd6ece87_09032332($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\action\\smarty\\plugins\\modifier.date_format.php';
 ?>﻿
 <?php if ("SINGLEPAGE"==$_smarty_tpl->tpl_vars['producttype']->value['pt_style']){?>
 	

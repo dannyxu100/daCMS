@@ -3,7 +3,7 @@
  <HEAD>
 	<?php
 		include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/logincheck.php";
-		include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/Collect.class.php";
+		include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/class/Collect.class.php";
 	?>
 	
 	<TITLE></TITLE>

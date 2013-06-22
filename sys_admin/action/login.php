@@ -1,8 +1,8 @@
 <?php
 	//验证登陆信息
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/db.php";
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/dbbackup.php";
-	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/sys/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/db.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/dbbackup.php";
+	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
 	// error_reporting(-1);
 
 	date_default_timezone_set('ETC/GMT-8');
