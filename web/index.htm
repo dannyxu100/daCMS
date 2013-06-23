@@ -1,197 +1,155 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>{fn_title}</title>
-	<meta name="title" content="{fn_title}" /> 
-	<meta name="keywords" content="{fn_keywords}" /> 
-	<meta name="description" content="{fn_description}" />
-	
-	<link rel="icon" href="/images/ico.gif" type="image/x-icon" />
-	<link href="/web/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
-	<link href="/web/css/default.css" media="screen" rel="stylesheet" type="text/css" />
-
+<title>home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/easySlider1.5.js"></script>
+<script type="text/javascript" charset="utf-8">
+// <![CDATA[
+$(document).ready(function(){	
+	$("#slider").easySlider({
+		controlsBefore:	'<p id="controls">',
+		controlsAfter:	'</p>',
+		auto: true, 
+		continuous: true
+	});	
+});
+// ]]>
+</script>
+<style type="text/css">
+#slider { margin:0; padding:0; list-style:none; }
+#slider ul,
+#slider li { margin:0; padding:0; list-style:none; }
+/* 
+    define width and height of list item (slide)
+    entire slider area will adjust according to the parameters provided here
+*/
+#slider li { width:906px; height:386px; overflow:hidden; }
+p#controls { margin:0; position:relative; }
+#prevBtn,
+#nextBtn { display:block; margin:0; overflow:hidden; width:44px; height:44px; position:absolute; left:0; top:-250px; }
+#nextBtn { left:862px; }
+#prevBtn a { display:block; width:44px; height:44px; background:url(images/l_arrow.gif) no-repeat 0 0; }
+#nextBtn a { display:block; width:44px; height:44px; background:url(images/r_arrow.gif) no-repeat 0 0; }
+</style>
 </head>
-
-<body onload="load_animations()">
-	{include file="header.htm"}
-
-	<!-- welcomebar -->	
-	<div class="welcome_bar">
-	<div class="container_12 bar">
-			<div class="bar-icon"><img src="images/icon_rss.png" width="80" height="80" alt="" /></div>
-			<div class="bar-title">
-				<h1>欢迎来到 <span>fancy100</span>, 共筑互联网梦想世界!</h1>
-				<div class="sub-text">我们为客户用心做设计. 但从不放弃自己的理念和梦想, 有你的支持，凡色很感激:</div>
-			</div>
-			<div class="bar-right">
-				<a href="javascript:void(0);" class="button_link large_button"><span>最新案例</span></a></div>
-			<div class="clear"></div>
-		</div>
-	</div>
-	<!--/ welcomebar -->
-
-	<!-- middle body --> 
-	<div class="middle homepage">
-		<div class="container_12">
-		
-		<div class="col col_1_3">
-			<div class="inner">
-              <h2 style="font-weight:bold">产品中心 &amp; 网建类型</h2>
-              <p> 我们以专业为基础，以价格为优势，<img src="images/temp_img_1.png" alt="" width="93" height="76" class="alignright" />以服务为核心，以质量求生存，以信誉求发展，为广大客户提供最优质的服务。</p>
-			<a href="#" class="link-more">详细信息</a>        </div>
-		</div>
-		
-		<div class="col col_1_3">
-			<div class="inner">
-			<h2 style="font-weight:bold">好评设计 &amp; 经典案例</h2>
-			<p>网页特效对网页精美影响很大，以下是网页中能实现的各种效果，<img src="images/temp_img_2.png" alt="" width="93" height="76" class="alignright" />如有需要，可查看详细 </p>
-			<a href="#" class="link-more">详细信息</a>      </div>
-		</div>
-		
-		<div class="col col_1_3">
-			<div class="inner">
-			<h2 style="font-weight:bold">技术走向 &amp; 行业动态</h2>
-			<p>每个网站的需求不同，网站程序开发上也有所不同，<img src="images/temp_img_3.png" width="80" height="76" class="alignright" alt="" />企业可根据自己网站的实际</p>
-			<a href="#" class="link-more">详细信息</a>      </div>
-		</div>
-		
-		<div class="divider_space"></div>
-		
-		<div class="box box_white">
-		
-			<div class="col col_2_3">
-				<div class="inner">
-					<div class="quoteBox-big">
-						<div class="quote-title"><strong>WHAT OTHERS SAY ABOUT US:</strong></div>
-						<div class="quote-text">在过去的十八个月我们的销售增加了三倍，因为我们的新网站的推出。我们不得不说，这使我们高兴，我们选择的梦想。</div>
-						<div class="quote-author"><span class="violet">George Mansion,</span>  founder Silicon App Inc</div>    
-					</div>
-				</div>
-			</div>
-			
-			<div class="col col_1_3">
-				<div class="inner">
-					
-					<!-- newsletter -->
-					<div class="newsletterBox">
-						<div class="bg">
-							<div class="ribbon"></div>
-							<h2>继续关注我们!</h2>
-							<div class="before-text">Sign up for our weekly newsletter to receive updates, news, and interesting tidbits.</div>
-							<form action="" method="post">
-								<input type="text" value="" name="" class="inputField" />
-								<input type="submit" value="" name="" class="btn-submit" />
-								<div class="clear"></div>
-							</form>
-						</div>
-					</div>
-					<!--/ newsletter -->
-				</div>
-			</div>
-			
-			<div class="clear"></div>
-		</div>
-		
-		<div class="divider_space"></div>
-		
-		<div class="col col_1_2">
-			<div class="inner">
-				
-				<!-- tab box -->
-				<div class="tabBox">
-					<div class="tabTitle"><h3>Services:</h3></div>
-					<ul class="tabs">
-						  <li><a href="#tabcontent1"><img src="images/icons/icon_1.png" width="51" height="42" alt="" /></a></li>
-						  <li><a href="#tabcontent2"><img src="images/icons/icon_2.png" width="51" height="42" alt="" /></a></li>
-						  <li><a href="#tabcontent3"><img src="images/icons/icon_3.png" width="51" height="42" alt="" /></a></li>
-					</ul>
-
-					<div class="tabcontent">
-						<div class="inner">
-						<img src="images/temp/temp_img_1.jpg" alt="" width="230" height="143" class="alignleft" />
-						<h3>Creative webdesign</h3>
-						<p>The point of using Lorem Ipsum is that it has a near “more-or-less” normal and distribution of letters.</p>
-						
-						<div class="clear"></div>
-						</div>
-					</div>
-					<div class="tabcontent">
-						<div class="inner">
-						<img src="images/temp/temp_img_2.jpg" alt="" width="230" height="143" class="alignleft" />
-						<h3>Apps for Mobile phones</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod . <a href="#tabcontent1">Jump to first tab.</a></p>
-						<div class="clear"></div>
-						</div>
-					</div>
-					<div class="tabcontent">
-						<div class="inner">
-						<img src="images/temp/temp_img_3.jpg" alt="" width="230" height="143" class="alignright" />
-						<h3>Statistics</h3>
-						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-						
-						<div class="clear"></div>
-						</div>
-					</div>
-				</div>
-				<!--/ tab box -->
-			</div>
-		</div>
-		
-	<div class="col col_1_2">
-			<div class="inner">
-				
-				<!-- tab box -->
-				<div class="tabBox">
-					<div class="tabTitle"><h3>Solutions:</h3></div>
-					<ul class="tabs">
-						  <li><a href="#tabcontent1"><img src="images/icons/icon_5.png" width="51" height="42" alt="" /></a></li>
-						  <li><a href="#tabcontent2"><img src="images/icons/icon_4.png" width="51" height="42" alt="" /></a></li>
-						  <li><a href="#tabcontent3"><img src="images/icons/icon_6.png" width="51" height="42" alt="" /></a></li>
-					</ul>
-
-					<div class="tabcontent">
-						<div class="inner">
-						<img src="images/temp/temp_img_3.jpg" alt="" width="230" height="143" class="alignleft" />
-						<h3>Apps for Mobile phones</h3>
-						<p>The point of using Lorem Ipsum is that it has a near “more-or-less” normal and distribution of letters.</p>
-						
-						<div class="clear"></div>
-						</div>
-					</div>
-					<div class="tabcontent">
-						<div class="inner">
-						<h3>Everything for your need!</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-						<div class="clear"></div>
-						</div>
-					</div>
-					<div class="tabcontent">
-						<div class="inner">
-						<img src="images/temp/temp_img_2.jpg" alt="" width="230" height="143" class="alignleft" />
-						<h3>Weather</h3>
-						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-						
-						<div class="clear"></div>
-						</div>
-					</div>
-				</div>
-				<!--/ tab box -->
-		  </div>
-		</div>
-		
-		<div class="clear"></div>
-	  </div>	
-	</div>
-	<!--/ middle body -->   
-	
-	{include file="footer.htm"}
+<body>
+<div class="main">
+  <div class="header">
+    <div class="block_header">
+      <div class="logo"><a href="index.html"><img src="images/logo.gif" width="401" height="145" border="0" alt="logo" /></a></div>
+      <div class="menu">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="services.html">About us</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="clr"> </div>
+    </div>
+  </div>
+  <div class="slider">
+    <div class="slice1">
+      <div id="slider">
+        <ul>
+          <li>
+            <div class="top" style="background:url(images/sliser_bg_img_1.jpg) top no-repeat;">
+              <h2>Dummy text of the printing and typesetting industry.</h2>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer. <a href="#">Simply dummy text of the printing</a> and typesetting industry. Lorem Ipsum has been the industry's </p>
+            </div>
+            <div class="bot">
+            <div class="lister">
+                <p class="active">1</p>
+                <p>2</p>
+                <p>3</p>
+              </div>
+              <h2>Simply dummy text</h2>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+            </div>
+          </li>
+          <li>
+            <div class="top" style="background:url(images/sliser_bg_img_2.jpg) top no-repeat;">
+              <h2>Dummy text of the printing and typesetting industry.</h2>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer. <a href="#">Simply dummy text of the printing</a> and typesetting industry. Lorem Ipsum has been the industry's </p>
+            </div>
+            <div class="bot">
+            <div class="lister">
+                <p>1</p>
+                <p class="active">2</p>
+                <p>3</p>
+              </div>
+              <h2>Simply dummy text</h2>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+            </div>
+          </li>
+          <li>
+            <div class="top" style="background:url(images/sliser_bg_img_3.jpg) top no-repeat;">
+              <h2>Dummy text of the printing and typesetting industry.</h2>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer. <a href="#">Simply dummy text of the printing</a> and typesetting industry. Lorem Ipsum has been the industry's </p>
+            </div>
+            <div class="bot">
+            <div class="lister">
+                <p>1</p>
+                <p>2</p>
+                <p class="active">3</p>
+              </div>
+              <h2>Simply dummy text</h2>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="body">
+    <div class="body_resize">
+      <div class="Author">
+        <h2>About the Author</h2>
+        <img src="images/img_1.gif" alt="picture" width="97" height="89" hspace="20" vspace="5" />
+        <p>Lorem Ipsum has been the industry's standard dummy text ever since thes, when an unknown printer.<a href="#"> Simply dummy text</a> of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since thes, when an unknown printer.</p>
+        <p><a href="#"><img src="images/read_more.gif" alt="picture" width="68" height="20" border="0" /></a></p>
+      </div>
+      <div class="animator">
+        <p><img src="images/img_4.gif" alt="picture" width="169" height="126" /> <img src="images/img_3.gif" alt="picture" width="169" height="126" /><img src="images/img_2.gif" alt="picture" width="170" height="126" /></p>
+        <h2>Dummy text of the printing and typesetting industry.</h2>
+        <p>Lorem Ipsum has been the industry's standard dummy text ever since thes,<a href="#"> when an unknown printer. Simply dummy text</a> of the printing and typesetting industry. </p>
+      </div>
+      <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="FBG">
+    <div class="Fbg_resize">
+      <div class="Twitter">
+        <p><img src="images/Twitter.gif" alt="picture" width="129" height="96" /></p>
+        <p><strong>Lorem Ipsum has been</strong> The industry's standard dummy text ever since thes. <a href="#"><img src="images/read_more.gif" alt="picture" width="68" height="20" border="0" /></a></p>
+      </div>
+      <div class="con">
+        <h2>Contact us</h2>
+        <ul>
+          <li>Name of the Company</li>
+          <li> 2901 Marmora Road, Glassgow, D04 59GR</li>
+          <li> Telephone: +1 234 567 8910</li>
+        </ul>
+        <ul>
+          <li>FAX: +1 234 567 8910</li>
+          <li>E-mail: <a href="#">mail@yoursitename.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="footer">
+    <div class="resize">
+      <div>Copyright © Sitename.com. <a href="http://dreamtemplate.com/">dreamtemplate.com</a>. All Rights Reserved<br />
+        <a href="index.html">Home</a> | <a href="contact.html">Contact</a> | <a href="blog.html">RSS</a></div>
+    </div>
+    <p class="clr"></p>
+  </div>
+</div>
 </body>
 </html>
-
-<script type="text/javascript" language="javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" language="javascript" src="js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" language="javascript" src="js/jquery.tools.min.js"></script>
-<script type="text/javascript" language="javascript" src="js/general.js"></script>
-<script type="text/javascript" language="javascript" src="js/index.js"></script>

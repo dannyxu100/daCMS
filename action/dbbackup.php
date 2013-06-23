@@ -100,13 +100,13 @@
 		$month = $date['mon'];
 		$quarter = ceil($month/3);		//计算当前月是第几个季度
 		
-		$old_quarter_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/backup/dbsql_backup/".($quarter-1)."/";
-		$old_month_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/backup/dbsql_backup/".date("Y_m_d", strtotime("-1 month"))."/";
-		$old_day_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/backup/dbsql_backup/".date("Y_m_d", time()-86400*7)."/";
+		$old_quarter_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/sys_backup/dbsql_backup/".($quarter-1)."/";
+		$old_month_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/sys_backup/dbsql_backup/".date("Y_m_d", strtotime("-1 month"))."/";
+		$old_day_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/sys_backup/dbsql_backup/".date("Y_m_d", time()-86400*7)."/";
 
-		$new_quarter_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/backup/dbsql_backup/".$quarter."/";
-		$new_month_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/backup/dbsql_backup/".date("Y_m")."/";
-		$new_day_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/backup/dbsql_backup/".date("Y_m_d")."/";
+		$new_quarter_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/sys_backup/dbsql_backup/".$quarter."/";
+		$new_month_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/sys_backup/dbsql_backup/".date("Y_m")."/";
+		$new_day_folder = rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/sys_backup/dbsql_backup/".date("Y_m_d")."/";
 		
 		$new_quarter_file = $new_quarter_folder.$dbname.".sql";
 		$new_month_file = $new_month_folder.$dbname.".sql";
