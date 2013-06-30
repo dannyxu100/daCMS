@@ -4,7 +4,7 @@
  * $xml = new Xml();
  * $res = $xml->xml_unserialize($data);
  */
-	error_reporting(-1);
+error_reporting(-1);
 
 class Xml {
     var $parser;
@@ -13,12 +13,12 @@ class Xml {
     var $stack;
     var $last_opened_tag;
   
-    public function xml() {
-        $this->parser = xml_parser_create();    
-        xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, false);    
-        xml_set_object($this->parser, $this);    
-        xml_set_element_handler($this->parser, 'open','close');    
-        xml_set_character_data_handler($this->parser, 'data');    
+    public function Xml() {
+        $this->parser = xml_parser_create();
+        xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, false);
+        xml_set_object($this->parser, $this);
+        xml_set_element_handler($this->parser, 'open','close');
+        xml_set_character_data_handler($this->parser, 'data');
     }
 	
     public function destruct() {
@@ -31,9 +31,9 @@ class Xml {
 	 * @return array
 	 */
 	public function xml_unserialize($xml) {
-		$data = $this->parse($xml);    
-		$this->destruct();    
-		return $data;    
+		$data = $this->parse($xml);
+		$this->destruct();
+		return $data;
 	}
 
 	/**

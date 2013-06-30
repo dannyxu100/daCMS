@@ -1,0 +1,45 @@
+﻿
+{if "SINGLEPAGE"==$producttype.pt_style}
+	
+
+{elseif "LIST"==$producttype.pt_style}
+	<div>
+	{section name="list" loop=$productset start=0 max=$pager_Total step=1}
+		<div style="margin:10px 0px;">
+			<span>{$smarty.section.list.index+1}</span>. 
+			<a href="{fn_urlstatic url='/web/product/productdetail.php?pid='|cat:$productset[list].p_id }">{$productset[list].p_name}</a>
+			- <span>{$productset[list].p_updatedate|date_format:'%Y-%m-%d'}</span>
+		</div>
+	{/section} 
+	</div>
+	
+{elseif "ICONLIST"==$producttype.pt_style}
+	<div>
+	{section name="list" loop=$productset start=0 max=$pager_Total step=1}
+		<div style=" height:80px; padding:30px 0px; border-bottom:1px dotted #ddd;">
+			<img src="{$productset[list].p_img|default:'/images/no_img.gif'}" style="float:left; margin:0px 20px 10px 0px; width:120px; height:80px;vertical-align:top;"/>
+			<a href="{fn_urlstatic url='/web/product/productdetail.php?pid='|cat:$productset[list].p_id }">{$productset[list].p_name}</a>
+			- <span>{$productset[list].p_updatedate|date_format:'%Y-%m-%d'}</span>
+			<br/>
+			<span>{$productset[list].p_description}</span>
+		</div>
+	{/section} 
+	</div>
+	
+{elseif "ICON"==$producttype.pt_style}
+	<div>
+	{section name="list" loop=$productset start=0 max=$pager_Total step=1}
+		<div style="float:left;width:160px; height:180px; margin:10px; overflow:hidden;">
+			<img style="width:160px; height:100px; margin-bottom:10px;" src="{$productset[list].p_img|default:'/images/no_img.gif'}" />
+			<div style="text-align:center;"><a href="{fn_urlstatic url='/web/product/productdetail.php?pid='|cat:$productset[list].p_id }">{$productset[list].p_name}</a></div>
+		</div>
+	{/section}
+		<div style="clear:both;"></div>
+	</div>
+{/if}
+
+<div class="daPage">
+总共{$pager_Total}条，共{$pager_Number}页，{$pager_Prev}{$pager_Links}{$pager_Next}
+</div>
+
+

@@ -275,7 +275,25 @@
 		
 		return this.slice( 0, i ).concat(arr).concat( this.slice( i ) );	 
 	};
-
+	
+	/**去重复项
+	*/
+	Array.prototype.distinct = function(){
+		var a = {};
+		var len = this.length;
+		
+		for(var i=0; i < len; i++){
+			if(typeof a[this[i]] == "undefined")
+				a[this[i]] = 1;
+		}
+		this.length = 0;
+		
+		for(var i in a){
+			this[this.length] = i;
+		}
+		return this;
+	};
+	
 })(window);
 
 /***************** da前台javascript辅助脚本库 **************************/
@@ -517,7 +535,28 @@
 					readyList.push( fn );
 				}
 				return this;
+			},
+			
+			eq: function( i ) {
+				i = +i;
+				return i === -1 ?
+					this.slice( i ) :
+					this.slice( i, i + 1 );
+			},
+
+			first: function() {
+				return this.eq( 0 );
+			},
+
+			last: function() {
+				return this.eq( -1 );
+			},
+
+			slice: function() {
+				return this.pushStack( _daSlice.apply( this.dom, arguments ),
+					"slice", _daSlice.call(arguments).join(",") );
 			}
+			
 		};
 		//对象继承da类属性
 		da.fnStruct.init.prototype = da.fnStruct;

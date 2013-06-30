@@ -1,0 +1,46 @@
+<div class="header_img" id="aside2">
+<!-- header -->
+    <div class="topnav" style="background:#222;">
+    	<div class="container_12">
+        
+			<div class="logo"><a href="/"><img src="{$smarty.const.WC_IMG}" alt="ENVISION" border="0" /></a></div>
+
+			<!-- topmenu -->            
+			<div class="menu-header">
+				<ul class="topmenu">
+				<!-- 最多三级菜单 -->
+					{foreach from=$navset1 key=k item=nav1}
+						<li class="parent {if 0==$k } first current-menu-item {elseif count($navset1)-1 == $k } last {/if}">
+							<a href="{fn_urlstatic url=$nav1.n_url}" alt="{$nav1.n_name}" target="{$nav1.n_urltarget}"><span>{$nav1.n_name}</span></a>
+							<ul class="sub-menu">
+							{foreach from=$navset2 key=k2 item=nav2}
+								{if ( $nav1.n_id == $nav2.n_pid )}
+								<li class="parent {if 0==$k } first current-menu-item {elseif count($navset1)-1 == $k } last {/if}">
+									<a href="{fn_urlstatic url=$nav2.n_url}" alt="{$nav2.n_name}" target="{$nav1.n_urltarget}"><span>{$nav2.n_name}</span></a>
+									<ul class="sub-menu">
+									{foreach from=$navset3 key=k3 item=nav3}
+										{if ( $nav2.n_id == $nav3.n_pid )}
+										<li class="parent {if 0==$k } first current-menu-item {elseif count($navset1)-1 == $k } last {/if}">
+											<a href="{fn_urlstatic url=$nav3.n_url}" alt="{$nav3.n_name}" target="{$nav1.n_urltarget}"><span>{$nav3.n_name}</span></a>
+										</li>
+										{/if}
+									{/foreach}
+									</ul>
+								</li>
+								{/if}
+							{/foreach}
+							</ul>
+						</li>
+					{/foreach}
+			  </ul>
+			</div>
+			<!--/ topmenu -->        
+			
+		</div>            
+    </div>
+
+</div>
+<!--/ header -->
+
+
+

@@ -1,7 +1,7 @@
 ﻿<?php 
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
 	require '../../action/fn.php';
-	
+
 	set_time_limit(300);		//超时设置5分钟
 	//域名
 	$domain = isset($_POST['domain']) ? $_POST['domain'] : ( isset($_GET['domain']) ? $_GET['domain'] : "" );
@@ -23,13 +23,14 @@
 	
 	for( $k=0; $k<count($keysa); $k++ ){
 		if( !preg_match('/(\w).*/', $keysa[$k], $arrk) ){	//过滤特殊符号
-			$output = '';
-			$tab_text = str_split($keysa[$k]);
+			$output = urlencode($keysa[$k]);				//转码
 			
-			foreach ($tab_text as $id=>$char){				//转码
-			  $hex = dechex(ord($char));
-			  $output.= '%' . $hex;
-			}
+			// $tab_text = str_split($keysa[$k]);
+			// $output = '';
+			// foreach ($tab_text as $id=>$char){				//转码
+			  // $hex = dechex(ord($char));
+			  // $output.= '%' . $hex;
+			// }
 		}
 		else{
 			$output = $keysa[$k];
@@ -48,8 +49,8 @@
 		
 		if($domain){
 			if( fn_is_domain($domain) ){
-				$item = fn_keywordsinfo($domain, $job, $pn, $keysa[$k], $engine, $output, $rn);
-				array_push($result, $item);
+				$obj = fn_keywordsinfo($domain, $job, $pn, $keysa[$k], $engine, $output, $rn);
+				array_push($result, $obj);
 			}
 			else{
 				array_push($result, false);
@@ -82,9 +83,9 @@
 	}
 	
 	$res = array(
-		"seo"=>$result,
+		"result"=>$result,
 		"keys"=>$keysa,
-		"arrlast"=>$arrlast				//记录集
+		"last"=>$arrlast				//记录集
 	);
 	
 	echo json_encode($res);

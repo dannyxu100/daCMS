@@ -1,6 +1,7 @@
-﻿<?php
-	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/Xml.class.php";
+<?php
 	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/class/Xml.class.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/class/Snoopy.class.php";
 
 	define('SITE_URL', (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''));
 	
@@ -27,11 +28,11 @@
 			// Log::out(self::get_html($url, $config));
 			if ($html = self::get_html($url, $config)) {
 				if ("RSS" == $config['sourcetype']) { 			//RSS
-					$xml = new Xml();
-					$html = $xml->xml_unserialize($html);	//xml转数组
-					
 					$encode = mb_detect_encoding($html, array("ASCII", "GB2312", "GBK", "UTF-8", "BIG5")); 		//判断编码方式
 					$html = self::array_iconv( $encode, 'UTF-8', $html );
+					
+					$xml = new Xml();
+					$html = $xml->xml_unserialize($html);	//xml转数组
 					
 					// if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
 						// $html = self::array_iconv( $config['codeset'], 'UTF-8', $html );
@@ -40,6 +41,7 @@
 					$data = array();
 					if (is_array($html['rss']['channel']['item'])){
 						foreach ($html['rss']['channel']['item'] as $k=>$v) {
+							// Log::out(count($data));
 							$data[$k]['id'] = count($data);
 							$data[$k]['url'] = $v['link'];
 							$data[$k]['title'] = $v['title'];

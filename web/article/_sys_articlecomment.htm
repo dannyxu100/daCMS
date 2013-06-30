@@ -1,0 +1,73 @@
+
+<div class="cmtBox clearfix" id="cmtBox">
+	<div class="tit02" id="banner">网友评论</div>
+	
+	<!-- 分享代码 -->
+ 	<div id="sns">
+		<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare share">
+			<a class="bds_tsina" title="分享到新浪微博" href="#"></a>
+			<a class="bds_tqq" title="分享到腾讯微博" href="#"></a>
+			<a class="bds_t163" title="分享到网易微博"></a>
+			<a class="bds_qzone" title="分享到QQ空间" href="#"></a>
+			<a class="bds_renren" title="分享到人人网"></a>
+			<span class="bds_more">更多</span>
+		</div>
+		<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6695170" ></script>
+		<script type="text/javascript" id="bdshell_js"></script>
+		<script type="text/javascript">
+		document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+		</script>
+	</div>
+	<!--/ 分享代码 -->
+	
+	<div class="commentLoginBox clearfix">
+		<div class="commentLogin clearfix" id="cmtInput">
+			<form action="{fn_urlstatic url='' }" method="post" id="spec_frm">
+				<input type="hidden" name="backurl" id="specBackUrl" value="{$url}">
+				<div id="specLogin">
+					
+					<label style="vertical-align:middle">用户名</label><input id="spec_uname" name="uname"/>&nbsp;&nbsp;
+					<label style="vertical-align:middle">密码</label><input id="spec_pass" type="password" name="pass" />
+					
+					<input type="submit" id="cmtfrmbutton" class="btn" value="登 录" />
+					<input type="button" class="btn" value="注 册" />
+				</div>
+				<div class="userInfo" id="specLogined"><em>{$puname}</em> ( {$pucode} ) </div>
+			</form>
+		
+			<form action="{fn_urlstatic url='action/comment_add_item.php' }" method="post" target="_blank">
+				<textarea name="c_content" id="c_content" class="content"></textarea>
+				
+				<input type="hidden" name="srcid" id="srcid" value="{$article.a_id}"/>
+				<input type="hidden" name="srctitle" id="srctitle" value="{$article.a_title}"/>
+				<input type="hidden" name="srcurl" id="srcurl"  value="{$url}"/>
+				<input type="submit" id="submitForm" class="btn" value="发表评论" />
+			</form>
+		
+		</div>
+		
+		<div class="view">
+			<a href="javascript:void(0);">共有<span id="specAllCmt01" class="cRed">{$article.a_count}</span>人参与</a>　
+			<a href="javascript:void(0);">评论<span id="specCmt01" class="cRed">{$pager_Total}</span>条</a>
+		</div>
+		<div id="cmtlistdiv" class="commentlist clearfix">
+			<!-- 评论列表 -->
+			<div>
+			{section name="list" loop=$commentlist start=0 max=$pager_Total step=1}
+				<div style="margin:20px 0px;">
+					<span>{$commentlist[list].v_code}</span>
+					- <span>{$commentlist[list].c_content}</span>
+					- <span>{$commentlist[list].c_date|date_format:'%Y-%m-%d'}</span>
+				</div>
+			{/section}
+			</div>
+
+			<div class="daPage">
+			总共{$pager_Total}条，共{$pager_Number}页，{$pager_Prev}{$pager_Links}{$pager_Next}
+			</div>
+			<!--/ 评论列表 -->
+		</div>
+		
+	</div>
+	
+</div>

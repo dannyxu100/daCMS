@@ -1,17 +1,23 @@
 <?php
-	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/class/Snoopy.class.php";
 	
 	/****************  关键词排名查询-正则常量 **********************/
 	define("REG_KW_BAIDU_LIST", "/<div id=\"content_left\">(.*)<p id=\"page\" >/Uis");		//list内容
+	define("REG_KW_BAIDU_ROW", "/<table(.*)<\/table>/Uis");									//行(用于累计排名)
 	define("REG_KW_BAIDU_HIGHLIGHT", "/<font color=#CC0000>(.*)<\/font>/Uis");				//高亮关键词
-	define("REG_KW_BAIDU_DATE", "/<font color=\"#008000\">(.*)<\/font>/Uis");				//域名+日期部分（情况1）
-	define("REG_KW_BAIDU_DATE2", "/<span class=\"g\">(.*)<\/span>/Uis");					//域名+日期部分（情况2）
-	define("REG_KW_BAIDU_DATE3", "/<span class=\"op_wiseapp_showurl\">(.*)<\/span>/Uis");	//域名+日期部分（情况3）
-	define("REG_KW_BAIDU_DATE4", "/<span class=\"c-showurl\">(.*)<\/span>/Uis");			//域名+日期部分（情况4）
+	define("REG_KW_BAIDU_TITLE", "/<h3 class=\"t\">.*<a.*href=\"(.*)\".*>(.*)<\/a>.*<\/h3>/Uis");	//标题
+	define("REG_KW_BAIDU_DATE1", "/<span class=\"g\">(.*)<\/span>/Uis");					//域名+日期部分（百度快照）
+	
+	define("REG_KW_BAIDU_DATE2", "/<span class=\"op_wiseapp_showurl\">(.*)<\/span>/Uis");	//域名+日期部分（非百度快照）
+	define("REG_KW_BAIDU_DATE3", "/<span class=\"c-showurl\">(.*)<\/span>/Uis");			//域名+日期部分（非百度快照）
+	define("REG_KW_BAIDU_DATE4", "/<font color=\"#008000\">(.*)<\/font>/Uis");				//域名+日期部分（非百度快照）
+	define("REG_KW_BAIDU_DATE5", "/<span style=\"color:#008000\">(.*)<\/span>/Uis");		//域名+日期部分（非百度快照）
+	define("REG_KW_BAIDU_BOLD", "/<(b|\/b)>/Uis");											//粗体字标签
+	define("REG_KW_BAIDU_EM", "/<(em|\/em)>/Uis");											//关键字标签
 	
 	
-	
-	
+	// define("REG_KW_BAIDU_TITLE", "/<h3 class=\"t\"><a(.*)href=\"(.*)\"(.*)>(.*)<\/a><\/h3>/Uis");	//标题	
 	/**验证域名格式
 	*/
 	function fn_is_domain($domain){
@@ -21,10 +27,64 @@
 			return false;
 		}
 	}
-
+	
+	/**随机字母、数字串
+	*/
+	function randchar( $len=10 ){
+		$str='abcdefghijklmnopqrstuvwxyz1234567890';
+		
+		$rndstr ="";					//用来存放生成的随机字符串 
+		for($i=0;$i<$len;$i++) 
+		{ 
+			$num=rand(0,35); 
+			$rndstr.=$str[$num]; 
+		} 
+		return $rndstr; 
+	}
+	
+	/**随机IP
+	*/
+	function randip(){
+		$ip_long = array(
+			array('607649792', '608174079'), //36.56.0.0-36.63.255.255
+			array('1038614528', '1039007743'), //61.232.0.0-61.237.255.255
+			array('1783627776', '1784676351'), //106.80.0.0-106.95.255.255
+			array('2035023872', '2035154943'), //121.76.0.0-121.77.255.255
+			array('2078801920', '2079064063'), //123.232.0.0-123.235.255.255
+			array('-1950089216', '-1948778497'), //139.196.0.0-139.215.255.255
+			array('-1425539072', '-1425014785'), //171.8.0.0-171.15.255.255
+			array('-1236271104', '-1235419137'), //182.80.0.0-182.92.255.255
+			array('-770113536', '-768606209'), //210.25.0.0-210.47.255.255
+			array('-569376768', '-564133889'), //222.16.0.0-222.95.255.255
+		);
+		$rand_key = mt_rand(0, 9);
+		$ip	= long2ip(mt_rand($ip_long[$rand_key][0], $ip_long[$rand_key][1]));
+		
+		return $ip;
+	}
+	
 	/**获取网页内容
 	*/
 	function fn_get_content($url){
+		$snoopy = new Snoopy ;
+		$snoopy->fetch( $url );
+		$snoopy->proxy_host ="http://www."+ randchar() +".com";		//设置代理
+		$snoopy->proxy_port = "80";
+		$snoopy->rawheaders["X_FORWARDED_FOR"] = randip();			//伪装ip
+		// $snoopy->referer = "http://www.aibx.net";					//伪装来源页地址 http_referer
+		// $snoopy->rawheaders["Pragma"] = "no-cache";					//cache 的http头信息
+		// $snoopy->agent = "(compatible; MSIE 4.01; MSN 2.5; AOL 4.0; Windows 98)";		//模拟浏览器
+		$snoopy->agent = "(compatible; Googlebot/2.1; +http://www.google.com/bot.html)";	//模拟爬虫(避免IP被屏)
+		
+		$content = $snoopy->results;
+		
+		$encode = mb_detect_encoding($content, array("ASCII", "GB2312", "GBK", "UTF-8", "BIG5")); 		//判断编码方式
+		$content = iconv( $encode, 'UTF-8', $content );
+		
+		return $content;
+		
+		
+		/***** 下面代码弃用 *****/
 		if(!strpos($url, '://')) return 'Invalid URI';
 		$content = '';
 		if(ini_get('allow_url_fopen')){
@@ -65,6 +125,10 @@
 			}
 		}
 		if(empty($content)) $content = '无法打开该链接！';
+		
+		$encode = mb_detect_encoding($content, array("ASCII", "GB2312", "GBK", "UTF-8", "BIG5")); 		//判断编码方式
+		$content = iconv( $encode, 'UTF-8', $content );
+		
 		return $content;
 	}
 
@@ -79,20 +143,74 @@
 		
 		$content = fn_get_content($ROBOT[$bot]['site_url']);
 		
-		if( empty($content) ){ 
+		if( empty($content) ){
 			return '信息抓取失败';
 		}
 		
-		$datecon = $listcon = array();
+		$domainNoWWW = ( 'www.' === substr($domain, 0, 4) ) ? substr($domain, 4):$domain;
+		
+		$items = array();
+		
 		if($bot == "baidu"){
-			preg_match_all(REG_KW_BAIDU_LIST, $content, $arr);		//list内容
-			$listcon = $arr[1];
+			preg_match_all(REG_KW_BAIDU_LIST, $content, $arr);			//list内容
+			if( !isset($arr[1][0]) ){
+				// Log::out($keys."--------Catch Content Error!");
+				// Log::out($keys."--------".$content);
+				return;
+			}
 			
-			preg_match_all(REG_KW_BAIDU_DATE, $arr[1][0], $arr1);		//域名+日期部分（情况1）
-			preg_match_all(REG_KW_BAIDU_DATE2, $arr[1][0], $arr2);		//域名+日期部分（情况2）
-			preg_match_all(REG_KW_BAIDU_DATE3, $arr[1][0], $arr3);		//域名+日期部分（情况3）
-			preg_match_all(REG_KW_BAIDU_DATE4, $arr[1][0], $arr4);		//域名+日期部分（情况4）
-			$datecon = array_merge($arr1[1], $arr2[1], $arr3[1], $arr4[1]);
+			preg_match_all(REG_KW_BAIDU_ROW, $arr[1][0], $rows);		//行
+			
+			for($i=0; $i<count($rows[0]); $i++){
+				preg_match_all(REG_KW_BAIDU_TITLE, $rows[0][$i], $arrtitle);	//标题
+				preg_match_all(REG_KW_BAIDU_DATE1, $rows[0][$i], $arr1);		//域名+日期部分（百度快照）
+				
+				// preg_match_all(REG_KW_BAIDU_DATE2, $rows[0][$i], $arr2);	//域名+日期部分（非百度快照）
+				// preg_match_all(REG_KW_BAIDU_DATE3, $rows[0][$i], $arr3);	//域名+日期部分（非百度快照）
+				// preg_match_all(REG_KW_BAIDU_DATE4, $rows[0][$i], $arr4);	//域名+日期部分（非百度快照）
+				// preg_match_all(REG_KW_BAIDU_DATE5, $rows[0][$i], $arr5);	//域名+日期部分（非百度快照）
+				// $dateitem = array_merge($arr1[1], $arr2[1], $arr3[1], $arr4[1], $arr5[1]);
+				
+				// Log::out($i."---------------------------------------------------");
+				// Log::out($arr1[1]);
+				// Log::out($i."------------->".$arrtitle[2][0]);
+				if( !isset($arr1[1]) || empty($arr1[1]) ) continue;
+				if( !isset($arrtitle[1][0]) ) continue;
+				
+				/** 测试 非百度快照处理 **/
+				// if( !isset($arr1[1]) || empty($arr1[1]) || !isset($arrtitle[1][0]) ){
+					// $items[$i] = array(
+						// "title" => preg_replace("/<.*>/Uis", "", $rows[0][$i]),		//去标签
+						// "href" => "",
+						// "date" => ""
+					// );
+					// continue;
+				// }
+				/** 测试 非百度快照处理 **/
+				
+				$title = $arrtitle[2][0];
+				$title = preg_replace(REG_KW_BAIDU_EM, "", trim($title));		//去关键字标签、前后空格
+				$href = $arrtitle[1][0];
+				
+				$dateitem = $arr1[1][0];
+				$dateitem = preg_replace(REG_KW_BAIDU_BOLD, "", trim($dateitem));	//去粗体字标签、前后空格
+				// Log::out($dateitem);
+				
+				$tmp = explode("/", $dateitem);
+				// Log::out($i."------>".$tmp[0]);
+				// Log::out($i."------>".(false !== strpos($tmp[0], $domain, 0)));
+				// Log::out($arrtitle[4]);
+				if( false !== strpos($tmp[0], $domain, 0) ){
+					$items[$i] = array(
+						"title" => $title,
+						"href" => $href,
+						"date" => $dateitem
+						
+					);
+				}
+			} 
+			// Log::out($arr2[0]."-------".$arr2[1]);
+			
 		}
 		else{
 			$row = "/<li class=g(.*)?>(.*)<\/li>/Uis";
@@ -101,20 +219,7 @@
 			preg_match_all($key, $content, $arr2);		//域名+日期部分
 			
 			$listcon = $arr1[2];
-			$datecon = $arr2[1];
-		}
-		
-		
-		$domain2 = ( 'www.' === substr($domain, 0, 4) ) ? substr($domain, 4):$domain;
-		$kw = array();
-		
-		for($i=0; $i<sizeof($datecon); $i++){
-			$datecon[$i] = str_replace("</b>", "", $datecon[$i]);
-			$arr[$i] = explode("/", $datecon[$i]);
-			
-			if( false != strpos($arr[$i][0], $domain2, 0) ){
-				$kw[$i] = $datecon[$i];
-			}
+			$dateitem = $arr2[1];
 		}
 		
 		$site_info = '';
@@ -122,25 +227,20 @@
 			$site_info = $arr[1];
 		}
 		
-		// foreach($kw as $key=>$val){
-			// $kws .= "第<font color=red> ".($key+1+$pn)." </font>个出现<br/>".$val;
-		// }
-		
-		// $domain1 = "keys.php?domain=".$domain."&keys=".$output."&val=".$v."&rn=".$rn;
-		// $cons = "排名：<a href=".$domain1."&pn=0>1-".$rn."</a>&nbsp;&nbsp;<a href=".$domain1."&pn=".($rn*1).">".(($rn*1)+1)."-".($rn*2)."</a>&nbsp;&nbsp;<a href=".$domain1."&pn=".($rn*2).">".(($rn*2)+1)."-".($rn*3)."</a>&nbsp;&nbsp;<a href=".$domain1."&pn=".($rn*3).">".(($rn*3)+1)."-".($rn*4)."</a>&nbsp;&nbsp;<a href=".$domain1."&pn=".($rn*4).">".(($rn*4)+1)."-".($rn*5)."</a>&nbsp;&nbsp;<a href=".$domain1."&pn=".($rn*5).">".(($rn*5)+1)."-".($rn*6)."</a>&nbsp;&nbsp;<a href=".$domain1."&pn=".($rn*6).">".(($rn*6)+1)."-".($rn*7)."</a>&nbsp;&nbsp;<a href=".$domain1."&pn=".($rn*7).">".(($rn*7)+1)."-".($rn*8)."</a>";
 		// $deta = "<font color=red>关键字</font> ".$keys." <font color=red>在网站</font> ".$domain." <font color=red>的</font> ".$bot." <font color=red>收录结果</font> ".($pn+1)."-".($pn+$rn)." <font color=red>名中有</font> ".sizeof($kw)." <font color=red>条记录</font>";
 		
-		// return $text = $cons."<br/>".$deta."<br/>".$kws;
 		return array(
 			"engine" => $bot,
 			"url" => $ROBOT[$bot]['site_url'],
 			"siteinfo" => $site_info,
 			"domain" => $domain,
+			"domainNoWWW" => $domainNoWWW,
 			"keyword" => $keys,
-			"datecon" => $datecon,
+			// "rows" => $rows,
+			"items" => $items,
 			"pagenum" => $pn,
-			"rownum" => $rn,
-			"res" => $kw
+			"rownum" => $rn
+			
 		);
 	}
 
