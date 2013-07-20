@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 20:06:57
+<?php /* Smarty version Smarty-3.1.13, created on 2013-07-07 19:13:08
          compiled from "D:\work\daCMS\web\index.htm" */ ?>
-<?php /*%%SmartyHeaderCode:2512351c987e1a9e306-88572882%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:536651d94d448b6160-20767743%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '573ef65aa6a4357aa6abec815f86fa2f178f2e22' => 
     array (
       0 => 'D:\\work\\daCMS\\web\\index.htm',
-      1 => 1371314214,
+      1 => 1373133668,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2512351c987e1a9e306-88572882',
+  'nocache_hash' => '536651d94d448b6160-20767743',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51c987e1ed6e56_83596451',
+  'unifunc' => 'content_51d94d449c4987_32626948',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51c987e1ed6e56_83596451')) {function content_51c987e1ed6e56_83596451($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if ($_valid && !is_callable('content_51d94d449c4987_32626948')) {function content_51d94d449c4987_32626948($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -47,7 +47,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<div class="container_12 bar">
 			<div class="bar-icon"><img src="images/icon_rss.png" width="80" height="80" alt="" /></div>
 			<div class="bar-title">
-				<h1>欢迎来到 <span>fancy100</span>, 共筑互联网梦想世界!</h1>
+				<h1>欢迎来到 <span>同人网络</span>, 共筑互联网梦想世界!</h1>
 				<div class="sub-text">我们为客户用心做设计. 但从不放弃自己的理念和梦想, 有你的支持，凡色很感激:</div>
 			</div>
 			<div class="bar-right">
@@ -89,9 +89,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<div class="col col_2_3">
 				<div class="inner">
 					<div class="quoteBox-big">
-						<div class="quote-title"><strong>WHAT OTHERS SAY ABOUT US:</strong></div>
-						<div class="quote-text">在过去的十八个月我们的销售增加了三倍，因为我们的新网站的推出。我们不得不说，这使我们高兴，我们选择的梦想。</div>
-						<div class="quote-author"><span class="violet">George Mansion,</span>  founder Silicon App Inc</div>    
+						<div class="quote-title"><strong>真诚的感谢:</strong></div>
+						<div class="quote-text">在过去的八个月我们的销售增加了三倍，因为我们的新网站的推出。我们不得不说，这使我们高兴，我们选择的梦想。</div>
+						<div class="quote-author"><span class="violet">上下和同，同舟共济</span>  -  同人科技</div>    
 					</div>
 				</div>
 			</div>
@@ -126,7 +126,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				
 				<!-- tab box -->
 				<div class="tabBox">
-					<div class="tabTitle"><h3>Services:</h3></div>
+					<div class="tabTitle"><h3>推荐产品</h3></div>
 					<ul class="tabs">
 						  <li><a href="#tabcontent1"><img src="images/icons/icon_1.png" width="51" height="42" alt="" /></a></li>
 						  <li><a href="#tabcontent2"><img src="images/icons/icon_2.png" width="51" height="42" alt="" /></a></li>
@@ -163,13 +163,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<!--/ tab box -->
 			</div>
 		</div>
-		
-	<div class="col col_1_2">
+	
+		<div class="col col_1_2">
 			<div class="inner">
 				
 				<!-- tab box -->
 				<div class="tabBox">
-					<div class="tabTitle"><h3>Solutions:</h3></div>
+					<div class="tabTitle"><h3>解决方案</h3></div>
 					<ul class="tabs">
 						  <li><a href="#tabcontent1"><img src="images/icons/icon_5.png" width="51" height="42" alt="" /></a></li>
 						  <li><a href="#tabcontent2"><img src="images/icons/icon_4.png" width="51" height="42" alt="" /></a></li>
@@ -204,10 +204,120 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</div>
 				</div>
 				<!--/ tab box -->
-		  </div>
+			</div>
 		</div>
 		
+		<div class="divider_space"></div>
+		
+		<div class="col col_1_2">
+			<div class="inner">
+				
+				<!-- tab box -->
+				<div class="tabBox">
+					<div class="tabTitle"><h3>推荐产品</h3></div>
+					<ul class="tabs">
+						  <li><a href="#tabcontent1"><img src="images/icons/icon_1.png" width="51" height="42" alt="" /></a></li>
+						  <li><a href="#tabcontent2"><img src="images/icons/icon_2.png" width="51" height="42" alt="" /></a></li>
+						  <li><a href="#tabcontent3"><img src="images/icons/icon_3.png" width="51" height="42" alt="" /></a></li>
+					</ul>
+
+					<div class="tabcontent">
+						<div class="inner">
+						<img src="images/temp/temp_img_1.jpg" alt="" width="230" height="143" class="alignleft" />
+						<h3>Creative webdesign</h3>
+						<p>The point of using Lorem Ipsum is that it has a near “more-or-less” normal and distribution of letters.</p>
+						
+						<div class="clear"></div>
+						</div>
+					</div>
+					<div class="tabcontent">
+						<div class="inner">
+						<img src="images/temp/temp_img_2.jpg" alt="" width="230" height="143" class="alignleft" />
+						<h3>Apps for Mobile phones</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod . <a href="#tabcontent1">Jump to first tab.</a></p>
+						<div class="clear"></div>
+						</div>
+					</div>
+					<div class="tabcontent">
+						<div class="inner">
+						<img src="images/temp/temp_img_3.jpg" alt="" width="230" height="143" class="alignright" />
+						<h3>Statistics</h3>
+						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+						
+						<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<!--/ tab box -->
+			</div>
+		</div>
+	
+		<div class="col col_1_2">
+			<div class="inner">
+				
+				<!-- tab box -->
+				<div class="tabBox">
+					<div class="tabTitle"><h3>解决方案</h3></div>
+					<ul class="tabs">
+						  <li><a href="#tabcontent1"><img src="images/icons/icon_5.png" width="51" height="42" alt="" /></a></li>
+						  <li><a href="#tabcontent2"><img src="images/icons/icon_4.png" width="51" height="42" alt="" /></a></li>
+						  <li><a href="#tabcontent3"><img src="images/icons/icon_6.png" width="51" height="42" alt="" /></a></li>
+					</ul>
+
+					<div class="tabcontent">
+						<div class="inner">
+						<img src="images/temp/temp_img_3.jpg" alt="" width="230" height="143" class="alignleft" />
+						<h3>Apps for Mobile phones</h3>
+						<p>The point of using Lorem Ipsum is that it has a near “more-or-less” normal and distribution of letters.</p>
+						
+						<div class="clear"></div>
+						</div>
+					</div>
+					<div class="tabcontent">
+						<div class="inner">
+						<h3>Everything for your need!</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+						<div class="clear"></div>
+						</div>
+					</div>
+					<div class="tabcontent">
+						<div class="inner">
+						<img src="images/temp/temp_img_2.jpg" alt="" width="230" height="143" class="alignleft" />
+						<h3>Weather</h3>
+						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+						
+						<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<!--/ tab box -->
+			</div>
+		</div>
 		<div class="clear"></div>
+		
+		<div class="divider_space"></div>
+		
+		<div class="col col_1_2">
+			<div class="inner">
+				22222222222222222<br/>
+				22222222222222222<br/>
+				22222222222222222<br/>
+				22222222222222222<br/>
+				22222222222222222<br/>
+			</div>
+		</div>
+		<div class="col col_1_2">
+			<div class="inner">
+				22222222222222222<br/>
+				22222222222222222<br/>
+				22222222222222222<br/>
+				22222222222222222<br/>
+				22222222222222222<br/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		
 	  </div>	
 	</div>
 	<!--/ middle body -->   

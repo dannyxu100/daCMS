@@ -23,7 +23,7 @@
 	
 	/** 获取文章评论信息 **/
 	$db->paramclear();
-	$db->param(":c_type", "ARTICLE");
+	$db->param(":c_type", "ARTICLE_COMMENT");
 	$db->param(":c_cid", $aid);
 	//记录总数
 	$sql = "select count(c_id) as total from web_comment where c_type=:c_type and c_cid=:c_cid";

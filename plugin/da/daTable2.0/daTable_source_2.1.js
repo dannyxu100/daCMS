@@ -455,7 +455,7 @@ var daTable = (function(){
 			if( !isAppOrIns ){
 				this.tbObj.style.display = "none";
 				if( "undefined" != typeof daFx )
-					da(this.tbObj).fadeIn(500);
+					da(this.tbObj).show();
 				else
 					this.tbObj.style.display = "";
 			}

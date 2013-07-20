@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 20:07:03
+<?php /* Smarty version Smarty-3.1.13, created on 2013-07-07 19:12:45
          compiled from "productlist.htm" */ ?>
-<?php /*%%SmartyHeaderCode:1743051c987e74934c1-94957004%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:300051d94d2de67cc6-41756075%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1743051c987e74934c1-94957004',
+  'nocache_hash' => '300051d94d2de67cc6-41756075',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51c987e7673cd7_97041682',
+  'unifunc' => 'content_51d94d2e118384_69127979',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51c987e7673cd7_97041682')) {function content_51c987e7673cd7_97041682($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if ($_valid && !is_callable('content_51d94d2e118384_69127979')) {function content_51d94d2e118384_69127979($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title><?php echo fn_title(array('t1'=>$_smarty_tpl->tpl_vars['producttype']->value['pt_name']),$_smarty_tpl);?>

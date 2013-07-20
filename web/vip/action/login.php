@@ -1,16 +1,17 @@
-<?php
+﻿<?php
 	//验证登陆信息
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/db.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
 	// error_reporting(-1);
 
 	date_default_timezone_set('ETC/GMT-8');
-
+	
 	if(!isset($_POST['v_code']) || !isset($_POST['v_pwd']) ){
 		echo "请输入账号、密码。";
 		return;
 	}
 	
+	$backurl=isset($_POST["backurl"])?$_POST["backurl"]:"";
 	$code=$_POST['v_code'];
 	$pwd=md5($_POST['v_pwd']);
 	
@@ -50,4 +51,7 @@
 		
 	//登录成功
 	echo "登录成功";
+	if( $backurl ){
+		header("location:".$backurl);
+	}
 ?>

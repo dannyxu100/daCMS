@@ -22,20 +22,30 @@
 	
 	<div class="commentLoginBox clearfix">
 		<div class="commentLogin clearfix" id="cmtInput">
-			<form action="{fn_urlstatic url='' }" method="post" id="spec_frm">
-				<input type="hidden" name="backurl" id="specBackUrl" value="{$url}">
+			<form action="{fn_urlstatic url='/web/vip/action/login.php' }" method="post">
+				{if "" == $puname}
 				<div id="specLogin">
-					
-					<label style="vertical-align:middle">用户名</label><input id="spec_uname" name="uname"/>&nbsp;&nbsp;
-					<label style="vertical-align:middle">密码</label><input id="spec_pass" type="password" name="pass" />
+				{else}
+				<div id="specLogin" style="display:none;">
+				{/if}
+					<label style="vertical-align:middle">用户名</label><input id="v_code" name="v_code"/>&nbsp;&nbsp;
+					<label style="vertical-align:middle">密码</label><input type="password" id="v_pwd" name="v_pwd" />
+					<input type="hidden" name="backurl" id="specBackUrl" value="{$url}">
 					
 					<input type="submit" id="cmtfrmbutton" class="btn" value="登 录" />
 					<input type="button" class="btn" value="注 册" />
 				</div>
-				<div class="userInfo" id="specLogined"><em>{$puname}</em> ( {$pucode} ) </div>
+				<div class="userInfo" id="specLogined">
+					{if "" == $puname}
+						您尚未登录
+					{else}
+						<em>{$puname}</em> ( {$pucode} ) 
+					{/if}
+				</div>
 			</form>
 		
-			<form action="{fn_urlstatic url='action/comment_add_item.php' }" method="post" target="_blank">
+			{if $puname}
+			<form action="{fn_urlstatic url='action/comment_add_item.php' }" method="post">
 				<textarea name="c_content" id="c_content" class="content"></textarea>
 				
 				<input type="hidden" name="srcid" id="srcid" value="{$article.a_id}"/>
@@ -43,6 +53,7 @@
 				<input type="hidden" name="srcurl" id="srcurl"  value="{$url}"/>
 				<input type="submit" id="submitForm" class="btn" value="发表评论" />
 			</form>
+			{/if}
 		
 		</div>
 		

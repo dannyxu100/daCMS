@@ -1,0 +1,44 @@
+﻿<div>
+	<div style="float:left; margin-right:20px; border:1px solid #ccc; background:#fff; overflow:hidden;">
+		<img src="{$product.p_img}" style="width:250px; height:300px; border:0px;"/>
+	</div>
+	<div style="float:left; width:300px; padding:2px; overflow:hidden; font-size:12px" >
+		<h2 style="font-weight:bold;">{$product.p_name}</h2>
+		<div style="color:#c00; font-weight:bold; margin-bottom:30px;">{$product.p_abstract}</div>
+		<div style="margin:10px 0px;">
+			<span style="display:inline-block; color:#aaa; width:80px;">市场价:</span>
+			<span style="font-weight:bold;text-decoration:line-through;">￥{$product.p_marketprice}</span>
+		</div>
+		<div style="margin:10px 0px;">
+			<span style="display:inline-block; color:#aaa; width:80px;">销售价:</span>
+			<span style="font-weight:bold; font-size:26px; color:#c00">￥{$product.p_saleprice}</span>
+		</div>
+		<div style="margin:10px 0px;">
+			<span style="display:inline-block; color:#aaa; width:80px;">编号:</span>
+			<span style="">{$product.p_code}</span>
+		</div>
+		<div style="margin:10px 0px;">
+			<span style="display:inline-block; color:#aaa; width:80px;">货号:</span>
+			<span style="font-weight:bold;">{$product.p_no}</span>
+		</div>
+		<div style="margin:10px 0px;">
+			<span style="display:inline-block; color:#aaa; width:80px;">库存:</span>
+			<span style="">{$product.p_stock}</span>
+		</div>
+		<div style="margin:10px 0px;">
+			<span style="display:inline-block; color:#aaa; width:80px;">单位:</span>
+			<span style="">{$product.p_unit}</span>
+		</div>
+		<div style="margin:10px 0px;">
+			<span style="display:inline-block; color:#aaa; width:80px;">重量:</span>
+			<span style="">{$product.p_weight}</span>
+		</div>
+	</div>
+	
+	<div style="clear:both; margin:20px 0px 10px 0px; padding:5px 0px; border-bottom:2px solid #666; font-size:18px; font-weight:bold;">商品详细信息</div>
+	<div class="text">
+		{$product.p_content}
+	</div>
+</div>
+
+

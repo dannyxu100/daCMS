@@ -37,7 +37,8 @@
 	$smarty->template_dir = $rootdir."/web/";
 	$smarty->compile_dir = $rootdir."/web_template_c/";
 	$smarty->config_dir = $rootdir."/smarty_config/";
-	$smarty->cache_dir = $rootdir."/smarty_cache/"; 
+	$smarty->cache_dir = $rootdir."/smarty_cache/";
+	
 	$smarty->caching = false;
 	
 	

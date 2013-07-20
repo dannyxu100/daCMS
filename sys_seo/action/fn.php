@@ -67,7 +67,6 @@
 	*/
 	function fn_get_content($url){
 		$snoopy = new Snoopy ;
-		$snoopy->fetch( $url );
 		$snoopy->proxy_host ="http://www."+ randchar() +".com";		//设置代理
 		$snoopy->proxy_port = "80";
 		$snoopy->rawheaders["X_FORWARDED_FOR"] = randip();			//伪装ip
@@ -75,6 +74,7 @@
 		// $snoopy->rawheaders["Pragma"] = "no-cache";					//cache 的http头信息
 		// $snoopy->agent = "(compatible; MSIE 4.01; MSN 2.5; AOL 4.0; Windows 98)";		//模拟浏览器
 		$snoopy->agent = "(compatible; Googlebot/2.1; +http://www.google.com/bot.html)";	//模拟爬虫(避免IP被屏)
+		$snoopy->fetch( $url );
 		
 		$content = $snoopy->results;
 		

@@ -463,7 +463,7 @@ hr{
 	padding-top:10px;}
 
 .divider{
-	background:url(../images/divider_line.gif) bottom repeat-x;
+	background:url(/web/images/divider_line.gif) bottom repeat-x;
 	padding-top:22px;
 	margin-bottom:50px;}
 
@@ -593,7 +593,7 @@ button::-moz-focus-inner {
 	padding: 0;}
 	
 input[type="reset"],input[type="submit"],input[type="button"], button{
-	background:url(../images/buttons_submit.gif) 0 0 repeat-x;
+	background:url(/web/images/buttons_submit.gif) 0 0 repeat-x;
 	border:none;
 	color:#2f3850;
 	margin:10px 0;
@@ -627,7 +627,7 @@ button:hover,button:focus{
 /*----------------------------------------------*/
 
 .button_link, .sidebar .button_link, .fancy_button, .gl_col_1 .gallery-more a{
-	background:url(../images/buttons_bg.png) no-repeat scroll right -41px transparent;
+	background:url(/web/images/buttons_bg.png) no-repeat scroll right -41px transparent;
 	color:#2f3850;
 	text-shadow:#f2f2f2 0 1px 1px; 
 	display:inline-block;
@@ -638,7 +638,7 @@ button:hover,button:focus{
 	font-size:18px;}
 
 .button_link span, .fancy_button span, .gl_col_1 .gallery-more a span{
-	background:url(../images/buttons_bg.png) no-repeat scroll left 0 transparent;
+	background:url(/web/images/buttons_bg.png) no-repeat scroll left 0 transparent;
 	display:block;
 	line-height:20px;}
 
@@ -657,10 +657,10 @@ button:hover,button:focus{
 	padding:5px 0px 16px 30px;}
 	
 .button_link.large_button{
-	background:url(../images/buttons_large_bg.png) no-repeat scroll right -52px transparent;}
+	background:url(/web/images/buttons_large_bg.png) no-repeat scroll right -52px transparent;}
 	
 .button_link.large_button span{
-	background:url(../images/buttons_large_bg.png) no-repeat scroll left 0px transparent;
+	background:url(/web/images/buttons_large_bg.png) no-repeat scroll left 0px transparent;
 	line-height:18px;}
 
 .button_link.large_button:active {
@@ -766,7 +766,7 @@ button:hover,button:focus{
 	z-index:2000;}
 
 .topnav {
-	background:url(../images/topnav_bg.png) 0 0 repeat-x;
+	background:url(/web/images/topnav_bg.png) 0 0 repeat-x;
 	height:90px;}
 
 .topnav .container_12  {
@@ -823,20 +823,20 @@ button:hover,button:focus{
 .topmenu .current-menu-parent a,
 .topmenu .current-menu-ancestor a
 {
-	background:url(../images/topm_bg_left.png) top left no-repeat}
+	background:url(/web/images/topm_bg_left.png) top left no-repeat}
 
 .topmenu li:hover a span,
 .topmenu .current-menu-item a span,
 .topmenu .current-menu-parent a span,
 .topmenu .current-menu-ancestor a span
 {
-	background:url(../images/topm_bg_right.png) top right no-repeat}
+	background:url(/web/images/topm_bg_right.png) top right no-repeat}
 
 .topmenu li.parent:hover a {
-	background:url(../images/topm_bg2_left.png) top left no-repeat}
+	background:url(/web/images/topm_bg2_left.png) top left no-repeat}
 
 .topmenu li.parent:hover a span {
-	background:url(../images/topm_bg2_right.png) top right no-repeat}
+	background:url(/web/images/topm_bg2_right.png) top right no-repeat}
 
 .topmenu li:hover {
 	position: relative;
@@ -878,7 +878,7 @@ button:hover,button:focus{
 	list-style:none;
 	border-bottom:1px solid #2a2a2a;
 	clear:both;
-	background:url(../images/topm_sub_bg.png) 0 0;
+	background:url(/web/images/topm_sub_bg.png) 0 0;
 	float:left;}
 	
 .topmenu li ul li a {
@@ -902,34 +902,34 @@ button:hover,button:focus{
 
 .topmenu li:hover ul li,
 .topmenu li:hover ul li a:hover {
-	background:url(../images/topm_sub_bg.png) 0 0;}
+	background:url(/web/images/topm_sub_bg.png) 0 0;}
 
 .topmenu li:hover ul li.first {
-	background:url(../images/topm_bg_first.png) right top no-repeat;}
+	background:url(/web/images/topm_bg_first.png) right top no-repeat;}
 .topmenu li:hover ul li.first a:hover {
-	background:url(../images/topm_bg_first.png) right top no-repeat;}
+	background:url(/web/images/topm_bg_first.png) right top no-repeat;}
 
 .topmenu li:hover ul li.last {
-	background:url(../images/topm_bg_last.png) left bottom no-repeat;
+	background:url(/web/images/topm_bg_last.png) left bottom no-repeat;
 	border-bottom:none}
 .topmenu li:hover ul li.last a:hover {
-	background:url(../images/topm_bg_last.png) left bottom no-repeat;}
+	background:url(/web/images/topm_bg_last.png) left bottom no-repeat;}
 
 .topmenu li.parent:hover ul a span {
-	background:url(../images/ico_arrow_blue.gif) 20px 16px no-repeat}
+	background:url(/web/images/ico_arrow_blue.gif) 20px 16px no-repeat}
 
 .topmenu li.parent:hover ul li.parent a span {
-	background:url(../images/ico_arrow_blue.gif) 20px 16px no-repeat}
+	background:url(/web/images/ico_arrow_blue.gif) 20px 16px no-repeat}
 
 .topmenu li.parent:hover ul li.parent:hover a span  {
-	background:url(../images/ico_arrow_blue_down.gif) 20px 16px no-repeat}
+	background:url(/web/images/ico_arrow_blue_down.gif) 20px 16px no-repeat}
 
 .topmenu li.parent:hover ul li.open a span  {
-	background:url(../images/ico_arrow_blue_down.gif) 20px 16px no-repeat}
+	background:url(/web/images/ico_arrow_blue_down.gif) 20px 16px no-repeat}
 
 .topmenu li.parent:hover ul li.parent:hover ul li a span,
 .topmenu li.parent:hover ul li.parent ul li a span {
-	background:url(../images/ico_dot_blue.gif) 38px 14px no-repeat;
+	background:url(/web/images/ico_dot_blue.gif) 38px 14px no-repeat;
 	padding:7px 5px 7px 52px}
 
 .topmenu li.parent:hover ul li.parent:hover ul li a,
@@ -984,7 +984,7 @@ button:hover,button:focus{
 	display:block;
 	width:20px;
 	height:31px;
-	background:url(../images/slider_arrows.png) 0 0 no-repeat;
+	background:url(/web/images/slider_arrows.png) 0 0 no-repeat;
 	text-indent:-9999px;
 	border:0;}
 
@@ -994,7 +994,7 @@ button:hover,button:focus{
 	left:-31px}
 	
 .sText .next {
-	background:url(../images/slider_arrows.png) -20px 0 no-repeat;
+	background:url(/web/images/slider_arrows.png) -20px 0 no-repeat;
 	right:-29px;}
 
 .sText .next:hover {
@@ -1005,7 +1005,7 @@ button:hover,button:focus{
 	width:640px;
 	height:360px;
 	padding:17px 2px 35px 2px;
-	background:url(../images/slider_window_box.png) 0 0 no-repeat;
+	background:url(/web/images/slider_window_box.png) 0 0 no-repeat;
 	text-align:center;
 	overflow:hidden}
 
@@ -1014,7 +1014,7 @@ button:hover,button:focus{
 	width:886px;
 	height:360px;
 	padding:17px 2px 35px 2px;
-	background:url(../images/slider_window_box_fullw.png) 0 0 no-repeat;
+	background:url(/web/images/slider_window_box_fullw.png) 0 0 no-repeat;
 	text-align:center;
 	overflow:hidden}
 
@@ -1058,7 +1058,7 @@ button:hover,button:focus{
 	font-weight:normal;}
 
 .slider-button {
-	background:url(../images/slider_button.png) no-repeat;
+	background:url(/web/images/slider_button.png) no-repeat;
 	width:155px;
 	height:29px;
 	line-height:24px;
@@ -1086,7 +1086,7 @@ button:hover,button:focus{
 	margin:0 auto;
 	position:relative;
 	top:25px;
-	background:url(../images/slider_images_box.png) 0 0 no-repeat;}
+	background:url(/web/images/slider_images_box.png) 0 0 no-repeat;}
 
 .sImages2 .sliderBody {
 	position:relative;
@@ -1124,7 +1124,7 @@ button:hover,button:focus{
 	display:block;
 	width:20px;
 	height:31px;
-	background:url(../images/slider_arrows.png) 0 0 no-repeat;
+	background:url(/web/images/slider_arrows.png) 0 0 no-repeat;
 	text-indent:-9999px;
 	border:0;}
 
@@ -1134,7 +1134,7 @@ button:hover,button:focus{
 	left:-31px}
 	
 .sImages2 .next {
-	background:url(../images/slider_arrows.png) -20px 0 no-repeat;
+	background:url(/web/images/slider_arrows.png) -20px 0 no-repeat;
 	right:-29px;}
 
 .sImages2 .next:hover {
@@ -1151,13 +1151,13 @@ button:hover,button:focus{
 	margin:0 auto;
 	position:relative;
 	top:14px;
-	background:url(../images/slider_images_controls_bg.png) left bottom no-repeat;
+	background:url(/web/images/slider_images_controls_bg.png) left bottom no-repeat;
 	text-align:center;
 	padding:0 55px 0 25px;}
 
 .sImages2 .pagination {
 	height:25px;
-	background:url(../images/slider_images_controls_bg.png) right top no-repeat;
+	background:url(/web/images/slider_images_controls_bg.png) right top no-repeat;
 	margin:0 auto;
 	padding:0 35px 0 20px;}
 
@@ -1176,11 +1176,11 @@ button:hover,button:focus{
 	margin:0 5px 0 5px;
 	width:14px;
 	height:14px;
-	background:url(../images/slider_images_dots.png) 0 0 no-repeat;
+	background:url(/web/images/slider_images_dots.png) 0 0 no-repeat;
 }
 	
 .sImages2 .pagination .active a{
-	background:url(../images/slider_images_dots.png) 0 -14px no-repeat;}
+	background:url(/web/images/slider_images_dots.png) 0 -14px no-repeat;}
 
 /* Header Slider (Nivo Image Viewer) */
 .imageSlider {
@@ -1192,7 +1192,7 @@ button:hover,button:focus{
 	margin:0 auto;
 	position:relative;
 	top:25px;
-	background:url(../images/slider_images_box.png) 0 0 no-repeat;}
+	background:url(/web/images/slider_images_box.png) 0 0 no-repeat;}
 
 .sImages .sliderBody img {
 	position:absolute;
@@ -1260,7 +1260,7 @@ button:hover,button:focus{
 	display:block;
 	width:20px;
 	height:31px;
-	background:url(../images/slider_arrows.png) 0 0 no-repeat;
+	background:url(/web/images/slider_arrows.png) 0 0 no-repeat;
 	text-indent:-9999px;
 	border:0;}
 
@@ -1268,7 +1268,7 @@ a.nivo-prevNav {
 	left:-39px}
 	
 a.nivo-nextNav {
-	background:url(../images/slider_arrows.png) -20px 0 no-repeat;
+	background:url(/web/images/slider_arrows.png) -20px 0 no-repeat;
 	right:-39px;}
 
 a.nivo-prevNav:hover {
@@ -1282,14 +1282,14 @@ a.nivo-nextNav:hover {
 	margin:0 auto;
 	position:relative;
 	top:376px;
-	background:url(../images/slider_images_controls_bg.png) left bottom no-repeat;
+	background:url(/web/images/slider_images_controls_bg.png) left bottom no-repeat;
 	text-align:center;
 	width:210px;
 	padding-left:25px}
 
 .nivo-controlNav {
 	height:25px;
-	background:url(../images/slider_images_controls_bg.png) right top no-repeat;
+	background:url(/web/images/slider_images_controls_bg.png) right top no-repeat;
 	padding:0 35px 0 10px;}
 
 .nivo-controlNav a {
@@ -1301,24 +1301,24 @@ a.nivo-nextNav:hover {
 	margin:2px 5px 0 5px;
 	width:14px;
 	height:14px;
-	background:url(../images/slider_images_dots.png) 0 0 no-repeat;
+	background:url(/web/images/slider_images_dots.png) 0 0 no-repeat;
 }
 	
 .nivo-controlNav a.active {
-	background:url(../images/slider_images_dots.png) 0 -14px no-repeat;}
+	background:url(/web/images/slider_images_dots.png) 0 -14px no-repeat;}
 	
 /*----------------------------------------------*/
 /* 2.3 Welcome Bar */
 /*----------------------------------------------*/
 .welcome_bar {
-	background:url(../images/title_bar_bg.gif) 0 0 repeat-x;
+	background:url(/web/images/title_bar_bg.gif) 0 0 repeat-x;
 	clear:both;
 	margin-bottom:44px;
 	position:relative;
 	z-index:10}
 	
 .bar {
-	background:url(../images/title_bar_shadow.gif) 0 106px no-repeat;
+	background:url(/web/images/title_bar_shadow.gif) 0 106px no-repeat;
 	height:88px;
 	padding:21px 0 0 0;
 	position:relative;
@@ -1361,7 +1361,7 @@ a.nivo-nextNav:hover {
 .gl_col_3 .gallery-more a,
 .gl_col_4 .gallery-more a{
 	color:#ff6600;
-	background:url(../images/ico_plus.png) left center no-repeat;
+	background:url(/web/images/ico_plus.png) left center no-repeat;
 	padding-left:25px;
 	line-height:25px;
 	margin:10px 0 10px 0;
@@ -1388,7 +1388,7 @@ a.nivo-nextNav:hover {
 
 .breadcrumbs a {
 	color:#ff6600;
-	background:url(../images/ico_arrow_dark.gif) right 5px no-repeat;
+	background:url(/web/images/ico_arrow_dark.gif) right 5px no-repeat;
 	padding-right:14px;
 	margin-right:3px}
 
@@ -1411,7 +1411,7 @@ a.nivo-nextNav:hover {
 	width:233px;
 	height:29px;
 	padding:8px 0 8px 23px;
-	background:url(../images/search_form_bg.png) no-repeat;
+	background:url(/web/images/search_form_bg.png) no-repeat;
 	margin-top:11px}
 	
 .bar .widget_search #s {
@@ -1424,7 +1424,7 @@ a.nivo-nextNav:hover {
 	line-height:29px}
 
 .bar .widget_search #searchsubmit {
-	background:url(../images/search_submit.png) no-repeat;
+	background:url(/web/images/search_submit.png) no-repeat;
 	width:27px;
 	height:29px;
 	text-indent:-100px}
@@ -1468,11 +1468,11 @@ a.nivo-nextNav:hover {
 	display:none;}
 
 #sidebar_right .container_12 {
-	background:url(../images/sidebar_right_bg.gif) right 0 no-repeat;
+	background:url(/web/images/sidebar_right_bg.gif) right 0 no-repeat;
 	min-height:614px}
 
 #sidebar_left .container_12 {
-	background:url(../images/sidebar_left_bg.gif) left 0 no-repeat;
+	background:url(/web/images/sidebar_left_bg.gif) left 0 no-repeat;
 	min-height:614px}
 
 /*----------------------------------------------*/
@@ -1499,18 +1499,18 @@ a.nivo-nextNav:hover {
 /* 2.8 Footer */
 /*----------------------------------------------*/
 .footer {
-	background:url(../images/footer_bg.gif);
+	background:url(/web/images/footer_bg.gif);
 	color:#6c727b;
 	font-size:13px;
 	position:relative}
 
 .footer_bg {
-	background:url(../images/footer_top.gif) top repeat-x}
+	background:url(/web/images/footer_top.gif) top repeat-x}
 
 .footer .container_12 {
 	min-height:250px;
 	padding:21px 0 20px 0;
-	background:url(../images/footer_highlight.png) 0 0 no-repeat}
+	background:url(/web/images/footer_highlight.png) 0 0 no-repeat}
 
 .footer .col h3, .footer h3 {
 	font-size:21px;
@@ -1529,12 +1529,12 @@ a.nivo-nextNav:hover {
 	
 .footer ul li{
 	list-style:none;
-	background:url(../images/ico_arrow_blue.gif) 0 6px no-repeat;
+	background:url(/web/images/ico_arrow_blue.gif) 0 6px no-repeat;
 	padding-left:15px;
 	margin-bottom:5px}
 
 .link-twitter, .link-fb, .link-da, .link-rss, .link-flickr {
-	background-image:url(../images/social_icons.png);
+	background-image:url(/web/images/social_icons.png);
 	height:28px;
 	width:28px;
 	text-indent:-999px;
@@ -1655,14 +1655,14 @@ a.nivo-nextNav:hover {
 	font-weight:normal;
 	font-style:italic;
 	color:#ff6600;
-	background:url(../images/divider_line.gif) bottom repeat-x;
+	background:url(/web/images/divider_line.gif) bottom repeat-x;
 	margin:10px 0 18px}
 
 .container_12 blockquote p {
 	margin:0}
 
 .container_12 blockquote .inner {
-	background:url(../images/divider_line.gif) top repeat-x;
+	background:url(/web/images/divider_line.gif) top repeat-x;
 	padding:11px 0 16px}
 
 /* Framed boxes */
@@ -1711,13 +1711,13 @@ a.nivo-nextNav:hover {
 /* Toggle Contents */
 .toggle, h3.toggle {
 	cursor:pointer;
-	background:url(../images/toggle_plus.gif) 98% 5px #d0d0d0 no-repeat;
+	background:url(/web/images/toggle_plus.gif) 98% 5px #d0d0d0 no-repeat;
 	padding:10px;
 	line-height:inherit;
 	margin:20px 0}
 
 .toggle.active {
-	background:url(../images/toggle_minus.gif) 98% 5px #d0d0d0 no-repeat;}
+	background:url(/web/images/toggle_minus.gif) 98% 5px #d0d0d0 no-repeat;}
 
 .toggle_content {
 	margin-left:10px;
@@ -1752,7 +1752,7 @@ a.nivo-nextNav:hover {
 	margin:5px 5px 0 0}
 
 .payments {
-	background: url(../images/icon_security.png) 0 0 no-repeat;
+	background: url(/web/images/icon_security.png) 0 0 no-repeat;
 	padding-left:40px;
 	color:#2b2b2b;
 	line-height:1.2em;
@@ -1769,7 +1769,7 @@ a.nivo-nextNav:hover {
 /*----------------------------------------------*/
 .tabBox {
 	position:relative;
-	background:url(../images/tabs_bg.jpg) left top no-repeat;}
+	background:url(/web/images/tabs_bg.jpg) left top no-repeat;}
 
 .text .tabBox {
 	width:100%}
@@ -1778,7 +1778,7 @@ a.nivo-nextNav:hover {
 .text .tabBox .tabs{
 	float:right;
 	height:42px;
-	background:url(../images/tabs_bg.jpg) right top;
+	background:url(/web/images/tabs_bg.jpg) right top;
 	margin:0 !important;
 	padding:0 8px 0 0;
 	line-height:40px;}
@@ -1796,7 +1796,7 @@ a.nivo-nextNav:hover {
 	height:42px;}
 
 .tabBox .tabs .current {
-	background:url(../images/tabs_active_bg.gif) 0 0 no-repeat}
+	background:url(/web/images/tabs_active_bg.gif) 0 0 no-repeat}
 
 .tabTitle {
 	float:left;
@@ -1861,7 +1861,7 @@ a.nivo-nextNav:hover {
 	float:left;
 	display:block;
 	text-align:center;
-	background:url(../images/framed_tab_bg_right.gif) right 0 no-repeat;
+	background:url(/web/images/framed_tab_bg_right.gif) right 0 no-repeat;
 	height:39px;
 	margin:0 3px -1px 0;
 	line-height:36px}
@@ -1869,23 +1869,23 @@ a.nivo-nextNav:hover {
 .tabFrameBox .tabs li a {
 	display:block;
 	float:left;
-	background:url(../images/framed_tab_bg_left.gif) left 0 no-repeat;
+	background:url(/web/images/framed_tab_bg_left.gif) left 0 no-repeat;
 	padding:0 35px;
 	height:39px;
 	color:#000;}
 
 .tabFrameBox .tabs .current {
-	background:url(../images/framed_tab_bg_right.gif) right -39px no-repeat;
+	background:url(/web/images/framed_tab_bg_right.gif) right -39px no-repeat;
 	height:39px;
 	margin:0 3px -1px 0;}
 
 .tabFrameBox .tabs .current a {
-	background:url(../images/framed_tab_bg_left.gif) left -39px no-repeat;
+	background:url(/web/images/framed_tab_bg_left.gif) left -39px no-repeat;
 	color:#fff;
 	text-shadow:#40434c 0 2px 1px}
 
 .tabFrameBox .tabs .current a span {
-	background:url(../images/framed_tab_arrow.gif) center bottom no-repeat;
+	background:url(/web/images/framed_tab_arrow.gif) center bottom no-repeat;
 	display:block;
 	float:left;
 	height:39px;}
@@ -1912,21 +1912,21 @@ a.nivo-nextNav:hover {
 	
 .list_check li {
 	list-style:none;
-	background:url(../images/list_icon_check.png) 0 0 no-repeat;
+	background:url(/web/images/list_icon_check.png) 0 0 no-repeat;
 	margin:0 0 10px 0;
 	line-height:21px;
 	padding:0 0 0 35px}
 
 .list_delete li {
 	list-style:none;
-	background:url(../images/list_icon_delete.png) 0 0 no-repeat;
+	background:url(/web/images/list_icon_delete.png) 0 0 no-repeat;
 	margin:0 0 10px 0;
 	line-height:21px;
 	padding:0 0 0 35px}
 
 .list_arrows li {
 	list-style:none;
-	background:url(../images/list_icon_arrow.png) 5px 6px no-repeat;
+	background:url(/web/images/list_icon_arrow.png) 5px 6px no-repeat;
 	margin:0 0 10px 0;
 	line-height:21px;
 	padding:0 0 0 27px}
@@ -1945,21 +1945,21 @@ a.nivo-nextNav:hover {
 	background-repeat:no-repeat;}
 
 .download_box {
-	background-image:url(../images/download_box.png);
+	background-image:url(/web/images/download_box.png);
 	background-position:5px 15px;
 	padding:15px 10px 15px 55px;}
 	
 .info_box {
-	background-image:url(../images/info_box.png);
+	background-image:url(/web/images/info_box.png);
 	background-position:5px 15px;}
 	
 .warning_box {
-	background-image:url(../images/warrning_box.png);
+	background-image:url(/web/images/warrning_box.png);
 	background-position:10px 10px;	
 	padding:15px 10px 15px 65px}
 
 .note_box {
-	background-image:url(../images/note_box.png);
+	background-image:url(/web/images/note_box.png);
 	background-position:10px 10px;	
 	padding:15px 10px 15px 65px;
 	min-height:40px}
@@ -1972,6 +1972,7 @@ a.nivo-nextNav:hover {
 /*----------------------------------------------*/
 .minigallery-list {
 	position:relative;
+	margin-top:50px;
 	padding:10px 10px;}
 	
 .minigallery {
@@ -2003,18 +2004,18 @@ a.nivo-nextNav:hover {
 	top:55px;}
 
 .minigallery-list .prev {
-	background:url(../images/arrow_prev_next.png) 0 0 no-repeat;
+	background:url(/web/images/arrow_prev_next.png) 0 0 no-repeat;
 	left:10px}
 
 .minigallery-list .next {
-	background:url(../images/arrow_prev_next.png) 0 -14px no-repeat;
+	background:url(/web/images/arrow_prev_next.png) 0 -14px no-repeat;
 	right:10px}
 
 .minigallery-list .prev:hover {
-	background:url(../images/arrow_prev_next.png) -7px 0 no-repeat;}
+	background:url(/web/images/arrow_prev_next.png) -7px 0 no-repeat;}
 
 .minigallery-list .next:hover {
-	background:url(../images/arrow_prev_next.png) -7px -14px no-repeat;}
+	background:url(/web/images/arrow_prev_next.png) -7px -14px no-repeat;}
 
 .minigallery-list .disabled,
 .minigallery-list .disabled:hover{
@@ -2025,7 +2026,7 @@ a.nivo-nextNav:hover {
 /* 4.2 Quotes large box */
 /*----------------------------------------------*/
 .quoteBox-big {
-	background:url(../images/ico_quote.gif) 0 0 no-repeat;
+	background:url(/web/images/ico_quote.gif) 0 0 no-repeat;
 	padding-left:35px}
 
 .quote-title, .quote-author {
@@ -2047,7 +2048,7 @@ a.nivo-nextNav:hover {
 .quote-text {
 	color:#ff6600;
 	font-family:Georgia, "Times New Roman", Times, serif;
-	font-style:italic;
+	/*font-style:italic;*/
 	font-size:19px;
 	font-weight:normal;
 	line-height:29px;
@@ -2059,7 +2060,7 @@ a.nivo-nextNav:hover {
 .newsletterBox {
 	position:relative;
 	padding:10px 20px 20px 20px;
-	background:url(../images/newsletter_bg.gif) no-repeat;
+	background:url(/web/images/newsletter_bg.gif) no-repeat;
 	width:240px;
 	height:117px;}
 
@@ -2084,7 +2085,7 @@ a.nivo-nextNav:hover {
 
 .newsletterBox .ribbon {
 	position:absolute;
-	background:url(../images/ribbon_mail.png) no-repeat;
+	background:url(/web/images/ribbon_mail.png) no-repeat;
 	width:30px;
 	height:51px;
 	top:-4px;
@@ -2098,12 +2099,12 @@ a.nivo-nextNav:hover {
 	line-height:20px}
 	
 .newsletterBox .btn-submit {
-	background:url(../images/newsletter_input.gif) right no-repeat;
+	background:url(/web/images/newsletter_input.gif) right no-repeat;
 	width:36px;
 	height:36px;}
 	
 .newsletterBox .inputField {
-	background:url(../images/newsletter_input.gif) left no-repeat;
+	background:url(/web/images/newsletter_input.gif) left no-repeat;
 	width:184px;
 	height:20px;
 	padding:8px;}
@@ -2133,7 +2134,7 @@ table.table-pricing tbody td {
 
 table.table-pricing .table-row-title {
 	border:none;
-	background:url(../images/table_row_title2.gif) right top repeat-y;
+	background:url(/web/images/table_row_title2.gif) right top repeat-y;
 	color:#2d2f34;
 	font-weight:normal;
 	font-size:14px;
@@ -2141,10 +2142,10 @@ table.table-pricing .table-row-title {
 	padding-right:20px}
 
 table.table-pricing .even{
-	background:url(../images/table_row_title.gif) right top repeat-y}
+	background:url(/web/images/table_row_title.gif) right top repeat-y}
 	
 .table-td {
-	background:url(../images/table_td.gif) 0 0 repeat-x #f7f7f7;
+	background:url(/web/images/table_td.gif) 0 0 repeat-x #f7f7f7;
 	height:57px;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	color:#444e69;
@@ -2152,14 +2153,14 @@ table.table-pricing .even{
 	font-style:italic}
 
 .head_price{
-	background:url(../images/table_head_bg.gif) 0 0 repeat-x;
+	background:url(/web/images/table_head_bg.gif) 0 0 repeat-x;
 	width:194px;
 	height:53px;
 	position:relative;}
 
 .table-td-top {
 	width:194px;
-	background:url(../images/table_icons_bg.gif) 0 0 no-repeat;}
+	background:url(/web/images/table_icons_bg.gif) 0 0 no-repeat;}
 
 .table_head_title {
 	height:53px;
@@ -2170,10 +2171,10 @@ table.table-pricing .even{
 	font-size:20px;}
 
 table.table-pricing .first .table_head_title {
-	background:url(../images/table_corner_left.gif) left 0 no-repeat}
+	background:url(/web/images/table_corner_left.gif) left 0 no-repeat}
 
 table.table-pricing .last .table_head_title {
-	background:url(../images/table_corner_right.gif) right 0 no-repeat}
+	background:url(/web/images/table_corner_right.gif) right 0 no-repeat}
 
 .table_head_icon {
 	padding:23px 0 10px 0}
@@ -2211,7 +2212,7 @@ table.table-pricing td.last {
 	border-right:none;}
 
 .best_price {
-	background:url(../images/table_ribbon.png) 0 0 no-repeat;
+	background:url(/web/images/table_ribbon.png) 0 0 no-repeat;
 	height:100px;
 	width:194px;
 	position:absolute;
@@ -2219,10 +2220,10 @@ table.table-pricing td.last {
 	z-index:10}
 
 table.table-pricing tbody .tablecolhover {
-	background:url(../images/table_col_hover.png) 0 0 repeat-y}
+	background:url(/web/images/table_col_hover.png) 0 0 repeat-y}
 
 table.table-pricing .table-td-top.tablecolhover {
-	background:url(../images/table_icons_bg_hover.gif) 0 0 no-repeat;}
+	background:url(/web/images/table_icons_bg_hover.gif) 0 0 no-repeat;}
 
 /*----------------------------------------------*/
 /* 4.5 FAQ List  */
@@ -2248,7 +2249,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	font-size:23px;
 	color:#444e69;
 	text-shadow:#fff 0 1px 1px;
-	background:url(../images/divider_line.gif) bottom repeat-x;
+	background:url(/web/images/divider_line.gif) bottom repeat-x;
 	padding-bottom:20px;
 	margin-bottom:20px}
 
@@ -2301,7 +2302,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	padding:0}
 
 .contact-form .contact-submit, .contact-submit {
-	background:url(../images/btn_submit.png) no-repeat;
+	background:url(/web/images/btn_submit.png) no-repeat;
 	width:217px;
 	height:49px;
 	font-weight:normal}
@@ -2342,7 +2343,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	display:block;}
 
 .gallery-image:hover .borderImg{
-	background:url(../images/blank_hover.png);}
+	background:url(/web/images/blank_hover.png);}
 
 .ribbon-new {
 	display:block;
@@ -2351,7 +2352,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	right:5%;
 	z-index:10;
 	text-indent:-9999px;
-	background:url(../images/ribbon_new.png) no-repeat;
+	background:url(/web/images/ribbon_new.png) no-repeat;
 	width:30px;
 	height:53px;}
 
@@ -2360,7 +2361,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	position:absolute;
 	top:6px;
 	left:6px;
-	background:url(../images/blank_hover.png);
+	background:url(/web/images/blank_hover.png);
 	width:361px;
 	height:199px;
 	display:none;}
@@ -2501,13 +2502,13 @@ table.table-pricing .table-td-top.tablecolhover {
 	line-height:1.7em}
 	
 .contact-address {
-	background:url(../images/ico_arrow_blue2.gif) 36px 7px no-repeat;
+	background:url(/web/images/ico_arrow_blue2.gif) 36px 7px no-repeat;
 	padding-left:53px;
 	margin:15px 0;
 	font-weight:normal;}
 
 .contact-maillist {
-	background:url(../images/ico_arrow_blue2.gif) 36px 11px no-repeat;
+	background:url(/web/images/ico_arrow_blue2.gif) 36px 11px no-repeat;
 	font-weight:normal;
 	margin:15px 0;}
 
@@ -2516,7 +2517,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	padding:3px 0 3px 53px;}
 
 .contact-mail a:hover {
-	background:url(../images/sidebar_hover.gif) center top repeat-y}
+	background:url(/web/images/sidebar_hover.gif) center top repeat-y}
 
 .social-box {
 	background:#fff;
@@ -2545,42 +2546,42 @@ table.table-pricing .table-td-top.tablecolhover {
 	color:#5E2F7F}
 
 .social-mail {
-	background:url(../images/icons/contact_social.png) 0 0 no-repeat}
+	background:url(/web/images/icons/contact_social.png) 0 0 no-repeat}
 
 .social-twitter {
-	background:url(../images/icons/contact_social.png) 0 -24px no-repeat}
+	background:url(/web/images/icons/contact_social.png) 0 -24px no-repeat}
 
 .social-skype {
-	background:url(../images/icons/contact_social.png) 0 -48px no-repeat}
+	background:url(/web/images/icons/contact_social.png) 0 -48px no-repeat}
 
 .social-facebook {
-	background:url(../images/icons/contact_social.png) 0 -72px no-repeat}
+	background:url(/web/images/icons/contact_social.png) 0 -72px no-repeat}
 
 /*----------------------------------------------*/
 /* 6.2 Widget Categories  */
 /*----------------------------------------------*/
 .sidebar .widget ul, .sidebar .widget_categories ul {
 	margin:0;
-	background:url(../images/sidebar_list_line.gif) left top no-repeat;
+	background:url(/web/images/sidebar_list_line.gif) left top no-repeat;
 	padding-top:2px;
 	font-weight:normal}
 
 .sidebar .widget ul ul a, .sidebar .widget_categories ul ul a {
 	padding-left:70px;
-	background:url(../images/ico_arrow_blue2.gif) 56px 12px no-repeat;}
+	background:url(/web/images/ico_arrow_blue2.gif) 56px 12px no-repeat;}
 
 .sidebar .widget ul ul a:hover, .sidebar .widget_categories ul ul a:hover {
-	background:url(../images/sidebar_list_hover3.png) 0 0 no-repeat;}
+	background:url(/web/images/sidebar_list_hover3.png) 0 0 no-repeat;}
 	
 .sidebar .widget li, .sidebar .widget_categories li {
 	list-style:none;
-	background:url(../images/sidebar_list_line.gif) left bottom no-repeat;
+	background:url(/web/images/sidebar_list_line.gif) left bottom no-repeat;
 	padding-bottom:2px;
 	margin:0}
 
 .sidebar .widget li a, .sidebar .widget_categories li a {
 	display:block;
-	background:url(../images/ico_arrow_blue2.gif) 36px 12px no-repeat;
+	background:url(/web/images/ico_arrow_blue2.gif) 36px 12px no-repeat;
 	padding:5px 5px 5px 50px}
 	
 .recentcomments a {
@@ -2592,15 +2593,15 @@ table.table-pricing .table-td-top.tablecolhover {
 }
 
 .sidebar .widget li a:hover, .sidebar .widget_categories li a:hover {
-	background:url(../images/sidebar_list_hover.png) 0 0 no-repeat;
+	background:url(/web/images/sidebar_list_hover.png) 0 0 no-repeat;
 	color:#753573}
 
 #sidebar_left .sidebar .widget_categories li a, #sidebar_left .sidebar .widget li a{
-	background:url(../images/ico_arrow_blue2.gif) 16px 12px no-repeat;
+	background:url(/web/images/ico_arrow_blue2.gif) 16px 12px no-repeat;
 	padding:5px 5px 5px 30px}
 
 #sidebar_left .sidebar .widget_categories li a:hover, #sidebar_left .sidebar .widget li a:hover {
-	background:url(../images/sidebar_list_hover2.png) 0 0 no-repeat;
+	background:url(/web/images/sidebar_list_hover2.png) 0 0 no-repeat;
 	color:#753573}
 	
 /*============================================================================================*/
@@ -2612,7 +2613,7 @@ table.table-pricing .table-td-top.tablecolhover {
 .post-item {
 	text-shadow:#f9f9f9 0 1px 1px;
 	clear:both;
-	background:url(../images/divider_line.gif) bottom repeat-x;
+	background:url(/web/images/divider_line.gif) bottom repeat-x;
 	padding-bottom:35px;
 	margin-bottom:30px}
 
@@ -2636,7 +2637,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	margin:13px 0}
 
 .post-comments-icon {
-	background:url(../images/icon_comments.png) no-repeat;
+	background:url(/web/images/icon_comments.png) no-repeat;
 	width:28px;
 	height:33px;
 	padding:10px 8px 0 8px;
@@ -2701,7 +2702,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	clear:both;
 	display:block;
 	min-height:25px;
-	background:url(../images/divider_line.gif) bottom repeat-x;
+	background:url(/web/images/divider_line.gif) bottom repeat-x;
 	padding:0 0 2px 0;
 	color:#595959}
 
@@ -2709,7 +2710,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	padding:25px 0;}
 
 .comment-body:hover {
-	background:url(../images/comment_hover.jpg) center repeat-y}
+	background:url(/web/images/comment_hover.jpg) center repeat-y}
 	
 .avatar {
 	width:50px;
@@ -2740,14 +2741,14 @@ table.table-pricing .table-td-top.tablecolhover {
 	font-size:12px}
 
 .children .avatar {
-	background:url(../images/icon_reply.gif) 35px 15px no-repeat;
+	background:url(/web/images/icon_reply.gif) 35px 15px no-repeat;
 	padding-left:70px}
 
 .children .comment-text {
 	width:400px;}
 
 .children .comment {
-	background:url(../images/divider_line.gif) top repeat-x;
+	background:url(/web/images/divider_line.gif) top repeat-x;
 	padding-top:2px}
 
 .add-comment {
@@ -2815,7 +2816,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	font-size:12px}
 
 .btn-submit, .comment-form .btn-submit {
-	background:url(../images/btn_submit.png) no-repeat;
+	background:url(/web/images/btn_submit.png) no-repeat;
 	width:217px;
 	height:49px;
 	color:#444e69;
@@ -2827,7 +2828,7 @@ table.table-pricing .table-td-top.tablecolhover {
 /* 7.4 Pagination  */
 /*----------------------------------------------*/
 .pagination {
-	background:url(../images/pagination_bg.gif) 0 0 scroll no-repeat;
+	background:url(/web/images/pagination_bg.gif) 0 0 scroll no-repeat;
 	height: 45px;
     padding-bottom: 11px;
     padding-top: 10px;
@@ -2837,7 +2838,7 @@ table.table-pricing .table-td-top.tablecolhover {
 }
 
 .pagination .inner {
-	background:url(../images/pagination_bg.gif) right -45px scroll no-repeat;
+	background:url(/web/images/pagination_bg.gif) right -45px scroll no-repeat;
 	line-height: 45px;
 	padding: 0 15px;
 	padding-bottom: 11px;
@@ -2856,7 +2857,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	
 .pagination .page_prev, .pagination .page_next  {
 	/*text-indent:-9999px;*/
-	background:url(../images/pagination_prev.gif) left center no-repeat;
+	background:url(/web/images/pagination_prev.gif) left center no-repeat;
 	width:10px;
 	height:35px;
 	/*position:relative;*/
@@ -2867,7 +2868,7 @@ table.table-pricing .table-td-top.tablecolhover {
 	margin:0 20px 0 -20px}
 
 .pagination .page_next {
-	background:url(../images/pagination_next.gif) right center no-repeat;
+	background:url(/web/images/pagination_next.gif) right center no-repeat;
 	padding:0 0 0 12px;
 	margin:0 0 0 20px}
 

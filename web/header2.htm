@@ -1,16 +1,24 @@
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=5&amp;pos=right&amp;uid=6695170" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+</script>
+<!-- Baidu Button END -->
+
 <div class="header_img" id="aside2">
 <!-- header -->
     <div class="topnav" style="background:#222;">
     	<div class="container_12">
         
-			<div class="logo"><a href="/"><img src="{$smarty.const.WC_IMG}" alt="ENVISION" border="0" /></a></div>
+			<div class="logo"><a href="/"><img src="{$smarty.const.WC_IMG}" style="height:100%;" alt="ENVISION" border="0" /></a></div>
 
 			<!-- topmenu -->            
 			<div class="menu-header">
 				<ul class="topmenu">
 				<!-- 最多三级菜单 -->
 					{foreach from=$navset1 key=k item=nav1}
-						<li class="parent {if 0==$k } first current-menu-item {elseif count($navset1)-1 == $k } last {/if}">
+						<li class="parent {if 0==$k } first {elseif count($navset1)-1 == $k } last {/if}">
 							<a href="{fn_urlstatic url=$nav1.n_url}" alt="{$nav1.n_name}" target="{$nav1.n_urltarget}"><span>{$nav1.n_name}</span></a>
 							<ul class="sub-menu">
 							{foreach from=$navset2 key=k2 item=nav2}

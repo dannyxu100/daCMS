@@ -1,20 +1,22 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 20:06:58
+<?php /* Smarty version Smarty-3.1.13, created on 2013-07-07 20:36:33
          compiled from "D:\work\daCMS\web\header.htm" */ ?>
-<?php /*%%SmartyHeaderCode:899251c987e200cdb9-43004518%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:434351d94d449f5082-35429465%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '1c6d9f1114a323e2541d0cda3a8fc693bbab1e9e' => 
     array (
       0 => 'D:\\work\\daCMS\\web\\header.htm',
-      1 => 1371314112,
+      1 => 1373200579,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '899251c987e200cdb9-43004518',
+  'nocache_hash' => '434351d94d449f5082-35429465',
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_51d94d44cc63e6_77991854',
   'variables' => 
   array (
     'navset1' => 0,
@@ -28,16 +30,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'nav' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51c987e2523a58_63467349',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51c987e2523a58_63467349')) {function content_51c987e2523a58_63467349($_smarty_tpl) {?><div class="header_img" id="aside2">
+<?php if ($_valid && !is_callable('content_51d94d44cc63e6_77991854')) {function content_51d94d44cc63e6_77991854($_smarty_tpl) {?><!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=5&amp;pos=right&amp;uid=6695170" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+</script>
+<!-- Baidu Button END -->
+
+
+<div class="header_img" id="aside2">
 <!-- header -->
     <div class="topnav">
     	<div class="container_12">
         
 			<div class="logo"><a href="/"><img src="<?php echo @constant('WC_IMG');?>
-" alt="ENVISION" border="0" /></a></div>
+" style="height:100%;" alt="ENVISION" border="0" /></a></div>
 
 			<!-- topmenu -->
 			<div class="menu-header">
@@ -156,7 +165,6 @@ $_smarty_tpl->tpl_vars['nav3']->_loop = true;
     <div class="container_12">
         <div class="slider">
             	<div id="header_images">
-					<img src="/web/images/slider/image_1.jpg" class="header_image" color="#17191e" alt="" link="#link1" />
                     <img src="/web/images/slider/image_2.jpg" class="header_image" color="#054065" alt="" link="#link2" />
                     <img src="/web/images/slider/image_3.jpg" class="header_image" color="#3f0731" alt="" link="#link3" />
 				</div>

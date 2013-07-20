@@ -1,26 +1,24 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-28 01:11:02
+<?php /* Smarty version Smarty-3.1.13, created on 2013-07-07 20:28:44
          compiled from "D:\work\daCMS\web\article\_sys_articlecomment.htm" */ ?>
-<?php /*%%SmartyHeaderCode:1934551c993c4ceed31-92053264%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:755851d95efc5b9918-49622361%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'cfbfb872708e295a32c4c5fccc76eed9204bff4f' => 
     array (
       0 => 'D:\\work\\daCMS\\web\\article\\_sys_articlecomment.htm',
-      1 => 1372353061,
+      1 => 1373110636,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1934551c993c4ceed31-92053264',
+  'nocache_hash' => '755851d95efc5b9918-49622361',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51c993c4cff115_66098475',
   'variables' => 
   array (
-    'url' => 0,
     'puname' => 0,
+    'url' => 0,
     'pucode' => 0,
     'article' => 0,
     'pager_Total' => 0,
@@ -31,8 +29,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'pager_Next' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_51d95efc842b48_25658614',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51c993c4cff115_66098475')) {function content_51c993c4cff115_66098475($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\action\\smarty\\plugins\\modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_51d95efc842b48_25658614')) {function content_51d95efc842b48_25658614($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'D:\\work\\daCMS\\action\\smarty\\plugins\\modifier.date_format.php';
 ?>
 <div class="cmtBox clearfix" id="cmtBox">
 	<div class="tit02" id="banner">网友评论</div>
@@ -57,25 +57,35 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	
 	<div class="commentLoginBox clearfix">
 		<div class="commentLogin clearfix" id="cmtInput">
-			<form action="<?php echo fn_urlstatic(array('url'=>''),$_smarty_tpl);?>
-" method="post" id="spec_frm">
-				<input type="hidden" name="backurl" id="specBackUrl" value="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-">
+			<form action="<?php echo fn_urlstatic(array('url'=>'/web/vip/action/login.php'),$_smarty_tpl);?>
+" method="post">
+				<?php if (''==$_smarty_tpl->tpl_vars['puname']->value){?>
 				<div id="specLogin">
-					
-					<label style="vertical-align:middle">用户名</label><input id="spec_uname" name="uname"/>&nbsp;&nbsp;
-					<label style="vertical-align:middle">密码</label><input id="spec_pass" type="password" name="pass" />
+				<?php }else{ ?>
+				<div id="specLogin" style="display:none;">
+				<?php }?>
+					<label style="vertical-align:middle">用户名</label><input id="v_code" name="v_code"/>&nbsp;&nbsp;
+					<label style="vertical-align:middle">密码</label><input type="password" id="v_pwd" name="v_pwd" />
+					<input type="hidden" name="backurl" id="specBackUrl" value="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+">
 					
 					<input type="submit" id="cmtfrmbutton" class="btn" value="登 录" />
 					<input type="button" class="btn" value="注 册" />
 				</div>
-				<div class="userInfo" id="specLogined"><em><?php echo $_smarty_tpl->tpl_vars['puname']->value;?>
+				<div class="userInfo" id="specLogined">
+					<?php if (''==$_smarty_tpl->tpl_vars['puname']->value){?>
+						您尚未登录
+					<?php }else{ ?>
+						<em><?php echo $_smarty_tpl->tpl_vars['puname']->value;?>
 </em> ( <?php echo $_smarty_tpl->tpl_vars['pucode']->value;?>
- ) </div>
+ ) 
+					<?php }?>
+				</div>
 			</form>
 		
+			<?php if ($_smarty_tpl->tpl_vars['puname']->value){?>
 			<form action="<?php echo fn_urlstatic(array('url'=>'action/comment_add_item.php'),$_smarty_tpl);?>
-" method="post" target="_blank">
+" method="post">
 				<textarea name="c_content" id="c_content" class="content"></textarea>
 				
 				<input type="hidden" name="srcid" id="srcid" value="<?php echo $_smarty_tpl->tpl_vars['article']->value['a_id'];?>
@@ -86,6 +96,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 "/>
 				<input type="submit" id="submitForm" class="btn" value="发表评论" />
 			</form>
+			<?php }?>
 		
 		</div>
 		

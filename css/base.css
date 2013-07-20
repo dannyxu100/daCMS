@@ -129,7 +129,7 @@ a.bt_link{display:inline-block !important; *display:inline; zoom:1; line-height:
 
 /********** 相册 ***********/
 .piclist{color:#999;}
-.piclist .picitem{padding:2px; margin-bottom:2px; background:#ffc;}
+.piclist .picitem{padding:2px; margin-bottom:2px;}
 .piclist .picitem>a>img{float:left; width:100px; height:80px; margin:5px;}
 .piclist .picitem .inputs{float:left; height:120px; margin:5px;}
 .piclist .picitem .inputs>input{width:300px;margin:2px;}

@@ -8,7 +8,7 @@
 	
 	/***** 获取数据 *******/
 	$db = new DB("dacms");
-	$db->param(":c_type", "ARTICLE");		//属于文章评论
+	$db->param(":c_type", "ARTICLE_COMMENT");		//属于文章评论
 	
 	$db->param(":c_vid", fn_getcookie("puid", "COOKIE_FROM_DACMSVIP"));
 	$db->param(":c_date", $now);

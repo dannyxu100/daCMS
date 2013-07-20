@@ -1,8 +1,9 @@
 <?php
-	// include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
+	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/log.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/class/Xml.class.php";
 	include_once rtrim($_SERVER['DOCUMENT_ROOT'],"/")."/action/class/Snoopy.class.php";
-
+	error_reporting(-1);
+	
 	define('SITE_URL', (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''));
 	
 	/********************* 采集类 **********************/
@@ -49,11 +50,12 @@
 					}
 					
 				} else {
-					$html = self::cut_html($html, $config['url_start'], $config['url_end']);
-					// Log::out($html);
 					// Log::out( $config['codeset'] );
 					$encode = mb_detect_encoding($html, array("ASCII", "GB2312", "GBK", "UTF-8", "BIG5")); 		//判断编码方式
 					$html = self::array_iconv( $encode, 'UTF-8', $html );
+					
+					$html = self::cut_html($html, $config['url_start'], $config['url_end']);
+					// Log::out($html);
 					
 					// if ( !empty($config['codeset']) && ('UTF-8' != $config['codeset']) ) {
 						// $html = iconv( $config['codeset'], 'UTF-8', $html );
@@ -73,7 +75,7 @@
 					$data = array();
 					$temp = array();
 				
-					foreach ($out[1] as $k=>$v) {		
+					foreach ($out[1] as $k=>$v) {
 						// Log::out($out[2][$k].'-------'.$out[1][$k].'-------'.$out[0][$k]);
 						
 						if ( !preg_match('/href=[\'"]?([^\'" ]*)[\'"]?/i', $v, $match_out) ) {
@@ -247,10 +249,14 @@
 				if (in_array($page, array(0,2)) && !empty($config['content_page_start']) && !empty($config['content_page_end'])) {
 					$oldurl[] = $url;
 					$tmp[] = $data['content'];
+					
 					$page_html = self::cut_html($html, $config['content_page_start'], $config['content_page_end']);
+					// Log::out($page_html);
+					// Log::out($config['content_page_rule']);
+					// Log::out($page);
 					
 					//上下页模式
-					if ($config['content_page_rule'] == 2 && in_array($page, array(0,2)) && $page_html) {
+					if ($config['content_page_rule'] == "PREVNEXT" && in_array($page, array(0,2)) && $page_html) {
 						preg_match_all('/<a[^>]*href=[\'"]?([^>\'" ]*)[\'"]?[^>]*>([^<\/]*)<\/a>/i', $page_html, $out);
 						if (!empty($out[1]) && !empty($out[2])) {
 							foreach ($out[2] as $k=>$v) {
@@ -264,17 +270,22 @@
 							}
 						}
 					}
-
+					
 					//全部罗列模式
-					if ($config['content_page_rule'] == 1 && $page == 0 && $page_html) {
+					if ($config['content_page_rule'] == "NUMBER" && $page == 0 && $page_html) {
 						preg_match_all('/<a[^>]*href=[\'"]?([^>\'" ]*)[\'"]?/i', $page_html, $out);
+						
 						if (is_array($out[1]) && !empty($out[1])) {
-
 							$out = array_unique($out[1]);
+							
 							foreach ($out as $k=>$v) {
 								if ($out[1][$k] == '#') continue;
 								$v = self::url_check($v, $url, $config);
+								// Log::out($v);
+								
 								$results = self::get_content($v, $config, 1);
+								// Log::out($results['content']);
+								
 								if (!in_array($results['content'], $tmp)) $tmp[] = $results['content'];
 							}
 						}
@@ -292,7 +303,7 @@
 					
 					//下载内容中的图片到本地
 					if (empty($page) && !empty($data['content']) && $config['down_attachment'] == 1) {
-						$data['content'] = self::download_img_2('content', $data['content']);
+						$data['content'] = self::download_img_3($data['content'], $url, $config);
 					}
 				} 
 				
@@ -406,13 +417,82 @@
 		/**
 		 * 附件下载
 		 * Enter description here ...
+		 * @param $value 传入下载内容
+		 */
+		protected static function download_img_3($value, $baseurl, $config) {
+			//date("YmdHis") . '_' . rand(10000, 99999)
+			$dir = '/uploads/attached/image/'. date("Ymd") .'/';
+			
+			$uploadpath = $dir;
+			$uploaddir = rtrim($_SERVER['DOCUMENT_ROOT'],"/").$dir;
+			$string = self::new_stripslashes($value);
+
+			if(!preg_match_all("/(href|src)=([\"|']?)([^ \"'>]+\.(gif|jpg|jpeg|bmp|png))\\2/i", $string, $matches))
+				return $value;
+			
+			$remotefileurls = array();
+			foreach($matches[3] as $matche)
+			{
+				// Log::out($matche);
+				// if(strpos($matche, '://') === false)
+					// continue;
+				
+				self::dir_create($uploaddir);
+				$remotefileurls[$matche] = self::url_check($matche, $baseurl, $config);
+				// Log::out($remotefileurls[$matche]);
+			}
+			
+			unset($matches, $string);		//释放变量
+			
+			$remotefileurls = array_unique($remotefileurls);		//去除重复
+			$oldpath = $newpath = array();
+			
+			foreach($remotefileurls as $k=>$file) {
+				if(strpos($file, '://') === false || strpos($file, SITE_URL) !== false)
+					continue;
+				
+				$fileext = self::fileext($file);
+				$file_name = basename($file);
+				$filename = date("YmdHis") . '_' . rand(10000, 99999).'.'.$fileext;
+				
+				$newfile = $uploaddir.$filename;
+				
+				$snoopy = new Snoopy;
+				$snoopy->referer = $baseurl;										//伪装来源页地址 http_referer
+				$snoopy->agent = "(compatible; MSIE 4.01; MSN 2.5; AOL 4.0; Windows 98)";		//模拟浏览器
+				// $snoopy->agent = "(compatible; Googlebot/2.1; +http://www.google.com/bot.html)";	//模拟爬虫(避免IP被屏)
+				$snoopy -> fetch($file);
+				
+				// Log::out($snoopy->error);
+				if($snoopy->results != "") {
+					$handle = fopen($newfile, "w");
+					fwrite($handle, $snoopy->results);				//写入抓得内容
+					fclose($handle);
+					
+					$oldpath[] = $k;
+					$newpath[] = $uploadpath.$filename;
+					@chmod($newfile, 0777);
+				}
+				
+				// if(copy($file, $newfile)) {
+					// $oldpath[] = $k;
+					// $newpath[] = $uploadpath.$filename;
+					// @chmod($newfile, 0777);
+				// }
+			}
+			return str_replace($oldpath, $newpath, $value);
+		}
+		
+		/**
+		 * 附件下载
+		 * Enter description here ...
 		 * @param $field 预留字段
 		 * @param $value 传入下载内容
 		 * @param $watermark 是否加入水印
 		 * @param $absurl 绝对路径
 		 * @param $basehref 
 		 */
-		protected static function download_img_2($field, $value, $watermark = '0', $absurl = '', $basehref = '') {
+		protected static function download_img_2($field, $value, $basehref = '', $watermark = '0', $absurl = '') {
 			//date("YmdHis") . '_' . rand(10000, 99999)
 			$dir = '/uploads/attached/image/'. date("Ymd") .'/';
 			
